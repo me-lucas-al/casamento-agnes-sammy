@@ -1,5 +1,5 @@
 import type { SessionUser } from "@/modules/auth/types";
-import { giftsTag, pendingPaymentsTag } from "@/shared/lib/cache/cache-tags";
+import { dashboardTag, giftsTag, pendingPaymentsTag } from "@/shared/lib/cache/cache-tags";
 import type { CacheInvalidator } from "@/shared/lib/cache/invalidate";
 import { safeAction } from "@/shared/lib/safe-action";
 import { invalidInput } from "@/shared/lib/validation-failure";
@@ -71,7 +71,7 @@ export function createContributionController({ contributions, invalidator, getAc
     },
     async expireReservations(): Promise<number> {
       const expiredCount = await contributions.expireReservations();
-      if (expiredCount > 0) invalidator.invalidateTags([giftsTag(), pendingPaymentsTag()]);
+      if (expiredCount > 0) invalidator.invalidateTags([giftsTag(), pendingPaymentsTag(), dashboardTag()]);
       return expiredCount;
     },
   };

@@ -31,7 +31,7 @@ describe("contribution controller", () => {
 
     expect(result.ok).toBe(true);
     expect(invalidator.invalidatedTags.sort()).toEqual(
-      ["gifts", `gift:${gift.id}`, `contributions:${guest.guestId}`, "payments:pending"].sort(),
+      ["gifts", `gift:${gift.id}`, `contributions:${guest.guestId}`, "payments:pending", "dashboard"].sort(),
     );
   });
 
@@ -111,6 +111,6 @@ describe("contribution controller", () => {
 
     advanceHours(49);
     expect(await controller.expireReservations()).toBe(1);
-    expect(invalidator.invalidatedTags.sort()).toEqual(["gifts", "payments:pending"]);
+    expect(invalidator.invalidatedTags.sort()).toEqual(["dashboard", "gifts", "payments:pending"]);
   });
 });

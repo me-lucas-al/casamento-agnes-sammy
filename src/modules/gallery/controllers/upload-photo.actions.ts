@@ -1,6 +1,7 @@
 "use server";
 
 import { getSessionUser } from "@/modules/auth/controllers/get-session-user";
+import { dashboardTag } from "@/shared/lib/cache/cache-tags";
 import { nextCacheInvalidator } from "@/shared/lib/cache/invalidate";
 import type { SignedUploadParams } from "@/shared/lib/cloudinary";
 import { safeAction } from "@/shared/lib/safe-action";
@@ -27,7 +28,7 @@ export async function registerUploadedPhotoAction(
   return safeAction(describePhotoError, async () => {
     const actor = await getSessionUser();
     const { photo, changedTags } = await getGalleryModule().registerUploadedPhoto(actor, parsed.data);
-    nextCacheInvalidator.invalidateTags(changedTags);
+    nextCacheInvalidator.invalidateTags([...changedTags, dashboardTag()]);
     nextCacheInvalidator.invalidatePath("/galeria");
     nextCacheInvalidator.invalidatePath("/painel/fotos");
     return success({ isPending: photo.status === "pending" });

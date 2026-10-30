@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { ForbiddenError } from "@/modules/auth/errors";
 import { createMessageModule } from "@/modules/messages/factory";
 import { invalidateApprovedMessagesCache } from "@/modules/messages/lib/invalidate-messages-cache";
-import { approvedMessagesTag } from "@/shared/lib/cache/cache-tags";
+import { approvedMessagesTag, dashboardTag } from "@/shared/lib/cache/cache-tags";
 import type { CachedReadOptions, CachedReader } from "@/shared/lib/cache/cached-read";
 import { asUser } from "@/tests/helpers/fake-session";
 import { FakeCacheInvalidator } from "@/tests/helpers/fake-cache-invalidator";
@@ -88,7 +88,7 @@ describe("message listing", () => {
 
     invalidateApprovedMessagesCache(invalidator);
 
-    expect(invalidator.invalidatedTags).toEqual([approvedMessagesTag()]);
+    expect(invalidator.invalidatedTags).toEqual([approvedMessagesTag(), dashboardTag()]);
     expect(invalidator.invalidatedPaths).toEqual(["/recados", "/painel/recados"]);
   });
 });

@@ -2,6 +2,7 @@
 
 import { getSessionUser } from "@/modules/auth/controllers/get-session-user";
 import type { SessionUser } from "@/modules/auth/types";
+import { dashboardTag } from "@/shared/lib/cache/cache-tags";
 import { nextCacheInvalidator } from "@/shared/lib/cache/invalidate";
 import { safeAction } from "@/shared/lib/safe-action";
 import { invalidInput } from "@/shared/lib/validation-failure";
@@ -20,7 +21,7 @@ async function moderate(photoId: unknown, pickUseCase: ModerationUseCase): Promi
   return safeAction(describePhotoError, async () => {
     const actor = await getSessionUser();
     const { changedTags } = await pickUseCase(getGalleryModule())(actor, parsed.data);
-    nextCacheInvalidator.invalidateTags(changedTags);
+    nextCacheInvalidator.invalidateTags([...changedTags, dashboardTag()]);
     nextCacheInvalidator.invalidatePath("/galeria");
     nextCacheInvalidator.invalidatePath("/painel/fotos");
     return success();

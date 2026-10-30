@@ -2,6 +2,7 @@
 
 import { z } from "zod";
 import { getSessionUser } from "@/modules/auth/controllers/get-session-user";
+import { dashboardTag } from "@/shared/lib/cache/cache-tags";
 import { nextCacheInvalidator } from "@/shared/lib/cache/invalidate";
 import { safeAction } from "@/shared/lib/safe-action";
 import { invalidInput } from "@/shared/lib/validation-failure";
@@ -19,6 +20,7 @@ export async function sendMessageAction(input: unknown): Promise<ActionResult> {
   if (!parsed.success) return failure("Escreva um recado de 1 a 500 caracteres.");
   return safeAction(describeMessageError, async () => {
     await getMessageModule().sendMessage(await getSessionUser(), parsed.data);
+    nextCacheInvalidator.invalidateTags([dashboardTag()]);
     nextCacheInvalidator.invalidatePath("/painel/recados");
     return success();
   }, "sendMessageAction");

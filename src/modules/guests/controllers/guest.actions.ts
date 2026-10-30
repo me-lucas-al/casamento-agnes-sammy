@@ -1,7 +1,7 @@
 "use server";
 
 import { getSessionUser } from "@/modules/auth/controllers/get-session-user";
-import { guestTag } from "@/shared/lib/cache/cache-tags";
+import { dashboardTag, guestTag } from "@/shared/lib/cache/cache-tags";
 import { nextCacheInvalidator } from "@/shared/lib/cache/invalidate";
 import { safeAction } from "@/shared/lib/safe-action";
 import { invalidInput } from "@/shared/lib/validation-failure";
@@ -13,7 +13,7 @@ import { guestDetailsSchema, guestIdSchema, updateGuestSchema } from "../schemas
 const GUESTS_PATH = "/painel/convidados";
 
 function refreshGuest(guestId: string) {
-  nextCacheInvalidator.invalidateTags([guestTag(guestId)]);
+  nextCacheInvalidator.invalidateTags([guestTag(guestId), dashboardTag()]);
   nextCacheInvalidator.invalidatePath(GUESTS_PATH);
 }
 
@@ -22,6 +22,7 @@ export async function createGuestAction(input: unknown): Promise<ActionResult<{ 
   if (!parsed.success) return invalidInput(parsed);
   return safeAction(describeGuestError, async () => {
     const guest = await getGuestModule().createGuest(await getSessionUser(), parsed.data);
+    nextCacheInvalidator.invalidateTags([dashboardTag()]);
     nextCacheInvalidator.invalidatePath(GUESTS_PATH);
     return success({ guestId: guest.id });
   }, "createGuestAction");

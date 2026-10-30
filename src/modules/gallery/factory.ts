@@ -12,6 +12,7 @@ import { makeListPhotosPanelPage } from "./use-cases/list-photos-panel-page";
 import { makeRegisterUploadedPhoto } from "./use-cases/register-uploaded-photo";
 import { makeRejectPhoto } from "./use-cases/reject-photo";
 import { makeSignUploadPhoto } from "./use-cases/sign-upload-photo";
+import { makeUpdatePhotoCaption } from "./use-cases/update-photo-caption";
 
 type GalleryModuleOptions = {
   database: Database;
@@ -26,6 +27,7 @@ export function createGalleryModule({ database, cloudinaryClient, cachedReader }
     signUploadPhoto: makeSignUploadPhoto({ cloudinaryClient }),
     registerUploadedPhoto: makeRegisterUploadedPhoto({ photoRepository }),
     approvePhoto: makeApprovePhoto({ photoRepository }),
+    updatePhotoCaption: makeUpdatePhotoCaption({ photoRepository }),
     rejectPhoto: makeRejectPhoto({ photoRepository, cloudinaryClient }),
     deletePhoto: makeDeletePhoto({ photoRepository, cloudinaryClient }),
     listApprovedPhotosPage: makeListApprovedPhotosPage({ photoRepository, cachedReader }),

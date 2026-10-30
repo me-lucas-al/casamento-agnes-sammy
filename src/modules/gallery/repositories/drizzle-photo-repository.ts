@@ -23,6 +23,10 @@ export function createDrizzlePhotoRepository(database: Database): PhotoRepositor
       const [photo] = await database.update(photos).set({ status }).where(eq(photos.id, photoId)).returning();
       return photo ?? null;
     },
+    async updateCaption(photoId, caption) {
+      const [photo] = await database.update(photos).set({ caption }).where(eq(photos.id, photoId)).returning();
+      return photo ?? null;
+    },
     async deleteById(photoId) {
       await database.delete(photos).where(eq(photos.id, photoId));
     },

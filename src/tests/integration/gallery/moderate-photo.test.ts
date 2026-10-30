@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { ForbiddenError } from "@/modules/auth/errors";
+import { ForbiddenError, UnauthenticatedError } from "@/modules/auth/errors";
 import { PhotoNotFoundError } from "@/modules/gallery/errors";
 import { approvedPhotosTag } from "@/shared/lib/cache/cache-tags";
 import { asUser } from "@/tests/helpers/fake-session";
@@ -37,6 +37,38 @@ describe("photo moderation", () => {
     await expect(galleryModule.approvePhoto(guest, photo.id)).rejects.toBeInstanceOf(ForbiddenError);
     await expect(galleryModule.rejectPhoto(guest, photo.id)).rejects.toBeInstanceOf(ForbiddenError);
     await expect(galleryModule.deletePhoto(guest, photo.id)).rejects.toBeInstanceOf(ForbiddenError);
+  });
+
+  it.each(["couple", "admin"] as const)("lets %s update the caption", async (role) => {
+    const { galleryModule, photo } = await registerPendingPhoto("c1");
+
+    const { photo: updated, changedTags } = await galleryModule.updatePhotoCaption(
+      asUser(role),
+      photo.id,
+      "  Nova legenda ",
+    );
+
+    expect(updated.caption).toBe("Nova legenda");
+    expect(changedTags).toEqual([approvedPhotosTag()]);
+  });
+
+  it("forbids guests and anonymous from updating captions", async () => {
+    const { galleryModule, photo } = await registerPendingPhoto("c2");
+
+    await expect(galleryModule.updatePhotoCaption(asUser("guest"), photo.id, "x")).rejects.toBeInstanceOf(
+      ForbiddenError,
+    );
+    await expect(galleryModule.updatePhotoCaption(null, photo.id, "x")).rejects.toBeInstanceOf(
+      UnauthenticatedError,
+    );
+  });
+
+  it("fails to update the caption of an unknown photo", async () => {
+    const { galleryModule } = buildGalleryContext(testDatabase.db);
+
+    await expect(
+      galleryModule.updatePhotoCaption(asUser("admin"), "00000000-0000-4000-8000-000000000000", "x"),
+    ).rejects.toBeInstanceOf(PhotoNotFoundError);
   });
 
   it("rejects a photo destroying the remote image and keeping it unlisted", async () => {

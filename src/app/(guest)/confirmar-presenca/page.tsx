@@ -1,9 +1,13 @@
+import { redirect } from "next/navigation";
+import { getSessionUser } from "@/modules/auth/controllers/get-session-user";
 import { getMyRsvpQuery } from "@/modules/rsvp/controllers/rsvp.queries";
 import { RsvpForm } from "@/modules/rsvp/components/rsvp-form";
 
 export const dynamic = "force-dynamic";
 
 export default async function ConfirmPresencePage() {
+  const actor = await getSessionUser();
+  if (actor && actor.role !== "guest") redirect("/painel/presencas");
   const guestRsvp = await getMyRsvpQuery();
 
   return (

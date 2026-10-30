@@ -16,3 +16,5 @@ export const submitRsvpForGuestSchema = submitRsvpSchema.extend({
 });
 
 export type SubmitRsvpInput = z.infer<typeof submitRsvpSchema>;
+
+export const guestIdSchema = z.uuid();

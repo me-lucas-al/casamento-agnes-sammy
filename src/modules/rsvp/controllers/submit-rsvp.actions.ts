@@ -6,14 +6,15 @@ import { nextCacheInvalidator } from "@/shared/lib/cache/invalidate";
 import { failure, success, type ActionResult } from "@/shared/lib/result";
 import { describeRsvpError } from "../errors";
 import { getRsvpModule } from "../factory";
-import { submitRsvpForGuestSchema, submitRsvpSchema } from "../schemas/submit-rsvp.schema";
+import { requireGuestId } from "../lib/require-guest-id";
+import { guestIdSchema, submitRsvpForGuestSchema, submitRsvpSchema } from "../schemas/submit-rsvp.schema";
 
 export async function submitRsvpAction(input: unknown): Promise<ActionResult> {
   const parsed = submitRsvpSchema.safeParse(input);
   if (!parsed.success) return failure("Dados inválidos.");
   try {
     const actor = await getSessionUser();
-    const guestId = actor?.guestId ?? "";
+    const guestId = requireGuestId(actor);
     await getRsvpModule().submitRsvp(actor, { ...parsed.data, guestId });
     invalidateRsvpCache(nextCacheInvalidator, guestId);
     return success();
@@ -36,6 +37,7 @@ export async function submitRsvpForGuestAction(input: unknown): Promise<ActionRe
 }
 
 export async function deleteRsvpAction(guestId: string): Promise<ActionResult> {
+  if (!guestIdSchema.safeParse(guestId).success) return failure("Dados inválidos.");
   try {
     const actor = await getSessionUser();
     await getRsvpModule().deleteRsvp(actor, guestId);

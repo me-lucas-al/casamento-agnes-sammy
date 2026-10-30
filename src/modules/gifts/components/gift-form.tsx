@@ -80,7 +80,7 @@ export function GiftForm({ categories, gift }: GiftFormProps) {
         <input type="number" min={0} inputMode="numeric" value={values.sortOrder} onChange={(event) => change({ sortOrder: event.target.value })} className={fieldControlClassName} />
       </FormField>
       <GiftImageField currentUrl={gift?.imageUrl ?? null} onImageChange={setImage} />
-      <label className="flex items-center gap-2 text-sm text-wine">
+      <label className="flex min-h-11 cursor-pointer items-center gap-3 text-base text-wine">
         <input type="checkbox" checked={values.isVisible} onChange={(event) => change({ isVisible: event.target.checked })} />
         Visível para os convidados
       </label>

@@ -25,6 +25,7 @@ export type GiftDeletionOutcome =
   | { status: "has_active_reservations" };
 
 export interface GiftRepository {
+  existsWithImagePublicId(publicId: string, excludedGiftId?: string): Promise<boolean>;
   findById(giftId: string): Promise<Gift | null>;
   create(draft: GiftDraft): Promise<Gift>;
   update(giftId: string, draft: GiftDraft): Promise<Gift>;

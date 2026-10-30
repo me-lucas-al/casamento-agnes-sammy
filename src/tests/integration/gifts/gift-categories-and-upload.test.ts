@@ -63,7 +63,8 @@ describe("gift image upload signing", () => {
 
     for (const role of ["admin", "couple"] as const) {
       const signed = giftModule.signGiftImageUpload(asUser(role), { contentType: "image/webp", sizeBytes: 2048 });
-      expect(signed).toMatchObject({ folder: "gifts", signature: "fake-signature" });
+      expect(signed).toMatchObject({ signature: "fake-signature", allowedFormats: "jpg,png,webp" });
+      expect(signed.publicId).toMatch(/^gifts\/[0-9a-f-]{36}$/);
     }
   });
 

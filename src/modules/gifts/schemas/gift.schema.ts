@@ -1,11 +1,13 @@
 import { z } from "zod";
+import { isManagedPublicId } from "@/shared/lib/cloudinary-url";
+import { GIFT_IMAGE_FOLDER } from "../lib/gift-image-rules";
 import { GIFT_KINDS, GIFT_MODES } from "../types";
 
 const optionalCents = z.number().int().nonnegative().nullish();
 
 const imageSchema = z.object({
   url: z.url().max(500),
-  publicId: z.string().min(1).max(300).startsWith("gifts/"),
+  publicId: z.string().max(300).refine((publicId) => isManagedPublicId(GIFT_IMAGE_FOLDER, publicId)),
 });
 
 export const giftSchema = z.object({

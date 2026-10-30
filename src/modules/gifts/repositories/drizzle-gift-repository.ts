@@ -4,10 +4,14 @@ import type { Database } from "@/shared/db/types";
 import type { GiftRepository } from "./gift-repository";
 import { deleteGiftUnlessCommitted } from "./drizzle-gift-deletion";
 import { hasConfirmedContribution, sumActiveContributions } from "./drizzle-contribution-totals";
+import { existsGiftWithImagePublicId } from "./drizzle-gift-image-query";
 import { buildGiftFilters, buildGiftOrder } from "./drizzle-gift-list-query";
 
 export function createDrizzleGiftRepository(database: Database): GiftRepository {
   return {
+    existsWithImagePublicId(publicId, excludedGiftId) {
+      return existsGiftWithImagePublicId(database, publicId, excludedGiftId);
+    },
     async findById(giftId) {
       const [gift] = await database.select().from(gifts).where(eq(gifts.id, giftId)).limit(1);
       return gift ?? null;
@@ -36,8 +40,8 @@ export function createDrizzleGiftRepository(database: Database): GiftRepository 
       const items = rows.map(({ gift, categoryName }) => ({ ...gift, categoryName }));
       return { items, total: totalRow?.total ?? 0 };
     },
+    deleteUnlessCommitted: (giftId, now) => deleteGiftUnlessCommitted(database, giftId, now),
     hasConfirmedContribution: (giftId) => hasConfirmedContribution(database, giftId),
     sumActiveContributions: (giftIds, now) => sumActiveContributions(database, giftIds, now),
   };
 }
-    deleteUnlessCommitted: (giftId, now) => deleteGiftUnlessCommitted(database, giftId, now),

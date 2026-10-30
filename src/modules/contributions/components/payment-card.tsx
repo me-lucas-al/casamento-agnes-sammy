@@ -14,7 +14,10 @@ export function PaymentCard({ payment }: PaymentCardProps) {
       <div className="flex flex-wrap items-start justify-between gap-2">
         <div className="min-w-0">
           <h2 className="font-serif text-lg">{payment.giftName}</h2>
-          <p className="text-sm">{payment.guestName}</p>
+          <p className="text-sm">
+            {payment.guestName}
+            {payment.anonymous ? " · anônimo no mural" : ""}
+          </p>
         </div>
         <span className="rounded-full bg-blush px-3 py-1 text-xs">
           {CONTRIBUTION_STATUS_LABELS[payment.status]}

@@ -25,6 +25,7 @@ export function MyContributionCard({ contribution, now }: MyContributionCardProp
       <p className="text-sm">
         {formatCentsAsBrl(contribution.amountCents)}
         {contribution.quotas ? ` · ${contribution.quotas} cota(s)` : ""}
+        {contribution.anonymous ? " · anônimo" : ""}
       </p>
       {isOpen ? (
         <p className="text-xs">Reserva válida até {formatDateTimeInSaoPaulo(contribution.expiresAt)}</p>

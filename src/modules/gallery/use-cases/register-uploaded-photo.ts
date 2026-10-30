@@ -4,6 +4,7 @@ import type { SessionUser } from "@/modules/auth/types";
 import { approvedPhotosTag } from "@/shared/lib/cache/cache-tags";
 import type { CloudinaryClient } from "@/shared/lib/cloudinary";
 import { InvalidPublicIdError, PendingPhotoLimitError } from "../errors";
+import { rejectDuplicatePhotoAsset } from "../lib/reject-duplicate-photo-asset";
 import { isGalleryPublicId, urlReferencesPublicId } from "../lib/public-id";
 import { MAX_PENDING_PHOTOS_PER_GUEST } from "../lib/upload-rules";
 import type { PhotoRepository } from "../repositories/photo-repository";
@@ -48,7 +49,7 @@ export function makeRegisterUploadedPhoto({ photoRepository, cloudinaryClient }:
     if (!isOwned) throw new InvalidPublicIdError();
     if (await photoRepository.existsWithPublicId(cloudinaryPublicId)) throw new InvalidPublicIdError();
     await assertPendingQuota(user);
-    const photo = await photoRepository.create(buildNewPhoto(user, input));
+    const photo = await rejectDuplicatePhotoAsset(() => photoRepository.create(buildNewPhoto(user, input)));
     return { photo, changedTags: photo.status === "approved" ? [approvedPhotosTag()] : [] };
   };
 }

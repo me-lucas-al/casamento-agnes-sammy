@@ -26,3 +26,9 @@ Commits: one commit per completed task, clear Conventional Commits message in En
 ## Tests
 
 Integration tests in `src/tests/integration/<module>/*.test.ts` use `useTestDatabase()` and seeds from `src/tests/helpers`. Unit tests sit next to the file as `*.test.ts`.
+
+## Shared building blocks
+
+- Test helpers: `useTestDatabase()`, seeds in `src/tests/helpers/seeds/*`, `asUser(role)`, `FakeCacheInvalidator`, `FakeCloudinaryClient`.
+- Cache: `CachedReader` (`nextCachedReader` / `passThroughCachedReader`) and `CacheInvalidator` (`nextCacheInvalidator`) in `src/shared/lib/cache`; tags in `cache-tags.ts`.
+- Next 16 here: `src/proxy.ts` (not middleware), `cacheComponents` off, `unstable_cache` + `revalidateTag(tag, { expire: 0 })`.

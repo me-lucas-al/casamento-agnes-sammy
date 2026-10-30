@@ -19,18 +19,19 @@ export function PaymentsFiltersForm({ filters }: PaymentsFiltersFormProps) {
     <form method="get" className="grid grid-cols-1 gap-3 sm:grid-cols-4">
       <input
         name="search"
+        aria-label="Buscar convidado ou presente"
         defaultValue={filters.search}
         placeholder="Buscar convidado ou presente"
         className={fieldClassName}
       />
-      <select name="status" defaultValue={filters.status} className={fieldClassName}>
+      <select name="status" aria-label="Situação do pagamento" defaultValue={filters.status} className={fieldClassName}>
         {PAYMENT_STATUS_FILTERS.map((status) => (
           <option key={status} value={status}>
             {status === "all" ? "Todos" : CONTRIBUTION_STATUS_LABELS[status]}
           </option>
         ))}
       </select>
-      <select name="sort" defaultValue={filters.sort} className={fieldClassName}>
+      <select name="sort" aria-label="Ordenar pagamentos" defaultValue={filters.sort} className={fieldClassName}>
         {Object.entries(SORT_LABELS).map(([value, label]) => (
           <option key={value} value={value}>
             {label}

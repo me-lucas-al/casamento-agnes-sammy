@@ -1,5 +1,5 @@
 import { eq } from "drizzle-orm";
-import { guests, rsvpCompanions, rsvps, users } from "@/shared/db/schema";
+import { eventSettings, guests, rsvpCompanions, rsvps, users } from "@/shared/db/schema";
 import type { Database } from "@/shared/db/types";
 import { saveOwnProfile } from "./drizzle-own-profile-save";
 import type { ProfileRepository } from "./profile-repository";
@@ -35,6 +35,13 @@ export function createDrizzleProfileRepository(database: Database): ProfileRepos
         relatives,
         profileCompleted: profileCompletedAt !== null,
       };
+    },
+    async findRsvpDeadline() {
+      const [settings] = await database
+        .select({ rsvpDeadline: eventSettings.rsvpDeadline })
+        .from(eventSettings)
+        .limit(1);
+      return settings?.rsvpDeadline ?? null;
     },
     saveOwnProfile: (changes) => saveOwnProfile(database, changes),
     async findStaffProfile(userId) {

@@ -2,8 +2,8 @@ import { eq } from "drizzle-orm";
 import { describe, expect, it } from "vitest";
 import { ForbiddenError, UnauthenticatedError } from "@/modules/auth/errors";
 import { createProfileModule } from "@/modules/profile/factory";
-import { CompanionLimitExceededError } from "@/modules/rsvp/errors";
-import { guests, rsvpCompanions, rsvps } from "@/shared/db/schema";
+import { CompanionLimitExceededError, RsvpDeadlinePassedError } from "@/modules/rsvp/errors";
+import { eventSettings, guests, rsvpCompanions, rsvps } from "@/shared/db/schema";
 import { asUser } from "@/tests/helpers/fake-session";
 import { seedGuest } from "@/tests/helpers/seeds/seed-guest";
 import { seedCouple } from "@/tests/helpers/seeds/seed-user";
@@ -84,6 +84,38 @@ describe("updateOwnProfile", () => {
     await expect(
       profileModule().updateOwnProfile(asUser("guest", { guestId: guest.id }), validInput),
     ).rejects.toBeInstanceOf(CompanionLimitExceededError);
+  });
+
+  describe("after the rsvp deadline", () => {
+    const insertEventWithDeadline = () =>
+      testDatabase.db.insert(eventSettings).values({
+        coupleNames: "Agnes & Sammy",
+        eventAt: new Date("2027-05-01T20:00:00.000Z"),
+        venueName: "Salão",
+        address: "Rua Principal, 1",
+        rsvpDeadline: new Date("2026-11-01T00:00:00.000Z"),
+      });
+
+    it("refuses to change relatives", async () => {
+      const guest = await seedGuest(testDatabase.db, { seats: 3 });
+      await insertEventWithDeadline();
+
+      await expect(
+        profileModule().updateOwnProfile(asUser("guest", { guestId: guest.id }), validInput),
+      ).rejects.toBeInstanceOf(RsvpDeadlinePassedError);
+    });
+
+    it("still lets the guest change contact data when relatives stay the same", async () => {
+      const guest = await seedGuest(testDatabase.db, { seats: 3 });
+      await insertEventWithDeadline();
+
+      const profile = await profileModule().updateOwnProfile(asUser("guest", { guestId: guest.id }), {
+        ...validInput,
+        relatives: [],
+      });
+
+      expect(profile.email).toBe("maria@example.com");
+    });
   });
 
   it("forbids staff and anonymous callers", async () => {

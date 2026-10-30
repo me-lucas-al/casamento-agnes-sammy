@@ -2,6 +2,7 @@ import { calculateRsvpTotals } from "@/modules/rsvp/repositories/drizzle-rsvp-li
 import type { Database } from "@/shared/db/types";
 import { readContributionTotals } from "./contribution-totals-query";
 import type { DashboardRepository } from "./dashboard-repository";
+import { readOnboardingFacts } from "./onboarding-facts-query";
 import { readPendingModeration } from "./pending-moderation-query";
 
 export function createDrizzleDashboardRepository(database: Database): DashboardRepository {
@@ -14,5 +15,6 @@ export function createDrizzleDashboardRepository(database: Database): DashboardR
       ]);
       return { ...contributionTotals, attendance, ...moderation };
     },
+    readOnboardingFacts: () => readOnboardingFacts(database),
   };
 }

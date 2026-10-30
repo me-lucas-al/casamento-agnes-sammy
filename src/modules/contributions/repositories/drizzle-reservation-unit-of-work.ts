@@ -54,10 +54,10 @@ function createReservationStore(database: Database): ReservationStore {
         .limit(1);
       return contribution ?? null;
     },
-    async updateAmounts(contributionId, { quotas, amountCents }) {
+    async updateAmounts(contributionId, { quotas, amountCents, anonymous }) {
       const [contribution] = await database
         .update(giftContributions)
-        .set({ quotas, amountCents })
+        .set({ quotas, amountCents, anonymous })
         .where(
           and(
             eq(giftContributions.id, contributionId),

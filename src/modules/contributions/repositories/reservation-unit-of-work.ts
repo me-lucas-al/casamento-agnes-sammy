@@ -4,7 +4,7 @@ import type {
   GiftCommitment,
   NewReservation,
   ReservableGift,
-  ReservationAmounts,
+  ReservationChange,
 } from "../types";
 
 export interface ReservationStore {
@@ -18,7 +18,7 @@ export interface ReservationStore {
   findContribution(contributionId: string): Promise<Contribution | null>;
   countActiveReservations(guestId: string, now: Date): Promise<number>;
   confirmReservation(input: ConfirmationInput): Promise<Contribution | null>;
-  updateAmounts(contributionId: string, amounts: ReservationAmounts): Promise<Contribution | null>;
+  updateAmounts(contributionId: string, change: ReservationChange): Promise<Contribution | null>;
 }
 
 export interface ReservationUnitOfWork {

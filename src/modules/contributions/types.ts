@@ -44,6 +44,7 @@ export type ReservationRequest = {
   giftId: string;
   quotas?: number;
   amountCents?: number;
+  anonymous?: boolean;
 };
 
 export type ReservationAmounts = {
@@ -51,7 +52,9 @@ export type ReservationAmounts = {
   amountCents: number;
 };
 
-export type NewReservation = ReservationAmounts & {
+export type ReservationChange = ReservationAmounts & { anonymous: boolean };
+
+export type NewReservation = ReservationChange & {
   giftId: string;
   guestId: string;
   expiresAt: Date;

@@ -12,7 +12,7 @@ import type { Clock, Contribution } from "../types";
 
 type Dependencies = { unitOfWork: ReservationUnitOfWork; clock: Clock };
 
-type Input = { contributionId: string; quotas?: number; amountCents?: number };
+type Input = { contributionId: string; quotas?: number; amountCents?: number; anonymous?: boolean };
 
 const EDITABLE_BY_STAFF = ["reserved", "confirmed"];
 
@@ -34,7 +34,10 @@ export function makeUpdateReservation({ unitOfWork, clock }: Dependencies) {
       if (!gift) throw new GiftNotFoundError();
       const commitment = await store.findCommitment(gift.id, now, existing.id);
       const amounts = resolveReservation(gift, commitment, request);
-      const updated = await store.updateAmounts(existing.id, amounts);
+      const updated = await store.updateAmounts(existing.id, {
+        ...amounts,
+        anonymous: request.anonymous ?? existing.anonymous,
+      });
       if (!updated) throw new ContributionNotPendingError();
       return updated;
     });

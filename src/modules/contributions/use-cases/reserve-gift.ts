@@ -27,6 +27,7 @@ export function makeReserveGift({ unitOfWork, clock }: Dependencies) {
       const amounts = resolveReservation(gift, commitment, request);
       return store.insertReservation({
         ...amounts,
+        anonymous: request.anonymous ?? false,
         giftId: gift.id,
         guestId,
         expiresAt: addHours(now, RESERVATION_HOURS),

@@ -3,6 +3,8 @@ import { giftContributions, guests, messages } from "@/shared/db/schema";
 import type { Database } from "@/shared/db/types";
 import type { ConfirmationInput, Contribution } from "../types";
 
+const ANONYMOUS_AUTHOR_NAME = "Anônimo";
+
 export async function confirmContribution(
   database: Database,
   { contributionId, confirmedBy, confirmedAt, message }: ConfirmationInput,
@@ -20,7 +22,7 @@ export async function confirmContribution(
     .limit(1);
   await database.insert(messages).values({
     guestId: contribution.guestId,
-    authorName: guest?.name ?? "Convidado",
+    authorName: contribution.anonymous ? ANONYMOUS_AUTHOR_NAME : (guest?.name ?? "Convidado"),
     body: message,
     status: "pending",
     contributionId: contribution.id,

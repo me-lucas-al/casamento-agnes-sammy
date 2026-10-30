@@ -6,6 +6,7 @@ export const reserveGiftSchema = z.object({
   giftId: z.uuid(),
   quotas: z.number().int().positive().optional(),
   amountCents: z.number().int().positive().optional(),
+  anonymous: z.boolean().optional(),
 });
 
 export const updateReservationSchema = reserveGiftSchema

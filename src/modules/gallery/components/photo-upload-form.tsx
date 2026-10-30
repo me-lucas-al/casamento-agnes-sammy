@@ -41,22 +41,28 @@ export function PhotoUploadForm() {
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-3 rounded-xl bg-paper-dark p-4">
-      <label className="flex flex-col gap-1 text-sm text-wine">
-        Foto (JPG, PNG ou WEBP, até 8 MB)
-        <input name="photo" type="file" accept="image/jpeg,image/png,image/webp" required />
+      <label className="flex flex-col gap-1 text-base text-wine">
+        Escolha uma foto (JPG, PNG ou WEBP, até 8 MB)
+        <input
+          name="photo"
+          type="file"
+          accept="image/jpeg,image/png,image/webp"
+          required
+          className="file:mr-3 file:min-h-11 file:cursor-pointer file:rounded-full file:border-0 file:bg-blush file:px-4 file:text-wine"
+        />
       </label>
-      <label className="flex flex-col gap-1 text-sm text-wine">
+      <label className="flex flex-col gap-1 text-base text-wine">
         Legenda (opcional)
-        <input name="caption" maxLength={200} className="rounded-lg border bg-paper px-3 py-2" />
+        <input name="caption" maxLength={200} className="rounded-lg border border-input bg-card px-3 py-2" />
       </label>
       <button
         type="submit"
         disabled={isSending}
-        className="rounded-full bg-rose px-4 py-2 text-white disabled:opacity-50"
+        className="rounded-full bg-rose px-6 py-3 text-lg text-white transition-colors hover:bg-crimson disabled:opacity-50"
       >
         {isSending ? "Enviando..." : "Enviar foto"}
       </button>
-      {message ? <p role="status" className="text-sm text-wine">{message}</p> : null}
+      {message ? <p role="status" className="text-base text-wine">{message}</p> : null}
     </form>
   );
 }

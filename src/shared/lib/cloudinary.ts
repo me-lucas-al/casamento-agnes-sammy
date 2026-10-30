@@ -1,15 +1,19 @@
 import { createHash } from "node:crypto";
 
+export const ALLOWED_UPLOAD_FORMATS = "jpg,png,webp";
+
 export type SignedUploadParams = {
   cloudName: string;
   apiKey: string;
   timestamp: number;
-  folder: string;
+  publicId: string;
+  allowedFormats: string;
   signature: string;
 };
 
 export interface CloudinaryClient {
-  signUpload(folder: string): SignedUploadParams;
+  readonly cloudName: string;
+  signUpload(publicId: string): SignedUploadParams;
   destroyImage(publicId: string): Promise<void>;
 }
 
@@ -19,7 +23,7 @@ export type CloudinaryCredentials = {
   apiSecret: string;
 };
 
-function signParameters(parameters: Record<string, string | number>, apiSecret: string): string {
+export function signParameters(parameters: Record<string, string | number>, apiSecret: string): string {
   const payload = Object.keys(parameters)
     .sort()
     .map((key) => `${key}=${parameters[key]}`)
@@ -31,10 +35,15 @@ export function createCloudinaryClient(credentials: CloudinaryCredentials): Clou
   const { cloudName, apiKey, apiSecret } = credentials;
 
   return {
-    signUpload(folder) {
+    cloudName,
+    signUpload(publicId) {
       const timestamp = Math.floor(Date.now() / 1000);
-      const signature = signParameters({ folder, timestamp }, apiSecret);
-      return { cloudName, apiKey, timestamp, folder, signature };
+      const allowedFormats = ALLOWED_UPLOAD_FORMATS;
+      const signature = signParameters(
+        { allowed_formats: allowedFormats, public_id: publicId, timestamp },
+        apiSecret,
+      );
+      return { cloudName, apiKey, timestamp, publicId, allowedFormats, signature };
     },
     async destroyImage(publicId) {
       const timestamp = Math.floor(Date.now() / 1000);

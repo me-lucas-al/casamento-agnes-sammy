@@ -5,9 +5,28 @@ on:
     branches: [main]
   pull_request:
 
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  DATABASE_URL: postgresql://ci:ci@localhost:5432/ci
+  AUTH_SECRET: ci-placeholder-secret-not-for-real-use
+  AUTH_GOOGLE_ID: ci-placeholder
+  AUTH_GOOGLE_SECRET: ci-placeholder
+  CLOUDINARY_CLOUD_NAME: ci-placeholder
+  CLOUDINARY_API_KEY: ci-placeholder
+  CLOUDINARY_API_SECRET: ci-placeholder
+  CRON_SECRET: ci-placeholder
+  APP_URL: http://localhost:3000
+
 jobs:
   verify:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
@@ -19,3 +38,24 @@ jobs:
       - run: pnpm lint
       - run: pnpm tsc --noEmit
       - run: pnpm test
+      - run: pnpm build
+
+  migrations-in-sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm db:generate
+      - name: Fail if schema changed without a committed migration
+        run: |
+          if [ -n "$(git status --porcelain -- src/shared/db/migrations)" ]; then
+            echo "::error::Schema changed but migrations are not up to date. Run 'pnpm db:generate' and commit the result."
+            git status --porcelain -- src/shared/db/migrations
+            exit 1
+          fi

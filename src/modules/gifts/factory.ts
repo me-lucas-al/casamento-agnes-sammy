@@ -41,7 +41,7 @@ export function createGiftModule(database: Database, options: GiftModuleOptions)
     listGiftCategories: makeListGiftCategories({ categoryRepository, cachedReader }),
     createGift: makeCreateGift({ giftRepository, categoryRepository }),
     updateGift: makeUpdateGift({ giftRepository, categoryRepository, cloudinaryClient }),
-    deleteGift: makeDeleteGift({ giftRepository, cloudinaryClient }),
+    deleteGift: makeDeleteGift({ giftRepository, cloudinaryClient, now }),
     getGiftForEdit: makeGetGiftForEdit({ giftRepository }),
     listVisibleGiftsPage: makeListVisibleGiftsPage({ giftRepository, cachedReader, getGiftsAvailability }),
     listPanelGiftsPage: makeListPanelGiftsPage({ giftRepository, getGiftsAvailability }),

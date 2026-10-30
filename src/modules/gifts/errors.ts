@@ -25,6 +25,12 @@ export class GiftHasConfirmedContributionError extends Error {
   }
 }
 
+export class GiftHasActiveReservationsError extends Error {
+  constructor() {
+    super("Gift has active reservations");
+  }
+}
+
 export class InvalidGiftConfigurationError extends Error {
   constructor(readonly userMessage: string) {
     super(userMessage);
@@ -60,3 +66,6 @@ export function describeGiftError(error: unknown): string {
   if (error instanceof InvalidImageUploadError) return describeImageRejection(error.reason);
   return describeAuthError(error) ?? "Não foi possível concluir a operação.";
 }
+  if (error instanceof GiftHasActiveReservationsError) {
+    return "Este presente tem reservas pendentes. Aguarde o pagamento ou cancele as reservas antes de excluir.";
+  }

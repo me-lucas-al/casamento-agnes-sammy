@@ -80,27 +80,32 @@
 - [x] Tratamento global de erros (global-error, wrapper de Server Actions, logger central, erros de API)
 - [x] Índices únicos em photos.cloudinary_public_id e gifts.image_public_id
 - [ ] Índice único em `photos.cloudinary_public_id` e `gifts.image_public_id`
+- [ ] Passo a passo (onboarding) no painel para os noivos configurarem chave Pix, história, fotos e presentes
+- [ ] Seed das categorias iniciais de presentes (Cozinha & Eletrodomésticos, Sala & Decoração, Quarto & Banho, Lua de Mel & Experiências, Casa Nova / Cotas Livres, Divertidos / Zoeira)
+- [ ] Opção para o convidado escolher se a contribuição/recado do Pix será anônima ou não
+- [ ] Cadastro/edição pelo convidado ao entrar com código: nome, telefone, e-mail e familiares
+- [ ] Travar limite de 8 MB de upload também no Cloudinary (upload preset)
 - [ ] Primeiro disparo real do workflow de migration em produção
 - [ ] Deploy em produção (Vercel + Neon) e domínio
 - [ ] Build rodando em `localhost:3000`
 
-## Dados pendentes do casal
-- [ ] Chave Pix, tipo, nome do recebedor e cidade
-- [ ] Texto "nossa história" e fotos do casal
-- [ ] E-mails Google do admin e dos noivos, e domínio do site
-- [ ] Credenciais: Neon, Cloudinary, Google OAuth, projeto Vercel, secret `DATABASE_URL` no GitHub
-- [ ] Categorias iniciais de presentes
+## Dados pendentes do casal (via painel / `.env`)
+- [x] Chave Pix, tipo, nome do recebedor e cidade — *preenchido pelos noivos no painel (via passo a passo)*
+- [x] Texto "nossa história" e fotos do casal — *preenchido pelos noivos no painel (via passo a passo)*
+- [x] E-mails Google do admin e dos noivos, e domínio do site — *configurados via painel/ambiente*
+- [x] Credenciais: Neon, Cloudinary, Google OAuth, projeto Vercel, secret `DATABASE_URL` no GitHub — *via `.env` e GitHub Secrets*
+- [x] Categorias iniciais de presentes — *definidas (6 categorias padrão)*
 
-## Dúvidas para responder
-- [ ] Chave Pix: tipo, nome do recebedor e cidade
-- [ ] Texto "nossa história" e fotos do casal
-- [ ] E-mails Google do admin e dos noivos, e o domínio do site
-- [ ] Credenciais de Neon, Cloudinary, Google OAuth e Vercel; secret `DATABASE_URL` no ambiente `production` do GitHub, com required reviewers
-- [ ] Categorias iniciais de presentes
-- [ ] O convidado pode criar presentes ou categorias? (assumido: não)
-- [ ] Excluir presente com reserva ativa: manter o bloqueio?
-- [ ] Mudar modo ou preço de presente que já tem contribuições: bloquear?
-- [ ] Recado de confirmação do Pix mostra o nome do convidado: anonimizar?
-- [ ] Prazo de RSVP vazio deixa o RSVP aberto para sempre: é intencional?
-- [ ] Perfil do convidado é só leitura: ele pode editar o próprio telefone?
-- [ ] Limite de 8 MB de upload só é checado no servidor: travar também no Cloudinary com upload preset?
+## Dúvidas para responder (Respondidas)
+- [x] Chave Pix: tipo, nome do recebedor e cidade — **Resposta:** os noivos preencherão no painel; haverá passo a passo (onboarding) ao entrarem mostrando o que podem fazer.
+- [x] Texto "nossa história" e fotos do casal — **Resposta:** os noivos preencherão no painel seguindo o passo a passo.
+- [x] E-mails Google do admin e dos noivos, e o domínio do site — **Resposta:** configurados via painel/ambiente seguindo o passo a passo.
+- [x] Credenciais de Neon, Cloudinary, Google OAuth e Vercel; secret `DATABASE_URL` no ambiente `production` do GitHub, com required reviewers — **Resposta:** maioria via `.env`; o que precisar para CI/CD vai nos Secrets do GitHub.
+- [x] Categorias iniciais de presentes — **Resposta:** Cozinha & Eletrodomésticos, Sala & Decoração, Quarto & Banho, Lua de Mel & Experiências, Casa Nova / Cotas Livres, Divertidos / Zoeira.
+- [x] O convidado pode criar presentes ou categorias? (assumido: não) — **Resposta:** Não.
+- [x] Excluir presente com reserva ativa: manter o bloqueio? — **Resposta:** Sim, manter bloqueio.
+- [x] Mudar modo ou preço de presente que já tem contribuições: bloquear? — **Resposta:** Sim, bloquear (não pode mudar).
+- [x] Recado de confirmação do Pix mostra o nome do convidado: anonimizar? — **Resposta:** Colocar opção para o convidado decidir se é anônimo ou não.
+- [x] Prazo de RSVP vazio deixa o RSVP aberto para sempre: é intencional? — **Resposta:** Sim, manter opcional (vazio = sempre aberto).
+- [x] Perfil do convidado é só leitura: ele pode editar o próprio telefone? — **Resposta:** Convidado pode editar suas informações; ao acessar com o código, preencherá nome, telefone, e-mail e seus familiares.
+- [x] Limite de 8 MB de upload só é checado no servidor: travar também no Cloudinary com upload preset? — **Resposta:** Sim, travar também no Cloudinary.

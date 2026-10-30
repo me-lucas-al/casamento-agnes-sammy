@@ -5,6 +5,8 @@ import { eventSettings, photos } from "@/shared/db/schema";
 import { passThroughCachedReader } from "@/shared/lib/cache/cached-read";
 import { asUser } from "@/tests/helpers/fake-session";
 import { seedGift } from "@/tests/helpers/seeds/seed-gift";
+import { seedGuest } from "@/tests/helpers/seeds/seed-guest";
+import { seedCouple } from "@/tests/helpers/seeds/seed-user";
 import { useTestDatabase } from "@/tests/helpers/use-test-database";
 
 const baseEvent = {
@@ -37,10 +39,23 @@ describe("getOnboardingStatus", () => {
 
   it("marks the story, photos and gifts steps from stored data", async () => {
     await testDatabase.db.insert(eventSettings).values({ ...baseEvent, story: "  Nos conhecemos em 2020.  " });
-    await testDatabase.db.insert(photos).values({ cloudinaryPublicId: "p1", url: "https://example.com/p1.jpg" });
+    const couple = await seedCouple(testDatabase.db);
+    await testDatabase.db
+      .insert(photos)
+      .values({ cloudinaryPublicId: "p1", url: "https://example.com/p1.jpg", uploadedByUserId: couple.id });
     await seedGift(testDatabase.db);
 
     expect(await doneKeys()).toEqual(["story", "photos", "gifts"]);
+  });
+
+  it("does not count guest photos or hidden gifts", async () => {
+    const guest = await seedGuest(testDatabase.db);
+    await testDatabase.db
+      .insert(photos)
+      .values({ cloudinaryPublicId: "g1", url: "https://example.com/g1.jpg", uploadedByGuestId: guest.id });
+    await seedGift(testDatabase.db, { isVisible: false });
+
+    expect(await doneKeys()).toEqual([]);
   });
 
   it("ignores a blank story", async () => {

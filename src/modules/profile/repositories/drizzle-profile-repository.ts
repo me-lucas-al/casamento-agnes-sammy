@@ -1,6 +1,7 @@
 import { eq } from "drizzle-orm";
-import { guests, rsvps, users } from "@/shared/db/schema";
+import { guests, rsvpCompanions, rsvps, users } from "@/shared/db/schema";
 import type { Database } from "@/shared/db/types";
+import { saveOwnProfile } from "./drizzle-own-profile-save";
 import type { ProfileRepository } from "./profile-repository";
 
 export function createDrizzleProfileRepository(database: Database): ProfileRepository {
@@ -11,6 +12,8 @@ export function createDrizzleProfileRepository(database: Database): ProfileRepos
           guestId: guests.id,
           name: guests.name,
           phone: guests.phone,
+          email: guests.email,
+          profileCompletedAt: guests.profileCompletedAt,
           seats: guests.seats,
           code: guests.code,
           rsvpStatus: rsvps.status,
@@ -21,8 +24,19 @@ export function createDrizzleProfileRepository(database: Database): ProfileRepos
         .where(eq(guests.id, guestId))
         .limit(1);
       if (!row) return null;
-      return { ...row, rsvpStatus: row.rsvpStatus ?? "pending" };
+      const relatives = await database
+        .select({ name: rsvpCompanions.name, dietaryNote: rsvpCompanions.dietaryNote })
+        .from(rsvpCompanions)
+        .where(eq(rsvpCompanions.guestId, guestId));
+      const { profileCompletedAt, ...profile } = row;
+      return {
+        ...profile,
+        rsvpStatus: row.rsvpStatus ?? "pending",
+        relatives,
+        profileCompleted: profileCompletedAt !== null,
+      };
     },
+    saveOwnProfile: (changes) => saveOwnProfile(database, changes),
     async findStaffProfile(userId) {
       const [row] = await database
         .select({ userId: users.id, name: users.name, email: users.email, role: users.role, image: users.image })

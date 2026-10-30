@@ -23,15 +23,14 @@ export function makeAuthenticateGuestCode(dependencies: Dependencies) {
   return async function authenticateGuestCode({ code, ipHash }: Input): Promise<AuthenticatedGuest> {
     const currentTime = now();
     const windowStart = addMinutes(currentTime, -ATTEMPT_WINDOW_MINUTES);
-    const failedAttempts = await loginAttemptRepository.countSince(ipHash, windowStart);
-    if (failedAttempts >= MAX_FAILED_ATTEMPTS) throw new TooManyLoginAttemptsError();
+    await loginAttemptRepository.record(ipHash, currentTime);
+    const attempts = await loginAttemptRepository.countSince(ipHash, windowStart);
+    if (attempts > MAX_FAILED_ATTEMPTS) throw new TooManyLoginAttemptsError();
 
     const guest = await guestCodeGateway.findByCode(code.trim().toUpperCase());
-    if (!guest) {
-      await loginAttemptRepository.record(ipHash, currentTime);
-      throw new InvalidGuestCodeError();
-    }
+    if (!guest) throw new InvalidGuestCodeError();
 
+    await loginAttemptRepository.clearForIp(ipHash);
     await guestCodeGateway.markAccess(guest.id, currentTime);
     return { id: guest.id, guestId: guest.id, role: "guest", name: guest.name };
   };

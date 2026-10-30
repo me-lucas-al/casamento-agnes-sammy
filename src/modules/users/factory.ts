@@ -4,6 +4,7 @@ import { createDrizzleUserRepository } from "./repositories/drizzle-user-reposit
 import { makeCreateUser } from "./use-cases/create-user";
 import { makeEnsureAdminUser } from "./use-cases/ensure-admin-user";
 import { makeListUsersPage } from "./use-cases/list-users-page";
+import { makeSetUserActive } from "./use-cases/set-user-active";
 
 export function createUserModule(database: Database) {
   const userRepository = createDrizzleUserRepository(database);
@@ -11,6 +12,7 @@ export function createUserModule(database: Database) {
     userRepository,
     createUser: makeCreateUser({ userRepository }),
     listUsersPage: makeListUsersPage({ userRepository }),
+    setUserActive: makeSetUserActive({ userRepository }),
     ensureAdminUser: makeEnsureAdminUser({ userRepository }),
   };
 }

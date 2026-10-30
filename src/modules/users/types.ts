@@ -11,10 +11,15 @@ export type NewUser = {
   image?: string | null;
 };
 
+export const USER_STATUSES = ["active", "inactive"] as const;
+
+export type UserStatus = (typeof USER_STATUSES)[number];
+
 export type UserListQuery = {
   limit: number;
   offset: number;
   search: string;
+  status?: UserStatus;
 };
 
 export type UserListPage = {

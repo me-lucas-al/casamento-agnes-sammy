@@ -13,6 +13,7 @@ const ENVIRONMENT = {
   CLOUDINARY_CLOUD_NAME: "cloud",
   CLOUDINARY_API_KEY: "key",
   CLOUDINARY_API_SECRET: "secret",
+  CLOUDINARY_UPLOAD_PRESET: "preset",
   CRON_SECRET: "cron-secret-with-at-least-32-characters",
   APP_URL: "http://localhost:3000",
 };

@@ -59,6 +59,7 @@ export function getGiftModule(): GiftModule {
       cloudName: env.CLOUDINARY_CLOUD_NAME,
       apiKey: env.CLOUDINARY_API_KEY,
       apiSecret: env.CLOUDINARY_API_SECRET,
+      uploadPreset: env.CLOUDINARY_UPLOAD_PRESET,
     }),
   });
 }

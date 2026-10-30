@@ -9,6 +9,7 @@ import {
   giftTag,
   guestTag,
   pendingPaymentsTag,
+  dashboardTag,
 } from "./cache-tags";
 
 describe("cache tags", () => {
@@ -20,6 +21,7 @@ describe("cache tags", () => {
       approvedMessagesTag(),
       approvedPhotosTag(),
       pendingPaymentsTag(),
+      dashboardTag(),
     ]).toEqual([
       "event",
       "gifts",
@@ -27,6 +29,7 @@ describe("cache tags", () => {
       "messages:approved",
       "photos:approved",
       "payments:pending",
+      "dashboard",
     ]);
   });
 

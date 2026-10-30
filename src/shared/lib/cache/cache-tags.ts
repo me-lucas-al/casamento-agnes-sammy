@@ -7,3 +7,4 @@ export const approvedPhotosTag = () => "photos:approved";
 export const guestTag = (guestId: string) => `guest:${guestId}`;
 export const contributionsTag = (guestId: string) => `contributions:${guestId}`;
 export const pendingPaymentsTag = () => "payments:pending";
+export const dashboardTag = () => "dashboard";

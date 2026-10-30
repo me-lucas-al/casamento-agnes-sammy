@@ -1,0 +1,35 @@
+@theme inline {
+  --color-paper: #f6f1ea;
+  --color-paper-dark: #e6dcd0;
+  --color-rose: #d14d80;
+  --color-wine: #5b1a2e;
+  --color-crimson: #a3204a;
+  --color-blush: #ebdde2;
+  --color-fuchsia: #c2185b;
+  --color-gold: #b8997a;
+  --font-sans: var(--font-cormorant), Georgia, serif;
+  --font-heading: var(--font-cormorant), Georgia, serif;
+  --font-script: var(--font-allura), cursive;
+  --font-display: var(--font-playfair), Georgia, serif;
+}
+
+:root {
+  --background: #f6f1ea;
+  --foreground: #5b1a2e;
+  --card: #fbf8f4;
+  --card-foreground: #5b1a2e;
+  --popover: #fbf8f4;
+  --popover-foreground: #5b1a2e;
+  --primary: #d14d80;
+  --primary-foreground: #ffffff;
+  --secondary: #ebdde2;
+  --secondary-foreground: #5b1a2e;
+  --muted: #e6dcd0;
+  --muted-foreground: #7d5560;
+  --accent: #ebdde2;
+  --accent-foreground: #5b1a2e;
+  --destructive: #a3204a;
+  --border: #dccfc2;
+  --input: #dccfc2;
+  --ring: #d14d80;
+}

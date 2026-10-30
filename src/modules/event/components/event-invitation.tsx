@@ -36,7 +36,7 @@ export function EventInvitation({ settings }: EventInvitationProps) {
       <section className="relative flex flex-col gap-1 px-6 text-lg">
         <h2 className="text-2xl font-semibold">{settings.venueName}</h2>
         <p>{settings.address}</p>
-        <p className="text-rose">(com espaço reservado)</p>
+        <p className="text-rose-soft">(com espaço reservado)</p>
         {settings.mapUrl ? (
           <a href={settings.mapUrl} target="_blank" rel="noopener noreferrer" className="text-crimson underline underline-offset-4">
             Ver no mapa

@@ -1,7 +1,8 @@
 @theme inline {
   --color-paper: #f6f1ea;
   --color-paper-dark: #e6dcd0;
-  --color-rose: #d14d80;
+  --color-rose: #b83a6b;
+  --color-rose-soft: #d14d80;
   --color-wine: #5b1a2e;
   --color-crimson: #a3204a;
   --color-blush: #ebdde2;
@@ -20,7 +21,7 @@
   --card-foreground: #5b1a2e;
   --popover: #fbf8f4;
   --popover-foreground: #5b1a2e;
-  --primary: #d14d80;
+  --primary: #b83a6b;
   --primary-foreground: #ffffff;
   --secondary: #ebdde2;
   --secondary-foreground: #5b1a2e;
@@ -30,6 +31,6 @@
   --accent-foreground: #5b1a2e;
   --destructive: #a3204a;
   --border: #dccfc2;
-  --input: #dccfc2;
-  --ring: #d14d80;
+  --input: #968070;
+  --ring: #b83a6b;
 }

@@ -57,7 +57,7 @@ Next.js (App Router) + TypeScript strict · Drizzle ORM + Neon Postgres · Auth.
 8. Valores monetários em **centavos (integer)**. Datas em UTC, exibir `America/Sao_Paulo`.
 9. Erros de negócio via classes (`GiftUnavailableError`…) mapeadas no controller → mensagem pt-BR.
 10. Autorização checada no controller **e** no use-case sensível (nunca só no UI/proxy).
-11. Commits semânticos em inglês, **sem** `Co-Authored-By`/atribuição ao Claude.
+11. Commits: um commit por tarefa concluída; mensagens claras, semânticas (Conventional Commits: feat, fix, refactor, chore, docs, test, style) e **em inglês**; pequenos (1 a 4 arquivos), `git add <caminhos exatos>`; **sem** `Co-Authored-By`/atribuição ao Claude.
 
 ## Estrutura de pastas (por domínio)
 

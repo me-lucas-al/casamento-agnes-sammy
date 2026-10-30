@@ -21,6 +21,8 @@ Source of truth: `SPECS.md` (read fully before coding). Next.js docs for the ins
 
 Max 150 lines per file, no comments, no `any`, no `import * as React`, money in cents, early returns, explicit names. Semantic English commits, small, `git add <paths>`, no Claude attribution.
 
+Commits: one commit per completed task, clear Conventional Commits message in English (feat, fix, refactor, chore, docs, test, style), small, exact paths, no Claude attribution.
+
 ## Tests
 
 Integration tests in `src/tests/integration/<module>/*.test.ts` use `useTestDatabase()` and seeds from `src/tests/helpers`. Unit tests sit next to the file as `*.test.ts`.

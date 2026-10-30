@@ -1,8 +1,8 @@
-import { describe, expect, it, vi } from "vitest";
+import { describe, expect, it } from "vitest";
 import { ForbiddenError, UnauthenticatedError } from "@/modules/auth/errors";
 import { createGalleryModule } from "@/modules/gallery/factory";
 import { approvedPhotosTag } from "@/shared/lib/cache/cache-tags";
-import type { CachedReader } from "@/shared/lib/cache/cached-read";
+import type { CachedReadOptions, CachedReader } from "@/shared/lib/cache/cached-read";
 import { photos } from "@/shared/db/schema";
 import { FakeCloudinaryClient } from "@/tests/helpers/fake-cloudinary";
 import { asUser } from "@/tests/helpers/fake-session";
@@ -61,16 +61,22 @@ describe("photo listings", () => {
   });
 
   it("reads approved photos through the cache with the approved tag and page keys", async () => {
-    const read = vi.fn<CachedReader["read"]>((_options, load) => load());
+    const recordedOptions: CachedReadOptions[] = [];
+    const cachedReader: CachedReader = {
+      read(options, load) {
+        recordedOptions.push(options);
+        return load();
+      },
+    };
     const galleryModule = createGalleryModule({
       database: testDatabase.db,
       cloudinaryClient: new FakeCloudinaryClient(),
-      cachedReader: { read },
+      cachedReader,
     });
 
     await galleryModule.listApprovedPhotosPage(asUser("guest"), pageInput({ page: 2, perPage: 24, sort: "oldest" }));
 
-    expect(read.mock.calls[0]?.[0]).toEqual({
+    expect(recordedOptions[0]).toEqual({
       keyParts: ["gallery", "approved", "2", "24", "oldest"],
       tags: [approvedPhotosTag()],
     });

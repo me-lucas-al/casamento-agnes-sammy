@@ -11,7 +11,7 @@ export function PanelGiftCard({ gift }: { gift: PanelGiftListItem }) {
     <li className="flex flex-col overflow-hidden rounded-xl border border-gold/40 bg-white shadow-sm">
       <GiftThumbnail imageUrl={gift.imageUrl} name={gift.name} />
       <div className="flex flex-1 flex-col gap-2 p-4">
-        <span className="text-xs uppercase tracking-wide text-wine/60">{gift.categoryName}</span>
+        <span className="text-xs uppercase tracking-wide text-muted-foreground">{gift.categoryName}</span>
         <h2 className="break-words text-lg font-semibold text-wine">{gift.name}</h2>
         <GiftPriceLabel gift={gift} />
         <div className="flex flex-wrap items-center gap-2">

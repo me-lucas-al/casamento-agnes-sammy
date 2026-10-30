@@ -37,7 +37,7 @@ export function PaymentsFiltersForm({ filters }: PaymentsFiltersFormProps) {
           </option>
         ))}
       </select>
-      <button type="submit" className="rounded-lg bg-wine px-3 py-2 text-sm text-white">
+      <button type="submit" className="rounded-full bg-rose px-6 py-2 text-lg text-white transition-colors hover:bg-crimson">
         Filtrar
       </button>
     </form>

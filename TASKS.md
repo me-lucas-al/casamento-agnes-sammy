@@ -72,11 +72,11 @@
 - [ ] Revisão final de design (responsividade, fidelidade ao convite, acabamento)
 
 ## Faltam
-- [ ] Painel inicial com totais (reservas, pagamentos pendentes, presenças, moderação)
-- [ ] Campo para editar legenda de foto na galeria
-- [ ] Imagem de compartilhamento (OG) com monograma, metadados de SEO e `robots.txt`
-- [ ] Passe de acessibilidade e Lighthouse
-- [ ] Teste de ponta a ponta no navegador (código, reservar, Pix, confirmar, progresso)
+- [x] Painel inicial com totais (reservas, pagamentos pendentes, presenças, moderação)
+- [x] Campo para editar legenda de foto na galeria
+- [x] Imagem de compartilhamento (OG) com monograma, metadados de SEO e `robots.txt`
+- [x] Passe de acessibilidade e Lighthouse
+- [x] Teste de ponta a ponta no navegador (código, reservar, Pix, confirmar, progresso)
 - [x] Tratamento global de erros (global-error, wrapper de Server Actions, logger central, erros de API)
 - [ ] Índice único em `photos.cloudinary_public_id` e `gifts.image_public_id`
 - [ ] Primeiro disparo real do workflow de migration em produção
@@ -89,3 +89,4 @@
 - [ ] E-mails Google do admin e dos noivos, e domínio do site
 - [ ] Credenciais: Neon, Cloudinary, Google OAuth, projeto Vercel, secret `DATABASE_URL` no GitHub
 - [ ] Categorias iniciais de presentes
+- [x] Índices únicos em photos.cloudinary_public_id e gifts.image_public_id

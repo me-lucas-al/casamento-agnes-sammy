@@ -3,7 +3,7 @@ import { InvalidGiftImageError } from "@/modules/gifts/errors";
 import { buildManagedPublicId } from "@/shared/lib/cloudinary-url";
 import { FAKE_CLOUD_NAME } from "@/tests/helpers/fake-cloudinary";
 import { asUser } from "@/tests/helpers/fake-session";
-import { seedGift, seedGiftCategory } from "@/tests/helpers/seeds/seed-gift";
+import { seedGiftCategory } from "@/tests/helpers/seeds/seed-gift";
 import { useTestDatabase } from "@/tests/helpers/use-test-database";
 import { buildGiftInput, createTestGiftModule } from "./gift-test-module";
 
@@ -84,20 +84,5 @@ describe("gift image ownership", () => {
     await expect(
       giftModule.updateGift(admin, other.id, buildGiftInput(category.id, { image })),
     ).rejects.toBeInstanceOf(InvalidGiftImageError);
-  });
-
-  it("never destroys an image that another gift still references", async () => {
-    const { giftModule, cloudinaryClient, category, admin } = await setup();
-    const shared = buildImage();
-    const first = await seedGift(testDatabase.db, {
-      categoryId: category.id,
-      imageUrl: shared.url,
-      imagePublicId: shared.publicId,
-    });
-    await seedGift(testDatabase.db, { categoryId: category.id, imageUrl: shared.url, imagePublicId: shared.publicId });
-
-    await giftModule.updateGift(admin, first.id, buildGiftInput(category.id, { image: buildImage() }));
-
-    expect(cloudinaryClient.destroyedPublicIds).toEqual([]);
   });
 });

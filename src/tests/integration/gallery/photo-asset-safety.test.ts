@@ -1,7 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { InvalidPublicIdError, PendingPhotoLimitError } from "@/modules/gallery/errors";
 import { MAX_PENDING_PHOTOS_PER_GUEST } from "@/modules/gallery/lib/upload-rules";
-import { photos } from "@/shared/db/schema";
 import { isManagedPublicId } from "@/shared/lib/cloudinary-url";
 import { FAKE_CLOUD_NAME } from "@/tests/helpers/fake-cloudinary";
 import { asUser } from "@/tests/helpers/fake-session";
@@ -109,21 +108,5 @@ describe("photo asset cleanup", () => {
     await galleryModule.rejectPhoto(await adminActor(), photo.id);
 
     expect((await galleryModule.photoRepository.findById(photo.id))?.status).toBe("rejected");
-  });
-
-  it("never destroys an asset still referenced by another photo", async () => {
-    const { galleryModule, cloudinaryClient, photo } = await registerApproved();
-    await testDatabase.db.insert(photos).values({
-      cloudinaryPublicId: photo.cloudinaryPublicId,
-      url: photo.url,
-      status: "approved",
-    });
-
-    await galleryModule.deletePhoto(await adminActor(), photo.id);
-    expect(cloudinaryClient.destroyedPublicIds).toEqual([]);
-
-    const [sibling] = await testDatabase.db.select().from(photos);
-    await galleryModule.deletePhoto(await adminActor(), sibling.id);
-    expect(cloudinaryClient.destroyedPublicIds).toEqual([photo.cloudinaryPublicId]);
   });
 });

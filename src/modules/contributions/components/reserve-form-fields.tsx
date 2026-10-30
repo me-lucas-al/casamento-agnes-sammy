@@ -48,3 +48,25 @@ export function AmountField({ amountText, minimumCents, maximumCents, onChange }
     </label>
   );
 }
+
+type AnonymousFieldProps = {
+  checked: boolean;
+  onChange: (checked: boolean) => void;
+};
+
+export function AnonymousField({ checked, onChange }: AnonymousFieldProps) {
+  return (
+    <label className="flex items-start gap-2 text-sm">
+      <input
+        type="checkbox"
+        checked={checked}
+        onChange={(event) => onChange(event.target.checked)}
+        className="mt-1 size-4 accent-rose"
+      />
+      <span>
+        Contribuir de forma anônima
+        <span className="block text-xs">Seu nome não aparece no mural de recados.</span>
+      </span>
+    </label>
+  );
+}

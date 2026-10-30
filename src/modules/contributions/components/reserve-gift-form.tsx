@@ -9,13 +9,14 @@ import {
   updateReservationAction,
 } from "../controllers/reserve-gift.actions";
 import type { ReservableGift } from "../types";
-import { AmountField, QuotaField } from "./reserve-form-fields";
+import { AmountField, AnonymousField, QuotaField } from "./reserve-form-fields";
 
 type ReserveGiftFormProps = {
   gift: ReservableGift;
   remainingQuotas: number;
   remainingAmountCents: number;
   contributionId?: string;
+  initialAnonymous?: boolean;
 };
 
 export function ReserveGiftForm({
@@ -23,11 +24,13 @@ export function ReserveGiftForm({
   remainingQuotas,
   remainingAmountCents,
   contributionId,
+  initialAnonymous = false,
 }: ReserveGiftFormProps) {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const [quotas, setQuotas] = useState(1);
   const [amountText, setAmountText] = useState("");
+  const [anonymous, setAnonymous] = useState(initialAnonymous);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const minimumCents = Math.min(gift.minAmountCents ?? 1, remainingAmountCents);
   const quotaPriceCents = Math.round(gift.priceCents / (gift.totalQuotas || 1));
@@ -35,8 +38,9 @@ export function ReserveGiftForm({
   function submit() {
     setErrorMessage(null);
     const amountCents = parseBrlToCents(amountText) ?? undefined;
-    const request =
+    const amountRequest =
       gift.mode === "fixed_quotas" ? { quotas } : gift.mode === "free_amount" ? { amountCents } : {};
+    const request = { ...amountRequest, anonymous };
     startTransition(async () => {
       const result = contributionId
         ? await updateReservationAction({ contributionId, ...request })
@@ -71,6 +75,7 @@ export function ReserveGiftForm({
           onChange={setAmountText}
         />
       ) : null}
+      <AnonymousField checked={anonymous} onChange={setAnonymous} />
       {errorMessage ? <p role="alert" className="text-sm text-crimson">{errorMessage}</p> : null}
       <Button type="submit" size="lg" disabled={isPending} className="bg-rose text-white">
         {contributionId ? "Atualizar reserva" : "Reservar e pagar com Pix"}

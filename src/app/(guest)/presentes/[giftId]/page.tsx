@@ -73,14 +73,13 @@ export default async function GiftDetailPage({ params, searchParams }: PageProps
             Após o pagamento, os noivos confirmam e o presente fica registrado. Reserva válida até{" "}
             {formatDateTimeInSaoPaulo(reservation.expiresAt)}.
           </p>
-          {gift.mode === "single" ? null : (
-            <ReserveGiftForm
-              gift={gift}
-              contributionId={reservation.id}
-              remainingQuotas={(availability.remainingQuotas ?? 0) + (reservation.quotas ?? 0)}
-              remainingAmountCents={availability.remainingAmountCents + reservation.amountCents}
-            />
-          )}
+          <ReserveGiftForm
+            gift={gift}
+            contributionId={reservation.id}
+            initialAnonymous={reservation.anonymous}
+            remainingQuotas={(availability.remainingQuotas ?? 0) + (reservation.quotas ?? 0)}
+            remainingAmountCents={availability.remainingAmountCents + reservation.amountCents}
+          />
           <CancelReservationButton contributionId={reservation.id} />
         </>
       ) : null}

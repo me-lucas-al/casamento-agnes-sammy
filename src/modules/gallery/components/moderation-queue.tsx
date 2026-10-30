@@ -1,6 +1,7 @@
 import Image from "next/image";
 import type { Photo, PhotoStatus } from "../types";
 import { ModerationButtons } from "./moderation-buttons";
+import { PhotoCaptionForm } from "./photo-caption-form";
 
 type ModerationQueueProps = { photos: Photo[] };
 
@@ -26,8 +27,8 @@ export function ModerationQueue({ photos }: ModerationQueueProps) {
           </div>
           <p className="text-sm text-wine">
             {statusLabels[photo.status]}
-            {photo.caption ? ` · ${photo.caption}` : ""}
           </p>
+          <PhotoCaptionForm photoId={photo.id} caption={photo.caption} />
           <ModerationButtons photoId={photo.id} status={photo.status} />
         </li>
       ))}

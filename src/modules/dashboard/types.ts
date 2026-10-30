@@ -22,3 +22,26 @@ export type DashboardTotals = {
   pendingMessages: number;
   pendingPhotos: number;
 };
+
+export type OnboardingFacts = {
+  hasPixData: boolean;
+  hasStory: boolean;
+  photoCount: number;
+  giftCount: number;
+};
+
+export type OnboardingStepKey = "pix" | "story" | "photos" | "gifts";
+
+export type OnboardingStep = {
+  key: OnboardingStepKey;
+  title: string;
+  description: string;
+  href: string;
+  isDone: boolean;
+};
+
+export type OnboardingStatus = {
+  steps: OnboardingStep[];
+  doneCount: number;
+  isComplete: boolean;
+};

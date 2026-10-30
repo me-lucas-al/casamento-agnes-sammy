@@ -4,22 +4,29 @@ import { enumParam, textParam, type SearchParams } from "@/shared/lib/url-params
 import { getRsvpModule } from "../factory";
 import { requireGuestId } from "../lib/require-guest-id";
 import { RSVP_STATUSES } from "../types";
+import { guardedQuery } from "@/shared/lib/guarded-query";
 
 export async function getMyRsvpQuery() {
-  const actor = await getSessionUser();
-  return getRsvpModule().getGuestRsvp(actor, requireGuestId(actor));
+  return guardedQuery("getMyRsvpQuery", async () => {
+    const actor = await getSessionUser();
+    return getRsvpModule().getGuestRsvp(actor, requireGuestId(actor));
+  });
 }
 
 export async function getRsvpTotalsQuery() {
-  const actor = await getSessionUser();
-  return getRsvpModule().getRsvpTotals(actor);
+  return guardedQuery("getRsvpTotalsQuery", async () => {
+    const actor = await getSessionUser();
+    return getRsvpModule().getRsvpTotals(actor);
+  });
 }
 
 export async function listRsvpsPageQuery(searchParams: SearchParams) {
-  const actor = await getSessionUser();
-  return getRsvpModule().listRsvpsPage(actor, {
-    ...parsePageParams(searchParams),
-    status: enumParam(searchParams, "status", RSVP_STATUSES),
-    search: textParam(searchParams, "search"),
+  return guardedQuery("listRsvpsPageQuery", async () => {
+    const actor = await getSessionUser();
+    return getRsvpModule().listRsvpsPage(actor, {
+      ...parsePageParams(searchParams),
+      status: enumParam(searchParams, "status", RSVP_STATUSES),
+      search: textParam(searchParams, "search"),
+    });
   });
 }

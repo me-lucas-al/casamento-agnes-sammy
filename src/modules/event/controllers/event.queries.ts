@@ -1,5 +1,7 @@
 import { eventTag } from "@/shared/lib/cache/cache-tags";
 import { nextCachedReader } from "@/shared/lib/cache/cached-read";
+import { logger } from "@/shared/lib/logger";
+import { serializeError } from "@/shared/lib/logging/serialize-error";
 import { withTimeout } from "@/shared/lib/with-timeout";
 import { getEventModule } from "../factory";
 import { DEFAULT_EVENT_SETTINGS } from "../lib/default-event-settings";
@@ -19,7 +21,7 @@ export async function getEventSettingsQuery(): Promise<EventSettingsSnapshot> {
   try {
     return await withTimeout(readCachedEventSettings(), EVENT_SETTINGS_TIMEOUT_MILLISECONDS);
   } catch (error) {
-    console.error("Failed to load event settings, using defaults", error);
+    logger.error("query.event_settings_fallback", { error: serializeError(error) });
     return toEventSnapshot(DEFAULT_EVENT_SETTINGS);
   }
 }

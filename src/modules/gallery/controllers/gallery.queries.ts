@@ -3,21 +3,28 @@ import { parsePageParams } from "@/shared/lib/pagination";
 import { enumParam, type SearchParams } from "@/shared/lib/url-params";
 import { getGalleryModule } from "../factory";
 import { PHOTO_SORTS, PHOTO_STATUSES } from "../types";
+import { guardedQuery } from "@/shared/lib/guarded-query";
 
 export async function listApprovedPhotosQuery(searchParams: SearchParams) {
-  const actor = await getSessionUser();
-  const sort = enumParam(searchParams, "sort", PHOTO_SORTS) ?? "newest";
-  return getGalleryModule().listApprovedPhotosPage(actor, { ...parsePageParams(searchParams), sort });
+  return guardedQuery("listApprovedPhotosQuery", async () => {
+    const actor = await getSessionUser();
+    const sort = enumParam(searchParams, "sort", PHOTO_SORTS) ?? "newest";
+    return getGalleryModule().listApprovedPhotosPage(actor, { ...parsePageParams(searchParams), sort });
+  });
 }
 
 export async function listPhotosPanelQuery(searchParams: SearchParams) {
-  const actor = await getSessionUser();
-  const status = enumParam(searchParams, "status", PHOTO_STATUSES);
-  return getGalleryModule().listPhotosPanelPage(actor, { ...parsePageParams(searchParams), status });
+  return guardedQuery("listPhotosPanelQuery", async () => {
+    const actor = await getSessionUser();
+    const status = enumParam(searchParams, "status", PHOTO_STATUSES);
+    return getGalleryModule().listPhotosPanelPage(actor, { ...parsePageParams(searchParams), status });
+  });
 }
 
 export async function countOwnPendingPhotosQuery(): Promise<number> {
-  const actor = await getSessionUser();
-  if (actor?.role !== "guest") return 0;
-  return getGalleryModule().countOwnPendingPhotos(actor);
+  return guardedQuery("countOwnPendingPhotosQuery", async () => {
+    const actor = await getSessionUser();
+    if (actor?.role !== "guest") return 0;
+    return getGalleryModule().countOwnPendingPhotos(actor);
+  });
 }

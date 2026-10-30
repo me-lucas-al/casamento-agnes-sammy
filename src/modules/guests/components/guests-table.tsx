@@ -24,6 +24,7 @@ export function GuestsTable({ guests, baseUrl }: GuestsTableProps) {
             <p className="text-sm text-muted-foreground">
               {guest.phone ?? "Sem telefone"} · {guest.seats} {guest.seats === 1 ? "vaga" : "vagas"}
             </p>
+            {guest.email ? <p className="break-all text-sm text-muted-foreground">{guest.email}</p> : null}
           </div>
           <div className="text-sm">
             <p>

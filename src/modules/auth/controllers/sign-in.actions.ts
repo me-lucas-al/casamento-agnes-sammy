@@ -1,6 +1,9 @@
 "use server";
 
 import { AuthError } from "next-auth";
+import { logger } from "@/shared/lib/logger";
+import { serializeError } from "@/shared/lib/logging/serialize-error";
+import { isNextControlFlowError } from "@/shared/lib/next-control-flow";
 import { signIn, signOut } from "../config/auth";
 
 export type SignInFormState = { error: string | null };
@@ -17,8 +20,11 @@ export async function signInWithGuestCodeAction(
     await signIn("guest-code", { code, redirectTo: "/inicio" });
     return { error: null };
   } catch (error) {
-    if (error instanceof AuthError) return { error: GENERIC_GUEST_CODE_ERROR };
-    throw error;
+    if (isNextControlFlowError(error)) throw error;
+    if (!(error instanceof AuthError)) {
+      logger.error("action.unexpected_error", { action: "signInWithGuestCodeAction", error: serializeError(error) });
+    }
+    return { error: GENERIC_GUEST_CODE_ERROR };
   }
 }
 

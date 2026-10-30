@@ -95,8 +95,8 @@ describe("contribution controller", () => {
       ok: false,
       error: "Você não tem permissão para esta ação.",
     });
-    expect(await controller.reserveGift({ giftId: "x" })).toEqual({ ok: false, error: "Dados inválidos." });
-    expect(await controller.confirmPixPayment({})).toEqual({ ok: false, error: "Dados inválidos." });
+    expect(await controller.reserveGift({ giftId: "x" })).toEqual({ ok: false, error: expect.stringContaining("Dados inválidos.") });
+    expect(await controller.confirmPixPayment({})).toEqual({ ok: false, error: expect.stringContaining("Dados inválidos.") });
   });
 
   it("invalidates gifts and pending payments only when the cron expires something", async () => {

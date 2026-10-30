@@ -3,7 +3,9 @@
 import { getSessionUser } from "@/modules/auth/controllers/get-session-user";
 import type { SessionUser } from "@/modules/auth/types";
 import { nextCacheInvalidator } from "@/shared/lib/cache/invalidate";
-import { failure, success, type ActionResult } from "@/shared/lib/result";
+import { safeAction } from "@/shared/lib/safe-action";
+import { invalidInput } from "@/shared/lib/validation-failure";
+import { success, type ActionResult } from "@/shared/lib/result";
 import { describePhotoError } from "../errors";
 import { getGalleryModule, type GalleryModule } from "../factory";
 import { photoIdSchema } from "../schemas/gallery.schemas";
@@ -14,17 +16,15 @@ type ModerationUseCase = (
 
 async function moderate(photoId: unknown, pickUseCase: ModerationUseCase): Promise<ActionResult> {
   const parsed = photoIdSchema.safeParse(photoId);
-  if (!parsed.success) return failure("Dados inválidos.");
-  try {
+  if (!parsed.success) return invalidInput(parsed);
+  return safeAction(describePhotoError, async () => {
     const actor = await getSessionUser();
     const { changedTags } = await pickUseCase(getGalleryModule())(actor, parsed.data);
     nextCacheInvalidator.invalidateTags(changedTags);
     nextCacheInvalidator.invalidatePath("/galeria");
     nextCacheInvalidator.invalidatePath("/painel/fotos");
     return success();
-  } catch (error) {
-    return failure(describePhotoError(error));
-  }
+  }, "moderate");
 }
 
 export async function approvePhotoAction(photoId: unknown): Promise<ActionResult> {

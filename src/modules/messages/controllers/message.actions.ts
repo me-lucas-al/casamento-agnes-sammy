@@ -3,6 +3,8 @@
 import { z } from "zod";
 import { getSessionUser } from "@/modules/auth/controllers/get-session-user";
 import { nextCacheInvalidator } from "@/shared/lib/cache/invalidate";
+import { safeAction } from "@/shared/lib/safe-action";
+import { invalidInput } from "@/shared/lib/validation-failure";
 import { failure, success, type ActionResult } from "@/shared/lib/result";
 import { describeMessageError } from "../errors";
 import { getMessageModule } from "../factory";
@@ -15,47 +17,39 @@ const updateMessageSchema = sendMessageSchema.extend({ messageId: z.uuid() });
 export async function sendMessageAction(input: unknown): Promise<ActionResult> {
   const parsed = sendMessageSchema.safeParse(input);
   if (!parsed.success) return failure("Escreva um recado de 1 a 500 caracteres.");
-  try {
+  return safeAction(describeMessageError, async () => {
     await getMessageModule().sendMessage(await getSessionUser(), parsed.data);
     nextCacheInvalidator.invalidatePath("/painel/recados");
     return success();
-  } catch (error) {
-    return failure(describeMessageError(error));
-  }
+  }, "sendMessageAction");
 }
 
 export async function moderateMessageAction(input: unknown): Promise<ActionResult> {
   const parsed = moderateMessageSchema.safeParse(input);
-  if (!parsed.success) return failure("Dados inválidos.");
-  try {
+  if (!parsed.success) return invalidInput(parsed);
+  return safeAction(describeMessageError, async () => {
     await getMessageModule().moderateMessage(await getSessionUser(), parsed.data);
     invalidateApprovedMessagesCache(nextCacheInvalidator);
     return success();
-  } catch (error) {
-    return failure(describeMessageError(error));
-  }
+  }, "moderateMessageAction");
 }
 
 export async function updateMessageAction(input: unknown): Promise<ActionResult> {
   const parsed = updateMessageSchema.safeParse(input);
-  if (!parsed.success) return failure("Dados inválidos.");
-  try {
+  if (!parsed.success) return invalidInput(parsed);
+  return safeAction(describeMessageError, async () => {
     await getMessageModule().updateMessage(await getSessionUser(), parsed.data);
     invalidateApprovedMessagesCache(nextCacheInvalidator);
     return success();
-  } catch (error) {
-    return failure(describeMessageError(error));
-  }
+  }, "updateMessageAction");
 }
 
 export async function deleteMessageAction(messageId: string): Promise<ActionResult> {
   const parsed = z.uuid().safeParse(messageId);
-  if (!parsed.success) return failure("Dados inválidos.");
-  try {
+  if (!parsed.success) return invalidInput(parsed);
+  return safeAction(describeMessageError, async () => {
     await getMessageModule().deleteMessage(await getSessionUser(), parsed.data);
     invalidateApprovedMessagesCache(nextCacheInvalidator);
     return success();
-  } catch (error) {
-    return failure(describeMessageError(error));
-  }
+  }, "deleteMessageAction");
 }

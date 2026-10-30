@@ -20,7 +20,7 @@ env:
   CLOUDINARY_CLOUD_NAME: ci-placeholder
   CLOUDINARY_API_KEY: ci-placeholder
   CLOUDINARY_API_SECRET: ci-placeholder
-  CRON_SECRET: ci-placeholder
+  CRON_SECRET: ci-placeholder-cron-secret-32-characters-min
   APP_URL: http://localhost:3000
 
 jobs:

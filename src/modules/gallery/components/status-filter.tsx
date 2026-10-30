@@ -25,7 +25,7 @@ export function StatusFilter({ basePath, searchParams, activeStatus }: StatusFil
           href={`${basePath}${buildQueryString(searchParams, { status, page: 1 })}`}
           aria-current={status === activeStatus ? "page" : undefined}
           className={cn(
-            "rounded-full border px-3 py-1 text-sm",
+            "inline-flex min-h-11 items-center rounded-full border border-input px-4 text-base",
             status === activeStatus && "bg-rose text-white",
           )}
         >

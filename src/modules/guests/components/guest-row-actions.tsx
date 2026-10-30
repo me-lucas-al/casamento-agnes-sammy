@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
-import { Button } from "@/shared/ui/button";
+import { Button, buttonVariants } from "@/shared/ui/button";
 import {
   deleteGuestAction,
   regenerateGuestCodeAction,
@@ -47,7 +47,7 @@ export function GuestRowActions({ guest, inviteUrl, whatsappUrl }: GuestRowActio
           href={whatsappUrl}
           target="_blank"
           rel="noreferrer"
-          className="inline-flex h-7 items-center rounded-lg border px-2.5 text-[0.8rem] font-medium hover:bg-muted"
+          className={buttonVariants({ variant: "outline", size: "sm" })}
         >
           WhatsApp
         </a>

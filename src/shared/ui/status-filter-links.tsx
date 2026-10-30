@@ -23,7 +23,7 @@ export function StatusFilterLinks({ basePath, searchParams, activeValue, options
             key={value}
             href={href}
             aria-current={isActive ? "true" : undefined}
-            className={cn("rounded-full border px-3 py-1 text-sm", isActive && "bg-primary text-primary-foreground")}
+            className={cn("inline-flex min-h-11 items-center rounded-full border border-input px-4 text-base", isActive && "bg-primary text-primary-foreground")}
           >
             {label}
           </Link>

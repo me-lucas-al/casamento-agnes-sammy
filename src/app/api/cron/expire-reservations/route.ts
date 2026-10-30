@@ -1,16 +1,16 @@
 import { getAuthModule } from "@/modules/auth/factory";
+import { createExpireReservationsHandler } from "@/modules/contributions/controllers/expire-reservations-handler";
 import { getContributionController } from "@/modules/contributions/controllers/get-contribution-controller";
-import { isValidCronAuthorization } from "@/modules/contributions/lib/cron-authorization";
 import { getServerEnv } from "@/shared/config/env";
+import { withApiErrorHandling } from "@/shared/lib/with-api-error-handling";
 
 export const dynamic = "force-dynamic";
 
-export async function GET(request: Request) {
-  const authorization = request.headers.get("authorization");
-  if (!isValidCronAuthorization(authorization, getServerEnv().CRON_SECRET)) {
-    return Response.json({ error: "Unauthorized" }, { status: 401 });
-  }
-  const expiredCount = await getContributionController().expireReservations();
-  const purgedLoginAttempts = await getAuthModule().purgeOldLoginAttempts();
-  return Response.json({ expiredCount, purgedLoginAttempts });
-}
+export const GET = withApiErrorHandling(
+  "cron.expire-reservations",
+  createExpireReservationsHandler({
+    readCronSecret: () => getServerEnv().CRON_SECRET,
+    expireReservations: () => getContributionController().expireReservations(),
+    purgeLoginAttempts: () => getAuthModule().purgeOldLoginAttempts(),
+  }),
+);

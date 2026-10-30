@@ -3,6 +3,7 @@ import { drizzle as drizzleNeon } from "drizzle-orm/neon-serverless";
 import { drizzle as drizzleNodePostgres } from "drizzle-orm/node-postgres";
 import { Pool as NodePostgresPool } from "pg";
 import ws from "ws";
+import { POOL_OPTIONS } from "./pool-options";
 import * as schema from "./schema";
 import type { Database } from "./types";
 
@@ -18,13 +19,13 @@ export function isLocalDatabaseUrl(connectionString: string): boolean {
 }
 
 function connectToLocalPostgres(connectionString: string): DatabaseConnection {
-  const pool = new NodePostgresPool({ connectionString });
+  const pool = new NodePostgresPool({ connectionString, ...POOL_OPTIONS });
   return { database: drizzleNodePostgres(pool, { schema }), close: () => pool.end() };
 }
 
 function connectToNeon(connectionString: string): DatabaseConnection {
   neonConfig.webSocketConstructor = ws;
-  const pool = new NeonPool({ connectionString });
+  const pool = new NeonPool({ connectionString, ...POOL_OPTIONS });
   return { database: drizzleNeon(pool, { schema }), close: () => pool.end() };
 }
 

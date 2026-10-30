@@ -18,7 +18,9 @@ export function GiftThumbnail({ imageUrl, name }: GiftThumbnailProps) {
           className="object-cover"
         />
       ) : (
-        <div className="flex h-full items-center justify-center text-sm text-wine/50">Sem imagem</div>
+        <div className="flex h-full items-center justify-center bg-blush/60">
+          <Image src="/brand/monogram.png" alt="" width={168} height={300} className="h-2/3 w-auto opacity-40" />
+        </div>
       )}
     </div>
   );

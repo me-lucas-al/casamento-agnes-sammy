@@ -1,8 +1,9 @@
 import { and, asc, count, desc, eq, ilike, or, sql } from "drizzle-orm";
-import { giftContributions, guests, photos, rsvps } from "@/shared/db/schema";
+import { giftContributions, guests, rsvps } from "@/shared/db/schema";
 import type { Database } from "@/shared/db/types";
 import { containsPattern } from "@/shared/lib/sql-like";
 import type { GuestSort } from "../types";
+import { deleteGuestUnlessCommitted } from "./drizzle-guest-deletion";
 import type { GuestRepository } from "./guest-repository";
 
 function buildSearchFilter(search: string) {
@@ -47,13 +48,7 @@ export function createDrizzleGuestRepository(database: Database): GuestRepositor
         .limit(1);
       return Boolean(row);
     },
-    async delete(guestId) {
-      await database.transaction(async (transaction) => {
-        await transaction.update(photos).set({ uploadedByGuestId: null }).where(eq(photos.uploadedByGuestId, guestId));
-        await transaction.delete(giftContributions).where(eq(giftContributions.guestId, guestId));
-        await transaction.delete(guests).where(eq(guests.id, guestId));
-      });
-    },
+    deleteUnlessCommitted: (guestId) => deleteGuestUnlessCommitted(database, guestId),
     async listPage({ limit, offset, search, sort }) {
       const filter = buildSearchFilter(search);
       const [rows, [totalRow]] = await Promise.all([

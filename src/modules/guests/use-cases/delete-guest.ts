@@ -8,11 +8,8 @@ type Dependencies = { guestRepository: GuestRepository };
 export function makeDeleteGuest({ guestRepository }: Dependencies) {
   return async function deleteGuest(actor: SessionUser | null, guestId: string): Promise<void> {
     requireRole(actor, ["admin", "couple"]);
-    const guest = await guestRepository.findById(guestId);
-    if (!guest) throw new GuestNotFoundError();
-    if (await guestRepository.hasConfirmedContributions(guestId)) {
-      throw new GuestHasConfirmedContributionsError();
-    }
-    await guestRepository.delete(guestId);
+    const outcome = await guestRepository.deleteUnlessCommitted(guestId);
+    if (outcome === "not_found") throw new GuestNotFoundError();
+    if (outcome === "has_confirmed") throw new GuestHasConfirmedContributionsError();
   };
 }

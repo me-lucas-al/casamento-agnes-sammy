@@ -1,0 +1,1 @@
+ALTER TABLE "gift_contributions" ADD COLUMN "anonymous" boolean DEFAULT false NOT NULL;

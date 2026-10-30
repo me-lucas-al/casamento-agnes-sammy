@@ -83,7 +83,7 @@
 - [x] Seed das categorias iniciais de presentes (Cozinha & Eletrodomésticos, Sala & Decoração, Quarto & Banho, Lua de Mel & Experiências, Casa Nova / Cotas Livres, Divertidos / Zoeira)
 - [x] Opção para o convidado escolher se a contribuição/recado do Pix será anônima ou não
 - [x] Cadastro/edição pelo convidado ao entrar com código: nome, telefone, e-mail e familiares
-- [ ] Travar limite de 8 MB de upload também no Cloudinary (upload preset)
+- [x] Travar limite de 8 MB de upload também no Cloudinary (upload preset)
 - [ ] Primeiro disparo real do workflow de migration em produção
 - [ ] Deploy em produção (Vercel + Neon) e domínio
 - [ ] Build rodando em `localhost:3000`

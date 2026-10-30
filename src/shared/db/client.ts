@@ -1,17 +1,10 @@
-import { Pool, neonConfig } from "@neondatabase/serverless";
-import { drizzle } from "drizzle-orm/neon-serverless";
-import ws from "ws";
 import { getServerEnv } from "@/shared/config/env";
-import * as schema from "./schema";
+import { connectToDatabase } from "./connection";
 import type { Database } from "./types";
-
-neonConfig.webSocketConstructor = ws;
 
 let cachedDatabase: Database | undefined;
 
 export function getDatabase(): Database {
-  if (cachedDatabase) return cachedDatabase;
-  const pool = new Pool({ connectionString: getServerEnv().DATABASE_URL });
-  cachedDatabase = drizzle(pool, { schema });
+  cachedDatabase ??= connectToDatabase(getServerEnv().DATABASE_URL).database;
   return cachedDatabase;
 }

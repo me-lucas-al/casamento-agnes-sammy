@@ -10,14 +10,19 @@ const PANEL_ITEMS: readonly (NavItem & { adminOnly?: boolean })[] = [
   { href: "/painel/fotos", label: "Fotos" },
   { href: "/painel/usuarios", label: "Usuários", adminOnly: true },
   { href: "/painel/evento", label: "Evento" },
+  { href: "/painel/perfil", label: "Perfil" },
 ];
 
 export const GUEST_NAV_ITEMS: readonly NavItem[] = [
+  { href: "/inicio", label: "Início" },
+  { href: "/convite", label: "Convite" },
+  { href: "/casamento", label: "Casamento" },
   { href: "/presentes", label: "Presentes" },
   { href: "/meus-presentes", label: "Meus presentes" },
   { href: "/confirmar-presenca", label: "Confirmar presença" },
   { href: "/recados", label: "Recados" },
   { href: "/galeria", label: "Galeria" },
+  { href: "/perfil", label: "Perfil" },
 ];
 
 export function panelNavItemsFor(role: Role): readonly NavItem[] {

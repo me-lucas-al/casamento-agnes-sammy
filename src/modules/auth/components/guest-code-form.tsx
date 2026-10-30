@@ -22,7 +22,7 @@ export function GuestCodeForm({ initialCode }: GuestCodeFormProps) {
         autoCapitalize="characters"
         maxLength={32}
         defaultValue={initialCode}
-        className="rounded-lg border border-border bg-card px-3 py-3 text-center text-2xl uppercase tracking-[0.3em] outline-none focus-visible:ring-2 focus-visible:ring-rose/50"
+        className="rounded-lg border bg-card px-3 py-3 text-center text-2xl uppercase tracking-[0.3em] outline-none "
       />
       {state.error ? (
         <p role="alert" className="text-crimson">

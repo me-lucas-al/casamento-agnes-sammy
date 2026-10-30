@@ -1,10 +1,11 @@
 import { signInWithGoogleAction } from "@/modules/auth/controllers/sign-in.actions";
+import { CenteredStage } from "@/shared/ui/components/centered-stage";
 
 export default function AdminSignInPage() {
   return (
-    <main className="mx-auto flex min-h-screen w-full max-w-sm flex-col items-center justify-center gap-6 px-6 text-center">
-      <h1 className="font-heading text-4xl italic">Área dos noivos</h1>
-      <p className="text-lg">Entre com a conta Google autorizada.</p>
+    <CenteredStage>
+      <h1 className="font-script text-5xl leading-tight text-wine">Área dos noivos</h1>
+      <p className="text-lg">Entre com a conta Google autorizada para cuidar de tudo por aqui.</p>
       <form action={signInWithGoogleAction} className="w-full">
         <button
           type="submit"
@@ -13,6 +14,6 @@ export default function AdminSignInPage() {
           Entrar com Google
         </button>
       </form>
-    </main>
+    </CenteredStage>
   );
 }

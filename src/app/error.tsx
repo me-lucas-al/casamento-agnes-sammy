@@ -1,12 +1,14 @@
 "use client";
 
+import { CenteredStage } from "@/shared/ui/components/centered-stage";
+
 type ErrorPageProps = { error: Error & { digest?: string }; reset: () => void };
 
 export default function ErrorPage({ reset }: ErrorPageProps) {
   return (
-    <main className="mx-auto flex min-h-screen w-full max-w-md flex-col items-center justify-center gap-4 px-6 text-center">
-      <h1 className="font-heading text-3xl italic">Algo deu errado</h1>
-      <p className="text-lg">Não foi possível carregar esta página. Tente novamente em instantes.</p>
+    <CenteredStage>
+      <h1 className="font-script text-4xl leading-tight text-wine">Ops, algo deu errado</h1>
+      <p className="text-lg">Não conseguimos carregar esta página agora. Tente de novo em instantes.</p>
       <button
         type="button"
         onClick={reset}
@@ -14,6 +16,6 @@ export default function ErrorPage({ reset }: ErrorPageProps) {
       >
         Tentar novamente
       </button>
-    </main>
+    </CenteredStage>
   );
 }

@@ -1,5 +1,6 @@
 import { GuestCodeForm } from "@/modules/auth/components/guest-code-form";
 import { firstValue, type SearchParams } from "@/shared/lib/url-params";
+import { CenteredStage } from "@/shared/ui/components/centered-stage";
 
 type GuestSignInPageProps = { searchParams: Promise<SearchParams> };
 
@@ -9,10 +10,10 @@ export default async function GuestSignInPage({ searchParams }: GuestSignInPageP
   const params = await searchParams;
   const initialCode = (firstValue(params.codigo) ?? "").trim().slice(0, MAX_CODE_LENGTH);
   return (
-    <main className="mx-auto flex min-h-screen w-full max-w-sm flex-col items-center justify-center gap-6 px-6 text-center">
-      <h1 className="font-heading text-4xl italic">Agnes &amp; Sammy</h1>
-      <p className="text-lg">Digite o código que você recebeu no convite.</p>
+    <CenteredStage>
+      <h1 className="font-script text-5xl leading-tight text-wine">Agnes &amp; Sammy</h1>
+      <p className="text-lg">Que alegria ter você aqui! Digite o código que está no seu convite.</p>
       <GuestCodeForm initialCode={initialCode} />
-    </main>
+    </CenteredStage>
   );
 }

@@ -81,7 +81,7 @@
 - [x] Índices únicos em photos.cloudinary_public_id e gifts.image_public_id
 - [ ] Passo a passo (onboarding) no painel para os noivos configurarem chave Pix, história, fotos e presentes
 - [x] Seed das categorias iniciais de presentes (Cozinha & Eletrodomésticos, Sala & Decoração, Quarto & Banho, Lua de Mel & Experiências, Casa Nova / Cotas Livres, Divertidos / Zoeira)
-- [ ] Opção para o convidado escolher se a contribuição/recado do Pix será anônima ou não
+- [x] Opção para o convidado escolher se a contribuição/recado do Pix será anônima ou não
 - [ ] Cadastro/edição pelo convidado ao entrar com código: nome, telefone, e-mail e familiares
 - [ ] Travar limite de 8 MB de upload também no Cloudinary (upload preset)
 - [ ] Primeiro disparo real do workflow de migration em produção

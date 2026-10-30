@@ -77,7 +77,7 @@
 - [ ] Imagem de compartilhamento (OG) com monograma, metadados de SEO e `robots.txt`
 - [ ] Passe de acessibilidade e Lighthouse
 - [ ] Teste de ponta a ponta no navegador (código, reservar, Pix, confirmar, progresso)
-- [ ] Tratamento global de erros (global-error, wrapper de Server Actions, logger central, erros de API)
+- [x] Tratamento global de erros (global-error, wrapper de Server Actions, logger central, erros de API)
 - [ ] Índice único em `photos.cloudinary_public_id` e `gifts.image_public_id`
 - [ ] Primeiro disparo real do workflow de migration em produção
 - [ ] Deploy em produção (Vercel + Neon) e domínio

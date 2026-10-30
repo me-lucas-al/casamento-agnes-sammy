@@ -5,6 +5,7 @@ const PANEL_ITEMS: readonly (NavItem & { adminOnly?: boolean })[] = [
   { href: "/painel/convidados", label: "Convidados" },
   { href: "/painel/presentes", label: "Presentes" },
   { href: "/painel/pagamentos", label: "Pagamentos" },
+  { href: "/painel/presencas", label: "Presenças" },
   { href: "/painel/recados", label: "Recados" },
   { href: "/painel/fotos", label: "Fotos" },
   { href: "/painel/usuarios", label: "Usuários", adminOnly: true },

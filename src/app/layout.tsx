@@ -1,13 +1,12 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
+import { buildSiteMetadata } from "@/shared/seo/site-metadata";
 import { fontVariableClassNames } from "@/shared/theme/fonts";
 import "./globals.css";
 
-export const metadata: Metadata = {
-  title: "Agnes & Sammy",
-  description: "Casamento Agnes & Sammy",
-  robots: { index: false, follow: false },
-};
+export const metadata: Metadata = buildSiteMetadata(process.env.APP_URL);
+
+export const viewport: Viewport = { themeColor: "#b83a6b" };
 
 type RootLayoutProps = { children: ReactNode };
 

@@ -4,6 +4,7 @@ import {
   addMinutes,
   formatDateInSaoPaulo,
   formatDateTimeInSaoPaulo,
+  formatLongDateInSaoPaulo,
   isExpired,
 } from "./dates";
 
@@ -40,5 +41,11 @@ describe("isExpired", () => {
 
   it("is not expired when expiry is in the future", () => {
     expect(isExpired(new Date("2026-11-01T12:00:01.000Z"), now)).toBe(false);
+  });
+});
+
+describe("formatLongDateInSaoPaulo", () => {
+  it("writes the month in full in pt-BR", () => {
+    expect(formatLongDateInSaoPaulo(new Date("2026-11-07T22:00:00.000Z"))).toBe("7 de novembro de 2026");
   });
 });

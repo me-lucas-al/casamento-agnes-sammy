@@ -37,3 +37,14 @@ export function addMinutes(date: Date, minutes: number): Date {
 export function isExpired(expiresAt: Date, now: Date): boolean {
   return expiresAt.getTime() <= now.getTime();
 }
+
+const longDateFormatter = new Intl.DateTimeFormat("pt-BR", {
+  timeZone: DISPLAY_TIME_ZONE,
+  day: "numeric",
+  month: "long",
+  year: "numeric",
+});
+
+export function formatLongDateInSaoPaulo(date: Date): string {
+  return longDateFormatter.format(date);
+}

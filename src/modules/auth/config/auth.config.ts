@@ -1,9 +1,11 @@
 import type { NextAuthConfig } from "next-auth";
 import { isRole } from "../types";
 
+const SESSION_MAX_AGE_SECONDS = 7 * 24 * 60 * 60;
+
 export const authConfig = {
   providers: [],
-  session: { strategy: "jwt" },
+  session: { strategy: "jwt", maxAge: SESSION_MAX_AGE_SECONDS },
   pages: { signIn: "/entrar" },
   callbacks: {
     jwt({ token, user }) {

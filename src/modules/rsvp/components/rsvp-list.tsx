@@ -12,8 +12,8 @@ export function RsvpList({ items }: { items: RsvpListItem[] }) {
     <ul className="flex flex-col divide-y divide-wine/10 rounded-xl bg-paper-dark/40">
       {items.map((item) => (
         <li key={item.guestId} className="flex flex-wrap items-center justify-between gap-2 p-3">
-          <div>
-            <p className="text-wine">{item.guestName}</p>
+          <div className="min-w-0">
+            <p className="break-words text-wine">{item.guestName}</p>
             <p className="text-xs text-wine/70">
               {item.companionsCount} de {Math.max(item.seats - 1, 0)} acompanhantes
               {item.respondedAt ? ` · ${formatDateTimeInSaoPaulo(item.respondedAt)}` : ""}

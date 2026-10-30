@@ -1,7 +1,8 @@
 import { describe, expect, it } from "vitest";
 import { ForbiddenError, UnauthenticatedError } from "@/modules/auth/errors";
-import { RsvpAlreadyAnsweredError, RsvpGuestNotFoundError } from "@/modules/rsvp/errors";
+import { RsvpDeadlinePassedError, RsvpGuestNotFoundError } from "@/modules/rsvp/errors";
 import { createRsvpModule } from "@/modules/rsvp/factory";
+import { eventSettings } from "@/shared/db/schema";
 import { asUser } from "@/tests/helpers/fake-session";
 import { seedGuest } from "@/tests/helpers/seeds/seed-guest";
 import { useTestDatabase } from "@/tests/helpers/use-test-database";
@@ -22,13 +23,23 @@ describe("rsvp edit and delete permissions", () => {
     return { guest, session };
   }
 
-  it("forbids a guest from changing an answer already sent", async () => {
+  it("lets a guest edit own answer before the deadline and blocks it after", async () => {
     const { guest, session } = await answeredGuest();
+    const decline = { guestId: guest.id, status: "declined" as const, dietaryNote: null, companions: [] };
 
-    await expect(
-      rsvpModule().submitRsvp(session, { guestId: guest.id, status: "declined", dietaryNote: null, companions: [] }),
-    ).rejects.toBeInstanceOf(RsvpAlreadyAnsweredError);
-    expect((await rsvpModule().getGuestRsvp(session, guest.id)).status).toBe("going");
+    await rsvpModule().submitRsvp(session, decline);
+    expect((await rsvpModule().getGuestRsvp(session, guest.id)).status).toBe("declined");
+
+    await testDatabase.db.insert(eventSettings).values({
+      coupleNames: "Agnes & Sammy",
+      eventAt: new Date("2026-11-07T22:00:00Z"),
+      venueName: "Restaurante Fazenda",
+      address: "Itatiba/SP",
+      rsvpDeadline: new Date("2020-01-01T00:00:00Z"),
+    });
+    await expect(rsvpModule().submitRsvp(session, { ...decline, status: "going" })).rejects.toBeInstanceOf(
+      RsvpDeadlinePassedError,
+    );
   });
 
   it("lets couple and admin delete an answer, resetting it to pending", async () => {

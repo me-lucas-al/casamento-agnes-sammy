@@ -1,7 +1,7 @@
 import { requireRole } from "@/modules/auth/authorization";
 import { ForbiddenError } from "@/modules/auth/errors";
 import type { SessionUser } from "@/modules/auth/types";
-import { RsvpAlreadyAnsweredError, RsvpDeadlinePassedError, RsvpGuestNotFoundError } from "../errors";
+import { RsvpDeadlinePassedError, RsvpGuestNotFoundError } from "../errors";
 import { assertCompanionsFitSeats, normalizeCompanions } from "../lib/validate-companions";
 import type { RsvpRepository } from "../repositories/rsvp-repository";
 import type { Companion, RsvpAnswer } from "../types";
@@ -27,7 +27,6 @@ export function makeSubmitRsvp({ rsvpRepository, now }: Dependencies) {
     if (user.role === "guest" && user.guestId !== input.guestId) throw new ForbiddenError();
     const guestRsvp = await rsvpRepository.findGuestRsvp(input.guestId);
     if (!guestRsvp) throw new RsvpGuestNotFoundError();
-    if (user.role === "guest" && guestRsvp.respondedAt) throw new RsvpAlreadyAnsweredError();
     await assertDeadlineAllows(user);
     const companions = input.status === "going" ? normalizeCompanions(input.companions) : [];
     assertCompanionsFitSeats(companions, guestRsvp.seats);

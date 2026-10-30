@@ -20,7 +20,7 @@ export default async function FotosPage({ searchParams }: FotosPageProps) {
   const pageResult = await listPhotosPanelQuery(params);
 
   return (
-    <div className="mx-auto grid max-w-5xl gap-6 px-4 py-6">
+    <div className="mx-auto grid max-w-5xl gap-6">
       <h1 className="font-heading text-3xl text-wine">Fotos</h1>
       <StatusFilter
         basePath="/painel/fotos"

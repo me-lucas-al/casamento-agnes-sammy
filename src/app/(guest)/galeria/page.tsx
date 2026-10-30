@@ -21,7 +21,7 @@ export default async function GaleriaPage({ searchParams }: GaleriaPageProps) {
   ]);
 
   return (
-    <div className="mx-auto grid max-w-5xl gap-6 px-4 py-6">
+    <div className="mx-auto grid max-w-5xl gap-6">
       <h1 className="font-heading text-3xl text-wine">Galeria</h1>
       <PhotoUploadForm />
       <PendingPhotosNotice total={ownPendingTotal} />

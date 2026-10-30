@@ -46,7 +46,7 @@ export default async function GiftDetailPage({ params, searchParams }: PageProps
   const reservation = paymentResult?.screen?.contribution;
 
   return (
-    <main className="mx-auto flex max-w-xl flex-col gap-6 px-4 py-8 text-wine">
+    <div className="mx-auto flex max-w-xl flex-col gap-6 text-wine">
       {gift.imageUrl ? (
         <Image
           src={gift.imageUrl}
@@ -91,6 +91,6 @@ export default async function GiftDetailPage({ params, searchParams }: PageProps
           remainingAmountCents={availability.remainingAmountCents}
         />
       ) : null}
-    </main>
+    </div>
   );
 }

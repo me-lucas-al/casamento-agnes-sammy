@@ -11,7 +11,7 @@ export default async function MessagesPage({ searchParams }: { searchParams: Pro
   const [actor, pageResult] = await Promise.all([getSessionUser(), listApprovedMessagesQuery(resolvedSearchParams)]);
 
   return (
-    <main className="mx-auto flex max-w-xl flex-col gap-8 px-4 py-10">
+    <div className="mx-auto flex max-w-xl flex-col gap-8">
       <h1 className="text-center text-3xl italic text-wine">Mural de recados</h1>
       {actor?.role === "guest" ? <MessageForm defaultAuthorName="" /> : null}
       {pageResult.items.length === 0 ? (
@@ -20,6 +20,6 @@ export default async function MessagesPage({ searchParams }: { searchParams: Pro
         <ApprovedMessagesList messages={pageResult.items} />
       )}
       <PaginationControls basePath="/recados" searchParams={resolvedSearchParams} pageResult={pageResult} />
-    </main>
+    </div>
   );
 }

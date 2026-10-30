@@ -10,7 +10,7 @@ export default async function GuestLayout({ children }: GuestLayoutProps) {
   const user = await getSessionUser();
   if (!user) redirect("/entrar");
   return (
-    <AppShell title="Agnes & Sammy" items={GUEST_NAV_ITEMS}>
+    <AppShell title="Agnes & Sammy" homeHref="/inicio" items={GUEST_NAV_ITEMS} isDecorated>
       {children}
     </AppShell>
   );

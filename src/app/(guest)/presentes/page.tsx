@@ -16,7 +16,7 @@ export default async function GiftsPage({ searchParams }: GiftsPageProps) {
   ]);
 
   return (
-    <main className="mx-auto flex w-full max-w-6xl flex-col gap-6 px-4 py-8">
+    <div className="mx-auto flex w-full max-w-6xl flex-col gap-6">
       <h1 className="font-serif text-3xl italic text-wine">Lista de presentes</h1>
       <GiftFilters basePath="/presentes" categories={categories} current={parseGiftListParams(resolvedSearchParams)} />
       {pageResult.items.length === 0 ? (
@@ -29,6 +29,6 @@ export default async function GiftsPage({ searchParams }: GiftsPageProps) {
         </ul>
       )}
       <PaginationControls basePath="/presentes" searchParams={resolvedSearchParams} pageResult={pageResult} />
-    </main>
+    </div>
   );
 }

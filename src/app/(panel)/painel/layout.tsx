@@ -11,7 +11,7 @@ export default async function PanelLayout({ children }: PanelLayoutProps) {
   if (!user) redirect("/admin/entrar");
   if (user.role === "guest") redirect("/presentes");
   return (
-    <AppShell title="Painel dos noivos" items={panelNavItemsFor(user.role)}>
+    <AppShell title="Painel dos noivos" homeHref="/painel" items={panelNavItemsFor(user.role)}>
       {children}
     </AppShell>
   );

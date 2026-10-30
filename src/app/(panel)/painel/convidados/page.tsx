@@ -22,7 +22,7 @@ export default async function ConvidadosPage({ searchParams }: ConvidadosPagePro
   const pageResult = await listGuestsPageQuery(params);
 
   return (
-    <div className="mx-auto grid max-w-5xl gap-6 px-4 py-6">
+    <div className="mx-auto grid max-w-5xl gap-6">
       <h1 className="font-heading text-3xl text-wine">Convidados</h1>
       <CreateGuestPanel />
       <GuestsToolbar

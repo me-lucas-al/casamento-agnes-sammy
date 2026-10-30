@@ -9,7 +9,7 @@ export default async function MyGiftsPage() {
   const now = new Date();
 
   return (
-    <main className="mx-auto flex max-w-xl flex-col gap-4 px-4 py-8">
+    <div className="mx-auto flex max-w-xl flex-col gap-4">
       <h1 className="font-serif text-3xl italic text-wine">Meus presentes</h1>
       {contributions.length === 0 ? (
         <EmptyState title="Você ainda não reservou nenhum presente." />
@@ -20,6 +20,6 @@ export default async function MyGiftsPage() {
           ))}
         </ul>
       )}
-    </main>
+    </div>
   );
 }

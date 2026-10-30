@@ -21,7 +21,7 @@ export default async function UsuariosPage({ searchParams }: UsuariosPageProps) 
   const pageResult = await listUsersPageQuery(params);
 
   return (
-    <div className="mx-auto grid max-w-4xl gap-6 px-4 py-6">
+    <div className="mx-auto grid max-w-4xl gap-6">
       <h1 className="font-heading text-3xl text-wine">Usuários</h1>
       <CreateUserForm />
       <UsersToolbar search={textParam(params, "search")} status={enumParam(params, "status", USER_STATUSES)} />

@@ -3,7 +3,7 @@ import Link from "next/link";
 import { getEventDateParts } from "../lib/event-date-parts";
 import type { EventSettingsSnapshot } from "../types";
 import { InvitationDateBlock } from "./invitation-date-block";
-import { InvitationFlowers } from "./invitation-flowers";
+import { FloralCorners } from "@/shared/ui/components/floral-corners";
 
 type EventInvitationProps = { settings: EventSettingsSnapshot };
 
@@ -17,7 +17,7 @@ export function EventInvitation({ settings }: EventInvitationProps) {
   const [firstName, secondName] = splitCoupleNames(settings.coupleNames);
   return (
     <div className="relative mx-auto flex w-full max-w-md flex-col gap-8 overflow-hidden bg-paper pt-24 text-center tracking-widest">
-      <InvitationFlowers />
+      <FloralCorners />
       <section className="relative flex flex-col items-center gap-4">
         <div aria-hidden className="absolute inset-x-6 -top-8 h-44">
           <Image src="/brand/paper-strip.png" alt="" fill sizes="448px" className="object-fill opacity-90" />

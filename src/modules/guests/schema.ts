@@ -6,6 +6,8 @@ export const guests = pgTable("guests", {
   code: varchar("code", { length: 8 }).notNull().unique(),
   name: text("name").notNull(),
   phone: text("phone"),
+  email: text("email"),
+  profileCompletedAt: timestamp("profile_completed_at", { withTimezone: true }),
   seats: integer("seats").notNull().default(1),
   createdBy: uuid("created_by")
     .notNull()

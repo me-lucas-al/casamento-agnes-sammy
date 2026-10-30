@@ -36,7 +36,7 @@ export function makeUpdateReservation({ unitOfWork, clock }: Dependencies) {
       const amounts = resolveReservation(gift, commitment, request);
       const updated = await store.updateAmounts(existing.id, {
         ...amounts,
-        anonymous: request.anonymous ?? existing.anonymous,
+        anonymous: existing.status === "confirmed" ? existing.anonymous : (request.anonymous ?? existing.anonymous),
       });
       if (!updated) throw new ContributionNotPendingError();
       return updated;

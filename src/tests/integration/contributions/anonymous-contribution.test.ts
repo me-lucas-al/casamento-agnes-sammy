@@ -51,6 +51,20 @@ describe("anonymous contributions", () => {
     expect(updated.anonymous).toBe(true);
   });
 
+  it("keeps the choice unchanged once the payment is confirmed", async () => {
+    const { contributions, gift, guest } = await setup();
+    const contribution = await contributions.reserveGift(guest, { giftId: gift.id, anonymous: true });
+    const couple = await seedStaffActor(testDatabase.db, "couple");
+    await contributions.confirmPixPayment(couple, { contributionId: contribution.id });
+
+    const updated = await contributions.updateReservation(couple, {
+      contributionId: contribution.id,
+      anonymous: false,
+    });
+
+    expect(updated.anonymous).toBe(true);
+  });
+
   it("hides the guest name in the message created on confirmation", async () => {
     const { contributions, gift, guest } = await setup();
     const contribution = await contributions.reserveGift(guest, { giftId: gift.id, anonymous: true });

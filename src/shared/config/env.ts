@@ -21,4 +21,9 @@ export function parseServerEnv(source: Record<string, string | undefined>): Serv
   throw new Error(`Invalid environment variables: ${missing.join(", ")}`);
 }
 
-export const serverEnv = parseServerEnv(process.env);
+let cachedEnv: ServerEnv | undefined;
+
+export function getServerEnv(): ServerEnv {
+  cachedEnv ??= parseServerEnv(process.env);
+  return cachedEnv;
+}

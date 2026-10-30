@@ -1,6 +1,7 @@
 import { and, count, desc, eq, ilike, isNull, or, sql } from "drizzle-orm";
 import { guests, rsvpCompanions, rsvps } from "@/shared/db/schema";
 import type { Database } from "@/shared/db/types";
+import { containsPattern } from "@/shared/lib/sql-like";
 import type { RsvpListPage, RsvpListQuery, RsvpStatus, RsvpTotals } from "../types";
 
 function buildStatusFilter(status: RsvpStatus | undefined) {
@@ -10,7 +11,7 @@ function buildStatusFilter(status: RsvpStatus | undefined) {
 }
 
 function buildFilter({ status, search }: Pick<RsvpListQuery, "status" | "search">) {
-  const searchFilter = search ? ilike(guests.name, `%${search}%`) : undefined;
+  const searchFilter = search ? ilike(guests.name, containsPattern(search)) : undefined;
   return and(buildStatusFilter(status), searchFilter);
 }
 

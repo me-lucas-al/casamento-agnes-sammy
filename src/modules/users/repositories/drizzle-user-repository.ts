@@ -1,12 +1,13 @@
 import { and, count, desc, eq, ilike, or } from "drizzle-orm";
 import { users } from "@/shared/db/schema";
 import type { Database } from "@/shared/db/types";
+import { containsPattern } from "@/shared/lib/sql-like";
 import type { UserStatus } from "../types";
 import type { UserRepository } from "./user-repository";
 
 function buildSearchFilter(search: string) {
   if (!search) return undefined;
-  const pattern = `%${search}%`;
+  const pattern = containsPattern(search);
   return or(ilike(users.name, pattern), ilike(users.email, pattern));
 }
 

@@ -46,6 +46,14 @@ describe("guest listing", () => {
     expect((await list({ search: "99999" })).items.map((guest) => guest.name)).toEqual(["Ana Lima"]);
   });
 
+  it("treats percent and underscore in search as literal characters", async () => {
+    await seedGuest(testDatabase.db, { name: "Ana 100%" });
+    await seedGuest(testDatabase.db, { name: "Bruno Reis" });
+
+    expect((await list({ search: "%" })).items.map((guest) => guest.name)).toEqual(["Ana 100%"]);
+    expect((await list({ search: "_" })).items).toHaveLength(0);
+  });
+
   it("sorts by name and by last access with nulls last", async () => {
     await seedGuest(testDatabase.db, { name: "Carla" });
     await seedGuest(testDatabase.db, { name: "Beto", lastAccessAt: new Date("2026-01-01") });

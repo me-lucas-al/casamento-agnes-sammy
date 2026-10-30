@@ -1,12 +1,13 @@
 import { and, asc, count, desc, eq, ilike, or, sql } from "drizzle-orm";
 import { giftContributions, guests, photos, rsvps } from "@/shared/db/schema";
 import type { Database } from "@/shared/db/types";
+import { containsPattern } from "@/shared/lib/sql-like";
 import type { GuestSort } from "../types";
 import type { GuestRepository } from "./guest-repository";
 
 function buildSearchFilter(search: string) {
   if (!search) return undefined;
-  const pattern = `%${search}%`;
+  const pattern = containsPattern(search);
   return or(ilike(guests.name, pattern), ilike(guests.code, pattern), ilike(guests.phone, pattern));
 }
 

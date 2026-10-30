@@ -1,5 +1,6 @@
 import { and, asc, desc, eq, gt, ilike, lte, or, type SQL } from "drizzle-orm";
 import { gifts } from "@/shared/db/schema";
+import { containsPattern } from "@/shared/lib/sql-like";
 import type { GiftSortOption } from "../lib/gift-sort";
 import type { PriceBand } from "../lib/price-band";
 import type { GiftListQuery } from "./gift-repository";
@@ -14,7 +15,7 @@ function buildBandFilter(band: PriceBand | undefined): SQL[] {
 
 function buildSearchFilter(search: string): SQL[] {
   if (!search) return [];
-  const pattern = `%${search}%`;
+  const pattern = containsPattern(search);
   const matches = or(ilike(gifts.name, pattern), ilike(gifts.description, pattern));
   return matches ? [matches] : [];
 }

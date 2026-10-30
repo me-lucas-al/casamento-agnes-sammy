@@ -1,11 +1,12 @@
 import { and, asc, count, desc, eq, ilike, or } from "drizzle-orm";
 import { giftContributions, gifts, guests } from "@/shared/db/schema";
 import type { Database } from "@/shared/db/types";
+import { containsPattern } from "@/shared/lib/sql-like";
 import type { PaymentSort, PendingPaymentsPage, PendingPaymentsQuery } from "../types";
 
 function buildFilter({ status, search }: PendingPaymentsQuery) {
   const statusFilter = status === "all" ? undefined : eq(giftContributions.status, status);
-  const pattern = `%${search}%`;
+  const pattern = containsPattern(search);
   const searchFilter = search
     ? or(ilike(guests.name, pattern), ilike(gifts.name, pattern))
     : undefined;

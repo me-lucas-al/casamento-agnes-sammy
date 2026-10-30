@@ -14,6 +14,7 @@ export async function uploadSignedImage(
   body.set("timestamp", String(signed.timestamp));
   body.set("public_id", signed.publicId);
   body.set("allowed_formats", signed.allowedFormats);
+  body.set("upload_preset", signed.uploadPreset);
   body.set("signature", signed.signature);
   const response = await fetch(`https://api.cloudinary.com/v1_1/${signed.cloudName}/image/upload`, {
     method: "POST",

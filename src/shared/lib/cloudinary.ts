@@ -8,6 +8,7 @@ export type SignedUploadParams = {
   timestamp: number;
   publicId: string;
   allowedFormats: string;
+  uploadPreset: string;
   signature: string;
 };
 
@@ -21,6 +22,7 @@ export type CloudinaryCredentials = {
   cloudName: string;
   apiKey: string;
   apiSecret: string;
+  uploadPreset: string;
 };
 
 export function signParameters(parameters: Record<string, string | number>, apiSecret: string): string {
@@ -32,7 +34,7 @@ export function signParameters(parameters: Record<string, string | number>, apiS
 }
 
 export function createCloudinaryClient(credentials: CloudinaryCredentials): CloudinaryClient {
-  const { cloudName, apiKey, apiSecret } = credentials;
+  const { cloudName, apiKey, apiSecret, uploadPreset } = credentials;
 
   return {
     cloudName,
@@ -40,10 +42,10 @@ export function createCloudinaryClient(credentials: CloudinaryCredentials): Clou
       const timestamp = Math.floor(Date.now() / 1000);
       const allowedFormats = ALLOWED_UPLOAD_FORMATS;
       const signature = signParameters(
-        { allowed_formats: allowedFormats, public_id: publicId, timestamp },
+        { allowed_formats: allowedFormats, public_id: publicId, timestamp, upload_preset: uploadPreset },
         apiSecret,
       );
-      return { cloudName, apiKey, timestamp, publicId, allowedFormats, signature };
+      return { cloudName, apiKey, timestamp, publicId, allowedFormats, uploadPreset, signature };
     },
     async destroyImage(publicId) {
       const timestamp = Math.floor(Date.now() / 1000);

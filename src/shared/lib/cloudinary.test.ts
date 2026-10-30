@@ -3,14 +3,20 @@ import { describe, expect, it } from "vitest";
 import { ALLOWED_UPLOAD_FORMATS, createCloudinaryClient, signParameters } from "./cloudinary";
 
 describe("cloudinary client signing", () => {
-  const client = createCloudinaryClient({ cloudName: "demo", apiKey: "key", apiSecret: "secret" });
+  const client = createCloudinaryClient({
+    cloudName: "demo",
+    apiKey: "key",
+    apiSecret: "secret",
+    uploadPreset: "wedding_8mb",
+  });
 
-  it("signs allowed formats, public id and timestamp", () => {
+  it("signs allowed formats, public id, upload preset and timestamp", () => {
     const signed = client.signUpload("gallery/abc");
-    const payload = `allowed_formats=jpg,png,webp&public_id=gallery/abc&timestamp=${signed.timestamp}`;
+    const payload = `allowed_formats=jpg,png,webp&public_id=gallery/abc&timestamp=${signed.timestamp}&upload_preset=wedding_8mb`;
 
     expect(signed.allowedFormats).toBe(ALLOWED_UPLOAD_FORMATS);
     expect(signed.publicId).toBe("gallery/abc");
+    expect(signed.uploadPreset).toBe("wedding_8mb");
     expect(signed.signature).toBe(createHash("sha1").update(`${payload}secret`).digest("hex"));
   });
 

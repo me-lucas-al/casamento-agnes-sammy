@@ -14,6 +14,7 @@ export class FakeCloudinaryClient implements CloudinaryClient {
       timestamp: 1,
       publicId,
       allowedFormats: ALLOWED_UPLOAD_FORMATS,
+      uploadPreset: "fake-preset",
       signature: "fake-signature",
     };
   }

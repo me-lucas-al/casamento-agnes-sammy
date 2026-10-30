@@ -14,7 +14,7 @@ export async function signInWithGuestCodeAction(
   const code = String(formData.get("code") ?? "").trim().toUpperCase();
   if (!code) return { error: GENERIC_GUEST_CODE_ERROR };
   try {
-    await signIn("guest-code", { code, redirectTo: "/presentes" });
+    await signIn("guest-code", { code, redirectTo: "/inicio" });
     return { error: null };
   } catch (error) {
     if (error instanceof AuthError) return { error: GENERIC_GUEST_CODE_ERROR };

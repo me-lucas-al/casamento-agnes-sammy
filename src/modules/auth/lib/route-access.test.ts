@@ -25,7 +25,7 @@ describe("resolveRouteAccess", () => {
   });
 
   it("keeps guests out of the panel", () => {
-    expect(resolveRouteAccess("/painel", "guest")).toEqual(redirect("/presentes"));
+    expect(resolveRouteAccess("/painel", "guest")).toEqual(redirect("/inicio"));
   });
 
   it("lets couple into the panel except users", () => {

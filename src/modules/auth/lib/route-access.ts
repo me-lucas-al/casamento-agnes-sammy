@@ -3,6 +3,10 @@ import type { Role } from "../types";
 export type RouteDecision = { type: "allow" } | { type: "redirect"; to: string };
 
 const GUEST_AREA_PREFIXES = [
+  "/inicio",
+  "/convite",
+  "/casamento",
+  "/perfil",
   "/presentes",
   "/meus-presentes",
   "/confirmar-presenca",
@@ -23,7 +27,7 @@ function redirectTo(to: string): RouteDecision {
 
 function resolvePanelAccess(pathname: string, role: Role | undefined): RouteDecision {
   if (!role) return redirectTo("/admin/entrar");
-  if (role === "guest") return redirectTo("/presentes");
+  if (role === "guest") return redirectTo("/inicio");
   if (isUnder(pathname, ADMIN_ONLY_PREFIX) && role !== "admin") return redirectTo(PANEL_PREFIX);
   return ALLOW;
 }

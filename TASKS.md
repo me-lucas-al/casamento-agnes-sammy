@@ -90,3 +90,17 @@
 - [ ] E-mails Google do admin e dos noivos, e domínio do site
 - [ ] Credenciais: Neon, Cloudinary, Google OAuth, projeto Vercel, secret `DATABASE_URL` no GitHub
 - [ ] Categorias iniciais de presentes
+
+## Dúvidas para responder
+- [ ] Chave Pix: tipo, nome do recebedor e cidade
+- [ ] Texto "nossa história" e fotos do casal
+- [ ] E-mails Google do admin e dos noivos, e o domínio do site
+- [ ] Credenciais de Neon, Cloudinary, Google OAuth e Vercel; secret `DATABASE_URL` no ambiente `production` do GitHub, com required reviewers
+- [ ] Categorias iniciais de presentes
+- [ ] O convidado pode criar presentes ou categorias? (assumido: não)
+- [ ] Excluir presente com reserva ativa: manter o bloqueio?
+- [ ] Mudar modo ou preço de presente que já tem contribuições: bloquear?
+- [ ] Recado de confirmação do Pix mostra o nome do convidado: anonimizar?
+- [ ] Prazo de RSVP vazio deixa o RSVP aberto para sempre: é intencional?
+- [ ] Perfil do convidado é só leitura: ele pode editar o próprio telefone?
+- [ ] Limite de 8 MB de upload só é checado no servidor: travar também no Cloudinary com upload preset?

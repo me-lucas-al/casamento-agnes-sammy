@@ -13,7 +13,7 @@ const relativeSchema = z.object({
 export const ownProfileSchema = z.object({
   name: z.string().trim().min(2).max(120),
   phone: z.string().trim().regex(/^[\d\s()+-]{8,20}$/),
-  email: z.email().trim().max(200),
+  email: z.string().trim().max(200).pipe(z.email()),
   relatives: z.array(relativeSchema).max(20).default([]),
 });
 

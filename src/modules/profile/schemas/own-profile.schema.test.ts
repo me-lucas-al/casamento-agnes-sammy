@@ -20,6 +20,12 @@ describe("ownProfileSchema", () => {
     expect(ownProfileSchema.safeParse({ ...validInput, ...override }).success).toBe(false);
   });
 
+  it("trims the email before validating it", () => {
+    const parsed = ownProfileSchema.parse({ ...validInput, email: "  maria@example.com  " });
+
+    expect(parsed.email).toBe("maria@example.com");
+  });
+
   it("turns an empty dietary note into null", () => {
     const parsed = ownProfileSchema.parse({ ...validInput, relatives: [{ name: "João", dietaryNote: "" }] });
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useTransition } from "react";
+import { useId, useState, useTransition } from "react";
 import { CompanionFields } from "@/modules/rsvp/components/companion-fields";
 import type { Companion } from "@/modules/rsvp/types";
 import { Button } from "@/shared/ui/button";
@@ -15,6 +15,7 @@ type GuestProfileFormProps = {
 };
 
 export function GuestProfileForm({ profile, submitLabel, onSaved }: GuestProfileFormProps) {
+  const idPrefix = useId();
   const [isPending, startTransition] = useTransition();
   const [name, setName] = useState(profile.name);
   const [phone, setPhone] = useState(profile.phone ?? "");
@@ -40,16 +41,16 @@ export function GuestProfileForm({ profile, submitLabel, onSaved }: GuestProfile
       }}
       className="flex flex-col gap-4"
     >
-      <FormField label="Nome" htmlFor="profile-name">
-        <input id="profile-name" required minLength={2} maxLength={120} value={name} autoComplete="name"
+      <FormField label="Nome" htmlFor={`${idPrefix}-name`}>
+        <input id={`${idPrefix}-name`} required minLength={2} maxLength={120} value={name} autoComplete="name"
           onChange={(event) => setName(event.target.value)} className={textInputClassName} />
       </FormField>
-      <FormField label="Telefone" htmlFor="profile-phone" hint="Com DDD, para os noivos falarem com você.">
-        <input id="profile-phone" type="tel" required value={phone} autoComplete="tel"
+      <FormField label="Telefone" htmlFor={`${idPrefix}-phone`} hint="Com DDD, para os noivos falarem com você.">
+        <input id={`${idPrefix}-phone`} type="tel" required value={phone} autoComplete="tel"
           onChange={(event) => setPhone(event.target.value)} className={textInputClassName} />
       </FormField>
-      <FormField label="E-mail" htmlFor="profile-email">
-        <input id="profile-email" type="email" required maxLength={200} value={email} autoComplete="email"
+      <FormField label="E-mail" htmlFor={`${idPrefix}-email`}>
+        <input id={`${idPrefix}-email`} type="email" required maxLength={200} value={email} autoComplete="email"
           onChange={(event) => setEmail(event.target.value)} className={textInputClassName} />
       </FormField>
       {maxRelatives > 0 ? (

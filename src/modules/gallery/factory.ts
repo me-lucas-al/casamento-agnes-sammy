@@ -25,7 +25,7 @@ export function createGalleryModule({ database, cloudinaryClient, cachedReader }
   return {
     photoRepository,
     signUploadPhoto: makeSignUploadPhoto({ cloudinaryClient }),
-    registerUploadedPhoto: makeRegisterUploadedPhoto({ photoRepository }),
+    registerUploadedPhoto: makeRegisterUploadedPhoto({ photoRepository, cloudinaryClient }),
     approvePhoto: makeApprovePhoto({ photoRepository }),
     updatePhotoCaption: makeUpdatePhotoCaption({ photoRepository }),
     rejectPhoto: makeRejectPhoto({ photoRepository, cloudinaryClient }),

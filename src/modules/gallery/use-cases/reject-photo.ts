@@ -3,6 +3,7 @@ import type { SessionUser } from "@/modules/auth/types";
 import { approvedPhotosTag } from "@/shared/lib/cache/cache-tags";
 import type { CloudinaryClient } from "@/shared/lib/cloudinary";
 import { PhotoNotFoundError } from "../errors";
+import { destroyUnsharedPhotoAsset } from "../lib/destroy-unshared-photo-asset";
 import type { PhotoRepository } from "../repositories/photo-repository";
 
 type Dependencies = { photoRepository: PhotoRepository; cloudinaryClient: CloudinaryClient };
@@ -15,8 +16,8 @@ export function makeRejectPhoto({ photoRepository, cloudinaryClient }: Dependenc
     requireRole(actor, ["admin", "couple"]);
     const photo = await photoRepository.findById(photoId);
     if (!photo) throw new PhotoNotFoundError();
-    await cloudinaryClient.destroyImage(photo.cloudinaryPublicId);
     await photoRepository.updateStatus(photoId, "rejected");
+    await destroyUnsharedPhotoAsset({ photoRepository, cloudinaryClient }, photo);
     return { changedTags: [approvedPhotosTag()] };
   };
 }

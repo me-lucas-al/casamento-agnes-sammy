@@ -1,6 +1,7 @@
 import { requireRole } from "@/modules/auth/authorization";
 import type { SessionUser } from "@/modules/auth/types";
 import type { CloudinaryClient, SignedUploadParams } from "@/shared/lib/cloudinary";
+import { buildManagedPublicId } from "@/shared/lib/cloudinary-url";
 import { InvalidUploadError } from "../errors";
 import { GALLERY_FOLDER } from "../lib/upload-rules";
 import { findUploadViolation, type UploadCandidate } from "../lib/upload-validator";
@@ -15,6 +16,6 @@ export function makeSignUploadPhoto({ cloudinaryClient }: Dependencies) {
     requireRole(actor, ["admin", "couple", "guest"]);
     const violation = findUploadViolation(candidate);
     if (violation) throw new InvalidUploadError(violation);
-    return cloudinaryClient.signUpload(GALLERY_FOLDER);
+    return cloudinaryClient.signUpload(buildManagedPublicId(GALLERY_FOLDER));
   };
 }

@@ -10,18 +10,18 @@ import { buildGalleryContext, uploadInput } from "./gallery-test-context";
 describe("photo moderation", () => {
   const testDatabase = useTestDatabase();
 
-  async function registerPendingPhoto(name: string) {
+  async function registerPendingPhoto() {
     const context = buildGalleryContext(testDatabase.db);
     const guest = await seedGuest(testDatabase.db);
     const { photo } = await context.galleryModule.registerUploadedPhoto(
       asUser("guest", { guestId: guest.id }),
-      uploadInput(name),
+      uploadInput(),
     );
     return { ...context, photo, guest };
   }
 
   it.each(["couple", "admin"] as const)("lets %s approve and publishes the photo", async (role) => {
-    const { galleryModule, photo } = await registerPendingPhoto("p1");
+    const { galleryModule, photo } = await registerPendingPhoto();
 
     const { changedTags } = await galleryModule.approvePhoto(asUser(role), photo.id);
 
@@ -31,7 +31,7 @@ describe("photo moderation", () => {
   });
 
   it("forbids guests from moderating", async () => {
-    const { galleryModule, photo } = await registerPendingPhoto("p2");
+    const { galleryModule, photo } = await registerPendingPhoto();
     const guest = asUser("guest");
 
     await expect(galleryModule.approvePhoto(guest, photo.id)).rejects.toBeInstanceOf(ForbiddenError);
@@ -40,7 +40,7 @@ describe("photo moderation", () => {
   });
 
   it.each(["couple", "admin"] as const)("lets %s update the caption", async (role) => {
-    const { galleryModule, photo } = await registerPendingPhoto("c1");
+    const { galleryModule, photo } = await registerPendingPhoto();
 
     const { photo: updated, changedTags } = await galleryModule.updatePhotoCaption(
       asUser(role),
@@ -53,7 +53,7 @@ describe("photo moderation", () => {
   });
 
   it("forbids guests and anonymous from updating captions", async () => {
-    const { galleryModule, photo } = await registerPendingPhoto("c2");
+    const { galleryModule, photo } = await registerPendingPhoto();
 
     await expect(galleryModule.updatePhotoCaption(asUser("guest"), photo.id, "x")).rejects.toBeInstanceOf(
       ForbiddenError,
@@ -72,21 +72,21 @@ describe("photo moderation", () => {
   });
 
   it("rejects a photo destroying the remote image and keeping it unlisted", async () => {
-    const { galleryModule, cloudinaryClient, photo } = await registerPendingPhoto("p3");
+    const { galleryModule, cloudinaryClient, photo } = await registerPendingPhoto();
 
     const { changedTags } = await galleryModule.rejectPhoto(asUser("couple"), photo.id);
 
-    expect(cloudinaryClient.destroyedPublicIds).toEqual(["gallery/p3"]);
+    expect(cloudinaryClient.destroyedPublicIds).toEqual([photo.cloudinaryPublicId]);
     expect(changedTags).toEqual([approvedPhotosTag()]);
     expect((await galleryModule.photoRepository.findById(photo.id))?.status).toBe("rejected");
   });
 
   it("deletes a photo destroying the remote image", async () => {
-    const { galleryModule, cloudinaryClient, photo } = await registerPendingPhoto("p4");
+    const { galleryModule, cloudinaryClient, photo } = await registerPendingPhoto();
 
     await galleryModule.deletePhoto(asUser("admin"), photo.id);
 
-    expect(cloudinaryClient.destroyedPublicIds).toEqual(["gallery/p4"]);
+    expect(cloudinaryClient.destroyedPublicIds).toEqual([photo.cloudinaryPublicId]);
     expect(await galleryModule.photoRepository.findById(photo.id)).toBeNull();
   });
 

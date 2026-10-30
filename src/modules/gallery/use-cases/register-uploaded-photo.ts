@@ -2,12 +2,14 @@ import { requireRole } from "@/modules/auth/authorization";
 import { ForbiddenError } from "@/modules/auth/errors";
 import type { SessionUser } from "@/modules/auth/types";
 import { approvedPhotosTag } from "@/shared/lib/cache/cache-tags";
-import { InvalidPublicIdError } from "../errors";
+import type { CloudinaryClient } from "@/shared/lib/cloudinary";
+import { InvalidPublicIdError, PendingPhotoLimitError } from "../errors";
 import { isGalleryPublicId, urlReferencesPublicId } from "../lib/public-id";
+import { MAX_PENDING_PHOTOS_PER_GUEST } from "../lib/upload-rules";
 import type { PhotoRepository } from "../repositories/photo-repository";
 import type { NewPhoto, Photo } from "../types";
 
-type Dependencies = { photoRepository: PhotoRepository };
+type Dependencies = { photoRepository: PhotoRepository; cloudinaryClient: CloudinaryClient };
 
 type Input = {
   cloudinaryPublicId: string;
@@ -27,16 +29,25 @@ function buildNewPhoto(actor: SessionUser, input: Input): NewPhoto {
   return { ...base, uploadedByUserId: actor.id, status: "approved" };
 }
 
-export function makeRegisterUploadedPhoto({ photoRepository }: Dependencies) {
+export function makeRegisterUploadedPhoto({ photoRepository, cloudinaryClient }: Dependencies) {
+  async function assertPendingQuota(actor: SessionUser): Promise<void> {
+    if (actor.role !== "guest" || !actor.guestId) return;
+    const pendingCount = await photoRepository.countPendingByGuest(actor.guestId);
+    if (pendingCount >= MAX_PENDING_PHOTOS_PER_GUEST) throw new PendingPhotoLimitError();
+  }
+
   return async function registerUploadedPhoto(
     actor: SessionUser | null,
     input: Input,
   ): Promise<Result> {
     const user = requireRole(actor, ["admin", "couple", "guest"]);
-    const isOwned = isGalleryPublicId(input.cloudinaryPublicId);
-    if (!isOwned || !urlReferencesPublicId(input.url, input.cloudinaryPublicId)) {
-      throw new InvalidPublicIdError();
-    }
+    const { cloudinaryPublicId, url } = input;
+    const isOwned =
+      isGalleryPublicId(cloudinaryPublicId) &&
+      urlReferencesPublicId(url, cloudinaryPublicId, cloudinaryClient.cloudName);
+    if (!isOwned) throw new InvalidPublicIdError();
+    if (await photoRepository.existsWithPublicId(cloudinaryPublicId)) throw new InvalidPublicIdError();
+    await assertPendingQuota(user);
     const photo = await photoRepository.create(buildNewPhoto(user, input));
     return { photo, changedTags: photo.status === "approved" ? [approvedPhotosTag()] : [] };
   };

@@ -16,5 +16,6 @@ export interface PhotoRepository {
   deleteById(photoId: string): Promise<void>;
   listApprovedPage(query: ApprovedPhotosQuery): Promise<PhotoListPage<PublicPhoto>>;
   listPanelPage(query: PanelPhotosQuery): Promise<PhotoListPage<Photo>>;
+  existsWithPublicId(publicId: string, excludedPhotoId?: string): Promise<boolean>;
   countPendingByGuest(guestId: string): Promise<number>;
 }

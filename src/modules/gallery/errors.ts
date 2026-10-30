@@ -12,6 +12,12 @@ export class InvalidPublicIdError extends Error {
   }
 }
 
+export class PendingPhotoLimitError extends Error {
+  constructor() {
+    super("Pending photo limit reached");
+  }
+}
+
 export class PhotoNotFoundError extends Error {
   constructor() {
     super("Photo not found");
@@ -25,6 +31,9 @@ export function describePhotoError(error: unknown): string {
       : "A foto deve ter no máximo 8 MB.";
   }
   if (error instanceof InvalidPublicIdError) return "Foto inválida.";
+  if (error instanceof PendingPhotoLimitError) {
+    return "Você já tem fotos aguardando aprovação demais. Aguarde a moderação para enviar mais.";
+  }
   if (error instanceof PhotoNotFoundError) return "Foto não encontrada.";
   return describeAuthError(error) ?? "Não foi possível concluir a operação.";
 }

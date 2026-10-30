@@ -1,4 +1,4 @@
-import { and, asc, count, desc, eq } from "drizzle-orm";
+import { and, asc, count, desc, eq, ne } from "drizzle-orm";
 import { photos } from "@/shared/db/schema";
 import type { Database } from "@/shared/db/types";
 import type { PhotoSort } from "../types";
@@ -57,6 +57,12 @@ export function createDrizzlePhotoRepository(database: Database): PhotoRepositor
         database.select({ total: count() }).from(photos).where(filter),
       ]);
       return { items, total: totalRow?.total ?? 0 };
+    },
+    async existsWithPublicId(publicId, excludedPhotoId) {
+      const sameAsset = eq(photos.cloudinaryPublicId, publicId);
+      const filter = excludedPhotoId ? and(sameAsset, ne(photos.id, excludedPhotoId)) : sameAsset;
+      const [row] = await database.select({ id: photos.id }).from(photos).where(filter).limit(1);
+      return row !== undefined;
     },
     async countPendingByGuest(guestId) {
       const [row] = await database

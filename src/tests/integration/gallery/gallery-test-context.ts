@@ -1,6 +1,7 @@
 import { createGalleryModule } from "@/modules/gallery/factory";
 import { passThroughCachedReader } from "@/shared/lib/cache/cached-read";
-import { FakeCloudinaryClient } from "@/tests/helpers/fake-cloudinary";
+import { buildManagedPublicId } from "@/shared/lib/cloudinary-url";
+import { FAKE_CLOUD_NAME, FakeCloudinaryClient } from "@/tests/helpers/fake-cloudinary";
 import type { Database } from "@/shared/db/types";
 
 export function buildGalleryContext(database: Database) {
@@ -13,9 +14,10 @@ export function buildGalleryContext(database: Database) {
   return { cloudinaryClient, galleryModule };
 }
 
-export function uploadInput(name: string) {
+export function uploadInput() {
+  const cloudinaryPublicId = buildManagedPublicId("gallery");
   return {
-    cloudinaryPublicId: `gallery/${name}`,
-    url: `https://res.cloudinary.com/demo/image/upload/v1/gallery/${name}.jpg`,
+    cloudinaryPublicId,
+    url: `https://res.cloudinary.com/${FAKE_CLOUD_NAME}/image/upload/v1/${cloudinaryPublicId}.jpg`,
   };
 }

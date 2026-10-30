@@ -16,7 +16,7 @@ describe("photo upload", () => {
   it.each(["guest", "couple", "admin"] as const)("signs uploads for %s in the gallery folder", async (role) => {
     const signed = await context().galleryModule.signUploadPhoto(asUser(role), validCandidate);
 
-    expect(signed.folder).toBe("gallery");
+    expect(signed.publicId.startsWith("gallery/")).toBe(true);
   });
 
   it("requires authentication to sign", async () => {
@@ -41,7 +41,7 @@ describe("photo upload", () => {
 
     const { photo, changedTags } = await context().galleryModule.registerUploadedPhoto(
       asUser("guest", { guestId: guest.id }),
-      { ...uploadInput("one"), caption: "  Festa  " },
+      { ...uploadInput(), caption: "  Festa  " },
     );
 
     expect(photo).toMatchObject({ status: "pending", uploadedByGuestId: guest.id, caption: "Festa" });
@@ -53,7 +53,7 @@ describe("photo upload", () => {
 
     const { photo, changedTags } = await context().galleryModule.registerUploadedPhoto(
       asUser(role, { id: user.id }),
-      uploadInput("two"),
+      uploadInput(),
     );
 
     expect(photo).toMatchObject({ status: "approved", uploadedByUserId: user.id });
@@ -68,13 +68,13 @@ describe("photo upload", () => {
       galleryModule.registerUploadedPhoto(actor, { cloudinaryPublicId: "gifts/x", url: "https://a.com/gifts/x" }),
     ).rejects.toBeInstanceOf(InvalidPublicIdError);
     await expect(
-      galleryModule.registerUploadedPhoto(actor, { ...uploadInput("a"), url: "https://a.com/other.jpg" }),
+      galleryModule.registerUploadedPhoto(actor, { ...uploadInput(), url: "https://a.com/other.jpg" }),
     ).rejects.toBeInstanceOf(InvalidPublicIdError);
   });
 
   it("forbids guest session without guest id", async () => {
     await expect(
-      context().galleryModule.registerUploadedPhoto({ id: "x", role: "guest" }, uploadInput("three")),
+      context().galleryModule.registerUploadedPhoto({ id: "x", role: "guest" }, uploadInput()),
     ).rejects.toBeInstanceOf(ForbiddenError);
   });
 });

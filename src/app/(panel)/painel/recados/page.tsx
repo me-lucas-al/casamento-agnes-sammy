@@ -5,6 +5,7 @@ import { enumParam, type SearchParams } from "@/shared/lib/url-params";
 import { EmptyState } from "@/shared/ui/empty-state";
 import { PaginationControls } from "@/shared/ui/pagination-controls";
 import { StatusFilterLinks } from "@/shared/ui/status-filter-links";
+import { PageHeading } from "@/shared/ui/components/page-heading";
 
 const BASE_PATH = "/painel/recados";
 
@@ -20,7 +21,7 @@ export default async function MessagesModerationPage({ searchParams }: { searchP
 
   return (
     <div className="flex flex-col gap-4">
-      <h1 className="text-2xl text-wine">Recados</h1>
+      <PageHeading title="Recados" description="Leia e aprove os recados antes de aparecerem no mural." align="start" />
       <StatusFilterLinks
         basePath={BASE_PATH}
         searchParams={resolvedSearchParams}

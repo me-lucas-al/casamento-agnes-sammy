@@ -1,13 +1,14 @@
 import { GiftForm } from "@/modules/gifts/components/gift-form";
 import { listGiftCategoriesQuery } from "@/modules/gifts/controllers/gifts.queries";
 import { EmptyState } from "@/shared/ui/empty-state";
+import { PageHeading } from "@/shared/ui/components/page-heading";
 
 export default async function NewGiftPage() {
   const categories = await listGiftCategoriesQuery();
 
   return (
     <div className="flex w-full flex-col gap-6">
-      <h1 className="font-serif text-2xl italic text-wine">Novo presente</h1>
+      <PageHeading title="Novo presente" description="Cadastre um presente ou uma experiência para a lista." align="start" />
       {categories.length === 0 ? (
         <EmptyState title="Crie uma categoria primeiro" description="Todo presente precisa de uma categoria." />
       ) : (

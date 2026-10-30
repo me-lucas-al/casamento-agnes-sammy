@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { signOutAction } from "@/modules/auth/controllers/sign-in.actions";
+import { cn } from "@/shared/lib/utils";
 import { BrandFooter } from "./brand-footer";
 import { BrandMark } from "./brand-mark";
 import { FloralCorners } from "./floral-corners";
@@ -32,8 +33,8 @@ export function AppShell({ title, homeHref, items, isDecorated = false, children
         </div>
       </header>
       <div className="relative flex flex-1 flex-col">
-        {isDecorated ? <FloralCorners area="top" className="w-24 sm:w-40" /> : null}
-        <main className="relative z-10 mx-auto w-full min-w-0 max-w-6xl flex-1 px-4 py-8">{children}</main>
+        {isDecorated ? <FloralCorners area="top" className="w-16 sm:w-40" /> : null}
+        <main className={cn("relative z-10 mx-auto w-full min-w-0 max-w-6xl flex-1 px-4 pb-10", isDecorated ? "pt-20 sm:pt-10" : "pt-8")}>{children}</main>
       </div>
       {isDecorated ? <BrandFooter /> : null}
     </div>

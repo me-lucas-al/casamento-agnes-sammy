@@ -5,6 +5,7 @@ import { listApprovedMessagesQuery } from "@/modules/messages/controllers/messag
 import type { SearchParams } from "@/shared/lib/url-params";
 import { EmptyState } from "@/shared/ui/empty-state";
 import { PaginationControls } from "@/shared/ui/pagination-controls";
+import { PageHeading } from "@/shared/ui/components/page-heading";
 
 export default async function MessagesPage({ searchParams }: { searchParams: Promise<SearchParams> }) {
   const resolvedSearchParams = await searchParams;
@@ -12,7 +13,7 @@ export default async function MessagesPage({ searchParams }: { searchParams: Pro
 
   return (
     <div className="mx-auto flex max-w-xl flex-col gap-8">
-      <h1 className="text-center text-3xl italic text-wine">Mural de recados</h1>
+      <PageHeading title="Mural de recados" description="Deixe uma mensagem para a gente guardar para sempre." />
       {actor?.role === "guest" ? <MessageForm defaultAuthorName="" /> : null}
       {pageResult.items.length === 0 ? (
         <EmptyState title="Ainda não há recados" description="Seja o primeiro a deixar um carinho." />

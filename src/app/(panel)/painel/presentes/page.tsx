@@ -7,6 +7,7 @@ import type { SearchParams } from "@/shared/lib/url-params";
 import { buttonVariants } from "@/shared/ui/button";
 import { EmptyState } from "@/shared/ui/empty-state";
 import { PaginationControls } from "@/shared/ui/pagination-controls";
+import { PageHeading } from "@/shared/ui/components/page-heading";
 
 type PanelGiftsPageProps = { searchParams: Promise<SearchParams> };
 
@@ -20,7 +21,7 @@ export default async function PanelGiftsPage({ searchParams }: PanelGiftsPagePro
   return (
     <div className="flex w-full flex-col gap-6">
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <h1 className="font-serif text-2xl italic text-wine">Presentes</h1>
+        <PageHeading title="Presentes" description="Acompanhe a lista e o que já foi presenteado." align="start" />
         <div className="flex flex-wrap gap-2">
           <Link href="/painel/presentes/categorias" className={buttonVariants({ variant: "outline" })}>
             Categorias

@@ -5,6 +5,7 @@ import { parseGiftListParams } from "@/modules/gifts/schemas/gift-list-params";
 import { EmptyState } from "@/shared/ui/empty-state";
 import { PaginationControls } from "@/shared/ui/pagination-controls";
 import type { SearchParams } from "@/shared/lib/url-params";
+import { PageHeading } from "@/shared/ui/components/page-heading";
 
 type GiftsPageProps = { searchParams: Promise<SearchParams> };
 
@@ -17,7 +18,7 @@ export default async function GiftsPage({ searchParams }: GiftsPageProps) {
 
   return (
     <div className="mx-auto flex w-full max-w-6xl flex-col gap-6">
-      <h1 className="font-serif text-3xl italic text-wine">Lista de presentes</h1>
+      <PageHeading title="Lista de presentes" description="Cada presente é um carinho. Escolha com o coração, no seu tempo." />
       <GiftFilters basePath="/presentes" categories={categories} current={parseGiftListParams(resolvedSearchParams)} />
       {pageResult.items.length === 0 ? (
         <EmptyState title="Nenhum presente encontrado" description="Tente mudar os filtros da busca." />

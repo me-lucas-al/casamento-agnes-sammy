@@ -9,6 +9,7 @@ import { USER_STATUSES } from "@/modules/users/types";
 import { enumParam, textParam, type SearchParams } from "@/shared/lib/url-params";
 import { EmptyState } from "@/shared/ui/empty-state";
 import { PaginationControls } from "@/shared/ui/pagination-controls";
+import { PageHeading } from "@/shared/ui/components/page-heading";
 
 type UsuariosPageProps = {
   searchParams: Promise<SearchParams>;
@@ -22,7 +23,7 @@ export default async function UsuariosPage({ searchParams }: UsuariosPageProps) 
 
   return (
     <div className="mx-auto grid max-w-4xl gap-6">
-      <h1 className="font-heading text-3xl text-wine">Usuários</h1>
+      <PageHeading title="Usuários" description="Quem pode entrar no painel dos noivos." align="start" />
       <CreateUserForm />
       <UsersToolbar search={textParam(params, "search")} status={enumParam(params, "status", USER_STATUSES)} />
       {pageResult.items.length === 0 ? (

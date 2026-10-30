@@ -1,6 +1,7 @@
 import { GuestProfileView } from "@/modules/profile/components/guest-profile-view";
 import { requireGuestPageAccess } from "@/modules/profile/controllers/guest-page-access";
 import { getMyGuestProfileQuery } from "@/modules/profile/controllers/profile.queries";
+import { PageHeading } from "@/shared/ui/components/page-heading";
 
 export const dynamic = "force-dynamic";
 
@@ -10,7 +11,7 @@ export default async function GuestProfilePage() {
 
   return (
     <div className="mx-auto flex max-w-3xl flex-col gap-6">
-      <h1 className="text-center font-heading text-4xl italic text-wine">Meu perfil</h1>
+      <PageHeading title="Meu perfil" description="Seus dados e o código que abre a porta do nosso site." />
       <GuestProfileView profile={profile} />
     </div>
   );

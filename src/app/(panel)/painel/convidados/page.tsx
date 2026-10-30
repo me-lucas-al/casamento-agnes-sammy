@@ -10,6 +10,7 @@ import { getServerEnv } from "@/shared/config/env";
 import { enumParam, textParam, type SearchParams } from "@/shared/lib/url-params";
 import { EmptyState } from "@/shared/ui/empty-state";
 import { PaginationControls } from "@/shared/ui/pagination-controls";
+import { PageHeading } from "@/shared/ui/components/page-heading";
 
 type ConvidadosPageProps = {
   searchParams: Promise<SearchParams>;
@@ -23,7 +24,7 @@ export default async function ConvidadosPage({ searchParams }: ConvidadosPagePro
 
   return (
     <div className="mx-auto grid max-w-5xl gap-6">
-      <h1 className="font-heading text-3xl text-wine">Convidados</h1>
+      <PageHeading title="Convidados" description="Cadastre quem vai celebrar com a gente e envie o código de acesso." align="start" />
       <CreateGuestPanel />
       <GuestsToolbar
         search={textParam(params, "search")}

@@ -3,6 +3,7 @@ import { GiftForm } from "@/modules/gifts/components/gift-form";
 import { getGiftForEditQuery, listGiftCategoriesQuery } from "@/modules/gifts/controllers/gifts.queries";
 import { GiftNotFoundError } from "@/modules/gifts/errors";
 import { giftIdSchema } from "@/modules/gifts/schemas/gift.schema";
+import { PageHeading } from "@/shared/ui/components/page-heading";
 
 type EditGiftPageProps = { params: Promise<{ giftId: string }> };
 
@@ -18,7 +19,7 @@ export default async function EditGiftPage({ params }: EditGiftPageProps) {
 
   return (
     <div className="flex w-full flex-col gap-6">
-      <h1 className="font-serif text-2xl italic text-wine">Editar presente</h1>
+      <PageHeading title="Editar presente" description="Ajuste detalhes, valor e imagem deste presente." align="start" />
       <GiftForm categories={categories} gift={gift} />
     </div>
   );

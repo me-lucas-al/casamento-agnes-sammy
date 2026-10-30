@@ -5,6 +5,7 @@ import { parsePaymentsFilters } from "@/modules/contributions/schemas/payments-f
 import type { SearchParams } from "@/shared/lib/url-params";
 import { EmptyState } from "@/shared/ui/empty-state";
 import { PaginationControls } from "@/shared/ui/pagination-controls";
+import { PageHeading } from "@/shared/ui/components/page-heading";
 
 export const dynamic = "force-dynamic";
 
@@ -16,7 +17,7 @@ export default async function PaymentsPage({ searchParams }: PageProps) {
 
   return (
     <div className="flex flex-col gap-4">
-      <h1 className="font-serif text-3xl italic text-wine">Pagamentos</h1>
+      <PageHeading title="Pagamentos" description="Confira os Pix recebidos e confirme os presentes." align="start" />
       <PaymentsFiltersForm filters={parsePaymentsFilters(params)} />
       {pageResult.items.length === 0 ? (
         <EmptyState title="Nenhum pagamento encontrado." />

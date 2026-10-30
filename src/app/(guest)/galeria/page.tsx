@@ -8,6 +8,7 @@ import {
 import type { SearchParams } from "@/shared/lib/url-params";
 import { EmptyState } from "@/shared/ui/empty-state";
 import { PaginationControls } from "@/shared/ui/pagination-controls";
+import { PageHeading } from "@/shared/ui/components/page-heading";
 
 type GaleriaPageProps = {
   searchParams: Promise<SearchParams>;
@@ -22,7 +23,7 @@ export default async function GaleriaPage({ searchParams }: GaleriaPageProps) {
 
   return (
     <div className="mx-auto grid max-w-5xl gap-6">
-      <h1 className="font-heading text-3xl text-wine">Galeria</h1>
+      <PageHeading title="Galeria" description="Momentos da nossa história e da nossa festa. Compartilhe os seus!" />
       <PhotoUploadForm />
       <PendingPhotosNotice total={ownPendingTotal} />
       {pageResult.items.length === 0 ? (

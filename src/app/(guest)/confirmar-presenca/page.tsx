@@ -2,6 +2,7 @@ import { redirect } from "next/navigation";
 import { getSessionUser } from "@/modules/auth/controllers/get-session-user";
 import { getMyRsvpQuery } from "@/modules/rsvp/controllers/rsvp.queries";
 import { RsvpForm } from "@/modules/rsvp/components/rsvp-form";
+import { PageHeading } from "@/shared/ui/components/page-heading";
 
 export const dynamic = "force-dynamic";
 
@@ -12,13 +13,10 @@ export default async function ConfirmPresencePage() {
 
   return (
     <div className="mx-auto flex max-w-md flex-col gap-6">
-      <header className="flex flex-col gap-2 text-center">
-        <h1 className="text-3xl italic text-wine">Confirmar presença</h1>
-        <p className="text-wine/80">
-          {guestRsvp.guestName}, seu convite tem {guestRsvp.seats}{" "}
-          {guestRsvp.seats === 1 ? "vaga" : "vagas"}.
-        </p>
-      </header>
+      <PageHeading
+        title="Confirmar presença"
+        description={`${guestRsvp.guestName}, seu convite tem ${guestRsvp.seats} ${guestRsvp.seats === 1 ? "vaga" : "vagas"}. Conta pra gente se você vem!`}
+      />
       <RsvpForm initial={guestRsvp} />
     </div>
   );

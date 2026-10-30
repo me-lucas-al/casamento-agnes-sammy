@@ -40,7 +40,16 @@ export class ContributionNotPendingError extends Error {
   }
 }
 
+export class TooManyActiveReservationsError extends Error {
+  constructor(readonly maximum: number) {
+    super("Too many active reservations");
+  }
+}
+
 export function describeContributionError(error: unknown): string {
+  if (error instanceof TooManyActiveReservationsError) {
+    return `Você já possui ${error.maximum} reservas pendentes. Conclua ou cancele uma antes de reservar outro presente.`;
+  }
   if (error instanceof GiftUnavailableError) return "Este presente não está mais disponível.";
   if (error instanceof GiftNotFoundError) return "Presente não encontrado.";
   if (error instanceof InvalidQuotasError) {

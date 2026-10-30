@@ -1,1 +1,3 @@
 export const RESERVATION_HOURS = 48;
+
+export const MAX_ACTIVE_RESERVATIONS_PER_GUEST = 5;

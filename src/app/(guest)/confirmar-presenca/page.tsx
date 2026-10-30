@@ -1,5 +1,6 @@
 import { getMyRsvpQuery } from "@/modules/rsvp/controllers/rsvp.queries";
 import { RsvpForm } from "@/modules/rsvp/components/rsvp-form";
+import { RsvpSummary } from "@/modules/rsvp/components/rsvp-summary";
 
 export const dynamic = "force-dynamic";
 
@@ -15,7 +16,7 @@ export default async function ConfirmPresencePage() {
           {guestRsvp.seats === 1 ? "vaga" : "vagas"}.
         </p>
       </header>
-      <RsvpForm initial={guestRsvp} />
+      {guestRsvp.respondedAt ? <RsvpSummary guestRsvp={guestRsvp} /> : <RsvpForm initial={guestRsvp} />}
     </main>
   );
 }

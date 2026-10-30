@@ -1,6 +1,7 @@
 import { getDatabase } from "@/shared/db/client";
 import type { Database } from "@/shared/db/types";
 import { createDrizzleRsvpRepository } from "./repositories/drizzle-rsvp-repository";
+import { makeDeleteRsvp } from "./use-cases/delete-rsvp";
 import { makeGetGuestRsvp } from "./use-cases/get-guest-rsvp";
 import { makeGetRsvpTotals } from "./use-cases/get-rsvp-totals";
 import { makeListRsvpsPage } from "./use-cases/list-rsvps-page";
@@ -13,6 +14,7 @@ export function createRsvpModule(database: Database, { now = () => new Date() }:
   return {
     rsvpRepository,
     submitRsvp: makeSubmitRsvp({ rsvpRepository, now }),
+    deleteRsvp: makeDeleteRsvp({ rsvpRepository }),
     getGuestRsvp: makeGetGuestRsvp({ rsvpRepository }),
     getRsvpTotals: makeGetRsvpTotals({ rsvpRepository }),
     listRsvpsPage: makeListRsvpsPage({ rsvpRepository }),

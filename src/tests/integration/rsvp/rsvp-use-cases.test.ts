@@ -1,6 +1,9 @@
 import { describe, expect, it } from "vitest";
 import { ForbiddenError, UnauthenticatedError } from "@/modules/auth/errors";
-import { CompanionLimitExceededError, RsvpDeadlinePassedError } from "@/modules/rsvp/errors";
+import {
+  CompanionLimitExceededError,
+  RsvpDeadlinePassedError,
+} from "@/modules/rsvp/errors";
 import { createRsvpModule } from "@/modules/rsvp/factory";
 import { eventSettings } from "@/shared/db/schema";
 import { asUser } from "@/tests/helpers/fake-session";
@@ -53,10 +56,10 @@ describe("rsvp use-cases", () => {
     await seedDeadline(FUTURE_DEADLINE);
     const { guest, session } = await seedGuestSession(3);
     await rsvpModule().submitRsvp(session, going(guest.id, ["Ana", "Bia"]));
-    await rsvpModule().submitRsvp(session, going(guest.id, ["Carla"]));
+    await rsvpModule().submitRsvp(asUser("couple"), going(guest.id, ["Carla"]));
     expect((await rsvpModule().getGuestRsvp(session, guest.id)).companions).toHaveLength(1);
 
-    await rsvpModule().submitRsvp(session, { ...going(guest.id, ["Carla"]), status: "declined" });
+    await rsvpModule().submitRsvp(asUser("couple"), { ...going(guest.id, ["Carla"]), status: "declined" });
 
     const saved = await rsvpModule().getGuestRsvp(session, guest.id);
     expect(saved.status).toBe("declined");

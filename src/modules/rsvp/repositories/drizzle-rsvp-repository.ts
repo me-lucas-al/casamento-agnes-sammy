@@ -44,6 +44,12 @@ export function createDrizzleRsvpRepository(database: Database): RsvpRepository 
           .values(companions.map((companion) => ({ guestId, ...companion })));
       });
     },
+    async remove(guestId) {
+      await database.transaction(async (transaction) => {
+        await transaction.delete(rsvps).where(eq(rsvps.guestId, guestId));
+        await transaction.delete(rsvpCompanions).where(eq(rsvpCompanions.guestId, guestId));
+      });
+    },
     listPage: (query) => listRsvpPage(database, query),
     calculateTotals: () => calculateRsvpTotals(database),
   };

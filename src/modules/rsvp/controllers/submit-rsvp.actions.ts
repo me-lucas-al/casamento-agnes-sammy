@@ -34,3 +34,14 @@ export async function submitRsvpForGuestAction(input: unknown): Promise<ActionRe
     return failure(describeRsvpError(error));
   }
 }
+
+export async function deleteRsvpAction(guestId: string): Promise<ActionResult> {
+  try {
+    const actor = await getSessionUser();
+    await getRsvpModule().deleteRsvp(actor, guestId);
+    invalidateRsvpCache(nextCacheInvalidator, guestId);
+    return success();
+  } catch (error) {
+    return failure(describeRsvpError(error));
+  }
+}

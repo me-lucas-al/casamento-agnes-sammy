@@ -23,6 +23,8 @@ Max 150 lines per file, no comments, no `any`, no `import * as React`, money in 
 
 Commits: one commit per completed task, clear Conventional Commits message in English (feat, fix, refactor, chore, docs, test, style), small, exact paths, no Claude attribution.
 
+All screens must be responsive (mobile-first; 360px, 768px, 1280px). All secrets and DB credentials (including Docker Postgres) live in `.env` only, never hardcoded; `.env.example` has empty keys. Local DB: `docker compose up -d --wait` then `pnpm db:migrate`.
+
 ## Tests
 
 Integration tests in `src/tests/integration/<module>/*.test.ts` use `useTestDatabase()` and seeds from `src/tests/helpers`. Unit tests sit next to the file as `*.test.ts`.

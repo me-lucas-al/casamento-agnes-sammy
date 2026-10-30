@@ -1,5 +1,5 @@
 import { and, desc, eq, inArray, lte } from "drizzle-orm";
-import { giftContributions, gifts, guests, messages } from "@/shared/db/schema";
+import { giftContributions, gifts } from "@/shared/db/schema";
 import type { Database } from "@/shared/db/types";
 import { queryGiftCommitment } from "./commitment-query";
 import type { ContributionRepository } from "./contribution-repository";
@@ -36,31 +36,6 @@ export function createDrizzleContributionRepository(database: Database): Contrib
         )
         .returning();
       return contribution ?? null;
-    },
-    confirm({ contributionId, confirmedBy, confirmedAt, message }) {
-      return database.transaction(async (transaction) => {
-        const [contribution] = await transaction
-          .update(giftContributions)
-          .set({ status: "confirmed", confirmedBy, confirmedAt })
-          .where(
-            and(eq(giftContributions.id, contributionId), eq(giftContributions.status, "reserved")),
-          )
-          .returning();
-        if (!contribution || !message) return contribution ?? null;
-        const [guest] = await transaction
-          .select({ name: guests.name })
-          .from(guests)
-          .where(eq(guests.id, contribution.guestId))
-          .limit(1);
-        await transaction.insert(messages).values({
-          guestId: contribution.guestId,
-          authorName: guest?.name ?? "Convidado",
-          body: message,
-          status: "pending",
-          contributionId: contribution.id,
-        });
-        return contribution;
-      });
     },
     async remove(contributionId) {
       const [contribution] = await database

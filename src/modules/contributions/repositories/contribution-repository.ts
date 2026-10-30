@@ -1,5 +1,4 @@
 import type {
-  ConfirmationInput,
   Contribution,
   ContributionStatus,
   ContributionWithGift,
@@ -21,7 +20,6 @@ export interface ContributionRepository {
     contributionId: string,
     allowedStatuses: readonly ContributionStatus[],
   ): Promise<Contribution | null>;
-  confirm(input: ConfirmationInput): Promise<Contribution | null>;
   remove(contributionId: string): Promise<Contribution | null>;
   expireDue(now: Date): Promise<number>;
   listByGuest(guestId: string): Promise<ContributionWithGift[]>;

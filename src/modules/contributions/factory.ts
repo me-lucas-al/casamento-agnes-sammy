@@ -25,7 +25,7 @@ export function createContributionModule(database: Database, clock: Clock = syst
     reserveGift: makeReserveGift({ unitOfWork, clock }),
     updateReservation: makeUpdateReservation({ unitOfWork, clock }),
     cancelOwnReservation: makeCancelOwnReservation({ contributionRepository }),
-    confirmPixPayment: makeConfirmPixPayment({ contributionRepository, clock }),
+    confirmPixPayment: makeConfirmPixPayment({ unitOfWork, clock }),
     rejectOrCancelByCouple: makeRejectOrCancelByCouple({ contributionRepository }),
     removeContribution: makeRemoveContribution({ contributionRepository }),
     expireReservations: makeExpireReservations({ contributionRepository, clock }),

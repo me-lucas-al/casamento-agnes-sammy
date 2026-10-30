@@ -1,6 +1,7 @@
-import { and, eq, inArray } from "drizzle-orm";
-import { giftContributions, gifts } from "@/shared/db/schema";
+import { and, count, eq, gt, inArray } from "drizzle-orm";
+import { giftContributions, gifts, guests } from "@/shared/db/schema";
 import type { Database } from "@/shared/db/types";
+import { confirmContribution } from "./confirm-contribution";
 import { queryGiftCommitment } from "./commitment-query";
 import { toReservableGift } from "./reservable-gift-mapper";
 import type { ReservationStore, ReservationUnitOfWork } from "./reservation-unit-of-work";
@@ -27,6 +28,23 @@ function createReservationStore(database: Database): ReservationStore {
         .values({ ...newReservation, status: "reserved" })
         .returning();
       return contribution;
+    },
+    async countActiveReservations(guestId, now) {
+      await database.select({ id: guests.id }).from(guests).where(eq(guests.id, guestId)).for("update");
+      const [row] = await database
+        .select({ total: count() })
+        .from(giftContributions)
+        .where(
+          and(
+            eq(giftContributions.guestId, guestId),
+            eq(giftContributions.status, "reserved"),
+            gt(giftContributions.expiresAt, now),
+          ),
+        );
+      return row?.total ?? 0;
+    },
+    confirmReservation(input) {
+      return confirmContribution(database, input);
     },
     async findContribution(contributionId) {
       const [contribution] = await database

@@ -1,0 +1,2 @@
+CREATE UNIQUE INDEX "gifts_image_public_id_unique_idx" ON "gifts" USING btree ("image_public_id");--> statement-breakpoint
+CREATE UNIQUE INDEX "photos_cloudinary_public_id_unique_idx" ON "photos" USING btree ("cloudinary_public_id");

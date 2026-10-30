@@ -1,4 +1,4 @@
-import { index, pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core";
+import { index, pgTable, text, timestamp, uniqueIndex, uuid } from "drizzle-orm/pg-core";
 import { guests } from "@/modules/guests/schema";
 import { moderationStatusEnum } from "@/modules/messages/schema";
 import { users } from "@/modules/users/schema";
@@ -15,5 +15,8 @@ export const photos = pgTable(
     status: moderationStatusEnum("status").notNull().default("pending"),
     createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
   },
-  (table) => [index("photos_status_idx").on(table.status)],
+  (table) => [
+    index("photos_status_idx").on(table.status),
+    uniqueIndex("photos_cloudinary_public_id_unique_idx").on(table.cloudinaryPublicId),
+  ],
 );

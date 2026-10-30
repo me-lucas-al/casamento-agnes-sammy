@@ -6,6 +6,7 @@ import {
   pgTable,
   text,
   timestamp,
+  uniqueIndex,
   uuid,
 } from "drizzle-orm/pg-core";
 
@@ -38,5 +39,8 @@ export const gifts = pgTable(
     sortOrder: integer("sort_order").notNull().default(0),
     createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
   },
-  (table) => [index("gifts_category_visible_idx").on(table.categoryId, table.isVisible)],
+  (table) => [
+    index("gifts_category_visible_idx").on(table.categoryId, table.isVisible),
+    uniqueIndex("gifts_image_public_id_unique_idx").on(table.imagePublicId),
+  ],
 );

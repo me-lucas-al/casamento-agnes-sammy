@@ -84,9 +84,9 @@
 - [x] Opção para o convidado escolher se a contribuição/recado do Pix será anônima ou não
 - [x] Cadastro/edição pelo convidado ao entrar com código: nome, telefone, e-mail e familiares
 - [x] Travar limite de 8 MB de upload também no Cloudinary (upload preset)
-- [ ] Primeiro disparo real do workflow de migration em produção
-- [ ] Deploy em produção (Vercel + Neon) e domínio
-- [ ] Build rodando em `localhost:3000`
+- [ ] Primeiro disparo real do workflow de migration em produção — manual, ver checklist em `docs/ci-cd.md`
+- [ ] Deploy em produção (Vercel + Neon) e domínio — manual, ver checklist em `docs/ci-cd.md`
+- [x] Build rodando em `localhost:3000` — build ok e servidor validado (porta 3100, pois a 3000 estava ocupada)
 
 ## Dados pendentes do casal (via painel / `.env`)
 - [x] Chave Pix, tipo, nome do recebedor e cidade — *preenchido pelos noivos no painel (via passo a passo)*

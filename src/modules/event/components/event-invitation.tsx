@@ -16,11 +16,11 @@ export function EventInvitation({ settings }: EventInvitationProps) {
   const dateParts = getEventDateParts(new Date(settings.eventAt));
   const [firstName, secondName] = splitCoupleNames(settings.coupleNames);
   return (
-    <div className="relative mx-auto flex w-full max-w-md flex-col gap-8 overflow-hidden bg-paper pt-24 text-center tracking-widest">
+    <main className="relative mx-auto flex w-full max-w-md flex-col gap-8 overflow-hidden bg-paper pt-24 text-center tracking-widest">
       <FloralCorners />
       <section className="relative flex flex-col items-center gap-4">
         <div aria-hidden className="absolute inset-x-6 -top-8 h-44">
-          <Image src="/brand/paper-strip.png" alt="" fill sizes="448px" className="object-fill opacity-90" />
+          <Image src="/brand/paper-strip.png" alt="" fill sizes="448px" className="object-cover opacity-90" />
         </div>
         <h1 className="relative px-10 text-3xl leading-snug">Venha celebrar o nosso casamento!</h1>
         <div className="relative flex items-center justify-center gap-1">
@@ -36,7 +36,7 @@ export function EventInvitation({ settings }: EventInvitationProps) {
       <section className="relative flex flex-col gap-1 px-6 text-lg">
         <h2 className="text-2xl font-semibold">{settings.venueName}</h2>
         <p>{settings.address}</p>
-        <p className="text-rose-soft">(com espaço reservado)</p>
+        <p className="text-rose">(com espaço reservado)</p>
         {settings.mapUrl ? (
           <a href={settings.mapUrl} target="_blank" rel="noopener noreferrer" className="text-crimson underline underline-offset-4">
             Ver no mapa
@@ -53,6 +53,6 @@ export function EventInvitation({ settings }: EventInvitationProps) {
       <footer className="relative bg-crimson px-4 py-3 text-center text-base tracking-normal text-paper">
         com carinho, {firstName} e {secondName}
       </footer>
-    </div>
+    </main>
   );
 }

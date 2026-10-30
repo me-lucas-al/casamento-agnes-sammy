@@ -2,17 +2,24 @@
 
 import { useState, useTransition, type FormEvent } from "react";
 import { submitRsvpAction } from "../controllers/submit-rsvp.actions";
+import type { ActionResult } from "@/shared/lib/result";
 import type { Companion, GuestRsvp, RsvpAnswer } from "../types";
 import { CompanionFields } from "./companion-fields";
 
-type RsvpFormProps = { initial: GuestRsvp };
+type RsvpFormInput = { status: RsvpAnswer; dietaryNote: string; companions: Companion[] };
+
+type RsvpFormProps = {
+  initial: GuestRsvp;
+  onSubmit?: (input: RsvpFormInput) => Promise<ActionResult>;
+  onSaved?: () => void;
+};
 
 const answerOptions: { value: RsvpAnswer; label: string }[] = [
   { value: "going", label: "Vou com alegria" },
   { value: "declined", label: "Não poderei ir" },
 ];
 
-export function RsvpForm({ initial }: RsvpFormProps) {
+export function RsvpForm({ initial, onSubmit = submitRsvpAction, onSaved }: RsvpFormProps) {
   const [status, setStatus] = useState<RsvpAnswer>(initial.status === "declined" ? "declined" : "going");
   const [dietaryNote, setDietaryNote] = useState(initial.dietaryNote ?? "");
   const [companions, setCompanions] = useState<Companion[]>(initial.companions);
@@ -22,7 +29,8 @@ export function RsvpForm({ initial }: RsvpFormProps) {
   const submit = (event: FormEvent) => {
     event.preventDefault();
     startTransition(async () => {
-      const result = await submitRsvpAction({ status, dietaryNote, companions });
+      const result = await onSubmit({ status, dietaryNote, companions });
+      if (result.ok) onSaved?.();
       setMessage(
         result.ok
           ? { text: "Resposta registrada. Obrigado!", isError: false }

@@ -23,5 +23,8 @@ export function createDrizzleEventSettingsRepository(database: Database): EventS
         .returning();
       return saved;
     },
+    async remove() {
+      await database.delete(eventSettings).where(eq(eventSettings.id, SETTINGS_ROW_ID));
+    },
   };
 }

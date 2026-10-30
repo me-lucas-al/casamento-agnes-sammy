@@ -76,6 +76,15 @@ describe("event use-cases", () => {
     expect(saved.pixKey).toBeNull();
   });
 
+  it("lets admin and couple reset to defaults, forbids guest", async () => {
+    await eventModule().updateEventSettings(asUser("admin"), { ...settings, venueName: "Outro Lugar" });
+    await expect(eventModule().resetEventSettings(asUser("guest"))).rejects.toBeInstanceOf(ForbiddenError);
+
+    await eventModule().resetEventSettings(asUser("couple"));
+
+    expect(await eventModule().getEventSettings()).toEqual(DEFAULT_EVENT_SETTINGS);
+  });
+
   describe("controller", () => {
     it("invalidates the event tag on success", async () => {
       const cacheInvalidator = new FakeCacheInvalidator();

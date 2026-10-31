@@ -1,7 +1,9 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useState, useTransition } from "react";
+import { useState } from "react";
+import { ConfirmDialog } from "@/shared/ui/confirm-dialog";
+import { useConfirmDialog } from "@/shared/ui/use-confirm-dialog";
 import { Button, buttonVariants } from "@/shared/ui/button";
 import {
   deleteGuestAction,
@@ -21,19 +23,24 @@ export function GuestRowActions({ guest, inviteUrl, whatsappUrl }: GuestRowActio
   const router = useRouter();
   const [isEditing, setIsEditing] = useState(false);
   const [feedback, setFeedback] = useState("");
-  const [isPending, startTransition] = useTransition();
+  const { ask, dialogProps } = useConfirmDialog();
 
   async function copyInviteUrl() {
     await navigator.clipboard.writeText(inviteUrl);
     setFeedback("Link copiado.");
   }
 
-  function runAction(action: () => Promise<{ ok: boolean; error?: string }>, confirmation?: string) {
-    if (confirmation && !window.confirm(confirmation)) return;
-    startTransition(async () => {
-      const result = await action();
-      setFeedback(result.ok ? "" : (result.error ?? ""));
-      router.refresh();
+  function confirmAction(
+    action: () => Promise<{ ok: boolean; error?: string }>,
+    copy: { title: string; description: string; confirmLabel: string; tone?: "destructive" },
+  ) {
+    ask({
+      ...copy,
+      onConfirm: async () => {
+        const result = await action();
+        if (result.ok) router.refresh();
+        return result;
+      },
     });
   }
 
@@ -57,12 +64,12 @@ export function GuestRowActions({ guest, inviteUrl, whatsappUrl }: GuestRowActio
         <Button
           size="sm"
           variant="outline"
-          disabled={isPending}
           onClick={() =>
-            runAction(
-              () => regenerateGuestCodeAction({ guestId: guest.id }),
-              "Gerar novo código? O código atual deixará de funcionar.",
-            )
+            confirmAction(() => regenerateGuestCodeAction({ guestId: guest.id }), {
+              title: `Gerar novo código para ${guest.name}?`,
+              description: "O código atual deixará de funcionar e o link já enviado precisará ser reenviado.",
+              confirmLabel: "Gerar novo código",
+            })
           }
         >
           Novo código
@@ -70,15 +77,20 @@ export function GuestRowActions({ guest, inviteUrl, whatsappUrl }: GuestRowActio
         <Button
           size="sm"
           variant="destructive"
-          disabled={isPending}
           onClick={() =>
-            runAction(() => deleteGuestAction({ guestId: guest.id }), `Excluir ${guest.name}?`)
+            confirmAction(() => deleteGuestAction({ guestId: guest.id }), {
+              title: `Excluir ${guest.name}?`,
+              description: "O convidado será removido da lista. Essa ação não pode ser desfeita.",
+              confirmLabel: "Excluir convidado",
+              tone: "destructive",
+            })
           }
         >
           Excluir
         </Button>
       </div>
       {feedback ? <p role="status" className="text-sm text-muted-foreground">{feedback}</p> : null}
+      <ConfirmDialog {...dialogProps} />
       {isEditing ? (
         <GuestForm
           submitLabel="Salvar"

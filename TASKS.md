@@ -105,7 +105,7 @@
 - [x] Chave Pix, tipo, nome do recebedor e cidade — *preenchido pelos noivos no painel (via passo a passo)*
 - [x] Texto "nossa história" e fotos do casal — *preenchido pelos noivos no painel (via passo a passo)*
 - [ ] E-mails Google do admin e dos noivos, e domínio do site — falta cadastrar no banco (`ADMIN_EMAIL` + seed) e configurar o domínio
-- [ ] Credenciais: Neon (feito: banco de produção migrado, admin e categorias criados, secret no GitHub), faltam Cloudinary, Google OAuth e variáveis na Vercel (ver `.env.production`)
+- [ ] Credenciais: Neon (feito: banco de produção migrado, admin e categorias criados, secret no GitHub), faltam Cloudinary, Google OAuth e variáveis na Vercel (ver `.env.prod-secrets`)
 - [x] Categorias iniciais de presentes — *definidas (6 categorias padrão)*
 
 ## Dúvidas para responder (Respondidas)

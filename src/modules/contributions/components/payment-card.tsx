@@ -13,7 +13,7 @@ export function PaymentCard({ payment }: PaymentCardProps) {
     <li className="flex flex-col gap-3 rounded-2xl border bg-paper p-4 text-wine">
       <div className="flex flex-wrap items-start justify-between gap-2">
         <div className="min-w-0">
-          <h2 className="font-serif text-lg">{payment.giftName}</h2>
+          <h2 className="font-heading text-lg">{payment.giftName}</h2>
           <p className="text-sm">
             {payment.guestName}
             {payment.anonymous ? " · anônimo no mural" : ""}

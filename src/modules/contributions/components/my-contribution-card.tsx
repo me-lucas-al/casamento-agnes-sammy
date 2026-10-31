@@ -17,7 +17,7 @@ export function MyContributionCard({ contribution, now }: MyContributionCardProp
   return (
     <li className="flex flex-col gap-2 rounded-2xl border bg-paper p-4 text-wine">
       <div className="flex items-start justify-between gap-3">
-        <h2 className="font-serif text-lg">{contribution.giftName}</h2>
+        <h2 className="font-heading text-lg">{contribution.giftName}</h2>
         <span className="rounded-full bg-blush px-3 py-1 text-xs">
           {CONTRIBUTION_STATUS_LABELS[status]}
         </span>

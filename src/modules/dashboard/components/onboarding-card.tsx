@@ -12,7 +12,7 @@ export function OnboardingCard({ status }: OnboardingCardProps) {
       className="flex flex-col gap-4 rounded-2xl border border-gold/50 bg-card p-4 sm:p-6"
     >
       <div className="flex flex-col gap-1">
-        <h2 id="onboarding-title" className="font-serif text-2xl italic text-wine">
+        <h2 id="onboarding-title" className="font-heading text-2xl italic text-wine">
           Primeiros passos
         </h2>
         <p className="text-base">

@@ -58,9 +58,9 @@ export default async function GiftDetailPage({ params, searchParams }: PageProps
         />
       ) : null}
       <header className="flex flex-col gap-2">
-        <h1 className="font-serif text-3xl italic">{gift.name}</h1>
+        <h1 className="font-heading text-3xl italic">{gift.name}</h1>
         <p className="text-sm">{gift.description}</p>
-        <p className="font-serif text-xl">{formatCentsAsBrl(gift.priceCents)}</p>
+        <p className="font-display text-xl">{formatCentsAsBrl(gift.priceCents)}</p>
         <p className="w-fit rounded-full bg-blush px-3 py-1 text-sm">{describeAvailability(view)}</p>
       </header>
       {paymentResult?.errorMessage ? (

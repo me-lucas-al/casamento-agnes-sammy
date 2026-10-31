@@ -14,7 +14,7 @@ export function PixPaymentPanel({ payment }: PixPaymentPanelProps) {
     <section className="flex flex-col gap-5 rounded-2xl bg-blush p-5 text-wine">
       <div>
         <p className="text-sm uppercase tracking-widest">Valor do Pix</p>
-        <p className="font-serif text-4xl">{formatCentsAsBrl(payment.amountCents)}</p>
+        <p className="font-display text-4xl">{formatCentsAsBrl(payment.amountCents)}</p>
       </div>
       <Image
         src={payment.qrDataUrl}

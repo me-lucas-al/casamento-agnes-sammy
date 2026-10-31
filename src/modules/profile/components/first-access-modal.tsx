@@ -36,7 +36,7 @@ export function FirstAccessModal({ profile }: FirstAccessModalProps) {
       onClose={reopenUntilSaved}
       className="m-auto max-h-[90dvh] w-[calc(100%-2rem)] max-w-lg overflow-y-auto rounded-2xl border border-gold/50 bg-paper p-6 text-wine backdrop:bg-wine/60"
     >
-      <h2 id="first-access-title" className="font-serif text-2xl italic">
+      <h2 id="first-access-title" className="font-heading text-2xl italic">
         Bem-vindo(a)! Conte um pouco sobre você
       </h2>
       <p className="mb-4 mt-1 text-base">

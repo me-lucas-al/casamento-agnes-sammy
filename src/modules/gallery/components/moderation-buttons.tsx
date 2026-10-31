@@ -12,7 +12,7 @@ import type { PhotoStatus } from "../types";
 
 type ModerationButtonsProps = { photoId: string; status: PhotoStatus };
 
-const buttonClassName = "rounded-full border px-3 py-1 text-sm disabled:opacity-50";
+const buttonClassName = "rounded-full border border-gold bg-card px-4 py-1 text-base transition-colors hover:bg-blush disabled:opacity-50";
 
 export function ModerationButtons({ photoId, status }: ModerationButtonsProps) {
   const router = useRouter();

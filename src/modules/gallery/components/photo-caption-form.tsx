@@ -30,11 +30,12 @@ export function PhotoCaptionForm({ photoId, caption }: PhotoCaptionFormProps) {
       <label htmlFor={inputId} className="text-base text-wine">
         Legenda
       </label>
-      <div className="flex flex-col gap-2 sm:flex-row">
+      <div className="flex flex-col gap-2">
         <input
           id={inputId}
           value={value}
           maxLength={CAPTION_MAX_LENGTH}
+          placeholder="Escreva uma legenda"
           onChange={(event) => setValue(event.target.value)}
           className="min-w-0 flex-1 rounded-lg border border-input bg-card px-3 py-2"
         />

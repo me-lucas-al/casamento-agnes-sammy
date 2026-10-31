@@ -1,5 +1,5 @@
 import type { SearchParams } from "@/shared/lib/url-params";
-import type { SuggestionQuery } from "../lib/suggestion-query";
+import type { SuggestionQuery } from "@/modules/gift-suggestions/lib/filters/suggestion-query";
 import { MobileFilterPanel } from "./mobile-filter-panel";
 import { SuggestionFilterFields } from "./suggestion-filter-fields";
 

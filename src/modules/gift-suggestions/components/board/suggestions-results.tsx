@@ -2,7 +2,7 @@ import { EmptyState } from "@/shared/ui/empty-state";
 import { PaginationControls } from "@/shared/ui/pagination-controls";
 import type { PageResult } from "@/shared/lib/pagination";
 import type { SearchParams } from "@/shared/lib/url-params";
-import type { SuggestionWithStatus } from "../types";
+import type { SuggestionWithStatus } from "@/modules/gift-suggestions/types";
 import { SuggestionsBoard } from "./suggestions-board";
 
 type SuggestionsResultsProps = {

@@ -1,8 +1,8 @@
 import { Store } from "lucide-react";
 import type { GiftMode } from "@/modules/gifts/types";
 import { cn } from "@/shared/lib/utils";
-import { STORE_LABELS, type StoreId } from "../data/stores";
-import { MODE_BADGE_LABELS } from "../lib/suggestion-labels";
+import { STORE_LABELS, type StoreId } from "@/modules/gift-suggestions/data/stores";
+import { MODE_BADGE_LABELS } from "@/modules/gift-suggestions/lib/catalog/suggestion-labels";
 
 export function StoreBadge({ store }: { store: StoreId | null }) {
   if (!store) return null;

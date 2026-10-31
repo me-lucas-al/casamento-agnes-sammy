@@ -1,5 +1,5 @@
 import type { GiftInput } from "@/modules/gifts/types";
-import type { GiftSuggestion } from "../types";
+import type { GiftSuggestion } from "@/modules/gift-suggestions/types";
 
 export function buildGiftInputFromSuggestion(suggestion: GiftSuggestion, categoryId: string): GiftInput {
   return {

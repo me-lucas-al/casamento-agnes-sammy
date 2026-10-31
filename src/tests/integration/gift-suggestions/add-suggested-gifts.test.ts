@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { GIFT_SUGGESTION_CATALOG } from "@/modules/gift-suggestions/data/gift-suggestion-catalog";
-import { invalidateSuggestionCaches } from "@/modules/gift-suggestions/lib/invalidate-suggestion-caches";
+import { invalidateSuggestionCaches } from "@/modules/gift-suggestions/lib/caches/invalidate-suggestion-caches";
 import { FakeCacheInvalidator } from "@/tests/helpers/fake-cache-invalidator";
 import { asUser } from "@/tests/helpers/fake-session";
 import { seedGift, seedGiftCategory } from "@/tests/helpers/seeds/seed-gift";

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { buildQueryString, type SearchParams } from "@/shared/lib/url-params";
 import { cn } from "@/shared/lib/utils";
-import { SUGGESTION_CATEGORIES, type SuggestionCategoryKey } from "../data/category-names";
+import { SUGGESTION_CATEGORIES, type SuggestionCategoryKey } from "@/modules/gift-suggestions/data/category-names";
 
 type CategoryQuickLinksProps = {
   basePath: string;

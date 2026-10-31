@@ -1,11 +1,11 @@
 import { describe, expect, it } from "vitest";
 import { DEFAULT_CATEGORIES } from "@/modules/gifts/lib/default-categories";
 import { normalizeGiftConfiguration } from "@/modules/gifts/lib/gift-configuration";
-import { SUGGESTION_CATEGORIES, SUGGESTION_CATEGORY_ORDER } from "../data/category-names";
-import { GIFT_SUGGESTION_CATALOG } from "../data/gift-suggestion-catalog";
-import { STORE_IDS } from "../data/stores";
-import type { GiftSuggestion } from "../types";
-import { validateCatalog } from "./validate-catalog";
+import { SUGGESTION_CATEGORIES, SUGGESTION_CATEGORY_ORDER } from "@/modules/gift-suggestions/data/category-names";
+import { GIFT_SUGGESTION_CATALOG } from "@/modules/gift-suggestions/data/gift-suggestion-catalog";
+import { STORE_IDS } from "@/modules/gift-suggestions/data/stores";
+import type { GiftSuggestion } from "@/modules/gift-suggestions/types";
+import { validateCatalog } from "../validate-catalog";
 
 const validQuota: GiftSuggestion = {
   id: "cozinha-teste",

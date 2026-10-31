@@ -1,5 +1,5 @@
-import { normalizeGiftName } from "./normalize-gift-name";
-import type { StoreId } from "../data/stores";
+import { normalizeGiftName } from "../catalog/normalize-gift-name";
+import type { StoreId } from "@/modules/gift-suggestions/data/stores";
 
 type SearchUrlBuilder = (term: string) => string;
 

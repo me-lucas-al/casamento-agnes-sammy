@@ -1,11 +1,11 @@
 import { PRICE_BANDS } from "@/modules/gifts/lib/price-band";
 import { fieldControlClassName, FormField } from "@/modules/gifts/components/form-field";
 import { PER_PAGE_OPTIONS } from "@/shared/lib/pagination";
-import { SUGGESTION_CATEGORIES } from "../data/category-names";
-import { PRODUCT_TYPE_LABELS, type ProductTypeId } from "../data/product-types";
-import { STORE_IDS, STORE_LABELS } from "../data/stores";
-import { MODE_FILTER_OPTIONS, SORT_LABELS } from "../lib/suggestion-labels";
-import { SUGGESTION_SORTS, type SuggestionQuery } from "../lib/suggestion-query";
+import { SUGGESTION_CATEGORIES } from "@/modules/gift-suggestions/data/category-names";
+import { PRODUCT_TYPE_LABELS, type ProductTypeId } from "@/modules/gift-suggestions/data/product-types";
+import { STORE_IDS, STORE_LABELS } from "@/modules/gift-suggestions/data/stores";
+import { MODE_FILTER_OPTIONS, SORT_LABELS } from "@/modules/gift-suggestions/lib/catalog/suggestion-labels";
+import { SUGGESTION_SORTS, type SuggestionQuery } from "@/modules/gift-suggestions/lib/filters/suggestion-query";
 import type { SearchParams } from "@/shared/lib/url-params";
 
 type SuggestionFilterFieldsProps = {

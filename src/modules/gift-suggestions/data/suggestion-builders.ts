@@ -1,7 +1,7 @@
 import { isPriceInBand, PRICE_BANDS, type PriceBandId } from "@/modules/gifts/lib/price-band";
 import type { GiftKind } from "@/modules/gifts/types";
-import { buildStoreSearchUrl } from "../lib/build-store-search-url";
-import { normalizeGiftName } from "../lib/normalize-gift-name";
+import { buildStoreSearchUrl } from "../lib/store/build-store-search-url";
+import { normalizeGiftName } from "../lib/catalog/normalize-gift-name";
 import type { GiftSuggestion } from "../types";
 import { categoryNameOf, type SuggestionCategoryKey } from "./category-names";
 import type { ProductTypeId } from "./product-types";

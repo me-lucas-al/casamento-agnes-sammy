@@ -1,6 +1,6 @@
 import { Gift } from "lucide-react";
 import Link from "next/link";
-import { getSuggestionsPromptStatusQuery } from "../controllers/suggestions.queries";
+import { getSuggestionsPromptStatusQuery } from "@/modules/gift-suggestions/controllers/queries/suggestions.queries";
 
 const SUGGESTIONS_HREF = "/painel/presentes/sugestoes";
 

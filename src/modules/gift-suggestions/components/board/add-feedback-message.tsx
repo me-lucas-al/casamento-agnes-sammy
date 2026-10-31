@@ -1,5 +1,5 @@
 import Link from "next/link";
-import type { AddFeedback } from "../hooks/use-suggestion-adding";
+import type { AddFeedback } from "@/modules/gift-suggestions/hooks/use-suggestion-adding";
 
 export function AddFeedbackMessage({ feedback }: { feedback: AddFeedback | null }) {
   if (!feedback) return null;

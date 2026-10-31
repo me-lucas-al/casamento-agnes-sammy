@@ -1,4 +1,4 @@
-import type { StoreId } from "../data/stores";
+import type { StoreId } from "@/modules/gift-suggestions/data/stores";
 
 const STORE_HOSTS: Record<StoreId, string> = {
   "magazine-luiza": "www.magazineluiza.com.br",

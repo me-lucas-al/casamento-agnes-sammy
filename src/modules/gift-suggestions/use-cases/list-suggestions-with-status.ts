@@ -2,9 +2,9 @@ import { requireRole } from "@/modules/auth/authorization";
 import type { SessionUser } from "@/modules/auth/types";
 import { GIFT_MANAGER_ROLES } from "@/modules/gifts/lib/gift-roles";
 import { buildPageResult, type PageResult } from "@/shared/lib/pagination";
-import { normalizeGiftName } from "../lib/normalize-gift-name";
-import { selectSuggestions } from "../lib/query-suggestions";
-import type { SuggestionQuery } from "../lib/suggestion-query";
+import { normalizeGiftName } from "../lib/catalog/normalize-gift-name";
+import { selectSuggestions } from "../lib/filters/query-suggestions";
+import type { SuggestionQuery } from "../lib/filters/suggestion-query";
 import type { SuggestionGiftGateway } from "../ports";
 import type { GiftSuggestion, SuggestionWithStatus } from "../types";
 

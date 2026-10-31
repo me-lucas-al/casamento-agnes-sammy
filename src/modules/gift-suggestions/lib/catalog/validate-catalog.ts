@@ -1,10 +1,10 @@
 import { isPriceInBand, PRICE_BANDS } from "@/modules/gifts/lib/price-band";
-import { categoryNameOf } from "../data/category-names";
-import { PRODUCT_TYPE_LABELS, STORELESS_TYPES } from "../data/product-types";
-import { isStoreId } from "../data/stores";
-import type { GiftSuggestion } from "../types";
+import { categoryNameOf } from "@/modules/gift-suggestions/data/category-names";
+import { PRODUCT_TYPE_LABELS, STORELESS_TYPES } from "@/modules/gift-suggestions/data/product-types";
+import { isStoreId } from "@/modules/gift-suggestions/data/stores";
+import type { GiftSuggestion } from "@/modules/gift-suggestions/types";
 import { normalizeGiftName } from "./normalize-gift-name";
-import { isAllowedStoreUrl } from "./is-allowed-store-url";
+import { isAllowedStoreUrl } from "../store/is-allowed-store-url";
 
 const MIN_QUOTAS = 2;
 const MAX_QUOTAS = 1000;

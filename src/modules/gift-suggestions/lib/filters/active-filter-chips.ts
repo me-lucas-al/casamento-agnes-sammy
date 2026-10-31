@@ -1,9 +1,9 @@
 import { formatCentsAsBrl } from "@/shared/lib/money";
 import type { QueryChanges } from "@/shared/lib/url-params";
-import { categoryNameOf } from "../data/category-names";
-import { PRODUCT_TYPE_LABELS } from "../data/product-types";
-import { STORE_LABELS } from "../data/stores";
-import { MODE_BADGE_LABELS, priceBandLabel } from "./suggestion-labels";
+import { categoryNameOf } from "@/modules/gift-suggestions/data/category-names";
+import { PRODUCT_TYPE_LABELS } from "@/modules/gift-suggestions/data/product-types";
+import { STORE_LABELS } from "@/modules/gift-suggestions/data/stores";
+import { MODE_BADGE_LABELS, priceBandLabel } from "../catalog/suggestion-labels";
 import type { SuggestionQuery } from "./suggestion-query";
 
 export type FilterChip = {

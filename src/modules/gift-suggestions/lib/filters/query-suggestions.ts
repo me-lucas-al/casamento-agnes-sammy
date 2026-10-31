@@ -1,7 +1,7 @@
-import { PRODUCT_TYPE_LABELS } from "../data/product-types";
-import { STORE_LABELS } from "../data/stores";
-import type { GiftSuggestion } from "../types";
-import { normalizeGiftName } from "./normalize-gift-name";
+import { PRODUCT_TYPE_LABELS } from "@/modules/gift-suggestions/data/product-types";
+import { STORE_LABELS } from "@/modules/gift-suggestions/data/stores";
+import type { GiftSuggestion } from "@/modules/gift-suggestions/types";
+import { normalizeGiftName } from "../catalog/normalize-gift-name";
 import type { SuggestionFilters, SuggestionSort } from "./suggestion-query";
 
 function searchableText(suggestion: GiftSuggestion): string {

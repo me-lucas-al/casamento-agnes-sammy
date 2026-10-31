@@ -11,7 +11,7 @@ import {
   SUGGESTION_SORTS,
   type SuggestionModeParam,
   type SuggestionQuery,
-} from "../lib/suggestion-query";
+} from "../lib/filters/suggestion-query";
 
 const MAX_PRICE_CENTS = 100_000_000;
 

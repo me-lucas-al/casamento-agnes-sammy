@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
-import { addSuggestedGiftsAction } from "../controllers/suggestions.actions";
+import { addSuggestedGiftsAction } from "../controllers/actions/suggestions.actions";
 
 export type AddFeedback =
   | { kind: "success"; createdCount: number; skippedCount: number; failedCount: number }

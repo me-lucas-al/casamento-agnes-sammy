@@ -1,10 +1,10 @@
 "use client";
 
-import { useSuggestionAdding } from "../hooks/use-suggestion-adding";
-import type { SuggestionWithStatus } from "../types";
+import { useSuggestionAdding } from "@/modules/gift-suggestions/hooks/use-suggestion-adding";
+import type { SuggestionWithStatus } from "@/modules/gift-suggestions/types";
 import { AddFeedbackMessage } from "./add-feedback-message";
 import { SelectionActionBar } from "./selection-action-bar";
-import { SuggestionCard } from "./suggestion-card";
+import { SuggestionCard } from "../cards/suggestion-card";
 
 export function SuggestionsBoard({ suggestions }: { suggestions: SuggestionWithStatus[] }) {
   const adding = useSuggestionAdding();

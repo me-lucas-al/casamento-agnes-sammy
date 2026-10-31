@@ -1,9 +1,9 @@
 import type { PriceBandId } from "@/modules/gifts/lib/price-band";
 import type { GiftMode } from "@/modules/gifts/types";
 import type { PageParams } from "@/shared/lib/pagination";
-import type { SuggestionCategoryKey } from "../data/category-names";
-import type { ProductTypeId } from "../data/product-types";
-import type { StoreId } from "../data/stores";
+import type { SuggestionCategoryKey } from "@/modules/gift-suggestions/data/category-names";
+import type { ProductTypeId } from "@/modules/gift-suggestions/data/product-types";
+import type { StoreId } from "@/modules/gift-suggestions/data/stores";
 
 export const SUGGESTION_SORTS = ["relevancia", "menor-preco", "maior-preco", "a-z"] as const;
 

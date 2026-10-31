@@ -1,9 +1,9 @@
 import { Check, ExternalLink, Plus } from "lucide-react";
 import { GiftPriceLabel } from "@/modules/gifts/components/gift-price-label";
 import { cn } from "@/shared/lib/utils";
-import { PRODUCT_TYPE_LABELS } from "../data/product-types";
-import { priceBandLabel } from "../lib/suggestion-labels";
-import type { SuggestionWithStatus } from "../types";
+import { PRODUCT_TYPE_LABELS } from "@/modules/gift-suggestions/data/product-types";
+import { priceBandLabel } from "@/modules/gift-suggestions/lib/catalog/suggestion-labels";
+import type { SuggestionWithStatus } from "@/modules/gift-suggestions/types";
 import { ModeBadge, StoreBadge } from "./suggestion-badges";
 
 type SuggestionCardProps = {

@@ -6,10 +6,10 @@ import { nextCacheInvalidator } from "@/shared/lib/cache/invalidate";
 import { safeAction } from "@/shared/lib/safe-action";
 import { invalidInput } from "@/shared/lib/validation-failure";
 import { success, type ActionResult } from "@/shared/lib/result";
-import { getGiftSuggestionModule } from "../factory";
-import { invalidateSuggestionCaches } from "../lib/invalidate-suggestion-caches";
-import { addSuggestionsSchema } from "../schemas/add-suggestions.schema";
-import type { AddSuggestionsResult } from "../types";
+import { getGiftSuggestionModule } from "@/modules/gift-suggestions/factory";
+import { invalidateSuggestionCaches } from "@/modules/gift-suggestions/lib/caches/invalidate-suggestion-caches";
+import { addSuggestionsSchema } from "@/modules/gift-suggestions/schemas/add-suggestions.schema";
+import type { AddSuggestionsResult } from "@/modules/gift-suggestions/types";
 
 export async function addSuggestedGiftsAction(input: unknown): Promise<ActionResult<AddSuggestionsResult>> {
   const parsed = addSuggestionsSchema.safeParse(input);

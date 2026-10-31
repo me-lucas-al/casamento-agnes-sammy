@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { parseSuggestionQuery } from "../schemas/suggestion-query-params";
-import { buildActiveFilterChips } from "./active-filter-chips";
+import { parseSuggestionQuery } from "@/modules/gift-suggestions/schemas/suggestion-query-params";
+import { buildActiveFilterChips } from "../active-filter-chips";
 
 describe("buildActiveFilterChips", () => {
   it("returns no chips for the default query", () => {

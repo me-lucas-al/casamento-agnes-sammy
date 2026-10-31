@@ -3,8 +3,8 @@ import type { SessionUser } from "@/modules/auth/types";
 import { GIFT_MANAGER_ROLES } from "@/modules/gifts/lib/gift-roles";
 import type { Logger } from "@/shared/lib/logger";
 import { serializeError } from "@/shared/lib/logging/serialize-error";
-import { buildGiftInputFromSuggestion } from "../lib/build-gift-input-from-suggestion";
-import { normalizeGiftName } from "../lib/normalize-gift-name";
+import { buildGiftInputFromSuggestion } from "../lib/catalog/build-gift-input-from-suggestion";
+import { normalizeGiftName } from "../lib/catalog/normalize-gift-name";
 import type { SuggestionGiftGateway } from "../ports";
 import type { AddSuggestionsResult, GiftSuggestion } from "../types";
 

@@ -1,8 +1,8 @@
 import { getSessionUser } from "@/modules/auth/controllers/session/get-session-user";
 import { guardedQuery } from "@/shared/lib/guarded-query";
 import type { SearchParams } from "@/shared/lib/url-params";
-import { getGiftSuggestionModule } from "../factory";
-import { parseSuggestionQuery } from "../schemas/suggestion-query-params";
+import { getGiftSuggestionModule } from "@/modules/gift-suggestions/factory";
+import { parseSuggestionQuery } from "@/modules/gift-suggestions/schemas/suggestion-query-params";
 
 export async function listSuggestionsWithStatusQuery(searchParams: SearchParams) {
   return guardedQuery("listSuggestionsWithStatusQuery", async () => {

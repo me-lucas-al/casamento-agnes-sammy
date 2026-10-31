@@ -1,11 +1,11 @@
 import { describe, expect, it } from "vitest";
-import { GIFT_SUGGESTION_CATALOG } from "../data/gift-suggestion-catalog";
-import { STORE_IDS } from "../data/stores";
-import { parseSuggestionQuery } from "../schemas/suggestion-query-params";
-import { buildStoreSearchUrl } from "./build-store-search-url";
-import { normalizeGiftName } from "./normalize-gift-name";
-import { selectSuggestions } from "./query-suggestions";
-import { serializeSuggestionQuery } from "./serialize-suggestion-query";
+import { GIFT_SUGGESTION_CATALOG } from "@/modules/gift-suggestions/data/gift-suggestion-catalog";
+import { STORE_IDS } from "@/modules/gift-suggestions/data/stores";
+import { parseSuggestionQuery } from "@/modules/gift-suggestions/schemas/suggestion-query-params";
+import { buildStoreSearchUrl } from "../store/build-store-search-url";
+import { normalizeGiftName } from "../catalog/normalize-gift-name";
+import { selectSuggestions } from "../filters/query-suggestions";
+import { serializeSuggestionQuery } from "../filters/serialize-suggestion-query";
 
 const defaultFilters = parseSuggestionQuery({});
 

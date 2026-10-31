@@ -1,4 +1,4 @@
-import { mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
+import { mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { collectResearchProducts, type ResearchSource } from "../src/modules/gift-suggestions/lib/import/collect-research-products";
 import { categoryKeyOfResearchFile } from "../src/modules/gift-suggestions/lib/import/research-file-category";
@@ -26,6 +26,14 @@ function readSources(): ResearchSource[] {
   return sources;
 }
 
+const VERIFIED_DIRECTORY = join(process.cwd(), "src", "modules", "gift-suggestions", "data", "verified");
+
+function removeStaleCategoryFolders() {
+  for (const entry of readdirSync(VERIFIED_DIRECTORY, { withFileTypes: true })) {
+    if (entry.isDirectory()) rmSync(join(VERIFIED_DIRECTORY, entry.name), { recursive: true, force: true });
+  }
+}
+
 function writeFiles(files: readonly { path: string; content: string }[]) {
   for (const file of files) {
     const target = join(process.cwd(), file.path);
@@ -50,6 +58,7 @@ function main() {
     process.exitCode = 1;
     return;
   }
+  removeStaleCategoryFolders();
   writeFiles([...renderVerifiedDataFiles(result.products), renderAllowedImageHosts(result.products)]);
 }
 

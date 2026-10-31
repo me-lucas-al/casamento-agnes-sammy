@@ -1,0 +1,88 @@
+import { Check, ExternalLink, Plus } from "lucide-react";
+import { GiftPriceLabel } from "@/modules/gifts/components/gift-price-label";
+import { cn } from "@/shared/lib/utils";
+import { PRODUCT_TYPE_LABELS } from "../data/product-types";
+import { priceBandLabel } from "../lib/suggestion-labels";
+import type { SuggestionWithStatus } from "../types";
+import { ModeBadge, StoreBadge } from "./suggestion-badges";
+
+type SuggestionCardProps = {
+  suggestion: SuggestionWithStatus;
+  isInList: boolean;
+  isSelected: boolean;
+  isBusy: boolean;
+  onToggle: (suggestionId: string) => void;
+  onAdd: (suggestionId: string) => void;
+};
+
+const actionClassName =
+  "inline-flex min-h-11 items-center justify-center gap-1.5 rounded-full px-4 text-sm font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wine";
+
+export function SuggestionCard({ suggestion, isInList, isSelected, isBusy, onToggle, onAdd }: SuggestionCardProps) {
+  const { id, name, description, store, storeSearchUrl, mode, type, priceBand } = suggestion;
+  return (
+    <li
+      className={cn(
+        "relative flex flex-col gap-3 rounded-2xl border bg-white p-4 shadow-sm transition-colors",
+        isSelected ? "border-rose ring-2 ring-rose/30" : "border-gold/40",
+        isInList && "bg-paper",
+      )}
+    >
+      <div className="flex items-start justify-between gap-2">
+        <div className="flex flex-wrap gap-1.5">
+          <StoreBadge store={store} />
+          <ModeBadge mode={mode} />
+        </div>
+        {isInList ? null : (
+          <label className="-mr-2 -mt-2 flex size-11 shrink-0 cursor-pointer items-center justify-center">
+            <input
+              type="checkbox"
+              checked={isSelected}
+              onChange={() => onToggle(id)}
+              className="size-5 accent-rose"
+              aria-label={`Selecionar ${name}`}
+            />
+          </label>
+        )}
+      </div>
+      <div className="flex flex-col gap-1">
+        <p className="text-xs uppercase tracking-wide text-wine/70">
+          {PRODUCT_TYPE_LABELS[type]} · {priceBandLabel(priceBand)}
+        </p>
+        <h3 className="break-words font-heading text-xl italic leading-snug text-wine">{name}</h3>
+        <p className="text-base leading-snug text-foreground/80">{description}</p>
+      </div>
+      <GiftPriceLabel gift={{ mode, priceCents: suggestion.priceCents, totalQuotas: suggestion.totalQuotas ?? null, minAmountCents: suggestion.minAmountCents ?? null }} />
+      <div className="mt-auto flex flex-wrap gap-2 pt-1">
+        {isInList ? (
+          <span className={cn(actionClassName, "bg-wine text-paper")}>
+            <Check aria-hidden className="size-4" />
+            Já na lista
+          </span>
+        ) : (
+          <button
+            type="button"
+            disabled={isBusy}
+            onClick={() => onAdd(id)}
+            className={cn(actionClassName, "bg-crimson text-paper hover:bg-wine disabled:opacity-60")}
+          >
+            <Plus aria-hidden className="size-4" />
+            Adicionar à lista
+          </button>
+        )}
+        {storeSearchUrl ? (
+          <a
+            href={storeSearchUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={cn(actionClassName, "border border-gold bg-card text-wine hover:bg-blush")}
+          >
+            Ver na loja
+            <ExternalLink aria-hidden className="size-4" />
+            <span className="sr-only">(abre em nova aba)</span>
+          </a>
+        ) : null}
+      </div>
+    </li>
+  );
+}

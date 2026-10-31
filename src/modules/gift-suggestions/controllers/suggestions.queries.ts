@@ -10,3 +10,10 @@ export async function listSuggestionsWithStatusQuery(searchParams: SearchParams)
     return getGiftSuggestionModule().listSuggestionsWithStatus(actor, parseSuggestionQuery(searchParams));
   });
 }
+
+export async function getSuggestionsPromptStatusQuery() {
+  return guardedQuery("getSuggestionsPromptStatusQuery", async () => {
+    const actor = await getSessionUser();
+    return getGiftSuggestionModule().getSuggestionsPromptStatus(actor);
+  });
+}

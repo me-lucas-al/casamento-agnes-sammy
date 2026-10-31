@@ -36,6 +36,10 @@
 - [x] Categorias e presentes (3 modos), upload Cloudinary assinado
 - [x] Lista paginada com filtros e disponibilidade em tempo real
 - [x] Painel de presentes e categorias
+- [x] Pesquisa de sugestões de presentes (fontes, lojas permitidas e premissas de preço) em `docs/gift-suggestions-research.md`
+- [x] Módulo `gift-suggestions`: catálogo estático com 262 sugestões (6 categorias, lojas confiáveis, busca por loja), helpers puros e testes
+- [x] Sugestões para o casal: listagem com busca, filtros por URL e paginação no backend, seleção múltipla e adição à lista sem duplicar
+- [x] Atalhos para as sugestões: card na home do painel, botão em Presentes e passo final do tour
 
 ## Fase 5 — Contribuições + Pix
 - [x] Reservar em transação com `FOR UPDATE`

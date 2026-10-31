@@ -1,5 +1,5 @@
-import { createDrizzleCategoryRepository } from "@/modules/gifts/repositories/drizzle-category-repository";
-import { makeEnsureDefaultCategories } from "@/modules/gifts/use-cases/ensure-default-categories";
+import { createDrizzleCategoryRepository } from "@/modules/gifts/repositories/drizzle/drizzle-category-repository";
+import { makeEnsureDefaultCategories } from "@/modules/gifts/use-cases/categories/ensure-default-categories";
 import { getDatabase } from "@/shared/db/client";
 
 async function main() {

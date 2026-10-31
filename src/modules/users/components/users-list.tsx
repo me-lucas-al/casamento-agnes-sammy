@@ -18,7 +18,7 @@ export function UsersList({ users }: { users: User[] }) {
               {roleLabels[user.role]} · {user.isActive ? "Ativo" : "Inativo"}
             </p>
           </div>
-          <ToggleUserActiveButton userId={user.id} isActive={user.isActive} />
+          <ToggleUserActiveButton userId={user.id} userName={user.name} isActive={user.isActive} />
         </li>
       ))}
     </ul>

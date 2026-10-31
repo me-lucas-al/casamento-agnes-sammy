@@ -31,7 +31,11 @@ export function PaymentCard({ payment }: PaymentCardProps) {
       {payment.status === "reserved" ? (
         <p className="text-sm">Expira em {formatDateTimeInSaoPaulo(payment.expiresAt)}</p>
       ) : null}
-      <PaymentRowActions contributionId={payment.id} status={payment.status} />
+      <PaymentRowActions
+        contributionId={payment.id}
+        status={payment.status}
+        label={`${payment.guestName} (${payment.giftName})`}
+      />
     </li>
   );
 }

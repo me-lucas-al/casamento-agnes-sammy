@@ -3,6 +3,8 @@
 import { useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
 import { Button } from "@/shared/ui/button";
+import { ConfirmDialog } from "@/shared/ui/confirm-dialog";
+import { useConfirmDialog } from "@/shared/ui/use-confirm-dialog";
 import {
   confirmPixPaymentAction,
   rejectOrCancelByCoupleAction,
@@ -13,9 +15,11 @@ import type { ContributionStatus } from "../types";
 type PaymentRowActionsProps = {
   contributionId: string;
   status: ContributionStatus;
+  label: string;
 };
 
-export function PaymentRowActions({ contributionId, status }: PaymentRowActionsProps) {
+export function PaymentRowActions({ contributionId, status, label }: PaymentRowActionsProps) {
+  const { ask, dialogProps } = useConfirmDialog();
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const [message, setMessage] = useState("");
@@ -27,6 +31,21 @@ export function PaymentRowActions({ contributionId, status }: PaymentRowActionsP
       const result = await execute();
       if (!result.ok) return setErrorMessage(result.error ?? "Erro inesperado.");
       router.refresh();
+    });
+  }
+
+  function confirmAction(
+    execute: () => Promise<{ ok: boolean; error?: string }>,
+    copy: { title: string; description: string; confirmLabel: string },
+  ) {
+    ask({
+      ...copy,
+      tone: "destructive",
+      onConfirm: async () => {
+        const result = await execute();
+        if (result.ok) router.refresh();
+        return result;
+      },
     });
   }
 
@@ -61,7 +80,19 @@ export function PaymentRowActions({ contributionId, status }: PaymentRowActionsP
             type="button"
             variant="outline"
             disabled={isPending}
-            onClick={() => run(() => rejectOrCancelByCoupleAction({ contributionId }))}
+            onClick={() =>
+              confirmAction(() => rejectOrCancelByCoupleAction({ contributionId }), canConfirm
+                ? {
+                    title: `Rejeitar o pagamento de ${label}?`,
+                    description: "A reserva será cancelada.",
+                    confirmLabel: "Rejeitar pagamento",
+                  }
+                : {
+                    title: `Cancelar o pagamento de ${label}?`,
+                    description: "O pagamento confirmado será cancelado.",
+                    confirmLabel: "Cancelar pagamento",
+                  })
+            }
           >
             {canConfirm ? "Rejeitar" : "Cancelar"}
           </Button>
@@ -70,12 +101,19 @@ export function PaymentRowActions({ contributionId, status }: PaymentRowActionsP
           type="button"
           variant="destructive"
           disabled={isPending}
-          onClick={() => run(() => removeContributionAction({ contributionId }))}
+          onClick={() =>
+            confirmAction(() => removeContributionAction({ contributionId }), {
+              title: `Excluir o pagamento de ${label}?`,
+              description: "O registro será removido do painel. Essa ação não pode ser desfeita.",
+              confirmLabel: "Excluir pagamento",
+            })
+          }
         >
           Excluir
         </Button>
       </div>
       {errorMessage ? <p role="alert" className="text-sm text-crimson">{errorMessage}</p> : null}
+      <ConfirmDialog {...dialogProps} />
     </div>
   );
 }

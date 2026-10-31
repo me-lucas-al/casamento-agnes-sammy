@@ -40,6 +40,11 @@
 - [x] Módulo `gift-suggestions`: catálogo estático com 262 sugestões (6 categorias, lojas confiáveis, busca por loja), helpers puros e testes
 - [x] Sugestões para o casal: listagem com busca, filtros por URL e paginação no backend, seleção múltipla e adição à lista sem duplicar
 - [x] Atalhos para as sugestões: card na home do painel, botão em Presentes e passo final do tour
+- [x] Revisão: getters de env por módulo (auth não depende de Cloudinary/cron/app)
+- [x] Revisão: índices únicos lower(name) em presentes e categorias, sugestões idempotentes sob concorrência e com relatório de falhas parciais
+- [x] Revisão: bloqueio de preço verificado e aplicado na mesma transação com lock FOR UPDATE
+- [x] Revisão: código de acesso removido da URL após leitura, Referrer-Policy no-referrer em `/`, normalização no servidor
+- [x] Revisão: aviso de falha no login Google na aba dos noivos, redirects dos layouts unificados, catch vazios com log, telefone normalizado (10 a 13 dígitos)
 
 ## Fase 5 — Contribuições + Pix
 - [x] Reservar em transação com `FOR UPDATE`

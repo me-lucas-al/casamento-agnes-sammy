@@ -2,9 +2,9 @@ import { and, asc, count, desc, eq, ilike, or, sql } from "drizzle-orm";
 import { giftContributions, guests, rsvps } from "@/shared/db/schema";
 import type { Database } from "@/shared/db/types";
 import { containsPattern } from "@/shared/lib/sql-like";
-import type { GuestSort } from "../types";
+import type { GuestSort } from "@/modules/guests/types";
 import { deleteGuestUnlessCommitted } from "./drizzle-guest-deletion";
-import type { GuestRepository } from "./guest-repository";
+import type { GuestRepository } from "../contracts/guest-repository";
 
 function buildSearchFilter(search: string) {
   if (!search) return undefined;

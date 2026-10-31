@@ -9,7 +9,7 @@ import {
   deleteGuestAction,
   regenerateGuestCodeAction,
   updateGuestAction,
-} from "../controllers/guest.actions";
+} from "../controllers/actions/guest.actions";
 import type { Guest } from "../types";
 import { GuestForm } from "./guest-form";
 

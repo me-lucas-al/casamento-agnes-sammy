@@ -4,7 +4,7 @@ import { hasRole } from "@/modules/auth/authorization";
 import { CreateGuestPanel } from "@/modules/guests/components/create-guest-panel";
 import { GuestsTable } from "@/modules/guests/components/guests-table";
 import { GuestsToolbar } from "@/modules/guests/components/guests-toolbar";
-import { listGuestsPageQuery } from "@/modules/guests/controllers/guests.queries";
+import { listGuestsPageQuery } from "@/modules/guests/controllers/queries/guests.queries";
 import { GUEST_SORTS } from "@/modules/guests/types";
 import { getAppEnv } from "@/shared/config/env";
 import { enumParam, textParam, type SearchParams } from "@/shared/lib/url-params";

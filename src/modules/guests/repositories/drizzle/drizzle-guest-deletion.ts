@@ -1,7 +1,7 @@
 import { eq } from "drizzle-orm";
 import { giftContributions, guests, photos } from "@/shared/db/schema";
 import type { Database } from "@/shared/db/types";
-import type { GuestDeletionOutcome } from "./guest-repository";
+import type { GuestDeletionOutcome } from "../contracts/guest-repository";
 
 export function deleteGuestUnlessCommitted(
   database: Database,

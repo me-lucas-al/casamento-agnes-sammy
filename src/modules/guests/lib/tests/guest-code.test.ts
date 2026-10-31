@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { GUEST_CODE_ALPHABET, GUEST_CODE_LENGTH, generateGuestCode } from "./guest-code";
+import { GUEST_CODE_ALPHABET, GUEST_CODE_LENGTH, generateGuestCode } from "../guest-code";
 
 describe("generateGuestCode", () => {
   it("produces 8 characters from the unambiguous alphabet", () => {

@@ -1,7 +1,7 @@
 import { requireRole } from "@/modules/auth/authorization";
 import type { SessionUser } from "@/modules/auth/types";
 import { GuestNotFoundError } from "../errors";
-import type { GuestRepository } from "../repositories/guest-repository";
+import type { GuestRepository } from "../repositories/contracts/guest-repository";
 import type { Guest, GuestDetails } from "../types";
 
 type Dependencies = { guestRepository: GuestRepository };

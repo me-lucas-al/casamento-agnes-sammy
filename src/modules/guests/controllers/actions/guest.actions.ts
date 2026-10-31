@@ -6,9 +6,9 @@ import { nextCacheInvalidator } from "@/shared/lib/cache/invalidate";
 import { safeAction } from "@/shared/lib/safe-action";
 import { invalidInput } from "@/shared/lib/validation-failure";
 import { success, type ActionResult } from "@/shared/lib/result";
-import { describeGuestError } from "../errors";
-import { getGuestModule } from "../factory";
-import { guestDetailsSchema, guestIdSchema, updateGuestSchema } from "../schemas/guest-details.schema";
+import { describeGuestError } from "@/modules/guests/errors";
+import { getGuestModule } from "@/modules/guests/factory";
+import { guestDetailsSchema, guestIdSchema, updateGuestSchema } from "@/modules/guests/schemas/guest-details.schema";
 
 const GUESTS_PATH = "/painel/convidados";
 

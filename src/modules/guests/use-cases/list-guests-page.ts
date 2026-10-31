@@ -1,7 +1,7 @@
 import { requireRole } from "@/modules/auth/authorization";
 import type { SessionUser } from "@/modules/auth/types";
 import { buildPageResult, type PageParams, type PageResult } from "@/shared/lib/pagination";
-import type { GuestRepository } from "../repositories/guest-repository";
+import type { GuestRepository } from "../repositories/contracts/guest-repository";
 import type { GuestListItem, GuestSort } from "../types";
 
 type Dependencies = { guestRepository: GuestRepository };

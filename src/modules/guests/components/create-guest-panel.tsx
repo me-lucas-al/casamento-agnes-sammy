@@ -1,6 +1,6 @@
 "use client";
 
-import { createGuestAction } from "../controllers/guest.actions";
+import { createGuestAction } from "../controllers/actions/guest.actions";
 import { GuestForm } from "./guest-form";
 
 export function CreateGuestPanel() {

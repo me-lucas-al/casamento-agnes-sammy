@@ -1,6 +1,6 @@
 import { GuestCodeGenerationError } from "../errors";
 import type { GuestCodeGenerator } from "../lib/guest-code";
-import type { GuestRepository } from "../repositories/guest-repository";
+import type { GuestRepository } from "../repositories/contracts/guest-repository";
 
 const MAX_ATTEMPTS = 10;
 

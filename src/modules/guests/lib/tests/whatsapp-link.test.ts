@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { buildGuestInviteUrl, buildWhatsappShareLink, normalizeWhatsappNumber } from "./whatsapp-link";
+import { buildGuestInviteUrl, buildWhatsappShareLink, normalizeWhatsappNumber } from "../whatsapp-link";
 
 const baseUrl = "https://agnesesammy.com.br/";
 

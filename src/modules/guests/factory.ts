@@ -1,7 +1,7 @@
 import { getDatabase } from "@/shared/db/client";
 import type { Database } from "@/shared/db/types";
 import { generateGuestCode, type GuestCodeGenerator } from "./lib/guest-code";
-import { createDrizzleGuestRepository } from "./repositories/drizzle-guest-repository";
+import { createDrizzleGuestRepository } from "./repositories/drizzle/drizzle-guest-repository";
 import { makeCreateGuest } from "./use-cases/create-guest";
 import { makeDeleteGuest } from "./use-cases/delete-guest";
 import { makeGenerateUniqueGuestCode } from "./use-cases/generate-unique-guest-code";

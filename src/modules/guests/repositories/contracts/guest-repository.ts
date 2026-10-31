@@ -1,4 +1,4 @@
-import type { Guest, GuestDetails, GuestListPage, GuestListQuery, NewGuest } from "../types";
+import type { Guest, GuestDetails, GuestListPage, GuestListQuery, NewGuest } from "@/modules/guests/types";
 
 export type GuestDeletionOutcome = "deleted" | "not_found" | "has_confirmed";
 

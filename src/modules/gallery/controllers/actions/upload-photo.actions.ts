@@ -7,9 +7,9 @@ import type { SignedUploadParams } from "@/shared/lib/cloudinary";
 import { safeAction } from "@/shared/lib/safe-action";
 import { invalidInput } from "@/shared/lib/validation-failure";
 import { success, type ActionResult } from "@/shared/lib/result";
-import { describePhotoError } from "../errors";
-import { getGalleryModule } from "../factory";
-import { registerPhotoSchema, signUploadSchema } from "../schemas/gallery.schemas";
+import { describePhotoError } from "@/modules/gallery/errors";
+import { getGalleryModule } from "@/modules/gallery/factory";
+import { registerPhotoSchema, signUploadSchema } from "@/modules/gallery/schemas/gallery.schemas";
 
 export async function signUploadPhotoAction(input: unknown): Promise<ActionResult<SignedUploadParams>> {
   const parsed = signUploadSchema.safeParse(input);

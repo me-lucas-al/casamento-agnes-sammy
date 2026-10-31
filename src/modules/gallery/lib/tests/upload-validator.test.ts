@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { MAX_PHOTO_BYTES } from "./upload-rules";
-import { findUploadViolation } from "./upload-validator";
+import { MAX_PHOTO_BYTES } from "../upload-rules";
+import { findUploadViolation } from "../upload-validator";
 
 describe("findUploadViolation", () => {
   it.each(["image/jpeg", "image/png", "image/webp"])("accepts %s", (mimeType) => {

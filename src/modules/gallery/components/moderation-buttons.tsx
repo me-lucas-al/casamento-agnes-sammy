@@ -9,7 +9,7 @@ import {
   approvePhotoAction,
   deletePhotoAction,
   rejectPhotoAction,
-} from "../controllers/moderate-photo.actions";
+} from "../controllers/actions/moderate-photo.actions";
 import type { PhotoStatus } from "../types";
 
 type ModerationButtonsProps = { photoId: string; status: PhotoStatus };

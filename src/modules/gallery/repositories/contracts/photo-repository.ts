@@ -6,7 +6,7 @@ import type {
   PhotoListPage,
   PhotoStatus,
   PublicPhoto,
-} from "../types";
+} from "@/modules/gallery/types";
 
 export interface PhotoRepository {
   create(newPhoto: NewPhoto): Promise<Photo>;

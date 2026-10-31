@@ -5,9 +5,9 @@ import { nextCacheInvalidator } from "@/shared/lib/cache/invalidate";
 import { safeAction } from "@/shared/lib/safe-action";
 import { invalidInput } from "@/shared/lib/validation-failure";
 import { success, type ActionResult } from "@/shared/lib/result";
-import { describePhotoError } from "../errors";
-import { getGalleryModule } from "../factory";
-import { updateCaptionSchema } from "../schemas/gallery.schemas";
+import { describePhotoError } from "@/modules/gallery/errors";
+import { getGalleryModule } from "@/modules/gallery/factory";
+import { updateCaptionSchema } from "@/modules/gallery/schemas/gallery.schemas";
 
 export async function updatePhotoCaptionAction(input: unknown): Promise<ActionResult> {
   const parsed = updateCaptionSchema.safeParse(input);

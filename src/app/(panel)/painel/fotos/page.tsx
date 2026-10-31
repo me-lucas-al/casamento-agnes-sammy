@@ -3,7 +3,7 @@ import { hasRole } from "@/modules/auth/authorization";
 import { getSessionUser } from "@/modules/auth/controllers/session/get-session-user";
 import { ModerationQueue } from "@/modules/gallery/components/moderation-queue";
 import { StatusFilter } from "@/modules/gallery/components/status-filter";
-import { listPhotosPanelQuery } from "@/modules/gallery/controllers/gallery.queries";
+import { listPhotosPanelQuery } from "@/modules/gallery/controllers/queries/gallery.queries";
 import { PHOTO_STATUSES } from "@/modules/gallery/types";
 import { enumParam, type SearchParams } from "@/shared/lib/url-params";
 import { EmptyState } from "@/shared/ui/empty-state";

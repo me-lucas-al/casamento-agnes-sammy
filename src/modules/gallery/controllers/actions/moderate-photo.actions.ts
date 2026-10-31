@@ -7,9 +7,9 @@ import { nextCacheInvalidator } from "@/shared/lib/cache/invalidate";
 import { safeAction } from "@/shared/lib/safe-action";
 import { invalidInput } from "@/shared/lib/validation-failure";
 import { success, type ActionResult } from "@/shared/lib/result";
-import { describePhotoError } from "../errors";
-import { getGalleryModule, type GalleryModule } from "../factory";
-import { photoIdSchema } from "../schemas/gallery.schemas";
+import { describePhotoError } from "@/modules/gallery/errors";
+import { getGalleryModule, type GalleryModule } from "@/modules/gallery/factory";
+import { photoIdSchema } from "@/modules/gallery/schemas/gallery.schemas";
 
 type ModerationUseCase = (
   galleryModule: GalleryModule,

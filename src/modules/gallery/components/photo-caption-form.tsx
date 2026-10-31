@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useId, useState, useTransition, type FormEvent } from "react";
-import { updatePhotoCaptionAction } from "../controllers/update-photo-caption.actions";
+import { updatePhotoCaptionAction } from "../controllers/actions/update-photo-caption.actions";
 
 type PhotoCaptionFormProps = { photoId: string; caption: string | null };
 

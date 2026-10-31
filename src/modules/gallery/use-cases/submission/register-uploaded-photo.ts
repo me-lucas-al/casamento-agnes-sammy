@@ -3,12 +3,12 @@ import { ForbiddenError } from "@/modules/auth/errors";
 import type { SessionUser } from "@/modules/auth/types";
 import { approvedPhotosTag } from "@/shared/lib/cache/cache-tags";
 import type { CloudinaryClient } from "@/shared/lib/cloudinary";
-import { InvalidPublicIdError, PendingPhotoLimitError } from "../errors";
-import { rejectDuplicatePhotoAsset } from "../lib/reject-duplicate-photo-asset";
-import { isGalleryPublicId, urlReferencesPublicId } from "../lib/public-id";
-import { MAX_PENDING_PHOTOS_PER_GUEST } from "../lib/upload-rules";
-import type { PhotoRepository } from "../repositories/photo-repository";
-import type { NewPhoto, Photo } from "../types";
+import { InvalidPublicIdError, PendingPhotoLimitError } from "@/modules/gallery/errors";
+import { rejectDuplicatePhotoAsset } from "@/modules/gallery/lib/reject-duplicate-photo-asset";
+import { isGalleryPublicId, urlReferencesPublicId } from "@/modules/gallery/lib/public-id";
+import { MAX_PENDING_PHOTOS_PER_GUEST } from "@/modules/gallery/lib/upload-rules";
+import type { PhotoRepository } from "@/modules/gallery/repositories/contracts/photo-repository";
+import type { NewPhoto, Photo } from "@/modules/gallery/types";
 
 type Dependencies = { photoRepository: PhotoRepository; cloudinaryClient: CloudinaryClient };
 

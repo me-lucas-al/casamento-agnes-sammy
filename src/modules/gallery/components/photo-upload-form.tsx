@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useState, type FormEvent } from "react";
-import { registerUploadedPhotoAction, signUploadPhotoAction } from "../controllers/upload-photo.actions";
+import { registerUploadedPhotoAction, signUploadPhotoAction } from "../controllers/actions/upload-photo.actions";
 import { uploadToCloudinary } from "./upload-to-cloudinary";
 
 const UPLOAD_ERROR = "Não foi possível enviar a foto. Tente novamente.";

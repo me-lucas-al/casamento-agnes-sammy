@@ -2,9 +2,9 @@ import { requireRole } from "@/modules/auth/authorization";
 import type { SessionUser } from "@/modules/auth/types";
 import type { CloudinaryClient, SignedUploadParams } from "@/shared/lib/cloudinary";
 import { buildManagedPublicId } from "@/shared/lib/cloudinary-url";
-import { InvalidUploadError } from "../errors";
-import { GALLERY_FOLDER } from "../lib/upload-rules";
-import { findUploadViolation, type UploadCandidate } from "../lib/upload-validator";
+import { InvalidUploadError } from "@/modules/gallery/errors";
+import { GALLERY_FOLDER } from "@/modules/gallery/lib/upload-rules";
+import { findUploadViolation, type UploadCandidate } from "@/modules/gallery/lib/upload-validator";
 
 type Dependencies = { cloudinaryClient: CloudinaryClient };
 

@@ -3,16 +3,16 @@ import type { Database } from "@/shared/db/types";
 import { getCloudinaryEnv } from "@/shared/config/env";
 import { nextCachedReader, type CachedReader } from "@/shared/lib/cache/cached-read";
 import { createCloudinaryClient, type CloudinaryClient } from "@/shared/lib/cloudinary";
-import { createDrizzlePhotoRepository } from "./repositories/drizzle-photo-repository";
-import { makeApprovePhoto } from "./use-cases/approve-photo";
-import { makeCountOwnPendingPhotos } from "./use-cases/count-own-pending-photos";
-import { makeDeletePhoto } from "./use-cases/delete-photo";
-import { makeListApprovedPhotosPage } from "./use-cases/list-approved-photos-page";
-import { makeListPhotosPanelPage } from "./use-cases/list-photos-panel-page";
-import { makeRegisterUploadedPhoto } from "./use-cases/register-uploaded-photo";
-import { makeRejectPhoto } from "./use-cases/reject-photo";
-import { makeSignUploadPhoto } from "./use-cases/sign-upload-photo";
-import { makeUpdatePhotoCaption } from "./use-cases/update-photo-caption";
+import { createDrizzlePhotoRepository } from "./repositories/drizzle/drizzle-photo-repository";
+import { makeApprovePhoto } from "./use-cases/moderation/approve-photo";
+import { makeCountOwnPendingPhotos } from "./use-cases/listing/count-own-pending-photos";
+import { makeDeletePhoto } from "./use-cases/moderation/delete-photo";
+import { makeListApprovedPhotosPage } from "./use-cases/listing/list-approved-photos-page";
+import { makeListPhotosPanelPage } from "./use-cases/listing/list-photos-panel-page";
+import { makeRegisterUploadedPhoto } from "./use-cases/submission/register-uploaded-photo";
+import { makeRejectPhoto } from "./use-cases/moderation/reject-photo";
+import { makeSignUploadPhoto } from "./use-cases/submission/sign-upload-photo";
+import { makeUpdatePhotoCaption } from "./use-cases/submission/update-photo-caption";
 
 type GalleryModuleOptions = {
   database: Database;

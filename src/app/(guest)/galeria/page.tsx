@@ -4,7 +4,7 @@ import { PhotoUploadForm } from "@/modules/gallery/components/photo-upload-form"
 import {
   countOwnPendingPhotosQuery,
   listApprovedPhotosQuery,
-} from "@/modules/gallery/controllers/gallery.queries";
+} from "@/modules/gallery/controllers/queries/gallery.queries";
 import type { SearchParams } from "@/shared/lib/url-params";
 import { EmptyState } from "@/shared/ui/empty-state";
 import { PaginationControls } from "@/shared/ui/pagination-controls";

@@ -1,6 +1,6 @@
 import type { CloudinaryClient } from "@/shared/lib/cloudinary";
 import { destroyImageBestEffort } from "@/shared/lib/cloudinary-destroy";
-import type { PhotoRepository } from "../repositories/photo-repository";
+import type { PhotoRepository } from "../repositories/contracts/photo-repository";
 import type { Photo } from "../types";
 
 type Dependencies = { photoRepository: PhotoRepository; cloudinaryClient: CloudinaryClient };

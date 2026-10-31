@@ -1,8 +1,8 @@
 import { and, asc, count, desc, eq, ne } from "drizzle-orm";
 import { photos } from "@/shared/db/schema";
 import type { Database } from "@/shared/db/types";
-import type { PhotoSort } from "../types";
-import type { PhotoRepository } from "./photo-repository";
+import type { PhotoSort } from "@/modules/gallery/types";
+import type { PhotoRepository } from "../contracts/photo-repository";
 
 function orderBySort(sort: PhotoSort) {
   if (sort === "oldest") return [asc(photos.createdAt), asc(photos.id)];

@@ -1,8 +1,8 @@
 import { requireRole } from "@/modules/auth/authorization";
 import type { SessionUser } from "@/modules/auth/types";
 import { approvedPhotosTag } from "@/shared/lib/cache/cache-tags";
-import { PhotoNotFoundError } from "../errors";
-import type { PhotoRepository } from "../repositories/photo-repository";
+import { PhotoNotFoundError } from "@/modules/gallery/errors";
+import type { PhotoRepository } from "@/modules/gallery/repositories/contracts/photo-repository";
 
 type Dependencies = { photoRepository: PhotoRepository };
 

@@ -3,8 +3,8 @@ import type { SessionUser } from "@/modules/auth/types";
 import { approvedPhotosTag } from "@/shared/lib/cache/cache-tags";
 import type { CachedReader } from "@/shared/lib/cache/cached-read";
 import { buildPageResult, type PageParams, type PageResult } from "@/shared/lib/pagination";
-import type { PhotoRepository } from "../repositories/photo-repository";
-import type { PhotoSort, PublicPhoto } from "../types";
+import type { PhotoRepository } from "@/modules/gallery/repositories/contracts/photo-repository";
+import type { PhotoSort, PublicPhoto } from "@/modules/gallery/types";
 
 type Dependencies = { photoRepository: PhotoRepository; cachedReader: CachedReader };
 

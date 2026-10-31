@@ -1,6 +1,6 @@
 import { requireRole } from "@/modules/auth/authorization";
 import type { SessionUser } from "@/modules/auth/types";
-import type { PhotoRepository } from "../repositories/photo-repository";
+import type { PhotoRepository } from "@/modules/gallery/repositories/contracts/photo-repository";
 
 type Dependencies = { photoRepository: PhotoRepository };
 

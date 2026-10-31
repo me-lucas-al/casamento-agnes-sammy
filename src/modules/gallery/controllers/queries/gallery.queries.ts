@@ -1,8 +1,8 @@
 import { getSessionUser } from "@/modules/auth/controllers/session/get-session-user";
 import { parsePageParams } from "@/shared/lib/pagination";
 import { enumParam, type SearchParams } from "@/shared/lib/url-params";
-import { getGalleryModule } from "../factory";
-import { PHOTO_SORTS, PHOTO_STATUSES } from "../types";
+import { getGalleryModule } from "@/modules/gallery/factory";
+import { PHOTO_SORTS, PHOTO_STATUSES } from "@/modules/gallery/types";
 import { guardedQuery } from "@/shared/lib/guarded-query";
 
 export async function listApprovedPhotosQuery(searchParams: SearchParams) {

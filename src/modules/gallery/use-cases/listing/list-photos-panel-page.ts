@@ -1,8 +1,8 @@
 import { requireRole } from "@/modules/auth/authorization";
 import type { SessionUser } from "@/modules/auth/types";
 import { buildPageResult, type PageParams, type PageResult } from "@/shared/lib/pagination";
-import type { PhotoRepository } from "../repositories/photo-repository";
-import type { Photo, PhotoStatus } from "../types";
+import type { PhotoRepository } from "@/modules/gallery/repositories/contracts/photo-repository";
+import type { Photo, PhotoStatus } from "@/modules/gallery/types";
 
 type Dependencies = { photoRepository: PhotoRepository };
 

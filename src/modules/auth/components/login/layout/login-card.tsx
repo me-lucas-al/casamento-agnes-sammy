@@ -1,9 +1,9 @@
 import type { EventSettingsSnapshot } from "@/modules/event/types";
-import { AccessCodeForm } from "./access-code-form";
-import { GoogleSignInButton } from "./google-sign-in-button";
+import { AccessCodeForm } from "../form/access-code-form";
+import { GoogleSignInButton } from "../form/google-sign-in-button";
 import { HowItWorksStrip } from "./how-it-works-strip";
 import { LoginHeader } from "./login-header";
-import { LoginTabs, type LoginTab } from "./login-tabs";
+import { LoginTabs, type LoginTab } from "../form/login-tabs";
 
 type LoginCardProps = {
   settings: EventSettingsSnapshot;

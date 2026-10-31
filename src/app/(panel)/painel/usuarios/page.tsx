@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
 import { hasRole } from "@/modules/auth/authorization";
-import { getSessionUser } from "@/modules/auth/controllers/get-session-user";
+import { getSessionUser } from "@/modules/auth/controllers/session/get-session-user";
 import { CreateUserForm } from "@/modules/users/components/create-user-form";
 import { UsersList } from "@/modules/users/components/users-list";
 import { UsersToolbar } from "@/modules/users/components/users-toolbar";

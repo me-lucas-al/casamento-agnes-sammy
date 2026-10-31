@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { asUser } from "@/tests/helpers/fake-session";
-import { hasRole, requireRole } from "./authorization";
-import { ForbiddenError, UnauthenticatedError } from "./errors";
+import { hasRole, requireRole } from "../authorization";
+import { ForbiddenError, UnauthenticatedError } from "../errors";
 
 describe("requireRole", () => {
   it("returns the user when the role is allowed", () => {

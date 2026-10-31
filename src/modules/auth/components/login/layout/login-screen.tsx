@@ -3,7 +3,7 @@ import { BrandFooter } from "@/shared/ui/components/brand-footer";
 import { FloralCorners } from "@/shared/ui/components/floral-corners";
 import { LoginCard } from "./login-card";
 import { LoginPetals } from "./login-petals";
-import type { LoginTab } from "./login-tabs";
+import type { LoginTab } from "../form/login-tabs";
 
 type LoginScreenProps = {
   settings: EventSettingsSnapshot;

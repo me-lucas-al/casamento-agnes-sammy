@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { resolveHomeRoute, resolveRedirectDestination, resolveRouteAccess } from "./route-access";
+import { resolveHomeRoute, resolveRedirectDestination, resolveRouteAccess } from "../route-access";
 
 const allow = { type: "allow" };
 const redirect = (to: string) => ({ type: "redirect", to });

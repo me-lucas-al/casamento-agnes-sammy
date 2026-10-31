@@ -1,6 +1,6 @@
 "use server";
 
-import { getSessionUser } from "@/modules/auth/controllers/get-session-user";
+import { getSessionUser } from "@/modules/auth/controllers/session/get-session-user";
 import { safeAction } from "@/shared/lib/safe-action";
 import { invalidInput } from "@/shared/lib/validation-failure";
 import { success, type ActionResult } from "@/shared/lib/result";

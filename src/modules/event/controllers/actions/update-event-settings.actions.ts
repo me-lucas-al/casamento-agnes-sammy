@@ -1,6 +1,6 @@
 "use server";
 
-import { getSessionUser } from "@/modules/auth/controllers/get-session-user";
+import { getSessionUser } from "@/modules/auth/controllers/session/get-session-user";
 import { nextCacheInvalidator } from "@/shared/lib/cache/invalidate";
 import type { ActionResult } from "@/shared/lib/result";
 import { safeAction } from "@/shared/lib/safe-action";

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { ACCESS_CODE_LENGTH, normalizeAccessCode } from "./access-code";
+import { ACCESS_CODE_LENGTH, normalizeAccessCode } from "../access-code";
 
 describe("normalizeAccessCode", () => {
   it("uppercases and trims", () => {

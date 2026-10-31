@@ -1,6 +1,6 @@
 ﻿import { redirect } from "next/navigation";
-import { resolveRedirectDestination } from "../lib/route-access";
-import type { SessionUser } from "../types";
+import { resolveRedirectDestination } from "@/modules/auth/lib/route-access";
+import type { SessionUser } from "@/modules/auth/types";
 import { getSessionUser } from "./get-session-user";
 
 export async function requireRouteAccess(pathname: string): Promise<SessionUser> {

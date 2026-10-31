@@ -1,7 +1,7 @@
 "use client";
 
 import { useFormStatus } from "react-dom";
-import { signInWithGoogleAction } from "@/modules/auth/controllers/sign-in.actions";
+import { signInWithGoogleAction } from "@/modules/auth/controllers/actions/sign-in.actions";
 import { GoogleMark } from "./google-mark";
 
 function GoogleButtonFace() {

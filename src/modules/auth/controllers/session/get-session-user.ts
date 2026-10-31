@@ -1,6 +1,6 @@
-import { auth } from "../config/auth";
-import { getAuthModule } from "../factory";
-import { isRole, type SessionUser } from "../types";
+import { auth } from "@/modules/auth/config/auth";
+import { getAuthModule } from "@/modules/auth/factory";
+import { isRole, type SessionUser } from "@/modules/auth/types";
 
 export async function getSessionUser(): Promise<SessionUser | null> {
   const session = await auth();

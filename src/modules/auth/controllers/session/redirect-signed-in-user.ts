@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
-import { resolveHomeRoute } from "../lib/route-access";
+import { resolveHomeRoute } from "@/modules/auth/lib/route-access";
 import { getSessionUser } from "./get-session-user";
 
 export async function redirectSignedInUser(): Promise<void> {

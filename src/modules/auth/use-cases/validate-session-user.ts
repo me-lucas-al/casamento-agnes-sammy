@@ -1,4 +1,4 @@
-import type { SessionAccountLookup } from "../repositories/session-account-lookup";
+import type { SessionAccountLookup } from "../repositories/contracts/session-account-lookup";
 import type { SessionUser } from "../types";
 
 type Dependencies = { sessionAccountLookup: SessionAccountLookup };

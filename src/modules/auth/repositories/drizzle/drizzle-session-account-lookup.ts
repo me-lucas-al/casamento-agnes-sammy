@@ -1,7 +1,7 @@
 import { and, eq } from "drizzle-orm";
 import { guests, users } from "@/shared/db/schema";
 import type { Database } from "@/shared/db/types";
-import type { SessionAccountLookup } from "./session-account-lookup";
+import type { SessionAccountLookup } from "../contracts/session-account-lookup";
 
 export function createDrizzleSessionAccountLookup(database: Database): SessionAccountLookup {
   return {

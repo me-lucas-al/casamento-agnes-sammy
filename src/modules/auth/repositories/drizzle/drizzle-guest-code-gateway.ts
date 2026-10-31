@@ -1,7 +1,7 @@
 import { eq } from "drizzle-orm";
 import { guests } from "@/shared/db/schema";
 import type { Database } from "@/shared/db/types";
-import type { GuestCodeGateway } from "./guest-code-gateway";
+import type { GuestCodeGateway } from "../contracts/guest-code-gateway";
 
 export function createDrizzleGuestCodeGateway(database: Database): GuestCodeGateway {
   return {

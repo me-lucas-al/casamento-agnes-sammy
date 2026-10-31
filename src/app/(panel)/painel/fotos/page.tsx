@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
 import { hasRole } from "@/modules/auth/authorization";
-import { getSessionUser } from "@/modules/auth/controllers/get-session-user";
+import { getSessionUser } from "@/modules/auth/controllers/session/get-session-user";
 import { ModerationQueue } from "@/modules/gallery/components/moderation-queue";
 import { StatusFilter } from "@/modules/gallery/components/status-filter";
 import { listPhotosPanelQuery } from "@/modules/gallery/controllers/gallery.queries";

@@ -4,8 +4,8 @@ import { AuthError } from "next-auth";
 import { logger } from "@/shared/lib/logger";
 import { serializeError } from "@/shared/lib/logging/serialize-error";
 import { isNextControlFlowError } from "@/shared/lib/next-control-flow";
-import { signIn, signOut } from "../config/auth";
-import { normalizeAccessCode } from "../lib/access-code";
+import { signIn, signOut } from "@/modules/auth/config/auth";
+import { normalizeAccessCode } from "@/modules/auth/lib/access-code";
 
 export type SignInFormState = { error: string | null };
 

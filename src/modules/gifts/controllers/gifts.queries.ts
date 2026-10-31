@@ -1,4 +1,4 @@
-import { getSessionUser } from "@/modules/auth/controllers/get-session-user";
+import { getSessionUser } from "@/modules/auth/controllers/session/get-session-user";
 import type { SearchParams } from "@/shared/lib/url-params";
 import { getGiftModule } from "../factory";
 import { parseGiftListParams } from "../schemas/gift-list-params";

@@ -1,4 +1,4 @@
-import { getSessionUser } from "@/modules/auth/controllers/get-session-user";
+import { getSessionUser } from "@/modules/auth/controllers/session/get-session-user";
 import { getPaymentModule } from "@/modules/payments/factory";
 import { parsePageParams } from "@/shared/lib/pagination";
 import type { SearchParams } from "@/shared/lib/url-params";

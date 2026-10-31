@@ -1,9 +1,9 @@
 import { getDatabase } from "@/shared/db/client";
 import type { Database } from "@/shared/db/types";
 import { createUserModule } from "@/modules/users/factory";
-import { createDrizzleGuestCodeGateway } from "./repositories/drizzle-guest-code-gateway";
-import { createDrizzleLoginAttemptRepository } from "./repositories/drizzle-login-attempt-repository";
-import { createDrizzleSessionAccountLookup } from "./repositories/drizzle-session-account-lookup";
+import { createDrizzleGuestCodeGateway } from "./repositories/drizzle/drizzle-guest-code-gateway";
+import { createDrizzleLoginAttemptRepository } from "./repositories/drizzle/drizzle-login-attempt-repository";
+import { createDrizzleSessionAccountLookup } from "./repositories/drizzle/drizzle-session-account-lookup";
 import { makeAuthenticateGuestCode } from "./use-cases/authenticate-guest-code";
 import { makeAuthorizeGoogleSignIn } from "./use-cases/authorize-google-sign-in";
 import { makePurgeOldLoginAttempts } from "./use-cases/purge-old-login-attempts";

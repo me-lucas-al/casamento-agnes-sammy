@@ -1,4 +1,4 @@
-import { getSessionUser } from "@/modules/auth/controllers/get-session-user";
+import { getSessionUser } from "@/modules/auth/controllers/session/get-session-user";
 import { parsePageParams } from "@/shared/lib/pagination";
 import { enumParam, textParam, type SearchParams } from "@/shared/lib/url-params";
 import { getGuestModule } from "@/modules/guests/factory";

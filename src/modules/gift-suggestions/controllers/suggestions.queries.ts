@@ -1,4 +1,4 @@
-import { getSessionUser } from "@/modules/auth/controllers/get-session-user";
+import { getSessionUser } from "@/modules/auth/controllers/session/get-session-user";
 import { guardedQuery } from "@/shared/lib/guarded-query";
 import type { SearchParams } from "@/shared/lib/url-params";
 import { getGiftSuggestionModule } from "../factory";

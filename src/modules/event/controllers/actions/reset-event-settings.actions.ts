@@ -1,7 +1,7 @@
 "use server";
 
 import { hasRole } from "@/modules/auth/authorization";
-import { getSessionUser } from "@/modules/auth/controllers/get-session-user";
+import { getSessionUser } from "@/modules/auth/controllers/session/get-session-user";
 import { eventTag } from "@/shared/lib/cache/cache-tags";
 import { nextCacheInvalidator } from "@/shared/lib/cache/invalidate";
 import { safeAction } from "@/shared/lib/safe-action";

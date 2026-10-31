@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { readClientIp } from "./client-ip";
+import { readClientIp } from "../client-ip";
 
 describe("readClientIp", () => {
   it("uses the first forwarded address", () => {

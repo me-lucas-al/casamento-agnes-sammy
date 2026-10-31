@@ -1,5 +1,5 @@
 ﻿import { describe, expect, it } from "vitest";
-import { removeAccessCodeFromUrl } from "./remove-access-code-from-url";
+import { removeAccessCodeFromUrl } from "../remove-access-code-from-url";
 
 describe("removeAccessCodeFromUrl", () => {
   it("drops the code and keeps the path", () => {

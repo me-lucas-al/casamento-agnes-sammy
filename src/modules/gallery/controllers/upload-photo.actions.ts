@@ -1,6 +1,6 @@
 "use server";
 
-import { getSessionUser } from "@/modules/auth/controllers/get-session-user";
+import { getSessionUser } from "@/modules/auth/controllers/session/get-session-user";
 import { dashboardTag } from "@/shared/lib/cache/cache-tags";
 import { nextCacheInvalidator } from "@/shared/lib/cache/invalidate";
 import type { SignedUploadParams } from "@/shared/lib/cloudinary";

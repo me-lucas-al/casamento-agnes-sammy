@@ -1,4 +1,4 @@
-import { signOutAction } from "@/modules/auth/controllers/sign-in.actions";
+import { signOutAction } from "@/modules/auth/controllers/actions/sign-in.actions";
 import type { StaffProfile } from "@/modules/profile/types";
 import { ProfileFields } from "../forms/profile-fields";
 

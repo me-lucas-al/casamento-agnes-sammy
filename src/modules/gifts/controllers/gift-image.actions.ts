@@ -1,6 +1,6 @@
 "use server";
 
-import { getSessionUser } from "@/modules/auth/controllers/get-session-user";
+import { getSessionUser } from "@/modules/auth/controllers/session/get-session-user";
 import type { SignedUploadParams } from "@/shared/lib/cloudinary";
 import { safeAction } from "@/shared/lib/safe-action";
 import { invalidInput } from "@/shared/lib/validation-failure";

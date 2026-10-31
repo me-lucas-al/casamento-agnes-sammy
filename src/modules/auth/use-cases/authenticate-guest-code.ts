@@ -1,8 +1,8 @@
 import { addMinutes } from "@/shared/lib/dates";
 import { InvalidGuestCodeError, TooManyLoginAttemptsError } from "../errors";
 import { normalizeAccessCode } from "../lib/access-code";
-import type { GuestCodeGateway } from "../repositories/guest-code-gateway";
-import type { LoginAttemptRepository } from "../repositories/login-attempt-repository";
+import type { GuestCodeGateway } from "../repositories/contracts/guest-code-gateway";
+import type { LoginAttemptRepository } from "../repositories/contracts/login-attempt-repository";
 import type { SessionUser } from "../types";
 
 export const MAX_FAILED_ATTEMPTS = 10;

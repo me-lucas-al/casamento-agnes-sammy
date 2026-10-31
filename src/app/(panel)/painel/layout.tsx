@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { requireRouteAccess } from "@/modules/auth/controllers/require-route-access";
+import { requireRouteAccess } from "@/modules/auth/controllers/session/require-route-access";
 import { ReviewTourButton } from "@/modules/tour/components/launch/review-tour-button";
 import { TourProvider } from "@/modules/tour/components/launch/tour-provider";
 import { shouldAutoOpenTourQuery } from "@/modules/tour/controllers/queries/tour.queries";

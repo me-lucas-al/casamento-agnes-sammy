@@ -1,6 +1,6 @@
 "use server";
 
-import { getSessionUser } from "@/modules/auth/controllers/get-session-user";
+import { getSessionUser } from "@/modules/auth/controllers/session/get-session-user";
 import { getDashboardModule } from "@/modules/dashboard/factory";
 import type { OnboardingStatus } from "@/modules/dashboard/types";
 import { safeAction } from "@/shared/lib/safe-action";

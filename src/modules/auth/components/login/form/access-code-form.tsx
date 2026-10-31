@@ -4,7 +4,7 @@ import { useActionState, useEffect, useState, type ChangeEvent } from "react";
 import { KeyRound } from "lucide-react";
 import { ACCESS_CODE_LENGTH, normalizeAccessCode } from "@/modules/auth/lib/access-code";
 import { removeAccessCodeFromUrl } from "@/modules/auth/lib/remove-access-code-from-url";
-import { signInWithGuestCodeAction, type SignInFormState } from "@/modules/auth/controllers/sign-in.actions";
+import { signInWithGuestCodeAction, type SignInFormState } from "@/modules/auth/controllers/actions/sign-in.actions";
 import { SubmitButton } from "./submit-button";
 
 type AccessCodeFormProps = { initialCode: string };

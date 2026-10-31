@@ -1,4 +1,4 @@
-import type { ActiveUserLookup } from "../repositories/active-user-lookup";
+import type { ActiveUserLookup } from "../repositories/contracts/active-user-lookup";
 import type { SessionUser } from "../types";
 
 type Dependencies = { activeUserLookup: ActiveUserLookup };

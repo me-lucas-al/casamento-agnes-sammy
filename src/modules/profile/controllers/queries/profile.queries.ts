@@ -1,4 +1,4 @@
-import { getSessionUser } from "@/modules/auth/controllers/get-session-user";
+import { getSessionUser } from "@/modules/auth/controllers/session/get-session-user";
 import { getProfileModule } from "@/modules/profile/factory";
 import type { GuestProfile } from "@/modules/profile/types";
 import { guardedQuery } from "@/shared/lib/guarded-query";

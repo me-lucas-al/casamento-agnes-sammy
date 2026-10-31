@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
-import { getSessionUser } from "@/modules/auth/controllers/get-session-user";
+import { getSessionUser } from "@/modules/auth/controllers/session/get-session-user";
 import { hasRole } from "@/modules/auth/authorization";
 import { CreateGuestPanel } from "@/modules/guests/components/create-guest-panel";
 import { GuestsTable } from "@/modules/guests/components/guests-table";

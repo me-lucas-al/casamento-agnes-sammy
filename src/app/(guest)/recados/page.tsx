@@ -1,4 +1,4 @@
-import { getSessionUser } from "@/modules/auth/controllers/get-session-user";
+import { getSessionUser } from "@/modules/auth/controllers/session/get-session-user";
 import { ApprovedMessagesList } from "@/modules/messages/components/approved-messages-list";
 import { MessageForm } from "@/modules/messages/components/message-form";
 import { listApprovedMessagesQuery } from "@/modules/messages/controllers/queries/messages.queries";

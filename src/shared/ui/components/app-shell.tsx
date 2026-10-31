@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { signOutAction } from "@/modules/auth/controllers/sign-in.actions";
+import { signOutAction } from "@/modules/auth/controllers/actions/sign-in.actions";
 import { cn } from "@/shared/lib/utils";
 import { BrandFooter } from "./brand-footer";
 import { BrandMark } from "./brand-mark";

@@ -1,7 +1,7 @@
 import { and, count, eq, gte, lt } from "drizzle-orm";
 import { loginAttempts } from "@/shared/db/schema";
 import type { Database } from "@/shared/db/types";
-import type { LoginAttemptRepository } from "./login-attempt-repository";
+import type { LoginAttemptRepository } from "../contracts/login-attempt-repository";
 
 export function createDrizzleLoginAttemptRepository(database: Database): LoginAttemptRepository {
   return {

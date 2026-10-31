@@ -1,5 +1,5 @@
 ﻿import { describe, expect, it } from "vitest";
-import { describeLoginError, parseLoginError } from "./login-error";
+import { describeLoginError, parseLoginError } from "../login-error";
 
 describe("parseLoginError", () => {
   it("accepts known NextAuth error codes", () => {

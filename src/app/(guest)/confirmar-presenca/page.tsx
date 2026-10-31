@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
-import { getSessionUser } from "@/modules/auth/controllers/get-session-user";
+import { getSessionUser } from "@/modules/auth/controllers/session/get-session-user";
 import { getMyRsvpQuery } from "@/modules/rsvp/controllers/queries/rsvp.queries";
 import { RsvpForm } from "@/modules/rsvp/components/rsvp-form";
 import { PageHeading } from "@/shared/ui/components/page-heading";

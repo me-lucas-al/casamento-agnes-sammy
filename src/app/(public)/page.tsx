@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { redirectSignedInUser } from "@/modules/auth/controllers/redirect-signed-in-user";
-import { LoginScreen } from "@/modules/auth/components/login/login-screen";
+import { redirectSignedInUser } from "@/modules/auth/controllers/session/redirect-signed-in-user";
+import { LoginScreen } from "@/modules/auth/components/login/layout/login-screen";
 import { getEventSettingsQuery } from "@/modules/event/controllers/queries/event.queries";
 import { enumParam, firstValue, type SearchParams } from "@/shared/lib/url-params";
 import { normalizeAccessCode } from "@/modules/auth/lib/access-code";

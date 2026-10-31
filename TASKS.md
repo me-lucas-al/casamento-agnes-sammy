@@ -88,6 +88,7 @@
 - [x] Primeiro disparo real do workflow de migration em produção — secret `DATABASE_URL` criado no ambiente `production` e workflow executado com sucesso
 - [ ] Deploy em produção (Vercel + Neon) e domínio — manual, ver checklist em `docs/ci-cd.md`
 - [x] Build rodando em `localhost:3000` — build ok e servidor validado (porta 3100, pois a 3000 estava ocupada)
+- [x] Tour guiado para noivos/admin no primeiro acesso ao painel (módulo `tour`, coluna `users.tour_completed_at`, botão "Rever tour") — a migration `0004` precisa rodar em produção pelo workflow de migration
 
 ## Dados pendentes do casal (via painel / `.env`)
 - [x] Chave Pix, tipo, nome do recebedor e cidade — *preenchido pelos noivos no painel (via passo a passo)*

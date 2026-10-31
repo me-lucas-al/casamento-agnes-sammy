@@ -9,5 +9,6 @@ export const users = pgTable("users", {
   image: text("image"),
   role: userRoleEnum("role").notNull(),
   isActive: boolean("is_active").notNull().default(true),
+  tourCompletedAt: timestamp("tour_completed_at", { withTimezone: true }),
   createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
 });

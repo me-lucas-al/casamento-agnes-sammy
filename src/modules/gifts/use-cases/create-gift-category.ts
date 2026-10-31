@@ -1,6 +1,7 @@
 import { requireRole } from "@/modules/auth/authorization";
 import type { SessionUser } from "@/modules/auth/types";
 import { GIFT_MANAGER_ROLES } from "../lib/gift-roles";
+import { rejectDuplicateCategoryName } from "../lib/reject-duplicate-name";
 import type { CategoryRepository } from "../repositories/category-repository";
 import type { CategoryInput, GiftCategory } from "../types";
 
@@ -12,6 +13,6 @@ export function makeCreateGiftCategory({ categoryRepository }: Dependencies) {
     input: CategoryInput,
   ): Promise<GiftCategory> {
     requireRole(actor, GIFT_MANAGER_ROLES);
-    return categoryRepository.create(input);
+    return rejectDuplicateCategoryName(() => categoryRepository.create(input));
   };
 }

@@ -3,6 +3,7 @@ import type { SessionUser } from "@/modules/auth/types";
 import type { CloudinaryClient } from "@/shared/lib/cloudinary";
 import { GiftCategoryNotFoundError } from "../errors";
 import { assertGiftImageOwnership } from "../lib/assert-gift-image-ownership";
+import { rejectDuplicateGiftName } from "../lib/reject-duplicate-name";
 import { rejectDuplicateGiftImage } from "../lib/reject-duplicate-gift-image";
 import { buildGiftDraft } from "../lib/gift-draft";
 import { GIFT_MANAGER_ROLES } from "../lib/gift-roles";
@@ -23,6 +24,6 @@ export function makeCreateGift({ giftRepository, categoryRepository, cloudinaryC
     const category = await categoryRepository.findById(draft.categoryId);
     if (!category) throw new GiftCategoryNotFoundError();
     if (input.image) await assertGiftImageOwnership({ giftRepository, cloudinaryClient }, input.image);
-    return rejectDuplicateGiftImage(() => giftRepository.create(draft));
+    return rejectDuplicateGiftName(() => rejectDuplicateGiftImage(() => giftRepository.create(draft)));
   };
 }

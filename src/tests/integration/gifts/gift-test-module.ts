@@ -20,11 +20,14 @@ export function createTestGiftModule(db: Database, options: TestModuleOptions = 
   return { giftModule, cloudinaryClient };
 }
 
+let builtGiftInputCount = 0;
+
 export function buildGiftInput(categoryId: string, overrides: Partial<GiftInput> = {}): GiftInput {
+  builtGiftInputCount += 1;
   return {
     categoryId,
     kind: "item",
-    name: "Jogo de panelas",
+    name: `Jogo de panelas ${builtGiftInputCount}`,
     description: "",
     priceCents: 30000,
     mode: "single",

@@ -4,6 +4,7 @@ import type { CloudinaryClient } from "@/shared/lib/cloudinary";
 import { destroyImageBestEffort } from "@/shared/lib/cloudinary-destroy";
 import { GiftCategoryNotFoundError, GiftNotFoundError, GiftPricingLockedError } from "../errors";
 import { assertGiftImageOwnership } from "../lib/assert-gift-image-ownership";
+import { rejectDuplicateGiftName } from "../lib/reject-duplicate-name";
 import { rejectDuplicateGiftImage } from "../lib/reject-duplicate-gift-image";
 import { buildGiftDraft, currentImageOf } from "../lib/gift-draft";
 import { hasGiftPricingChanged } from "../lib/gift-pricing-changed";
@@ -47,7 +48,9 @@ export function makeUpdateGift({ giftRepository, categoryRepository, cloudinaryC
     if (input.image && input.image.publicId !== existingGift.imagePublicId) {
       await assertGiftImageOwnership({ giftRepository, cloudinaryClient }, input.image, giftId);
     }
-    const updatedGift = await rejectDuplicateGiftImage(() => giftRepository.update(giftId, draft));
+    const updatedGift = await rejectDuplicateGiftName(() =>
+      rejectDuplicateGiftImage(() => giftRepository.update(giftId, draft)),
+    );
     await destroyReplacedImage(existingGift.imagePublicId, giftId, draft.imagePublicId);
     return updatedGift;
   };

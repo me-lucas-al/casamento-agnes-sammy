@@ -19,6 +19,18 @@ export class GiftCategoryInUseError extends Error {
   }
 }
 
+export class GiftNameTakenError extends Error {
+  constructor() {
+    super("Gift name already in use");
+  }
+}
+
+export class GiftCategoryNameTakenError extends Error {
+  constructor() {
+    super("Gift category name already in use");
+  }
+}
+
 export class GiftHasConfirmedContributionError extends Error {
   constructor() {
     super("Gift has a confirmed contribution");
@@ -68,6 +80,8 @@ export function describeImageRejection(reason: ImageRejectionReason): string {
 export function describeGiftError(error: unknown): string {
   if (error instanceof GiftNotFoundError) return "Presente não encontrado.";
   if (error instanceof GiftCategoryNotFoundError) return "Categoria não encontrada.";
+  if (error instanceof GiftNameTakenError) return "Já existe um presente com esse nome.";
+  if (error instanceof GiftCategoryNameTakenError) return "Já existe uma categoria com esse nome.";
   if (error instanceof GiftCategoryInUseError) {
     return "Esta categoria ainda possui presentes. Mova ou exclua-os antes.";
   }

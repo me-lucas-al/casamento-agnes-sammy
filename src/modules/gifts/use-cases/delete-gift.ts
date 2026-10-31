@@ -1,6 +1,7 @@
 import { requireRole } from "@/modules/auth/authorization";
 import type { SessionUser } from "@/modules/auth/types";
 import type { CloudinaryClient } from "@/shared/lib/cloudinary";
+import { destroyImageBestEffort } from "@/shared/lib/cloudinary-destroy";
 import {
   GiftHasActiveReservationsError,
   GiftHasConfirmedContributionError,
@@ -23,6 +24,8 @@ export function makeDeleteGift({ giftRepository, cloudinaryClient, now }: Depend
     if (outcome.status === "has_confirmed") throw new GiftHasConfirmedContributionError();
     if (outcome.status === "has_active_reservations") throw new GiftHasActiveReservationsError();
     const { imagePublicId } = outcome.gift;
-    if (imagePublicId) await cloudinaryClient.destroyImage(imagePublicId);
+    if (!imagePublicId) return;
+    if (await giftRepository.existsWithImagePublicId(imagePublicId)) return;
+    await destroyImageBestEffort(cloudinaryClient, imagePublicId);
   };
 }

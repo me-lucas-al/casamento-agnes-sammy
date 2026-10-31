@@ -1,7 +1,10 @@
 import { isPriceInBand, PRICE_BANDS } from "@/modules/gifts/lib/price-band";
-import { SUGGESTION_CATEGORY_ORDER } from "../data/category-names";
+import { categoryNameOf } from "../data/category-names";
+import { PRODUCT_TYPE_LABELS, STORELESS_TYPES } from "../data/product-types";
+import { isStoreId } from "../data/stores";
 import type { GiftSuggestion } from "../types";
 import { normalizeGiftName } from "./normalize-gift-name";
+import { isAllowedStoreUrl } from "./is-allowed-store-url";
 
 const MIN_QUOTAS = 2;
 const MAX_QUOTAS = 1000;
@@ -33,15 +36,30 @@ function describeConfigurationProblem(suggestion: GiftSuggestion): string | null
   return null;
 }
 
+function describeStoreProblem(suggestion: GiftSuggestion): string | null {
+  const { store, storeSearchUrl, kind, type } = suggestion;
+  if (store === null) {
+    if (storeSearchUrl !== null) return "search url without store";
+    const mayHaveNoStore = kind === "experience" || STORELESS_TYPES.includes(type);
+    return mayHaveNoStore ? null : "physical item needs a store";
+  }
+  if (!isStoreId(store)) return "store not allowed";
+  if (!storeSearchUrl || !isAllowedStoreUrl(store, storeSearchUrl)) return "invalid store search url";
+  return null;
+}
+
 function describeSuggestionProblem(suggestion: GiftSuggestion): string | null {
-  if (!SUGGESTION_CATEGORY_ORDER.includes(suggestion.categoryName)) return "unknown category";
+  if (categoryNameOf(suggestion.categoryKey) !== suggestion.categoryName) return "category name mismatch";
+  if (!suggestion.id.startsWith(`${suggestion.categoryKey}-`)) return "id must start with category key";
   if (!suggestion.name.trim() || !suggestion.description.trim()) return "missing text";
+  if (suggestion.tags.length === 0) return "missing search tags";
+  if (!(suggestion.type in PRODUCT_TYPE_LABELS)) return "unknown product type";
   if (!Number.isInteger(suggestion.priceCents) || suggestion.priceCents % FRIENDLY_PRICE_STEP_CENTS !== 0) {
     return "price must be a friendly whole value";
   }
   const band = PRICE_BANDS.find((candidate) => candidate.id === suggestion.priceBand);
   if (!band || !isPriceInBand(suggestion.priceCents, band)) return "price band does not match price";
-  return describeConfigurationProblem(suggestion);
+  return describeStoreProblem(suggestion) ?? describeConfigurationProblem(suggestion);
 }
 
 export function validateCatalog(catalog: readonly GiftSuggestion[]): string[] {

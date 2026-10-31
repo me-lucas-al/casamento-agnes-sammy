@@ -1,28 +1,45 @@
 import type { GiftSuggestion } from "../types";
-import { SUGGESTION_CATEGORY_NAMES } from "./category-names";
-import { fundSuggestions, quotaSuggestions, singleSuggestions } from "./suggestion-builders";
+import { suggestionBuilders } from "./suggestion-builders";
 
-const experience = singleSuggestions(SUGGESTION_CATEGORY_NAMES.honeymoon, "experience");
-const quotaExperience = quotaSuggestions(SUGGESTION_CATEGORY_NAMES.honeymoon, "experience");
-const fund = fundSuggestions(SUGGESTION_CATEGORY_NAMES.honeymoon, "experience");
+const trip = suggestionBuilders("lua-de-mel", "experiencia", "experience");
+const fundBuilder = suggestionBuilders("lua-de-mel", "cota-livre", "experience");
 
 export const HONEYMOON_SUGGESTIONS: GiftSuggestion[] = [
-  quotaExperience({ id: "lua-passagens-aereas", name: "Cotas das passagens aéreas", description: "Ajude os noivos a levantar voo rumo à lua de mel.", priceCents: 300000 }, 12),
-  quotaExperience({ id: "lua-hospedagem-cinco-noites", name: "Cotas de cinco noites de hospedagem", description: "Cada cota paga um pedacinho do cantinho onde vão descansar.", priceCents: 300000 }, 5),
-  quotaExperience({ id: "lua-aluguel-carro", name: "Cotas do aluguel de carro", description: "Liberdade para explorar cada cantinho do destino.", priceCents: 60000 }, 3),
-  quotaExperience({ id: "lua-ensaio-fotografico", name: "Cotas do ensaio fotográfico do casal", description: "Para eternizar a viagem em fotos lindas.", priceCents: 70000 }, 7),
-  experience({ id: "lua-jantar-romantico", name: "Jantar romântico à luz de velas", description: "Uma noite especial só para os dois, com direito a brinde.", priceCents: 40000 }),
-  experience({ id: "lua-passeio-barco", name: "Passeio de barco no pôr do sol", description: "Para ver o dia terminar juntinhos, com vista para o mar.", priceCents: 30000 }),
-  experience({ id: "lua-massagem-casal", name: "Massagem para o casal", description: "Relaxamento a dois depois de tanta correria de casamento.", priceCents: 45000 }),
-  experience({ id: "lua-cafe-na-cama", name: "Café da manhã na cama", description: "Para começar um dia de lua de mel sem pressa.", priceCents: 12000 }),
-  experience({ id: "lua-passeio-buggy", name: "Passeio de buggy", description: "Aventura, vento no rosto e boas risadas.", priceCents: 35000 }),
-  experience({ id: "lua-mergulho", name: "Mergulho com snorkel", description: "Para descobrir juntos o mundo debaixo da água.", priceCents: 25000 }),
-  experience({ id: "lua-transfer", name: "Transfer do aeroporto ao hotel", description: "Chegada tranquila, sem se preocupar com malas e trânsito.", priceCents: 15000 }),
-  experience({ id: "lua-seguro-viagem", name: "Seguro viagem do casal", description: "Para viajar com tranquilidade e só pensar em aproveitar.", priceCents: 25000 }),
-  experience({ id: "lua-upgrade-vista-mar", name: "Upgrade para quarto com vista para o mar", description: "Acordar olhando o horizonte faz toda a diferença.", priceCents: 50000 }),
-  experience({ id: "lua-day-spa", name: "Dia de spa a dois", description: "Um dia inteiro para relaxar e se cuidar juntos.", priceCents: 50000 }),
-  fund({ id: "lua-fundo-lua-de-mel", name: "Fundo livre da lua de mel", description: "Contribua com o valor que o coração mandar para a viagem dos sonhos.", priceCents: 1000000 }, 5000),
-  fund({ id: "lua-fundo-passeios", name: "Fundo livre de passeios", description: "Ajuda a pagar as aventuras e os passeios da viagem.", priceCents: 300000 }, 5000),
-  fund({ id: "lua-fundo-jantares", name: "Fundo livre de jantares especiais", description: "Para brindar com um bom jantar em cada noite da viagem.", priceCents: 200000 }, 3000),
-  fund({ id: "lua-fundo-lembrancinhas", name: "Fundo livre de lembranças da viagem", description: "Para trazer na mala um mimo para cada pessoa querida.", priceCents: 100000 }, 2000),
+  trip.quota("Cotas das passagens aéreas", "Ajude os noivos a levantar voo rumo à lua de mel.", 300000, 12, null, "viagem aviao voo"),
+  trip.quota("Cotas de cinco noites de hospedagem", "Cada cota paga um pedacinho do cantinho onde vão descansar.", 300000, 5, null, "hotel pousada hospedagem"),
+  trip.quota("Cotas de três noites em pousada", "Para uma escapada romântica de fim de semana prolongado.", 150000, 5, null, "pousada hotel escapada"),
+  trip.quota("Cotas do aluguel de carro", "Liberdade para explorar cada cantinho do destino.", 60000, 3, null, "carro locadora estrada"),
+  trip.quota("Cotas do ensaio fotográfico do casal", "Para eternizar a viagem em fotos lindas.", 70000, 7, null, "fotos fotografo ensaio"),
+  trip.quota("Cotas do passeio entre ilhas", "Um dia de mar azul, areia branca e muita história para contar.", 80000, 4, null, "barco ilha praia"),
+  trip.quota("Cotas dos ingressos de parques", "Diversão e adrenalina para viver como crianças.", 100000, 5, null, "parque diversao ingresso"),
+  trip.quota("Cotas de um cruzeiro curto", "Alguns dias de mar, jantares e pôr do sol a dois.", 400000, 8, null, "navio mar cruzeiro"),
+  trip.quota("Cotas do trem panorâmico", "Paisagens de cinema vistas da janela, de mãos dadas.", 60000, 3, null, "trem passeio serra"),
+  trip.single("Jantar romântico à luz de velas", "Uma noite especial só para os dois, com direito a brinde.", 40000, null, "restaurante jantar romantico"),
+  trip.single("Passeio de barco no pôr do sol", "Para ver o dia terminar juntinhos, com vista para o mar.", 30000, null, "barco mar por do sol"),
+  trip.single("Massagem para o casal", "Relaxamento a dois depois de tanta correria de casamento.", 45000, null, "spa relaxar massagem"),
+  trip.single("Café da manhã na cama", "Para começar um dia de lua de mel sem pressa.", 12000, null, "hotel cafe da manha"),
+  trip.single("Passeio de buggy", "Aventura, vento no rosto e boas risadas.", 35000, null, "dunas praia aventura"),
+  trip.single("Mergulho com snorkel", "Para descobrir juntos o mundo debaixo da água.", 25000, null, "mar peixes snorkel"),
+  trip.single("Transfer do aeroporto ao hotel", "Chegada tranquila, sem se preocupar com malas e trânsito.", 15000, null, "aeroporto carro traslado"),
+  trip.single("Seguro viagem do casal", "Para viajar com tranquilidade e só pensar em aproveitar.", 25000, null, "seguro saude viagem"),
+  trip.single("Upgrade para quarto com vista para o mar", "Acordar olhando o horizonte faz toda a diferença.", 50000, null, "hotel suite vista"),
+  trip.single("Dia de spa a dois", "Um dia inteiro para relaxar e se cuidar juntos.", 50000, null, "spa relaxar day"),
+  trip.single("Passeio de balão", "Ver o nascer do sol lá do alto, bem juntinhos.", 120000, null, "balao aventura ceu"),
+  trip.single("Aula de culinária local", "Aprender a cozinhar a comida típica do destino a quatro mãos.", 25000, null, "curso cozinha gastronomia"),
+  trip.single("Degustação de vinhos", "Uma tarde de brindes e descobertas em uma vinícola.", 30000, null, "vinicola vinho brinde"),
+  trip.single("Visita a uma vinícola", "Passeio entre parreiras com direito a almoço.", 30000, null, "vinho uva passeio"),
+  trip.single("Passeio de bicicleta a dois", "Pedalar sem pressa para conhecer o destino de pertinho.", 10000, null, "bike passeio ciclismo"),
+  trip.single("Piquenique romântico", "Cesta, toalha xadrez e vista bonita para os dois.", 15000, null, "piquenique parque praia"),
+  trip.single("Ingresso para um espetáculo", "Uma noite de música ou teatro durante a viagem.", 20000, null, "show teatro musica"),
+  trip.single("Tour fotográfico pela cidade", "Fotos lindas dos dois nos cantinhos mais bonitos do destino.", 35000, null, "fotos passeio cidade"),
+  trip.single("Trilha guiada", "Natureza, ar puro e uma bela vista no caminho.", 20000, null, "caminhada natureza cachoeira"),
+  trip.single("Passeio de cavalo", "Cavalgada tranquila ao fim da tarde.", 20000, null, "cavalo passeio fazenda"),
+  trip.single("Noite em hotel boutique", "Uma noite especial em um lugar cheio de charme.", 60000, null, "hotel romantico hospedagem"),
+  trip.single("Brinde com espumante na chegada", "Para começar a lua de mel com um brinde.", 15000, null, "espumante champanhe hotel"),
+  trip.single("Kit praia com guarda-sol e cadeiras", "Conforto para curtir o dia na areia.", 15000, null, "praia cadeira sol"),
+  fundBuilder.fund("Fundo livre da lua de mel", "Contribua com o valor que o coração mandar para a viagem dos sonhos.", 1000000, 5000, "dinheiro viagem cota livre"),
+  fundBuilder.fund("Fundo livre de passeios", "Ajuda a pagar as aventuras e os passeios da viagem.", 300000, 5000, "passeio aventura dinheiro"),
+  fundBuilder.fund("Fundo livre de jantares especiais", "Para brindar com um bom jantar em cada noite da viagem.", 200000, 3000, "restaurante dinheiro jantar"),
+  fundBuilder.fund("Fundo livre de lembranças da viagem", "Para trazer na mala um mimo para cada pessoa querida.", 100000, 2000, "souvenir compras lembranca"),
+  fundBuilder.fund("Fundo livre de transporte da viagem", "Ajuda com táxis, aplicativos e combustível no destino.", 100000, 2000, "uber carro gasolina dinheiro"),
 ];

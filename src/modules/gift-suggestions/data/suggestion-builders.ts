@@ -1,15 +1,17 @@
-import { PRICE_BANDS, isPriceInBand, type PriceBandId } from "@/modules/gifts/lib/price-band";
+import { isPriceInBand, PRICE_BANDS, type PriceBandId } from "@/modules/gifts/lib/price-band";
 import type { GiftKind } from "@/modules/gifts/types";
+import { buildStoreSearchUrl } from "../lib/build-store-search-url";
+import { normalizeGiftName } from "../lib/normalize-gift-name";
 import type { GiftSuggestion } from "../types";
+import { categoryNameOf, type SuggestionCategoryKey } from "./category-names";
+import type { ProductTypeId } from "./product-types";
+import type { StoreId } from "./stores";
 
-type BaseFields = {
-  id: string;
-  name: string;
-  description: string;
-  priceCents: number;
+type BuilderContext = {
+  categoryKey: SuggestionCategoryKey;
+  type: ProductTypeId;
+  kind: GiftKind;
 };
-
-type SuggestionFactory = (fields: BaseFields) => GiftSuggestion;
 
 function bandOf(priceCents: number): PriceBandId {
   const band = PRICE_BANDS.find((candidate) => isPriceInBand(priceCents, candidate));
@@ -17,28 +19,40 @@ function bandOf(priceCents: number): PriceBandId {
   return band.id;
 }
 
-export function singleSuggestions(categoryName: string, kind: GiftKind): SuggestionFactory {
-  return (fields) => ({ ...fields, categoryName, kind, mode: "single", priceBand: bandOf(fields.priceCents) });
+function slugify(text: string): string {
+  return normalizeGiftName(text).replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 }
 
-export function quotaSuggestions(categoryName: string, kind: GiftKind) {
-  return (fields: BaseFields, totalQuotas: number): GiftSuggestion => ({
-    ...fields,
-    categoryName,
-    kind,
-    mode: "fixed_quotas",
-    totalQuotas,
-    priceBand: bandOf(fields.priceCents),
-  });
+function buildBase(context: BuilderContext, name: string, description: string, priceCents: number, tags: string) {
+  return {
+    id: `${context.categoryKey}-${slugify(name)}`,
+    categoryKey: context.categoryKey,
+    categoryName: categoryNameOf(context.categoryKey),
+    name,
+    description,
+    kind: context.kind,
+    type: context.type,
+    priceCents,
+    priceBand: bandOf(priceCents),
+    tags: tags.split(" ").filter(Boolean),
+  };
 }
 
-export function fundSuggestions(categoryName: string, kind: GiftKind) {
-  return (fields: BaseFields, minAmountCents: number): GiftSuggestion => ({
-    ...fields,
-    categoryName,
-    kind,
-    mode: "free_amount",
-    minAmountCents,
-    priceBand: bandOf(fields.priceCents),
-  });
+function storeFields(store: StoreId | null, searchTerm: string) {
+  return { store, storeSearchUrl: store ? buildStoreSearchUrl(store, searchTerm) : null };
+}
+
+export function suggestionBuilders(categoryKey: SuggestionCategoryKey, type: ProductTypeId, kind: GiftKind = "item") {
+  const context: BuilderContext = { categoryKey, type, kind };
+  return {
+    single(name: string, description: string, priceCents: number, store: StoreId | null, tags: string, searchTerm = name): GiftSuggestion {
+      return { ...buildBase(context, name, description, priceCents, tags), mode: "single", ...storeFields(store, searchTerm) };
+    },
+    quota(name: string, description: string, priceCents: number, totalQuotas: number, store: StoreId | null, tags: string, searchTerm = name): GiftSuggestion {
+      return { ...buildBase(context, name, description, priceCents, tags), mode: "fixed_quotas", totalQuotas, ...storeFields(store, searchTerm) };
+    },
+    fund(name: string, description: string, priceCents: number, minAmountCents: number, tags: string): GiftSuggestion {
+      return { ...buildBase(context, name, description, priceCents, tags), mode: "free_amount", minAmountCents, ...storeFields(null, name) };
+    },
+  };
 }

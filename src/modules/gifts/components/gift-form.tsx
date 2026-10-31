@@ -64,7 +64,10 @@ export function GiftForm({ categories, gift }: GiftFormProps) {
             <option value="experience">Experiência</option>
           </select>
         </FormField>
-        <FormField label="Valor total (R$)">
+        <FormField
+          label={values.mode === "free_amount" ? "Meta de arrecadação (R$)" : "Valor total (R$)"}
+          hint={values.mode === "free_amount" ? "Quanto os noivos querem juntar com este presente." : undefined}
+        >
           <input required inputMode="decimal" placeholder="300,00" value={values.price} onChange={(event) => change({ price: event.target.value })} className={fieldControlClassName} />
         </FormField>
         <FormField label="Modo">

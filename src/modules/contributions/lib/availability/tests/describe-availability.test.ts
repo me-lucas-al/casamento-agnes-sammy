@@ -6,7 +6,7 @@ const gift: ReservableGift = {
   id: "g",
   name: "Presente",
   description: "",
-  imageUrl: null,
+  imageUrl: null, productUrl: null, storeName: null,
   priceCents: 10000,
   mode: "single",
   totalQuotas: null,

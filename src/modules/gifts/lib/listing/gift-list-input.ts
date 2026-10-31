@@ -7,6 +7,8 @@ export type GiftListFilters = {
   categoryId?: string;
   sort: GiftSortOption;
   band?: PriceBand;
+  minPriceCents?: number;
+  maxPriceCents?: number;
 };
 
 export type GiftListInput = PageParams & GiftListFilters;
@@ -20,5 +22,7 @@ export function buildGiftCacheKeyParts(input: GiftListInput): string[] {
     `category:${input.categoryId ?? ""}`,
     `sort:${input.sort}`,
     `band:${input.band?.id ?? ""}`,
+    `min:${input.minPriceCents ?? ""}`,
+    `max:${input.maxPriceCents ?? ""}`,
   ];
 }

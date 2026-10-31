@@ -21,7 +21,7 @@ export function makeListPanelGiftsPage({ giftRepository, getGiftsAvailability }:
     input: GiftListInput,
   ): Promise<PageResult<PanelGiftListItem>> {
     requireRole(actor, GIFT_MANAGER_ROLES);
-    const { page, perPage, offset, search, categoryId, sort, band } = input;
+    const { page, perPage, offset, search, categoryId, sort, band, minPriceCents, maxPriceCents } = input;
     const { items: gifts, total } = await giftRepository.listPage({
       limit: perPage,
       offset,
@@ -29,6 +29,8 @@ export function makeListPanelGiftsPage({ giftRepository, getGiftsAvailability }:
       categoryId,
       sort,
       band,
+      minPriceCents,
+      maxPriceCents,
       onlyVisible: false,
     });
     const availabilityByGiftId = await getGiftsAvailability(gifts);

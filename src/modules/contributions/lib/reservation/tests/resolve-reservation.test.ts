@@ -8,7 +8,7 @@ const baseGift: ReservableGift = {
   id: "gift-1",
   name: "Presente",
   description: "",
-  imageUrl: null,
+  imageUrl: null, productUrl: null, storeName: null,
   priceCents: 30000,
   mode: "single",
   totalQuotas: null,

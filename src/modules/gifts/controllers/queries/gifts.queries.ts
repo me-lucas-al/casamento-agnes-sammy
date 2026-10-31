@@ -2,12 +2,13 @@ import { getSessionUser } from "@/modules/auth/controllers/session/get-session-u
 import type { SearchParams } from "@/shared/lib/url/url-params";
 import { getGiftModule } from "@/modules/gifts/factory";
 import { parseGiftListParams } from "@/modules/gifts/schemas/gift-list-params";
+import { parseGuestGiftListParams } from "@/modules/gifts/schemas/guest-gift-list-params";
 import { guardedQuery } from "@/shared/lib/resilience/guarded-query";
 
 export async function listVisibleGiftsPageQuery(searchParams: SearchParams) {
   return guardedQuery("listVisibleGiftsPageQuery", async () => {
     const actor = await getSessionUser();
-    return getGiftModule().listVisibleGiftsPage(actor, parseGiftListParams(searchParams));
+    return getGiftModule().listVisibleGiftsPage(actor, parseGuestGiftListParams(searchParams));
   });
 }
 

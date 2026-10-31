@@ -15,6 +15,8 @@ export type ReservableGift = {
   name: string;
   description: string;
   imageUrl: string | null;
+  productUrl: string | null;
+  storeName: string | null;
   priceCents: number;
   mode: GiftMode;
   totalQuotas: number | null;

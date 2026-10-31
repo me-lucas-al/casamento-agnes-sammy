@@ -64,6 +64,33 @@ describe("visible gifts listing", () => {
     expect(await names({ categoryId: trip.id, band: findPriceBand("600-plus") })).toEqual(["Hospedagem"]);
   });
 
+  it("filters guests by search and numeric price range without category data", async () => {
+    const giftModule = setup();
+    await seedGift(testDatabase.db, { name: "Liquidificador", priceCents: 8000 });
+    await seedGift(testDatabase.db, { name: "Panela", priceCents: 25000 });
+    await seedGift(testDatabase.db, { name: "Hospedagem", priceCents: 90000 });
+    const names = async (overrides: Partial<GiftListInput>) =>
+      (await giftModule.listVisibleGiftsPage(guest, { ...baseInput, sort: "price-desc", ...overrides })).items.map(
+        (gift) => gift.name,
+      );
+
+    expect(await names({ minPriceCents: 8000, maxPriceCents: 25000 })).toEqual(["Panela", "Liquidificador"]);
+    expect(await names({ minPriceCents: 30000 })).toEqual(["Hospedagem"]);
+    expect(await names({ maxPriceCents: 7999 })).toEqual([]);
+    expect(await names({ search: "panel", maxPriceCents: 30000 })).toEqual(["Panela"]);
+    const [item] = (await giftModule.listVisibleGiftsPage(guest, baseInput)).items;
+    expect(Object.keys(item).some((key) => /categor|kind|band/i.test(key))).toBe(false);
+  });
+
+  it("keeps category data for the panel", async () => {
+    const giftModule = setup();
+    await seedGift(testDatabase.db, { name: "Panela" });
+
+    const [item] = (await giftModule.listPanelGiftsPage(asUser("couple"), baseInput)).items;
+
+    expect(item).toMatchObject({ categoryName: expect.any(String), categoryId: expect.any(String), kind: "item" });
+  });
+
   it("sorts by price, name and order", async () => {
     const giftModule = setup();
     await seedGift(testDatabase.db, { name: "B", priceCents: 200, sortOrder: 1 });

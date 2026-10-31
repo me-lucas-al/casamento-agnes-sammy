@@ -1,4 +1,4 @@
-import { and, asc, desc, eq, gt, ilike, lte, or, type SQL } from "drizzle-orm";
+import { and, asc, desc, eq, gt, gte, ilike, lte, or, type SQL } from "drizzle-orm";
 import { gifts } from "@/shared/db/schema";
 import { containsPattern } from "@/shared/lib/sql/sql-like";
 import type { GiftSortOption } from "@/modules/gifts/lib/listing/gift-sort";
@@ -13,6 +13,13 @@ function buildBandFilter(band: PriceBand | undefined): SQL[] {
   return filters;
 }
 
+function buildPriceRangeFilter({ minPriceCents, maxPriceCents }: GiftListQuery): SQL[] {
+  const filters: SQL[] = [];
+  if (minPriceCents !== undefined) filters.push(gte(gifts.priceCents, minPriceCents));
+  if (maxPriceCents !== undefined) filters.push(lte(gifts.priceCents, maxPriceCents));
+  return filters;
+}
+
 function buildSearchFilter(search: string): SQL[] {
   if (!search) return [];
   const pattern = containsPattern(search);
@@ -23,7 +30,7 @@ function buildSearchFilter(search: string): SQL[] {
 export function buildGiftFilters(query: GiftListQuery): SQL | undefined {
   const visibility = query.onlyVisible ? [eq(gifts.isVisible, true)] : [];
   const category = query.categoryId ? [eq(gifts.categoryId, query.categoryId)] : [];
-  return and(...visibility, ...category, ...buildSearchFilter(query.search), ...buildBandFilter(query.band));
+  return and(...visibility, ...category, ...buildSearchFilter(query.search), ...buildBandFilter(query.band), ...buildPriceRangeFilter(query));
 }
 
 const ORDER_BY_SORT: Record<GiftSortOption, SQL[]> = {

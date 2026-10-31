@@ -25,7 +25,7 @@ export function makeListVisibleGiftsPage({ giftRepository, cachedReader, getGift
     input: GiftListInput,
   ): Promise<PageResult<PublicGiftListItem>> {
     requireRole(actor, GIFT_VIEWER_ROLES);
-    const { page, perPage, offset, search, categoryId, sort, band } = input;
+    const { page, perPage, offset, search, categoryId, sort, band, minPriceCents, maxPriceCents } = input;
     const cachedPage = await cachedReader.read(
       { keyParts: buildGiftCacheKeyParts(input), tags: [giftsTag(), categoriesTag()] },
       async () => {
@@ -36,6 +36,8 @@ export function makeListVisibleGiftsPage({ giftRepository, cachedReader, getGift
           categoryId,
           sort,
           band,
+          minPriceCents,
+          maxPriceCents,
           onlyVisible: true,
         });
         return { items: items.map(toPublicGift), total };

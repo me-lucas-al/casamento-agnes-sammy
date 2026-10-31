@@ -12,13 +12,16 @@ export type GiftFormValues = {
   minAmount: string;
   isVisible: boolean;
   sortOrder: string;
+  productUrl: string;
+  externalImageUrl: string;
+  priceCheckedAt: string;
 };
 
 export type GiftPayloadResult =
   | { ok: true; payload: Record<string, unknown> }
   | { ok: false; error: string };
 
-function formatCentsForInput(cents: number | null): string {
+export function formatCentsForInput(cents: number | null): string {
   if (cents === null) return "";
   return (cents / 100).toFixed(2).replace(".", ",");
 }
@@ -35,6 +38,9 @@ export function emptyGiftFormValues(categoryId: string): GiftFormValues {
     minAmount: "",
     isVisible: true,
     sortOrder: "0",
+    productUrl: "",
+    externalImageUrl: "",
+    priceCheckedAt: "",
   };
 }
 
@@ -50,6 +56,9 @@ export function giftToFormValues(gift: Gift): GiftFormValues {
     minAmount: formatCentsForInput(gift.minAmountCents),
     isVisible: gift.isVisible,
     sortOrder: String(gift.sortOrder),
+    productUrl: gift.productUrl ?? "",
+    externalImageUrl: gift.externalImageUrl ?? "",
+    priceCheckedAt: gift.priceCheckedAt ?? "",
   };
 }
 
@@ -75,6 +84,9 @@ export function buildGiftPayload(values: GiftFormValues, image: GiftImage | null
       isVisible: values.isVisible,
       sortOrder: Number(values.sortOrder) || 0,
       image,
+      productUrl: values.productUrl.trim() || null,
+      priceCheckedAt: values.productUrl.trim() ? values.priceCheckedAt || null : null,
+      ...(image ? {} : { externalImageUrl: values.externalImageUrl.trim() || null }),
     },
   };
 }

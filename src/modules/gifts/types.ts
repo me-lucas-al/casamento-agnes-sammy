@@ -25,6 +25,10 @@ export type GiftInput = {
   isVisible: boolean;
   sortOrder: number;
   image?: GiftImage | null;
+  productUrl?: string | null;
+  externalImageUrl?: string | null;
+  storeName?: string | null;
+  priceCheckedAt?: string | null;
 };
 
 export type GiftDraft = {
@@ -40,6 +44,10 @@ export type GiftDraft = {
   sortOrder: number;
   imageUrl: string | null;
   imagePublicId: string | null;
+  productUrl: string | null;
+  externalImageUrl: string | null;
+  storeName: string | null;
+  priceCheckedAt: string | null;
 };
 
 export type CategoryInput = {
@@ -51,12 +59,11 @@ export type GiftWithCategory = Gift & { categoryName: string };
 
 export type PublicGift = {
   id: string;
-  categoryId: string;
-  categoryName: string;
-  kind: GiftKind;
   name: string;
   description: string;
   imageUrl: string | null;
+  productUrl: string | null;
+  storeName: string | null;
   priceCents: number;
   mode: GiftMode;
   totalQuotas: number | null;

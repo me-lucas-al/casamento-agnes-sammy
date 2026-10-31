@@ -10,6 +10,8 @@ export type GiftListQuery = {
   categoryId?: string;
   sort: GiftSortOption;
   band?: PriceBand;
+  minPriceCents?: number;
+  maxPriceCents?: number;
   onlyVisible: boolean;
 };
 

@@ -6,7 +6,7 @@ import { GiftCategoryNotFoundError, GiftNotFoundError, GiftPricingLockedError } 
 import { assertGiftImageOwnership } from "@/modules/gifts/lib/images/assert-gift-image-ownership";
 import { rejectDuplicateGiftName } from "@/modules/gifts/lib/catalog/reject-duplicate-name";
 import { rejectDuplicateGiftImage } from "@/modules/gifts/lib/images/reject-duplicate-gift-image";
-import { buildGiftDraft, currentImageOf } from "@/modules/gifts/lib/drafts/gift-draft";
+import { buildGiftDraft } from "@/modules/gifts/lib/drafts/gift-draft";
 import { GIFT_MANAGER_ROLES } from "@/modules/gifts/lib/roles/gift-roles";
 import type { CategoryRepository } from "@/modules/gifts/repositories/contracts/category-repository";
 import type { GiftRepository } from "@/modules/gifts/repositories/contracts/gift-repository";
@@ -34,7 +34,7 @@ export function makeUpdateGift({ giftRepository, categoryRepository, cloudinaryC
     requireRole(actor, GIFT_MANAGER_ROLES);
     const existingGift = await giftRepository.findById(giftId);
     if (!existingGift) throw new GiftNotFoundError();
-    const draft = buildGiftDraft(input, currentImageOf(existingGift));
+    const draft = buildGiftDraft(input, existingGift);
     const category = await categoryRepository.findById(draft.categoryId);
     if (!category) throw new GiftCategoryNotFoundError();
     if (input.image && input.image.publicId !== existingGift.imagePublicId) {

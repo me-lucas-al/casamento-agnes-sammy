@@ -1,4 +1,4 @@
-import { and, desc, eq, inArray, lte } from "drizzle-orm";
+import { and, desc, eq, inArray, lte, sql } from "drizzle-orm";
 import { giftContributions, gifts } from "@/shared/db/schema";
 import type { Database } from "@/shared/db/types";
 import { queryGiftCommitment } from "./commitment-query";
@@ -54,7 +54,7 @@ export function createDrizzleContributionRepository(database: Database): Contrib
     },
     async listByGuest(guestId) {
       const rows = await database
-        .select({ contribution: giftContributions, giftName: gifts.name, giftImageUrl: gifts.imageUrl })
+        .select({ contribution: giftContributions, giftName: gifts.name, giftImageUrl: sql<string | null>`coalesce(${gifts.imageUrl}, ${gifts.externalImageUrl})` })
         .from(giftContributions)
         .innerJoin(gifts, eq(gifts.id, giftContributions.giftId))
         .where(eq(giftContributions.guestId, guestId))

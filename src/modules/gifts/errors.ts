@@ -67,6 +67,12 @@ export class InvalidGiftImageError extends Error {
   }
 }
 
+export class InvalidGiftProductLinkError extends Error {
+  constructor() {
+    super("Gift product link or external image is not allowed");
+  }
+}
+
 const IMAGE_REJECTION_MESSAGES: Record<ImageRejectionReason, string> = {
   type: "Use uma imagem JPG, PNG ou WebP.",
   size: "A imagem deve ter no máximo 8 MB.",
@@ -96,6 +102,7 @@ export function describeGiftError(error: unknown): string {
   }
   if (error instanceof InvalidGiftConfigurationError) return error.userMessage;
   if (error instanceof InvalidGiftImageError) return "Imagem inválida. Envie a imagem novamente.";
+  if (error instanceof InvalidGiftProductLinkError) return "Link do produto ou da foto não permitido. Use uma loja conhecida com https.";
   if (error instanceof InvalidImageUploadError) return describeImageRejection(error.reason);
   return describeAuthError(error) ?? "Não foi possível concluir a operação.";
 }

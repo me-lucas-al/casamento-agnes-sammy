@@ -14,7 +14,17 @@ describe("atomic gift pricing lock", () => {
   const now = new Date("2026-11-01T12:00:00.000Z");
 
   function draftWithPrice(priceCents: number, categoryId: string): GiftDraft {
-    return { ...buildGiftInput(categoryId, { priceCents }), totalQuotas: null, minAmountCents: null, imageUrl: null, imagePublicId: null };
+    return {
+      ...buildGiftInput(categoryId, { priceCents }),
+      totalQuotas: null,
+      minAmountCents: null,
+      imageUrl: null,
+      imagePublicId: null,
+      productUrl: null,
+      externalImageUrl: null,
+      storeName: null,
+      priceCheckedAt: null,
+    };
   }
 
   it("reports not_found, pricing_locked and updated from one locked transaction", async () => {

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { createDrizzleUserRepository } from "@/modules/users/repositories/drizzle-user-repository";
+import { createDrizzleUserRepository } from "@/modules/users/repositories/drizzle/drizzle-user-repository";
 import { seedAdmin, seedUser } from "@/tests/helpers/seeds/seed-user";
 import { useTestDatabase } from "@/tests/helpers/use-test-database";
 

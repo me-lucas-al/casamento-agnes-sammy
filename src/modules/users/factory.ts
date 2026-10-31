@@ -1,6 +1,6 @@
 import type { Database } from "@/shared/db/types";
 import { getDatabase } from "@/shared/db/client";
-import { createDrizzleUserRepository } from "./repositories/drizzle-user-repository";
+import { createDrizzleUserRepository } from "./repositories/drizzle/drizzle-user-repository";
 import { makeCreateUser } from "./use-cases/create-user";
 import { makeEnsureAdminUser } from "./use-cases/ensure-admin-user";
 import { makeListUsersPage } from "./use-cases/list-users-page";

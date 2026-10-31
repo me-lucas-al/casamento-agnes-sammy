@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import type { TourStepId } from "../../lib/build-tour-steps";
+import type { TourStepId } from "@/modules/tour/lib/build-tour-steps";
 import { EventStep } from "./event-step";
 import { FinalStep } from "./final-step";
 import { GiftsStep } from "./gifts-step";

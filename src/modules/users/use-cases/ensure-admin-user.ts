@@ -1,4 +1,4 @@
-import type { UserRepository } from "../repositories/user-repository";
+import type { UserRepository } from "../repositories/contracts/user-repository";
 import type { User } from "../types";
 
 type Dependencies = { userRepository: UserRepository };

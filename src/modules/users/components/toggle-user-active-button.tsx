@@ -5,7 +5,7 @@ import { useState, useTransition } from "react";
 import { Button } from "@/shared/ui/button";
 import { ConfirmDialog } from "@/shared/ui/confirm-dialog";
 import { useConfirmDialog } from "@/shared/ui/use-confirm-dialog";
-import { setUserActiveAction } from "../controllers/set-user-active.actions";
+import { setUserActiveAction } from "../controllers/actions/set-user-active.actions";
 
 type ToggleUserActiveButtonProps = {
   userId: string;

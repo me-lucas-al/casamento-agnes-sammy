@@ -4,7 +4,7 @@ import { getSessionUser } from "@/modules/auth/controllers/get-session-user";
 import { CreateUserForm } from "@/modules/users/components/create-user-form";
 import { UsersList } from "@/modules/users/components/users-list";
 import { UsersToolbar } from "@/modules/users/components/users-toolbar";
-import { listUsersPageQuery } from "@/modules/users/controllers/users.queries";
+import { listUsersPageQuery } from "@/modules/users/controllers/queries/users.queries";
 import { USER_STATUSES } from "@/modules/users/types";
 import { enumParam, textParam, type SearchParams } from "@/shared/lib/url-params";
 import { EmptyState } from "@/shared/ui/empty-state";

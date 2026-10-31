@@ -1,7 +1,7 @@
 import { requireRole } from "@/modules/auth/authorization";
 import type { SessionUser } from "@/modules/auth/types";
 import { CannotDeactivateSelfError, LastAdminError, UserNotFoundError } from "../errors";
-import type { UserRepository } from "../repositories/user-repository";
+import type { UserRepository } from "../repositories/contracts/user-repository";
 import type { User } from "../types";
 
 type Dependencies = { userRepository: UserRepository };

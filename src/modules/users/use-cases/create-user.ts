@@ -1,7 +1,7 @@
 import { requireRole } from "@/modules/auth/authorization";
 import type { SessionUser } from "@/modules/auth/types";
 import { EmailAlreadyRegisteredError } from "../errors";
-import type { UserRepository } from "../repositories/user-repository";
+import type { UserRepository } from "../repositories/contracts/user-repository";
 import type { NewUser, User } from "../types";
 
 type Dependencies = { userRepository: UserRepository };

@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useState, useTransition, type FormEvent } from "react";
 import { Button } from "@/shared/ui/button";
-import { createUserAction } from "../controllers/create-user.actions";
+import { createUserAction } from "../controllers/actions/create-user.actions";
 
 const inputClassName = "h-9 w-full rounded-lg border bg-background px-3 text-sm";
 

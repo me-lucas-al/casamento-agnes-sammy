@@ -1,4 +1,4 @@
-import type { NewUser, User, UserListPage, UserListQuery } from "../types";
+import type { NewUser, User, UserListPage, UserListQuery } from "@/modules/users/types";
 
 export interface UserRepository {
   findById(userId: string): Promise<User | null>;

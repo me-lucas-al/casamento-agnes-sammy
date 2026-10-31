@@ -84,6 +84,7 @@
 - [x] Opção para o convidado escolher se a contribuição/recado do Pix será anônima ou não
 - [x] Cadastro/edição pelo convidado ao entrar com código: nome, telefone, e-mail e familiares
 - [x] Travar limite de 8 MB de upload também no Cloudinary (upload preset)
+- [x] Travar modo, valor e cotas de presente que já tem contribuição ativa
 - [ ] Primeiro disparo real do workflow de migration em produção — manual, ver checklist em `docs/ci-cd.md`
 - [ ] Deploy em produção (Vercel + Neon) e domínio — manual, ver checklist em `docs/ci-cd.md`
 - [x] Build rodando em `localhost:3000` — build ok e servidor validado (porta 3100, pois a 3000 estava ocupada)
@@ -91,8 +92,8 @@
 ## Dados pendentes do casal (via painel / `.env`)
 - [x] Chave Pix, tipo, nome do recebedor e cidade — *preenchido pelos noivos no painel (via passo a passo)*
 - [x] Texto "nossa história" e fotos do casal — *preenchido pelos noivos no painel (via passo a passo)*
-- [x] E-mails Google do admin e dos noivos, e domínio do site — *configurados via painel/ambiente*
-- [x] Credenciais: Neon, Cloudinary, Google OAuth, projeto Vercel, secret `DATABASE_URL` no GitHub — *via `.env` e GitHub Secrets*
+- [ ] E-mails Google do admin e dos noivos, e domínio do site — falta cadastrar no banco (`ADMIN_EMAIL` + seed) e configurar o domínio
+- [ ] Credenciais: Neon, Cloudinary, Google OAuth, projeto Vercel, secret `DATABASE_URL` no GitHub — ainda não configuradas (ver `docs/ci-cd.md`)
 - [x] Categorias iniciais de presentes — *definidas (6 categorias padrão)*
 
 ## Dúvidas para responder (Respondidas)

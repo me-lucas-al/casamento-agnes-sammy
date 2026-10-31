@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
 import { Button } from "@/shared/ui/button";
 import { cancelOwnReservationAction } from "../controllers/reserve-gift.actions";
@@ -11,6 +11,7 @@ type CancelReservationButtonProps = {
 
 export function CancelReservationButton({ contributionId }: CancelReservationButtonProps) {
   const router = useRouter();
+  const pathname = usePathname();
   const [isPending, startTransition] = useTransition();
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
@@ -18,7 +19,7 @@ export function CancelReservationButton({ contributionId }: CancelReservationBut
     startTransition(async () => {
       const result = await cancelOwnReservationAction({ contributionId });
       if (!result.ok) return setErrorMessage(result.error);
-      router.refresh();
+      router.replace(pathname);
     });
   }
 

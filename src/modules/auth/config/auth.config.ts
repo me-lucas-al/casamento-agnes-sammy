@@ -6,7 +6,7 @@ const SESSION_MAX_AGE_SECONDS = 7 * 24 * 60 * 60;
 export const authConfig = {
   providers: [],
   session: { strategy: "jwt", maxAge: SESSION_MAX_AGE_SECONDS },
-  pages: { signIn: "/entrar" },
+  pages: { signIn: "/" },
   callbacks: {
     jwt({ token, user }) {
       if (!user) return token;

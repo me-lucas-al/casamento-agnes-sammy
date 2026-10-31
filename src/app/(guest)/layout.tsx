@@ -10,7 +10,7 @@ type GuestLayoutProps = { children: ReactNode };
 
 export default async function GuestLayout({ children }: GuestLayoutProps) {
   const user = await getSessionUser();
-  if (!user) redirect("/entrar");
+  if (!user) redirect("/");
   const firstAccessProfile = await getFirstAccessProfileQuery();
   return (
     <AppShell title="Agnes & Sammy" homeHref="/inicio" items={GUEST_NAV_ITEMS} isDecorated>

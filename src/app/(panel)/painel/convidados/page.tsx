@@ -18,7 +18,7 @@ type ConvidadosPageProps = {
 
 export default async function ConvidadosPage({ searchParams }: ConvidadosPageProps) {
   const actor = await getSessionUser();
-  if (!hasRole(actor, ["admin", "couple"])) redirect("/entrar");
+  if (!hasRole(actor, ["admin", "couple"])) redirect("/?aba=noivos");
   const params = await searchParams;
   const pageResult = await listGuestsPageQuery(params);
 

@@ -15,6 +15,8 @@ const GUEST_AREA_PREFIXES = [
 ];
 const PANEL_PREFIX = "/painel";
 const ADMIN_ONLY_PREFIX = "/painel/usuarios";
+const LOGIN_ROUTE = "/";
+const COUPLE_LOGIN_ROUTE = "/?aba=noivos";
 const ALLOW: RouteDecision = { type: "allow" };
 
 function isUnder(pathname: string, prefix: string): boolean {
@@ -26,7 +28,7 @@ function redirectTo(to: string): RouteDecision {
 }
 
 function resolvePanelAccess(pathname: string, role: Role | undefined): RouteDecision {
-  if (!role) return redirectTo("/admin/entrar");
+  if (!role) return redirectTo(COUPLE_LOGIN_ROUTE);
   if (role === "guest") return redirectTo("/inicio");
   if (isUnder(pathname, ADMIN_ONLY_PREFIX) && role !== "admin") return redirectTo(PANEL_PREFIX);
   return ALLOW;
@@ -35,6 +37,10 @@ function resolvePanelAccess(pathname: string, role: Role | undefined): RouteDeci
 export function resolveRouteAccess(pathname: string, role: Role | undefined): RouteDecision {
   if (isUnder(pathname, PANEL_PREFIX)) return resolvePanelAccess(pathname, role);
   const isGuestArea = GUEST_AREA_PREFIXES.some((prefix) => isUnder(pathname, prefix));
-  if (isGuestArea && !role) return redirectTo("/entrar");
+  if (isGuestArea && !role) return redirectTo(LOGIN_ROUTE);
   return ALLOW;
+}
+
+export function resolveHomeRoute(role: Role): string {
+  return role === "guest" ? "/inicio" : PANEL_PREFIX;
 }

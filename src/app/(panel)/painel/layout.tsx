@@ -11,7 +11,7 @@ type PanelLayoutProps = { children: ReactNode };
 
 export default async function PanelLayout({ children }: PanelLayoutProps) {
   const user = await getSessionUser();
-  if (!user) redirect("/admin/entrar");
+  if (!user) redirect("/?aba=noivos");
   if (user.role === "guest") redirect("/presentes");
   const shouldAutoOpenTour = await shouldAutoOpenTourQuery();
   return (

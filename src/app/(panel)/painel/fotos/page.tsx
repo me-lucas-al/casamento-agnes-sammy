@@ -16,7 +16,7 @@ type FotosPageProps = {
 
 export default async function FotosPage({ searchParams }: FotosPageProps) {
   const actor = await getSessionUser();
-  if (!hasRole(actor, ["admin", "couple"])) redirect("/entrar");
+  if (!hasRole(actor, ["admin", "couple"])) redirect("/?aba=noivos");
   const params = await searchParams;
   const pageResult = await listPhotosPanelQuery(params);
 

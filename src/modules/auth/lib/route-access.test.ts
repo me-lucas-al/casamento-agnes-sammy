@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { resolveRouteAccess } from "./route-access";
+import { resolveHomeRoute, resolveRouteAccess } from "./route-access";
 
 const allow = { type: "allow" };
 const redirect = (to: string) => ({ type: "redirect", to });
@@ -10,8 +10,8 @@ describe("resolveRouteAccess", () => {
   });
 
   it("sends anonymous visitors of the guest area to the code login", () => {
-    expect(resolveRouteAccess("/presentes", undefined)).toEqual(redirect("/entrar"));
-    expect(resolveRouteAccess("/presentes/123", undefined)).toEqual(redirect("/entrar"));
+    expect(resolveRouteAccess("/presentes", undefined)).toEqual(redirect("/"));
+    expect(resolveRouteAccess("/presentes/123", undefined)).toEqual(redirect("/"));
   });
 
   it("lets every role into the guest area", () => {
@@ -21,7 +21,7 @@ describe("resolveRouteAccess", () => {
   });
 
   it("sends anonymous visitors of the panel to the admin login", () => {
-    expect(resolveRouteAccess("/painel/convidados", undefined)).toEqual(redirect("/admin/entrar"));
+    expect(resolveRouteAccess("/painel/convidados", undefined)).toEqual(redirect("/?aba=noivos"));
   });
 
   it("keeps guests out of the panel", () => {
@@ -35,5 +35,13 @@ describe("resolveRouteAccess", () => {
 
   it("lets admin into everything", () => {
     expect(resolveRouteAccess("/painel/usuarios", "admin")).toEqual(allow);
+  });
+});
+
+describe("resolveHomeRoute", () => {
+  it("sends each role to its own area", () => {
+    expect(resolveHomeRoute("guest")).toBe("/inicio");
+    expect(resolveHomeRoute("couple")).toBe("/painel");
+    expect(resolveHomeRoute("admin")).toBe("/painel");
   });
 });

@@ -1,3 +1,4 @@
+import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { getSessionUser } from "@/modules/auth/controllers/get-session-user";
 import { getDashboardTotalsQuery, getOnboardingStatusQuery } from "@/modules/dashboard/controllers/dashboard.queries";
@@ -28,9 +29,10 @@ export default async function PanelHomePage() {
             <li key={item.href}>
               <Link
                 href={item.href}
-                className="flex min-h-11 items-center rounded-xl border border-gold/50 bg-card px-4 py-3 text-lg transition-colors hover:bg-blush"
+                className="flex min-h-11 items-center justify-between gap-2 rounded-xl border border-gold/50 bg-card px-4 py-3 text-lg transition-colors hover:bg-blush"
               >
                 {item.label}
+                <ChevronRight aria-hidden className="size-5 text-rose" />
               </Link>
             </li>
           ))}

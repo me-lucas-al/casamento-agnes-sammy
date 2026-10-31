@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { resolveHomeRoute, resolveRouteAccess } from "./route-access";
+import { resolveHomeRoute, resolveRedirectDestination, resolveRouteAccess } from "./route-access";
 
 const allow = { type: "allow" };
 const redirect = (to: string) => ({ type: "redirect", to });
@@ -43,5 +43,23 @@ describe("resolveHomeRoute", () => {
     expect(resolveHomeRoute("guest")).toBe("/inicio");
     expect(resolveHomeRoute("couple")).toBe("/painel");
     expect(resolveHomeRoute("admin")).toBe("/painel");
+  });
+});
+
+describe("resolveRedirectDestination", () => {
+  it("sends a guest leaving the panel to the same place as the home route", () => {
+    expect(resolveRedirectDestination("/painel", "guest")).toBe(resolveHomeRoute("guest"));
+    expect(resolveRedirectDestination("/painel", "guest")).toBe("/inicio");
+  });
+
+  it("sends anonymous visitors to the matching login", () => {
+    expect(resolveRedirectDestination("/painel", undefined)).toBe("/?aba=noivos");
+    expect(resolveRedirectDestination("/inicio", undefined)).toBe("/");
+  });
+
+  it("does not redirect allowed roles", () => {
+    expect(resolveRedirectDestination("/painel", "couple")).toBeNull();
+    expect(resolveRedirectDestination("/inicio", "admin")).toBeNull();
+    expect(resolveRedirectDestination("/inicio", "guest")).toBeNull();
   });
 });

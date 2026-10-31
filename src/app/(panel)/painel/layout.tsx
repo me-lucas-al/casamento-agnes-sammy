@@ -1,6 +1,5 @@
-import { redirect } from "next/navigation";
 import type { ReactNode } from "react";
-import { getSessionUser } from "@/modules/auth/controllers/get-session-user";
+import { requireRouteAccess } from "@/modules/auth/controllers/require-route-access";
 import { ReviewTourButton } from "@/modules/tour/components/review-tour-button";
 import { TourProvider } from "@/modules/tour/components/tour-provider";
 import { shouldAutoOpenTourQuery } from "@/modules/tour/controllers/tour.queries";
@@ -10,9 +9,7 @@ import { panelNavItemsFor } from "@/shared/ui/components/nav-items";
 type PanelLayoutProps = { children: ReactNode };
 
 export default async function PanelLayout({ children }: PanelLayoutProps) {
-  const user = await getSessionUser();
-  if (!user) redirect("/?aba=noivos");
-  if (user.role === "guest") redirect("/presentes");
+  const user = await requireRouteAccess("/painel");
   const shouldAutoOpenTour = await shouldAutoOpenTourQuery();
   return (
     <TourProvider role={user.role} shouldAutoOpen={shouldAutoOpenTour}>

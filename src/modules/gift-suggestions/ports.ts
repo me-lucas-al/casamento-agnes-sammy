@@ -6,9 +6,11 @@ export type SuggestionCategory = {
   name: string;
 };
 
+export type GiftCreationOutcome = "created" | "duplicate";
+
 export interface SuggestionGiftGateway {
   listGiftNames(): Promise<string[]>;
   listCategories(): Promise<SuggestionCategory[]>;
   createCategory(name: string): Promise<SuggestionCategory>;
-  createGift(actor: SessionUser, input: GiftInput): Promise<void>;
+  createGift(actor: SessionUser, input: GiftInput): Promise<GiftCreationOutcome>;
 }

@@ -26,7 +26,7 @@ describe("addSuggestedGifts", () => {
 
     const categories = await giftModule.categoryRepository.list();
     const { items } = await listAllGifts(giftModule);
-    expect(result).toEqual({ createdCount: 1, skippedIds: [] });
+    expect(result).toEqual({ createdCount: 1, skippedIds: [], failedIds: [] });
     expect(categories).toHaveLength(1);
     expect(items[0]).toMatchObject({ name: "Air fryer", categoryId: category.id, isVisible: true });
   });
@@ -51,7 +51,7 @@ describe("addSuggestedGifts", () => {
 
     const result = await suggestionModule.addSuggestedGifts(couple, ids);
 
-    expect(result).toEqual({ createdCount: 1, skippedIds: ids.slice(0, 2) });
+    expect(result).toEqual({ createdCount: 1, skippedIds: ids.slice(0, 2), failedIds: [] });
     expect((await listAllGifts(giftModule)).total).toBe(3);
   });
 
@@ -62,8 +62,8 @@ describe("addSuggestedGifts", () => {
     const first = await suggestionModule.addSuggestedGifts(couple, [airFryerId, airFryerId, "nao-existe"]);
     const second = await suggestionModule.addSuggestedGifts(couple, [airFryerId]);
 
-    expect(first).toEqual({ createdCount: 1, skippedIds: ["nao-existe"] });
-    expect(second).toEqual({ createdCount: 0, skippedIds: [airFryerId] });
+    expect(first).toEqual({ createdCount: 1, skippedIds: ["nao-existe"], failedIds: [] });
+    expect(second).toEqual({ createdCount: 0, skippedIds: [airFryerId], failedIds: [] });
     expect((await listAllGifts(giftModule)).total).toBe(1);
   });
 

@@ -68,6 +68,7 @@
 - [x] Início do convidado (contagem regressiva), convite pessoal, página do casamento
 - [x] Perfil (convidado e noivos), 404, erro e carregamento
 - [x] Modal de confirmação no app (sem window.confirm/alert/prompt, regra ESLint) em todas as ações destrutivas
+
 ## Regras e segurança
 - [x] Permissões: só admin/noivos editam e removem; convidado só o próprio carrinho e RSVP
 - [x] Revisão de código completa e correções aplicadas

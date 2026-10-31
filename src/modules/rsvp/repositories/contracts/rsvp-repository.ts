@@ -4,7 +4,7 @@ import type {
   RsvpListQuery,
   RsvpSubmission,
   RsvpTotals,
-} from "../types";
+} from "@/modules/rsvp/types";
 
 export interface RsvpRepository {
   findGuestRsvp(guestId: string): Promise<GuestRsvp | null>;

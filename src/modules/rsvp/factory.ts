@@ -1,6 +1,6 @@
 import { getDatabase } from "@/shared/db/client";
 import type { Database } from "@/shared/db/types";
-import { createDrizzleRsvpRepository } from "./repositories/drizzle-rsvp-repository";
+import { createDrizzleRsvpRepository } from "./repositories/drizzle/drizzle-rsvp-repository";
 import { makeDeleteRsvp } from "./use-cases/delete-rsvp";
 import { makeGetGuestRsvp } from "./use-cases/get-guest-rsvp";
 import { makeGetRsvpTotals } from "./use-cases/get-rsvp-totals";

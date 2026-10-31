@@ -2,7 +2,7 @@ import { eq } from "drizzle-orm";
 import { eventSettings, guests, rsvpCompanions, rsvps } from "@/shared/db/schema";
 import type { Database } from "@/shared/db/types";
 import { calculateRsvpTotals, listRsvpPage } from "./drizzle-rsvp-list";
-import type { RsvpRepository } from "./rsvp-repository";
+import type { RsvpRepository } from "../contracts/rsvp-repository";
 
 export function createDrizzleRsvpRepository(database: Database): RsvpRepository {
   return {

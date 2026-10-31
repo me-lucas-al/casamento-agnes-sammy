@@ -1,9 +1,9 @@
 import { getSessionUser } from "@/modules/auth/controllers/get-session-user";
 import { parsePageParams } from "@/shared/lib/pagination";
 import { enumParam, textParam, type SearchParams } from "@/shared/lib/url-params";
-import { getRsvpModule } from "../factory";
-import { requireGuestId } from "../lib/require-guest-id";
-import { RSVP_STATUSES } from "../types";
+import { getRsvpModule } from "@/modules/rsvp/factory";
+import { requireGuestId } from "@/modules/rsvp/lib/require-guest-id";
+import { RSVP_STATUSES } from "@/modules/rsvp/types";
 import { guardedQuery } from "@/shared/lib/guarded-query";
 
 export async function getMyRsvpQuery() {

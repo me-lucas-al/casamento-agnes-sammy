@@ -1,4 +1,4 @@
-import { calculateRsvpTotals } from "@/modules/rsvp/repositories/drizzle-rsvp-list";
+import { calculateRsvpTotals } from "@/modules/rsvp/repositories/drizzle/drizzle-rsvp-list";
 import type { Database } from "@/shared/db/types";
 import { readContributionTotals } from "../drizzle/contribution-totals-query";
 import type { DashboardRepository } from "./dashboard-repository";

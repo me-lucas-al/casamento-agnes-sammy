@@ -3,7 +3,7 @@ import { ForbiddenError } from "@/modules/auth/errors";
 import type { SessionUser } from "@/modules/auth/types";
 import { RsvpDeadlinePassedError, RsvpGuestNotFoundError } from "../errors";
 import { assertCompanionsFitSeats, normalizeCompanions } from "../lib/validate-companions";
-import type { RsvpRepository } from "../repositories/rsvp-repository";
+import type { RsvpRepository } from "../repositories/contracts/rsvp-repository";
 import type { Companion, RsvpAnswer } from "../types";
 
 type Dependencies = { rsvpRepository: RsvpRepository; now: () => Date };

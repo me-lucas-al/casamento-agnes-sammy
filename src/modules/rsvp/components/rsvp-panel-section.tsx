@@ -2,7 +2,7 @@ import { EmptyState } from "@/shared/ui/empty-state";
 import { PaginationControls } from "@/shared/ui/pagination-controls";
 import { StatusFilterLinks } from "@/shared/ui/status-filter-links";
 import { enumParam, type SearchParams } from "@/shared/lib/url-params";
-import { listRsvpsPageQuery } from "../controllers/rsvp.queries";
+import { listRsvpsPageQuery } from "../controllers/queries/rsvp.queries";
 import { RSVP_STATUSES } from "../types";
 import { RsvpList } from "./rsvp-list";
 import { RsvpTotalsSection } from "./rsvp-totals-section";

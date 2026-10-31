@@ -2,7 +2,7 @@ import { requireRole } from "@/modules/auth/authorization";
 import { ForbiddenError } from "@/modules/auth/errors";
 import type { SessionUser } from "@/modules/auth/types";
 import { RsvpGuestNotFoundError } from "../errors";
-import type { RsvpRepository } from "../repositories/rsvp-repository";
+import type { RsvpRepository } from "../repositories/contracts/rsvp-repository";
 import type { GuestRsvp } from "../types";
 
 type Dependencies = { rsvpRepository: RsvpRepository };

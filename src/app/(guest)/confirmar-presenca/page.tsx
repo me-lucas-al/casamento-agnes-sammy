@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
 import { getSessionUser } from "@/modules/auth/controllers/get-session-user";
-import { getMyRsvpQuery } from "@/modules/rsvp/controllers/rsvp.queries";
+import { getMyRsvpQuery } from "@/modules/rsvp/controllers/queries/rsvp.queries";
 import { RsvpForm } from "@/modules/rsvp/components/rsvp-form";
 import { PageHeading } from "@/shared/ui/components/page-heading";
 

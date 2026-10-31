@@ -1,4 +1,4 @@
-import { getRsvpTotalsQuery } from "../controllers/rsvp.queries";
+import { getRsvpTotalsQuery } from "../controllers/queries/rsvp.queries";
 
 export async function RsvpTotalsSection() {
   const totals = await getRsvpTotalsQuery();

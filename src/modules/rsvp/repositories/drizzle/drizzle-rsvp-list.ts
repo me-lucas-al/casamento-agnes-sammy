@@ -2,7 +2,7 @@ import { and, count, desc, eq, ilike, isNull, or, sql } from "drizzle-orm";
 import { guests, rsvpCompanions, rsvps } from "@/shared/db/schema";
 import type { Database } from "@/shared/db/types";
 import { containsPattern } from "@/shared/lib/sql-like";
-import type { RsvpListPage, RsvpListQuery, RsvpStatus, RsvpTotals } from "../types";
+import type { RsvpListPage, RsvpListQuery, RsvpStatus, RsvpTotals } from "@/modules/rsvp/types";
 
 function buildStatusFilter(status: RsvpStatus | undefined) {
   if (!status) return undefined;

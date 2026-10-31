@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { ForbiddenError, UnauthenticatedError } from "@/modules/auth/errors";
 import { asUser } from "@/tests/helpers/fake-session";
-import { requireGuestId } from "./require-guest-id";
+import { requireGuestId } from "../require-guest-id";
 
 describe("requireGuestId", () => {
   it("returns the guest id of a guest session", () => {

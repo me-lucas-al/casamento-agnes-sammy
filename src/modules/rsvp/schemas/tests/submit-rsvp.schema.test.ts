@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { guestIdSchema, submitRsvpForGuestSchema } from "./submit-rsvp.schema";
+import { guestIdSchema, submitRsvpForGuestSchema } from "../submit-rsvp.schema";
 
 describe("guest id validation", () => {
   it("rejects empty and malformed ids", () => {

@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { CompanionLimitExceededError } from "../errors";
-import { assertCompanionsFitSeats, normalizeCompanions } from "./validate-companions";
+import { CompanionLimitExceededError } from "@/modules/rsvp/errors";
+import { assertCompanionsFitSeats, normalizeCompanions } from "../validate-companions";
 
 describe("normalizeCompanions", () => {
   it("trims names and notes and drops blank names", () => {

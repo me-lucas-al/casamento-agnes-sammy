@@ -1,15 +1,15 @@
 "use server";
 
 import { getSessionUser } from "@/modules/auth/controllers/get-session-user";
-import { invalidateRsvpCache } from "../lib/invalidate-rsvp-cache";
+import { invalidateRsvpCache } from "@/modules/rsvp/lib/invalidate-rsvp-cache";
 import { nextCacheInvalidator } from "@/shared/lib/cache/invalidate";
 import { safeAction } from "@/shared/lib/safe-action";
 import { invalidInput } from "@/shared/lib/validation-failure";
 import { success, type ActionResult } from "@/shared/lib/result";
-import { describeRsvpError } from "../errors";
-import { getRsvpModule } from "../factory";
-import { requireGuestId } from "../lib/require-guest-id";
-import { guestIdSchema, submitRsvpForGuestSchema, submitRsvpSchema } from "../schemas/submit-rsvp.schema";
+import { describeRsvpError } from "@/modules/rsvp/errors";
+import { getRsvpModule } from "@/modules/rsvp/factory";
+import { requireGuestId } from "@/modules/rsvp/lib/require-guest-id";
+import { guestIdSchema, submitRsvpForGuestSchema, submitRsvpSchema } from "@/modules/rsvp/schemas/submit-rsvp.schema";
 
 export async function submitRsvpAction(input: unknown): Promise<ActionResult> {
   const parsed = submitRsvpSchema.safeParse(input);

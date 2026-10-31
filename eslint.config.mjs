@@ -16,6 +16,22 @@ const eslintConfig = defineConfig([
     rules: {
       "max-lines": ["error", { max: 150, skipBlankLines: false, skipComments: false }],
       "@typescript-eslint/no-explicit-any": "error",
+      "no-restricted-globals": [
+        "error",
+        { name: "confirm", message: "Use the in-app ConfirmDialog instead of native dialogs." },
+        { name: "alert", message: "Use the in-app ConfirmDialog instead of native dialogs." },
+        { name: "prompt", message: "Use the in-app ConfirmDialog instead of native dialogs." },
+      ],
+      "no-restricted-properties": [
+        "error",
+        ...["confirm", "alert", "prompt"].flatMap((property) =>
+          ["window", "globalThis"].map((object) => ({
+            object,
+            property,
+            message: "Use the in-app ConfirmDialog instead of native dialogs.",
+          })),
+        ),
+      ],
       "no-restricted-syntax": [
         "error",
         {

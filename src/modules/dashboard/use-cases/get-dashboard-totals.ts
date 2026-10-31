@@ -2,7 +2,7 @@ import { requireRole } from "@/modules/auth/authorization";
 import type { SessionUser } from "@/modules/auth/types";
 import { dashboardTag } from "@/shared/lib/cache/cache-tags";
 import type { CachedReader } from "@/shared/lib/cache/cached-read";
-import type { DashboardRepository } from "../repositories/dashboard-repository";
+import type { DashboardRepository } from "../repositories/contracts/dashboard-repository";
 import type { DashboardTotals } from "../types";
 
 type Dependencies = {

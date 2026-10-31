@@ -1,7 +1,7 @@
 import { and, count, eq, gt, or, sql } from "drizzle-orm";
 import { giftContributions } from "@/shared/db/schema";
 import type { Database } from "@/shared/db/types";
-import type { PendingPaymentTotals, ReservationTotals } from "../types";
+import type { PendingPaymentTotals, ReservationTotals } from "@/modules/dashboard/types";
 
 type ContributionTotals = { reservations: ReservationTotals; pendingPayments: PendingPaymentTotals };
 

@@ -1,4 +1,4 @@
-import type { DashboardTotals, OnboardingFacts } from "../types";
+import type { DashboardTotals, OnboardingFacts } from "@/modules/dashboard/types";
 
 export interface DashboardRepository {
   readTotals(now: Date): Promise<DashboardTotals>;

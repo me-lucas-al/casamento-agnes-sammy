@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import type { OnboardingFacts } from "../types";
-import { buildOnboardingStatus } from "./build-onboarding-steps";
+import type { OnboardingFacts } from "@/modules/dashboard/types";
+import { buildOnboardingStatus } from "../build-onboarding-steps";
 
 const nothingDone: OnboardingFacts = { hasPixData: false, hasStory: false, photoCount: 0, giftCount: 0 };
 

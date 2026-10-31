@@ -1,7 +1,7 @@
 import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { getSessionUser } from "@/modules/auth/controllers/get-session-user";
-import { getDashboardTotalsQuery, getOnboardingStatusQuery } from "@/modules/dashboard/controllers/dashboard.queries";
+import { getDashboardTotalsQuery, getOnboardingStatusQuery } from "@/modules/dashboard/controllers/queries/dashboard.queries";
 import { OnboardingCard } from "@/modules/dashboard/components/onboarding-card";
 import { DashboardTotalsGrid } from "@/modules/dashboard/components/dashboard-totals-grid";
 import { SuggestionsHomeCard } from "@/modules/gift-suggestions/components/suggestions-home-card";

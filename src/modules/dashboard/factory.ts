@@ -1,7 +1,7 @@
 import { getDatabase } from "@/shared/db/client";
 import type { Database } from "@/shared/db/types";
 import { nextCachedReader, type CachedReader } from "@/shared/lib/cache/cached-read";
-import { createDrizzleDashboardRepository } from "./repositories/drizzle-dashboard-repository";
+import { createDrizzleDashboardRepository } from "./repositories/contracts/drizzle-dashboard-repository";
 import { makeGetDashboardTotals } from "./use-cases/get-dashboard-totals";
 import { makeGetOnboardingStatus } from "./use-cases/get-onboarding-status";
 

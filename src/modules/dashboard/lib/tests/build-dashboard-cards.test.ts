@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import type { DashboardTotals } from "../types";
-import { buildDashboardCards } from "./build-dashboard-cards";
+import type { DashboardTotals } from "@/modules/dashboard/types";
+import { buildDashboardCards } from "../build-dashboard-cards";
 
 const totals: DashboardTotals = {
   reservations: { reserved: 2, confirmed: 1 },

@@ -1,7 +1,7 @@
 import { requireRole } from "@/modules/auth/authorization";
 import type { SessionUser } from "@/modules/auth/types";
 import { buildOnboardingStatus } from "../lib/build-onboarding-steps";
-import type { DashboardRepository } from "../repositories/dashboard-repository";
+import type { DashboardRepository } from "../repositories/contracts/dashboard-repository";
 import type { OnboardingStatus } from "../types";
 
 type Dependencies = { dashboardRepository: DashboardRepository };

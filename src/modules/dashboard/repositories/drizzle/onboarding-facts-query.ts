@@ -1,7 +1,7 @@
 import { count, eq, isNotNull } from "drizzle-orm";
 import { eventSettings, gifts, photos } from "@/shared/db/schema";
 import type { Database } from "@/shared/db/types";
-import type { OnboardingFacts } from "../types";
+import type { OnboardingFacts } from "@/modules/dashboard/types";
 
 function hasText(value: string | null | undefined): boolean {
   return Boolean(value && value.trim().length > 0);

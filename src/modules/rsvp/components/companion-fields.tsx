@@ -39,7 +39,7 @@ export function CompanionFields({ companions, maxCompanions, onChange }: Compani
             maxLength={200}
             onChange={(event) => updateCompanion(index, { dietaryNote: event.target.value })}
           />
-          <button type="button" className="self-end text-xs text-crimson" onClick={() => removeCompanion(index)}>
+          <button type="button" className="self-end text-sm text-crimson" onClick={() => removeCompanion(index)}>
             Remover
           </button>
         </div>

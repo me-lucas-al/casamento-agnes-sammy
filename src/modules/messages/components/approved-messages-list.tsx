@@ -7,7 +7,7 @@ export function ApprovedMessagesList({ messages }: { messages: PublicMessage[] }
       {messages.map(({ id, authorName, body, createdAt }) => (
         <li key={id} className="rounded-xl bg-blush/70 p-4 text-wine">
           <p className="whitespace-pre-line break-words">{body}</p>
-          <p className="mt-2 text-xs text-wine/70">
+          <p className="mt-2 text-sm text-wine/80">
             {authorName} · {formatDateInSaoPaulo(new Date(createdAt))}
           </p>
         </li>

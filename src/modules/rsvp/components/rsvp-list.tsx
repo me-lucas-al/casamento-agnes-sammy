@@ -15,11 +15,11 @@ export function RsvpList({ items }: { items: RsvpListItem[] }) {
         <li key={item.guestId} className="flex flex-wrap items-start justify-between gap-3 p-3">
           <div className="min-w-0">
             <p className="break-words text-wine">{item.guestName}</p>
-            <p className="text-xs text-wine/70">
+            <p className="text-sm text-wine/80">
               {item.companionsCount} de {Math.max(item.seats - 1, 0)} acompanhantes
               {item.respondedAt ? ` · ${formatDateTimeInSaoPaulo(item.respondedAt)}` : ""}
             </p>
-            <span className="mt-1 inline-block rounded-full bg-blush px-3 py-1 text-xs text-wine">
+            <span className="mt-1 inline-block rounded-full bg-blush px-3 py-1 text-sm text-wine">
               {statusLabels[item.status]}
             </span>
           </div>

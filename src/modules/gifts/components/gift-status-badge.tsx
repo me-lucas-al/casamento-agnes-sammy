@@ -10,7 +10,7 @@ const STATE_CLASS_NAMES: Record<AvailabilityState, string> = {
 
 export function GiftStatusBadge({ availability }: { availability: GiftAvailability }) {
   return (
-    <span className={cn("inline-block rounded-full px-3 py-1 text-xs font-medium", STATE_CLASS_NAMES[availability.state])}>
+    <span className={cn("inline-block rounded-full px-3 py-1 text-sm font-medium", STATE_CLASS_NAMES[availability.state])}>
       {describeAvailability(availability)}
     </span>
   );

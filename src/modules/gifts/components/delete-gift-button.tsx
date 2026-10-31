@@ -24,7 +24,7 @@ export function DeleteGiftButton({ giftId }: { giftId: string }) {
       <Button type="button" variant="destructive" size="sm" disabled={isDeleting} onClick={handleDelete}>
         Excluir
       </Button>
-      {errorMessage ? <p role="alert" className="text-xs text-crimson">{errorMessage}</p> : null}
+      {errorMessage ? <p role="alert" className="text-sm text-crimson">{errorMessage}</p> : null}
     </div>
   );
 }

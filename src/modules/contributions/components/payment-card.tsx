@@ -19,7 +19,7 @@ export function PaymentCard({ payment }: PaymentCardProps) {
             {payment.anonymous ? " · anônimo no mural" : ""}
           </p>
         </div>
-        <span className="rounded-full bg-blush px-3 py-1 text-xs">
+        <span className="rounded-full bg-blush px-3 py-1 text-sm">
           {CONTRIBUTION_STATUS_LABELS[payment.status]}
         </span>
       </div>
@@ -29,7 +29,7 @@ export function PaymentCard({ payment }: PaymentCardProps) {
         {formatDateTimeInSaoPaulo(payment.createdAt)}
       </p>
       {payment.status === "reserved" ? (
-        <p className="text-xs">Expira em {formatDateTimeInSaoPaulo(payment.expiresAt)}</p>
+        <p className="text-sm">Expira em {formatDateTimeInSaoPaulo(payment.expiresAt)}</p>
       ) : null}
       <PaymentRowActions contributionId={payment.id} status={payment.status} />
     </li>

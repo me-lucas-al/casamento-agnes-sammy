@@ -14,7 +14,7 @@ export function UsersList({ users }: { users: User[] }) {
           <div>
             <p className="font-semibold">{user.name}</p>
             <p className="text-sm text-muted-foreground">{user.email}</p>
-            <p className="text-xs">
+            <p className="text-sm">
               {roleLabels[user.role]} · {user.isActive ? "Ativo" : "Inativo"}
             </p>
           </div>

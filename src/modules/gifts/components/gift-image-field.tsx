@@ -53,13 +53,13 @@ export function GiftImageField({ currentUrl, onImageChange }: GiftImageFieldProp
           className="file:mr-3 file:min-h-11 file:cursor-pointer file:rounded-full file:border-0 file:bg-blush file:px-4 file:text-wine"
         />
       </label>
-      {isUploading ? <span className="text-xs">Enviando...</span> : null}
+      {isUploading ? <span className="text-sm">Enviando...</span> : null}
       {previewUrl ? (
         <button type="button" onClick={handleRemove} className="self-start text-sm text-crimson underline">
           Remover imagem
         </button>
       ) : null}
-      {errorMessage ? <p role="alert" className="text-xs text-crimson">{errorMessage}</p> : null}
+      {errorMessage ? <p role="alert" className="text-sm text-crimson">{errorMessage}</p> : null}
     </div>
   );
 }

@@ -28,7 +28,7 @@ export function ToggleUserActiveButton({ userId, isActive }: ToggleUserActiveBut
       <Button size="sm" variant={isActive ? "destructive" : "outline"} disabled={isPending} onClick={toggle}>
         {isActive ? "Desativar" : "Reativar"}
       </Button>
-      {errorMessage ? <p role="alert" className="text-xs text-destructive">{errorMessage}</p> : null}
+      {errorMessage ? <p role="alert" className="text-sm text-destructive">{errorMessage}</p> : null}
     </div>
   );
 }

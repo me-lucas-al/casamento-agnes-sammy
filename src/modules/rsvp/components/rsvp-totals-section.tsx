@@ -17,7 +17,7 @@ export async function RsvpTotalsSection() {
       <dl className="grid grid-cols-2 gap-3 md:grid-cols-4">
         {cards.map(({ label, value }) => (
           <div key={label} className="rounded-xl bg-blush p-4">
-            <dt className="text-xs uppercase tracking-wide text-wine/70">{label}</dt>
+            <dt className="text-sm uppercase tracking-wide text-wine/80">{label}</dt>
             <dd className="text-3xl text-wine">{value}</dd>
           </div>
         ))}

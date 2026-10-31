@@ -75,7 +75,7 @@ export function PaymentRowActions({ contributionId, status }: PaymentRowActionsP
           Excluir
         </Button>
       </div>
-      {errorMessage ? <p role="alert" className="text-xs text-crimson">{errorMessage}</p> : null}
+      {errorMessage ? <p role="alert" className="text-sm text-crimson">{errorMessage}</p> : null}
     </div>
   );
 }

@@ -9,7 +9,7 @@ import { RsvpForm } from "./rsvp-form";
 
 type Mode = "idle" | "editing" | "confirmingDelete";
 
-const actionButtonClassName = "rounded-full border border-wine/30 px-3 py-1 text-xs text-wine disabled:opacity-60";
+const actionButtonClassName = "rounded-full border border-wine/30 px-3 py-1 text-sm text-wine disabled:opacity-60";
 
 export function RsvpRowActions({ guestId }: { guestId: string }) {
   const router = useRouter();
@@ -52,7 +52,7 @@ export function RsvpRowActions({ guestId }: { guestId: string }) {
         </div>
       ) : null}
       {mode === "confirmingDelete" ? (
-        <div role="alert" className="flex flex-wrap items-center gap-2 text-xs text-wine">
+        <div role="alert" className="flex flex-wrap items-center gap-2 text-sm text-wine">
           <span>Excluir esta resposta?</span>
           <button type="button" className={`${actionButtonClassName} text-crimson`} disabled={isPending} onClick={confirmDelete}>
             Confirmar
@@ -69,12 +69,12 @@ export function RsvpRowActions({ guestId }: { guestId: string }) {
             onSubmit={(input) => submitRsvpForGuestAction({ ...input, guestId })}
             onSaved={finish}
           />
-          <button type="button" className="mt-2 text-xs text-wine underline" onClick={() => setMode("idle")}>
+          <button type="button" className="mt-2 text-sm text-wine underline" onClick={() => setMode("idle")}>
             Cancelar
           </button>
         </div>
       ) : null}
-      {errorMessage ? <p role="status" className="text-xs text-crimson">{errorMessage}</p> : null}
+      {errorMessage ? <p role="status" className="text-sm text-crimson">{errorMessage}</p> : null}
     </div>
   );
 }

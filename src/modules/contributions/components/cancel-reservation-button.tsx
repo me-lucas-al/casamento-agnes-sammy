@@ -27,7 +27,7 @@ export function CancelReservationButton({ contributionId }: CancelReservationBut
       <Button type="button" variant="outline" disabled={isPending} onClick={cancelReservation}>
         Cancelar reserva
       </Button>
-      {errorMessage ? <p role="alert" className="text-xs text-crimson">{errorMessage}</p> : null}
+      {errorMessage ? <p role="alert" className="text-sm text-crimson">{errorMessage}</p> : null}
     </div>
   );
 }

@@ -22,7 +22,7 @@ export function GiftPriceLabel({ gift }: GiftPriceLabelProps) {
   return (
     <div className="flex flex-col">
       <span className="text-lg font-semibold text-wine">{total}</span>
-      {detail ? <span className="text-xs text-wine/70">{detail}</span> : null}
+      {detail ? <span className="text-sm text-wine/80">{detail}</span> : null}
     </div>
   );
 }

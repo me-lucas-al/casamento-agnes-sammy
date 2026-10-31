@@ -78,7 +78,7 @@ export function GuestRowActions({ guest, inviteUrl, whatsappUrl }: GuestRowActio
           Excluir
         </Button>
       </div>
-      {feedback ? <p role="status" className="text-xs text-muted-foreground">{feedback}</p> : null}
+      {feedback ? <p role="status" className="text-sm text-muted-foreground">{feedback}</p> : null}
       {isEditing ? (
         <GuestForm
           submitLabel="Salvar"

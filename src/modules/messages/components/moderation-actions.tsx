@@ -4,7 +4,7 @@ import { useState, useTransition } from "react";
 import { deleteMessageAction, moderateMessageAction, updateMessageAction } from "../controllers/message.actions";
 import type { Message } from "../types";
 
-const buttonClassName = "rounded-full border border-wine/30 px-3 py-1 text-xs text-wine disabled:opacity-50";
+const buttonClassName = "rounded-full border border-wine/30 px-3 py-1 text-sm text-wine disabled:opacity-50";
 
 export function ModerationActions({ message }: { message: Message }) {
   const [isEditing, setIsEditing] = useState(false);
@@ -61,7 +61,7 @@ export function ModerationActions({ message }: { message: Message }) {
           Excluir
         </button>
       </div>
-      {error ? <p role="alert" className="text-xs text-crimson">{error}</p> : null}
+      {error ? <p role="alert" className="text-sm text-crimson">{error}</p> : null}
     </div>
   );
 }

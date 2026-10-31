@@ -1,0 +1,4 @@
+UPDATE "gift_categories" SET "name" = "name" || ' (' || left("id"::text, 8) || ')' WHERE "id" IN (SELECT "id" FROM (SELECT "id", row_number() OVER (PARTITION BY lower("name") ORDER BY "sort_order", "id") AS "position" FROM "gift_categories") AS "ranked" WHERE "position" > 1);--> statement-breakpoint
+UPDATE "gifts" SET "name" = "name" || ' (' || left("id"::text, 8) || ')' WHERE "id" IN (SELECT "id" FROM (SELECT "id", row_number() OVER (PARTITION BY lower("name") ORDER BY "created_at", "id") AS "position" FROM "gifts") AS "ranked" WHERE "position" > 1);--> statement-breakpoint
+CREATE UNIQUE INDEX "gift_categories_name_lower_unique_idx" ON "gift_categories" USING btree (lower("name"));--> statement-breakpoint
+CREATE UNIQUE INDEX "gifts_name_lower_unique_idx" ON "gifts" USING btree (lower("name"));

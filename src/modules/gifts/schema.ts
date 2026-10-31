@@ -1,3 +1,4 @@
+import { sql } from "drizzle-orm";
 import {
   boolean,
   index,
@@ -13,11 +14,15 @@ import {
 export const giftKindEnum = pgEnum("gift_kind", ["item", "experience"]);
 export const giftModeEnum = pgEnum("gift_mode", ["single", "fixed_quotas", "free_amount"]);
 
-export const giftCategories = pgTable("gift_categories", {
-  id: uuid("id").defaultRandom().primaryKey(),
-  name: text("name").notNull(),
-  sortOrder: integer("sort_order").notNull().default(0),
-});
+export const giftCategories = pgTable(
+  "gift_categories",
+  {
+    id: uuid("id").defaultRandom().primaryKey(),
+    name: text("name").notNull(),
+    sortOrder: integer("sort_order").notNull().default(0),
+  },
+  (table) => [uniqueIndex("gift_categories_name_lower_unique_idx").on(sql`lower(${table.name})`)],
+);
 
 export const gifts = pgTable(
   "gifts",
@@ -42,5 +47,6 @@ export const gifts = pgTable(
   (table) => [
     index("gifts_category_visible_idx").on(table.categoryId, table.isVisible),
     uniqueIndex("gifts_image_public_id_unique_idx").on(table.imagePublicId),
+    uniqueIndex("gifts_name_lower_unique_idx").on(sql`lower(${table.name})`),
   ],
 );

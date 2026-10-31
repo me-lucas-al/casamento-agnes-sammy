@@ -9,6 +9,7 @@ import { LIVING_ROOM_DECOR } from "./living-room-decor";
 import { LIVING_ROOM_FURNITURE_TECH } from "./living-room-furniture-tech";
 import { NEW_HOME_FUNDS } from "./new-home-funds";
 import { NEW_HOME_TOOLS } from "./new-home-tools";
+import { VERIFIED_SUGGESTIONS } from "./verified/verified-suggestions";
 
 export const GIFT_SUGGESTION_CATALOG: readonly GiftSuggestion[] = [
   ...KITCHEN_APPLIANCES,
@@ -21,4 +22,5 @@ export const GIFT_SUGGESTION_CATALOG: readonly GiftSuggestion[] = [
   ...NEW_HOME_FUNDS,
   ...NEW_HOME_TOOLS,
   ...FUN_SUGGESTIONS,
+  ...VERIFIED_SUGGESTIONS,
 ];

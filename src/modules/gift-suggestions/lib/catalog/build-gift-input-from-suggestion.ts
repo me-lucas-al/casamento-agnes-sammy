@@ -13,5 +13,9 @@ export function buildGiftInputFromSuggestion(suggestion: GiftSuggestion, categor
     minAmountCents: suggestion.minAmountCents ?? null,
     isVisible: true,
     sortOrder: 0,
+    productUrl: suggestion.productUrl,
+    externalImageUrl: suggestion.imageUrl,
+    storeName: suggestion.storeName,
+    priceCheckedAt: suggestion.priceCheckedAt,
   };
 }

@@ -4,12 +4,13 @@ import { cn } from "@/shared/lib/styling/utils";
 import { STORE_LABELS, type StoreId } from "@/modules/gift-suggestions/data/stores";
 import { MODE_BADGE_LABELS } from "@/modules/gift-suggestions/lib/catalog/suggestion-labels";
 
-export function StoreBadge({ store }: { store: StoreId | null }) {
-  if (!store) return null;
+export function StoreBadge({ store, storeName }: { store: StoreId | null; storeName: string | null }) {
+  const label = storeName ?? (store ? STORE_LABELS[store] : null);
+  if (!label) return null;
   return (
     <span className="inline-flex items-center gap-1.5 rounded-full border border-gold/60 bg-blush px-3 py-1 text-xs font-semibold text-wine">
       <Store aria-hidden className="size-3.5" />
-      {STORE_LABELS[store]}
+      {label}
     </span>
   );
 }

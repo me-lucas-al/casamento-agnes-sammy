@@ -21,6 +21,10 @@ const validQuota: GiftSuggestion = {
   priceBand: "600-plus",
   store: "magazine-luiza",
   storeSearchUrl: "https://www.magazineluiza.com.br/busca/teste/",
+  productUrl: null,
+  imageUrl: null,
+  storeName: null,
+  priceCheckedAt: null,
   tags: ["teste"],
 };
 

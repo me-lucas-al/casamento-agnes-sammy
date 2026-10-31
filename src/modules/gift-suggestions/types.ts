@@ -19,7 +19,24 @@ export type GiftSuggestion = {
   priceBand: PriceBandId;
   store: StoreId | null;
   storeSearchUrl: string | null;
+  productUrl: string | null;
+  imageUrl: string | null;
+  storeName: string | null;
+  priceCheckedAt: string | null;
   tags: string[];
+};
+
+export type VerifiedProductRecord = {
+  id: string;
+  name: string;
+  description: string;
+  type: ProductTypeId;
+  productUrl: string;
+  imageUrl: string;
+  priceCents: number;
+  mode: Extract<GiftMode, "single" | "fixed_quotas">;
+  totalQuotas?: number;
+  checkedAt: string;
 };
 
 export type SuggestionWithStatus = GiftSuggestion & { alreadyInList: boolean };

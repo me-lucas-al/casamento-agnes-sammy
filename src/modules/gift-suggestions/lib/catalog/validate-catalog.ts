@@ -3,6 +3,7 @@ import { categoryNameOf } from "@/modules/gift-suggestions/data/category-names";
 import { PRODUCT_TYPE_LABELS, STORELESS_TYPES } from "@/modules/gift-suggestions/data/product-types";
 import { isStoreId } from "@/modules/gift-suggestions/data/stores";
 import type { GiftSuggestion } from "@/modules/gift-suggestions/types";
+import { describeProductlessProblem, describeProductProblem } from "./describe-product-problem";
 import { normalizeGiftName } from "./normalize-gift-name";
 import { isAllowedStoreUrl } from "../store/is-allowed-store-url";
 
@@ -54,16 +55,24 @@ function describeSuggestionProblem(suggestion: GiftSuggestion): string | null {
   if (!suggestion.name.trim() || !suggestion.description.trim()) return "missing text";
   if (suggestion.tags.length === 0) return "missing search tags";
   if (!(suggestion.type in PRODUCT_TYPE_LABELS)) return "unknown product type";
+  if (suggestion.productUrl) return describeProductProblem(suggestion) ?? describeBandProblem(suggestion);
+  const productlessProblem = describeProductlessProblem(suggestion);
+  if (productlessProblem) return productlessProblem;
   if (!Number.isInteger(suggestion.priceCents) || suggestion.priceCents % FRIENDLY_PRICE_STEP_CENTS !== 0) {
     return "price must be a friendly whole value";
   }
+  return describeBandProblem(suggestion) ?? describeStoreProblem(suggestion) ?? describeConfigurationProblem(suggestion);
+}
+
+function describeBandProblem(suggestion: GiftSuggestion): string | null {
   const band = PRICE_BANDS.find((candidate) => candidate.id === suggestion.priceBand);
   if (!band || !isPriceInBand(suggestion.priceCents, band)) return "price band does not match price";
-  return describeStoreProblem(suggestion) ?? describeConfigurationProblem(suggestion);
+  return null;
 }
 
 export function validateCatalog(catalog: readonly GiftSuggestion[]): string[] {
   const duplicatedIds = findDuplicates(catalog.map((suggestion) => suggestion.id));
+  const duplicatedUrls = findDuplicates(catalog.flatMap((suggestion) => (suggestion.productUrl ? [suggestion.productUrl] : [])));
   const duplicatedNames = findDuplicates(catalog.map((suggestion) => normalizeGiftName(suggestion.name)));
   const problems = catalog.flatMap((suggestion) => {
     const problem = describeSuggestionProblem(suggestion);
@@ -71,6 +80,7 @@ export function validateCatalog(catalog: readonly GiftSuggestion[]): string[] {
   });
   return [
     ...duplicatedIds.map((id) => `duplicated id ${id}`),
+    ...duplicatedUrls.map((url) => `duplicated product url ${url}`),
     ...duplicatedNames.map((name) => `duplicated name ${name}`),
     ...problems,
   ];

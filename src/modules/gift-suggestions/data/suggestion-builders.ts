@@ -13,13 +13,13 @@ type BuilderContext = {
   kind: GiftKind;
 };
 
-function bandOf(priceCents: number): PriceBandId {
+export function bandOf(priceCents: number): PriceBandId {
   const band = PRICE_BANDS.find((candidate) => isPriceInBand(priceCents, candidate));
   if (!band) throw new Error(`No price band for ${priceCents}`);
   return band.id;
 }
 
-function slugify(text: string): string {
+export function slugify(text: string): string {
   return normalizeGiftName(text).replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 }
 
@@ -39,7 +39,14 @@ function buildBase(context: BuilderContext, name: string, description: string, p
 }
 
 function storeFields(store: StoreId | null, searchTerm: string) {
-  return { store, storeSearchUrl: store ? buildStoreSearchUrl(store, searchTerm) : null };
+  return {
+    store,
+    storeSearchUrl: store ? buildStoreSearchUrl(store, searchTerm) : null,
+    productUrl: null,
+    imageUrl: null,
+    storeName: null,
+    priceCheckedAt: null,
+  };
 }
 
 export function suggestionBuilders(categoryKey: SuggestionCategoryKey, type: ProductTypeId, kind: GiftKind = "item") {

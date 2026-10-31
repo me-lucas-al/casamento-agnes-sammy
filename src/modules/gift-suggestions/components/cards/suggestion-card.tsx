@@ -1,4 +1,7 @@
-import { Check, ExternalLink, Plus } from "lucide-react";
+import { Check, Plus } from "lucide-react";
+import { StoreLink } from "@/modules/gifts/components/cards/store-link";
+import { formatPriceCheckedDate } from "@/modules/gifts/lib/product/product-link-rules";
+import { ProductImage } from "@/shared/ui/media/product-image";
 import { GiftPriceLabel } from "@/modules/gifts/components/cards/gift-price-label";
 import { cn } from "@/shared/lib/styling/utils";
 import { PRODUCT_TYPE_LABELS } from "@/modules/gift-suggestions/data/product-types";
@@ -15,22 +18,28 @@ type SuggestionCardProps = {
   onAdd: (suggestionId: string) => void;
 };
 
+const IMAGE_SIZES = "(min-width: 1280px) 25vw, (min-width: 768px) 33vw, (min-width: 640px) 50vw, 100vw";
+
 const actionClassName =
   "inline-flex min-h-11 items-center justify-center gap-1.5 rounded-full px-4 text-sm font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-wine";
 
 export function SuggestionCard({ suggestion, isInList, isSelected, isBusy, onToggle, onAdd }: SuggestionCardProps) {
-  const { id, name, description, store, storeSearchUrl, mode, type, priceBand } = suggestion;
+  const { id, name, description, store, storeName, productUrl, imageUrl, storeSearchUrl, mode, type, priceBand } = suggestion;
+  const checkedDate = formatPriceCheckedDate(suggestion.priceCheckedAt);
   return (
     <li
       className={cn(
-        "relative flex flex-col gap-3 rounded-2xl border bg-white p-4 shadow-sm transition-colors",
+        "relative flex flex-col gap-3 overflow-hidden rounded-2xl border bg-white p-4 shadow-sm transition-colors",
         isSelected ? "border-rose ring-2 ring-rose/30" : "border-gold/40",
         isInList && "bg-paper",
       )}
     >
+      {imageUrl ? (
+        <ProductImage src={imageUrl} alt={name} sizes={IMAGE_SIZES} className="-mx-4 -mt-4 w-[calc(100%+2rem)]" />
+      ) : null}
       <div className="flex min-h-9 items-start justify-between gap-2">
         <div className="flex flex-wrap gap-1.5">
-          <StoreBadge store={store} />
+          <StoreBadge store={store} storeName={storeName} />
           <ModeBadge mode={mode} />
         </div>
         {isInList ? null : (
@@ -53,6 +62,7 @@ export function SuggestionCard({ suggestion, isInList, isSelected, isBusy, onTog
         <p className="text-base leading-snug text-foreground/80">{description}</p>
       </div>
       <GiftPriceLabel gift={{ mode, priceCents: suggestion.priceCents, totalQuotas: suggestion.totalQuotas ?? null, minAmountCents: suggestion.minAmountCents ?? null }} />
+      {checkedDate ? <p className="-mt-2 text-xs text-wine/70">preço conferido em {checkedDate}</p> : null}
       <div className="mt-auto flex flex-wrap gap-2 pt-1">
         {isInList ? (
           <span className={cn(actionClassName, "bg-wine text-paper")}>
@@ -70,18 +80,7 @@ export function SuggestionCard({ suggestion, isInList, isSelected, isBusy, onTog
             Adicionar à lista
           </button>
         )}
-        {storeSearchUrl ? (
-          <a
-            href={storeSearchUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={cn(actionClassName, "border border-gold bg-card text-wine hover:bg-blush")}
-          >
-            Ver na loja
-            <ExternalLink aria-hidden className="size-4" />
-            <span className="sr-only">(abre em nova aba)</span>
-          </a>
-        ) : null}
+        <StoreLink productUrl={productUrl ?? storeSearchUrl} />
       </div>
     </li>
   );

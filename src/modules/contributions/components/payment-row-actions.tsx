@@ -9,7 +9,7 @@ import {
   confirmPixPaymentAction,
   rejectOrCancelByCoupleAction,
   removeContributionAction,
-} from "../controllers/payment-review.actions";
+} from "../controllers/actions/payment-review.actions";
 import type { ContributionStatus } from "../types";
 
 type PaymentRowActionsProps = {

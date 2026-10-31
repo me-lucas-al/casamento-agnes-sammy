@@ -7,7 +7,7 @@ import { Button } from "@/shared/ui/button";
 import {
   reserveGiftAction,
   updateReservationAction,
-} from "../controllers/reserve-gift.actions";
+} from "../controllers/actions/reserve-gift.actions";
 import type { ReservableGift } from "../types";
 import { AmountField, AnonymousField, QuotaField } from "./reserve-form-fields";
 

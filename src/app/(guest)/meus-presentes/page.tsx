@@ -1,5 +1,5 @@
 import { MyContributionCard } from "@/modules/contributions/components/my-contribution-card";
-import { listMyContributionsQuery } from "@/modules/contributions/controllers/contributions.queries";
+import { listMyContributionsQuery } from "@/modules/contributions/controllers/queries/contributions.queries";
 import { EmptyState } from "@/shared/ui/empty-state";
 import { PageHeading } from "@/shared/ui/components/page-heading";
 

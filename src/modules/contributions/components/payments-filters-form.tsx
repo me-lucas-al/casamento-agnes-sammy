@@ -1,5 +1,5 @@
 import { PAYMENT_STATUS_FILTERS, type PaymentsFilters } from "../schemas/payments-filters.schema";
-import { CONTRIBUTION_STATUS_LABELS } from "../lib/describe-availability";
+import { CONTRIBUTION_STATUS_LABELS } from "../lib/availability/describe-availability";
 
 type PaymentsFiltersFormProps = {
   filters: PaymentsFilters;

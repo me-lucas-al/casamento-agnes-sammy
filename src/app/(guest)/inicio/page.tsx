@@ -1,4 +1,4 @@
-import { listMyContributionsQuery } from "@/modules/contributions/controllers/contributions.queries";
+import { listMyContributionsQuery } from "@/modules/contributions/controllers/queries/contributions.queries";
 import { getEventSettingsQuery } from "@/modules/event/controllers/queries/event.queries";
 import { GuestGreeting } from "@/modules/profile/components/home/guest-greeting";
 import { HomeSummary } from "@/modules/profile/components/home/home-summary";

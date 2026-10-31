@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { createContributionController } from "@/modules/contributions/controllers/contribution-controller";
+import { createContributionController } from "@/modules/contributions/controllers/handlers/contribution-controller";
 import type { SessionUser } from "@/modules/auth/types";
 import { asUser } from "@/tests/helpers/fake-session";
 import { FakeCacheInvalidator } from "@/tests/helpers/fake-cache-invalidator";

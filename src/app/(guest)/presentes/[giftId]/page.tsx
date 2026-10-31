@@ -5,11 +5,11 @@ import { notFound } from "next/navigation";
 import {
   getGiftAvailabilityQuery,
   getPaymentScreenQuery,
-} from "@/modules/contributions/controllers/contributions.queries";
+} from "@/modules/contributions/controllers/queries/contributions.queries";
 import { ReserveGiftForm } from "@/modules/contributions/components/reserve-gift-form";
 import { CancelReservationButton } from "@/modules/contributions/components/cancel-reservation-button";
 import { GiftNotFoundError } from "@/modules/contributions/errors";
-import { describeAvailability } from "@/modules/contributions/lib/describe-availability";
+import { describeAvailability } from "@/modules/contributions/lib/availability/describe-availability";
 import { PixPaymentPanel } from "@/modules/payments/components/pix-payment-panel";
 import { describePaymentError } from "@/modules/payments/errors";
 import { formatDateTimeInSaoPaulo } from "@/shared/lib/dates";

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { createExpireReservationsHandler } from "@/modules/contributions/controllers/expire-reservations-handler";
+import { createExpireReservationsHandler } from "@/modules/contributions/controllers/handlers/expire-reservations-handler";
 import { createApiErrorHandling } from "@/shared/lib/with-api-error-handling";
 import { FakeLogger } from "@/tests/helpers/fake-logger";
 import { seedGift } from "@/tests/helpers/seeds/seed-gift";

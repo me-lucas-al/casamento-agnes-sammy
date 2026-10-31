@@ -4,7 +4,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { Button } from "@/shared/ui/button";
 import { ConfirmDialog } from "@/shared/ui/confirm-dialog";
 import { useConfirmDialog } from "@/shared/ui/use-confirm-dialog";
-import { cancelOwnReservationAction } from "../controllers/reserve-gift.actions";
+import { cancelOwnReservationAction } from "../controllers/actions/reserve-gift.actions";
 
 type CancelReservationButtonProps = {
   contributionId: string;

@@ -1,6 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import type { SessionUser } from "@/modules/auth/types";
-import { createContributionController } from "@/modules/contributions/controllers/contribution-controller";
+import { createContributionController } from "@/modules/contributions/controllers/handlers/contribution-controller";
 import type { ContributionModule } from "@/modules/contributions/factory";
 import { FakeCacheInvalidator } from "@/tests/helpers/fake-cache-invalidator";
 import { asUser } from "@/tests/helpers/fake-session";

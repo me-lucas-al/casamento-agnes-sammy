@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { formatDateTimeInSaoPaulo, isExpired } from "@/shared/lib/dates";
 import { formatCentsAsBrl } from "@/shared/lib/money";
-import { CONTRIBUTION_STATUS_LABELS } from "../lib/describe-availability";
+import { CONTRIBUTION_STATUS_LABELS } from "../lib/availability/describe-availability";
 import type { ContributionWithGift } from "../types";
 import { CancelReservationButton } from "./cancel-reservation-button";
 

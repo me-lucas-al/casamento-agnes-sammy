@@ -1,6 +1,6 @@
 import { getAuthModule } from "@/modules/auth/factory";
-import { createExpireReservationsHandler } from "@/modules/contributions/controllers/expire-reservations-handler";
-import { getContributionController } from "@/modules/contributions/controllers/get-contribution-controller";
+import { createExpireReservationsHandler } from "@/modules/contributions/controllers/handlers/expire-reservations-handler";
+import { getContributionController } from "@/modules/contributions/controllers/handlers/get-contribution-controller";
 import { getCronEnv } from "@/shared/config/env";
 import { withApiErrorHandling } from "@/shared/lib/with-api-error-handling";
 

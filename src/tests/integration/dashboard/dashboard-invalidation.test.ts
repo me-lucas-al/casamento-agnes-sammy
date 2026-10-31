@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { createContributionController } from "@/modules/contributions/controllers/contribution-controller";
+import { createContributionController } from "@/modules/contributions/controllers/handlers/contribution-controller";
 import { createDashboardModule } from "@/modules/dashboard/factory";
 import { invalidateApprovedMessagesCache } from "@/modules/messages/lib/invalidate-messages-cache";
 import { invalidateRsvpCache } from "@/modules/rsvp/lib/invalidate-rsvp-cache";

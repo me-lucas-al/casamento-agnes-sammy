@@ -1,6 +1,6 @@
 import { PaymentCard } from "@/modules/contributions/components/payment-card";
 import { PaymentsFiltersForm } from "@/modules/contributions/components/payments-filters-form";
-import { listPendingPaymentsQuery } from "@/modules/contributions/controllers/contributions.queries";
+import { listPendingPaymentsQuery } from "@/modules/contributions/controllers/queries/contributions.queries";
 import { parsePaymentsFilters } from "@/modules/contributions/schemas/payments-filters.schema";
 import type { SearchParams } from "@/shared/lib/url-params";
 import { EmptyState } from "@/shared/ui/empty-state";

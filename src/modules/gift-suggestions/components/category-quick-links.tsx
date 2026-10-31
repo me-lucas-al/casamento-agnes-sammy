@@ -14,7 +14,7 @@ const chipClassName = "inline-flex min-h-11 shrink-0 items-center rounded-full b
 export function CategoryQuickLinks({ basePath, params, activeCategory }: CategoryQuickLinksProps) {
   const options = [{ key: undefined, name: "Todas" }, ...SUGGESTION_CATEGORIES];
   return (
-    <nav aria-label="Categorias" className="-mx-4 flex gap-2 overflow-x-auto px-4 pb-1 sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0">
+    <nav aria-label="Categorias" className="-mx-4 flex gap-2 overflow-x-auto px-4 pb-1 sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0 [scrollbar-width:none]">
       {options.map(({ key, name }) => {
         const isActive = key === activeCategory;
         const href = `${basePath}${buildQueryString(params, { categoria: key ?? null, page: null })}`;

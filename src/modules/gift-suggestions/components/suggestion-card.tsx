@@ -28,7 +28,7 @@ export function SuggestionCard({ suggestion, isInList, isSelected, isBusy, onTog
         isInList && "bg-paper",
       )}
     >
-      <div className="flex items-start justify-between gap-2">
+      <div className="flex min-h-9 items-start justify-between gap-2">
         <div className="flex flex-wrap gap-1.5">
           <StoreBadge store={store} />
           <ModeBadge mode={mode} />

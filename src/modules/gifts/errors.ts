@@ -31,6 +31,12 @@ export class GiftHasActiveReservationsError extends Error {
   }
 }
 
+export class GiftPricingLockedError extends Error {
+  constructor() {
+    super("Gift pricing is locked by contributions");
+  }
+}
+
 export class InvalidGiftConfigurationError extends Error {
   constructor(readonly userMessage: string) {
     super(userMessage);
@@ -70,6 +76,9 @@ export function describeGiftError(error: unknown): string {
   }
   if (error instanceof GiftHasActiveReservationsError) {
     return "Este presente tem reservas pendentes. Aguarde o pagamento ou cancele as reservas antes de excluir.";
+  }
+  if (error instanceof GiftPricingLockedError) {
+    return "Este presente já tem contribuições. Não é possível mudar o modo, o valor ou as cotas.";
   }
   if (error instanceof InvalidGiftConfigurationError) return error.userMessage;
   if (error instanceof InvalidGiftImageError) return "Imagem inválida. Envie a imagem novamente.";

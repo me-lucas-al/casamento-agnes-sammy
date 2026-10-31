@@ -2,7 +2,7 @@ import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import Google from "next-auth/providers/google";
 import { z } from "zod";
-import { getServerEnv } from "@/shared/config/env";
+import { getAuthEnv } from "@/shared/config/env";
 import { InvalidGuestCodeError, TooManyLoginAttemptsError } from "../errors";
 import { getAuthModule } from "../factory";
 import { authConfig } from "./auth.config";
@@ -11,7 +11,7 @@ import { hashIpAddress, readClientIp } from "./client-ip";
 const guestCodeSchema = z.object({ code: z.string().min(1).max(32) });
 
 export const { handlers, auth, signIn, signOut } = NextAuth(() => {
-  const env = getServerEnv();
+  const env = getAuthEnv();
   return {
     ...authConfig,
     secret: env.AUTH_SECRET,

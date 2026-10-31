@@ -1,6 +1,6 @@
 import { getDatabase } from "@/shared/db/client";
 import type { Database } from "@/shared/db/types";
-import { getServerEnv } from "@/shared/config/env";
+import { getCloudinaryEnv } from "@/shared/config/env";
 import { nextCachedReader, type CachedReader } from "@/shared/lib/cache/cached-read";
 import { createCloudinaryClient, type CloudinaryClient } from "@/shared/lib/cloudinary";
 import { createDrizzlePhotoRepository } from "./repositories/drizzle-photo-repository";
@@ -39,7 +39,7 @@ export function createGalleryModule({ database, cloudinaryClient, cachedReader }
 export type GalleryModule = ReturnType<typeof createGalleryModule>;
 
 export function getGalleryModule(): GalleryModule {
-  const env = getServerEnv();
+  const env = getCloudinaryEnv();
   const cloudinaryClient = createCloudinaryClient({
     cloudName: env.CLOUDINARY_CLOUD_NAME,
     apiKey: env.CLOUDINARY_API_KEY,

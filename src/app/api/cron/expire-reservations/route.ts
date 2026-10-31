@@ -1,7 +1,7 @@
 import { getAuthModule } from "@/modules/auth/factory";
 import { createExpireReservationsHandler } from "@/modules/contributions/controllers/expire-reservations-handler";
 import { getContributionController } from "@/modules/contributions/controllers/get-contribution-controller";
-import { getServerEnv } from "@/shared/config/env";
+import { getCronEnv } from "@/shared/config/env";
 import { withApiErrorHandling } from "@/shared/lib/with-api-error-handling";
 
 export const dynamic = "force-dynamic";
@@ -9,7 +9,7 @@ export const dynamic = "force-dynamic";
 export const GET = withApiErrorHandling(
   "cron.expire-reservations",
   createExpireReservationsHandler({
-    readCronSecret: () => getServerEnv().CRON_SECRET,
+    readCronSecret: () => getCronEnv().CRON_SECRET,
     expireReservations: () => getContributionController().expireReservations(),
     purgeLoginAttempts: () => getAuthModule().purgeOldLoginAttempts(),
   }),

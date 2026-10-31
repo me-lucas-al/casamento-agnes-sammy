@@ -6,7 +6,7 @@ import { GuestsTable } from "@/modules/guests/components/guests-table";
 import { GuestsToolbar } from "@/modules/guests/components/guests-toolbar";
 import { listGuestsPageQuery } from "@/modules/guests/controllers/guests.queries";
 import { GUEST_SORTS } from "@/modules/guests/types";
-import { getServerEnv } from "@/shared/config/env";
+import { getAppEnv } from "@/shared/config/env";
 import { enumParam, textParam, type SearchParams } from "@/shared/lib/url-params";
 import { EmptyState } from "@/shared/ui/empty-state";
 import { PaginationControls } from "@/shared/ui/pagination-controls";
@@ -33,7 +33,7 @@ export default async function ConvidadosPage({ searchParams }: ConvidadosPagePro
       {pageResult.items.length === 0 ? (
         <EmptyState title="Nenhum convidado encontrado" description="Adicione um convidado ou ajuste a busca." />
       ) : (
-        <GuestsTable guests={pageResult.items} baseUrl={getServerEnv().APP_URL} />
+        <GuestsTable guests={pageResult.items} baseUrl={getAppEnv().APP_URL} />
       )}
       <PaginationControls basePath="/painel/convidados" searchParams={params} pageResult={pageResult} />
     </div>

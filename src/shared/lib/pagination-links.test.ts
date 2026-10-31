@@ -19,4 +19,10 @@ describe("buildPaginationLinks", () => {
     expect(links.next.href).toBeNull();
     expect(links.previous.href).toBe("/presentes?page=1");
   });
+
+  it("sends the previous link to the last real page when the requested page is past the end", () => {
+    const links = buildPaginationLinks("/presentes", {}, { page: 99, hasPreviousPage: true, hasNextPage: false, totalPages: 4 });
+    expect(links.previous.href).toBe("/presentes?page=4");
+    expect(links.next.href).toBeNull();
+  });
 });

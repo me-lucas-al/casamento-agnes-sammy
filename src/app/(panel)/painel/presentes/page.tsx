@@ -26,6 +26,9 @@ export default async function PanelGiftsPage({ searchParams }: PanelGiftsPagePro
           <Link href="/painel/presentes/categorias" className={buttonVariants({ variant: "outline" })}>
             Categorias
           </Link>
+          <Link href="/painel/presentes/sugestoes" className={buttonVariants({ variant: "outline" })}>
+            Sugestões
+          </Link>
           <Link href="/painel/presentes/novo" className={buttonVariants()}>
             Novo presente
           </Link>

@@ -4,6 +4,7 @@ import { getSessionUser } from "@/modules/auth/controllers/get-session-user";
 import { getDashboardTotalsQuery, getOnboardingStatusQuery } from "@/modules/dashboard/controllers/dashboard.queries";
 import { OnboardingCard } from "@/modules/dashboard/components/onboarding-card";
 import { DashboardTotalsGrid } from "@/modules/dashboard/components/dashboard-totals-grid";
+import { SuggestionsHomeCard } from "@/modules/gift-suggestions/components/suggestions-home-card";
 import { ReviewTourButton } from "@/modules/tour/components/review-tour-button";
 import { panelNavItemsFor } from "@/shared/ui/components/nav-items";
 import { PageHeading } from "@/shared/ui/components/page-heading";
@@ -22,6 +23,7 @@ export default async function PanelHomePage() {
       <PageHeading title="Bem-vindos ao painel" description="Tudo o que vocês precisam para cuidar da festa em um só lugar." align="start" />
       <ReviewTourButton className="w-fit border border-gold bg-card px-5 text-base hover:bg-blush" />
       <OnboardingCard status={onboarding} />
+      <SuggestionsHomeCard />
       <DashboardTotalsGrid totals={totals} />
       <nav aria-label="Seções do painel">
         <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">

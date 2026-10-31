@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { StepFrame } from "../step-frame";
 import { TourChecklist } from "../tour-checklist";
+import { TourSuggestionsLink } from "../tour-suggestions-link";
 
 function FinalMockup() {
   return (
@@ -20,6 +21,7 @@ export function FinalStep() {
     <StepFrame stepId="final" eyebrow="Tudo pronto" title="Agora é com vocês" mockup={<FinalMockup />}>
       <p>Falta pouco para o site ficar completo. Toquem em um item para ir direto à tela certa:</p>
       <TourChecklist />
+      <TourSuggestionsLink />
       <p>O tour fica sempre à mão em Rever tour, no menu e na tela inicial.</p>
     </StepFrame>
   );

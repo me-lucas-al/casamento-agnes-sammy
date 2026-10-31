@@ -37,7 +37,7 @@ export function AccessCodeForm({ initialCode }: AccessCodeFormProps) {
           autoCorrect="off"
           spellCheck={false}
           inputMode="text"
-          maxLength={ACCESS_CODE_LENGTH + 4}
+          maxLength={ACCESS_CODE_LENGTH}
           placeholder="K7M2QX9P"
           aria-invalid={Boolean(state.error)}
           aria-describedby={describedBy}

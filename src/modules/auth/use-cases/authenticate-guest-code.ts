@@ -1,5 +1,6 @@
 import { addMinutes } from "@/shared/lib/dates";
 import { InvalidGuestCodeError, TooManyLoginAttemptsError } from "../errors";
+import { normalizeAccessCode } from "../lib/access-code";
 import type { GuestCodeGateway } from "../repositories/guest-code-gateway";
 import type { LoginAttemptRepository } from "../repositories/login-attempt-repository";
 import type { SessionUser } from "../types";
@@ -27,7 +28,7 @@ export function makeAuthenticateGuestCode(dependencies: Dependencies) {
     const attempts = await loginAttemptRepository.countSince(ipHash, windowStart);
     if (attempts > MAX_FAILED_ATTEMPTS) throw new TooManyLoginAttemptsError();
 
-    const guest = await guestCodeGateway.findByCode(code.trim().toUpperCase());
+    const guest = await guestCodeGateway.findByCode(normalizeAccessCode(code));
     if (!guest) throw new InvalidGuestCodeError();
 
     await loginAttemptRepository.clearForIp(ipHash);

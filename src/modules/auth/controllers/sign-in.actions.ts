@@ -5,6 +5,7 @@ import { logger } from "@/shared/lib/logger";
 import { serializeError } from "@/shared/lib/logging/serialize-error";
 import { isNextControlFlowError } from "@/shared/lib/next-control-flow";
 import { signIn, signOut } from "../config/auth";
+import { normalizeAccessCode } from "../lib/access-code";
 
 export type SignInFormState = { error: string | null };
 
@@ -14,7 +15,7 @@ export async function signInWithGuestCodeAction(
   _previousState: SignInFormState,
   formData: FormData,
 ): Promise<SignInFormState> {
-  const code = String(formData.get("code") ?? "").trim().toUpperCase();
+  const code = normalizeAccessCode(String(formData.get("code") ?? ""));
   if (!code) return { error: GENERIC_GUEST_CODE_ERROR };
   try {
     await signIn("guest-code", { code, redirectTo: "/inicio" });

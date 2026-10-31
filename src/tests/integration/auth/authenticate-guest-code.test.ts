@@ -25,6 +25,15 @@ describe("authenticateGuestCode", () => {
     expect(session).toMatchObject({ id: guest.id, guestId: guest.id, role: "guest", name: guest.name });
   });
 
+  it("normalizes separators and symbols on the server side", async () => {
+    const guest = await seedGuest(testDatabase.db, { code: "K7M2QX9P" });
+    const authModule = createAuthModule(testDatabase.db);
+
+    const session = await authModule.authenticateGuestCode({ code: "k7m2-qx9p!", ipHash });
+
+    expect(session.guestId).toBe(guest.id);
+  });
+
   it("rejects unknown codes with a generic error", async () => {
     const authModule = createAuthModule(testDatabase.db);
 

@@ -11,6 +11,10 @@ describe("normalizeAccessCode", () => {
     expect(normalizeAccessCode(" K7 M2.QX9P!")).toBe("K7M2QX9P");
   });
 
+  it("is idempotent", () => {
+    expect(normalizeAccessCode(normalizeAccessCode(" k7m2-qx9p "))).toBe("K7M2QX9P");
+  });
+
   it("limits the length", () => {
     expect(normalizeAccessCode("ABCDEFGHJKMN")).toHaveLength(ACCESS_CODE_LENGTH);
   });

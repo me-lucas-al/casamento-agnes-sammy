@@ -6,7 +6,7 @@ const baseUrl = "https://agnesesammy.com.br/";
 describe("whatsapp link builder", () => {
   it("builds the invite url without duplicated slashes", () => {
     expect(buildGuestInviteUrl(baseUrl, "K7M2QX9P")).toBe(
-      "https://agnesesammy.com.br/entrar?codigo=K7M2QX9P",
+      "https://agnesesammy.com.br/?codigo=K7M2QX9P",
     );
   });
 
@@ -26,7 +26,7 @@ describe("whatsapp link builder", () => {
     const url = new URL(link);
 
     expect(url.origin + url.pathname).toBe("https://wa.me/5511912345678");
-    expect(url.searchParams.get("text")).toContain("/entrar?codigo=K7M2QX9P");
+    expect(url.searchParams.get("text")).toContain("/?codigo=K7M2QX9P");
     expect(url.searchParams.get("text")).toContain("Maria");
   });
 

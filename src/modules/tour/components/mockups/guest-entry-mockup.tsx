@@ -24,7 +24,7 @@ function CodeScreen() {
       <MockField label="Código do convite" value="K7M2QX9P" isHighlighted />
       <span className="rounded-full bg-rose px-5 py-2 text-center text-base font-semibold text-white">Entrar</span>
       <p className="break-all rounded-lg bg-blush px-2 py-1.5 text-center text-sm">
-        Pelo link do WhatsApp o código já vem preenchido: /entrar?codigo=K7M2QX9P
+        Pelo link do WhatsApp o código já vem preenchido: /?codigo=K7M2QX9P
       </p>
     </>
   );

@@ -1,4 +1,4 @@
 export function buildInvitationLink(origin: string, code: string): string {
   const normalizedOrigin = origin.replace(/\/+$/, "");
-  return `${normalizedOrigin}/entrar?codigo=${encodeURIComponent(code)}`;
+  return `${normalizedOrigin}/?codigo=${encodeURIComponent(code)}`;
 }

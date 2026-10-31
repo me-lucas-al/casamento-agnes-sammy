@@ -10,7 +10,7 @@ type InviteInput = {
 
 export function buildGuestInviteUrl(baseUrl: string, code: string): string {
   const normalizedBaseUrl = baseUrl.replace(/\/+$/, "");
-  return `${normalizedBaseUrl}/entrar?codigo=${encodeURIComponent(code)}`;
+  return `${normalizedBaseUrl}/?codigo=${encodeURIComponent(code)}`;
 }
 
 export function normalizeWhatsappNumber(phone: string | null | undefined): string {

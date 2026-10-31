@@ -9,7 +9,7 @@ export function InviteStep() {
       title="Cada convidado ganha um código"
       tips={[
         "Cadastre o nome e quantas vagas o grupo tem (família conta como um só convite).",
-        "O site cria o código de 8 caracteres e o link /entrar?codigo=XXXX.",
+        "O site cria o código de 8 caracteres e o link /?codigo=XXXX.",
         "Toque em Enviar por WhatsApp: a mensagem já vai pronta.",
         "Mandou para a pessoa errada? Gere um novo código e o antigo deixa de valer.",
       ]}

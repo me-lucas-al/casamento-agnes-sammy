@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { createAuthModule } from "@/modules/auth/factory";
-import { seedAdmin, seedCouple, seedUser } from "@/tests/helpers/seeds/seed-user";
-import { useTestDatabase } from "@/tests/helpers/use-test-database";
+import { seedAdmin, seedCouple, seedUser } from "@/tests/helpers/database/seeds/seed-user";
+import { useTestDatabase } from "@/tests/helpers/database/use-test-database";
 
 describe("authorizeGoogleSignIn allowlist", () => {
   const testDatabase = useTestDatabase();

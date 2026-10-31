@@ -2,9 +2,9 @@ import { describe, expect, it } from "vitest";
 import { createRsvpModule } from "@/modules/rsvp/factory";
 import { requireGuestId } from "@/modules/rsvp/lib/require-guest-id";
 import { ForbiddenError } from "@/modules/auth/errors";
-import { asUser } from "@/tests/helpers/fake-session";
-import { seedGuest } from "@/tests/helpers/seeds/seed-guest";
-import { useTestDatabase } from "@/tests/helpers/use-test-database";
+import { asUser } from "@/tests/helpers/fakes/fake-session";
+import { seedGuest } from "@/tests/helpers/database/seeds/seed-guest";
+import { useTestDatabase } from "@/tests/helpers/database/use-test-database";
 
 describe("rsvp staff actors", () => {
   const testDatabase = useTestDatabase();

@@ -2,9 +2,9 @@ import { describe, expect, it } from "vitest";
 import { ForbiddenError, UnauthenticatedError } from "@/modules/auth/errors";
 import { TourUserNotFoundError } from "@/modules/tour/errors";
 import { createTourModule } from "@/modules/tour/factory";
-import { asUser } from "@/tests/helpers/fake-session";
-import { seedAdmin, seedCouple } from "@/tests/helpers/seeds/seed-user";
-import { useTestDatabase } from "@/tests/helpers/use-test-database";
+import { asUser } from "@/tests/helpers/fakes/fake-session";
+import { seedAdmin, seedCouple } from "@/tests/helpers/database/seeds/seed-user";
+import { useTestDatabase } from "@/tests/helpers/database/use-test-database";
 
 describe("tour use-cases", () => {
   const testDatabase = useTestDatabase();

@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { ForbiddenError, UnauthenticatedError } from "@/modules/auth/errors";
-import { asUser } from "@/tests/helpers/fake-session";
-import { useTestDatabase } from "@/tests/helpers/use-test-database";
+import { asUser } from "@/tests/helpers/fakes/fake-session";
+import { useTestDatabase } from "@/tests/helpers/database/use-test-database";
 import { createTestSuggestionModule, idOf, queryOf } from "./gift-suggestion-test-module";
 
 describe("gift suggestions permissions", () => {

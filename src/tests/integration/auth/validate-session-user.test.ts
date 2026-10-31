@@ -2,10 +2,10 @@ import { eq } from "drizzle-orm";
 import { describe, expect, it } from "vitest";
 import { createAuthModule } from "@/modules/auth/factory";
 import { guests, users } from "@/shared/db/schema";
-import { asUser } from "@/tests/helpers/fake-session";
-import { seedAdmin, seedCouple } from "@/tests/helpers/seeds/seed-user";
-import { seedGuest } from "@/tests/helpers/seeds/seed-guest";
-import { useTestDatabase } from "@/tests/helpers/use-test-database";
+import { asUser } from "@/tests/helpers/fakes/fake-session";
+import { seedAdmin, seedCouple } from "@/tests/helpers/database/seeds/seed-user";
+import { seedGuest } from "@/tests/helpers/database/seeds/seed-guest";
+import { useTestDatabase } from "@/tests/helpers/database/use-test-database";
 
 describe("validateSessionUser", () => {
   const testDatabase = useTestDatabase();

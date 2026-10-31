@@ -1,10 +1,10 @@
 import { describe, expect, it } from "vitest";
 import { GuestCodeGenerationError } from "@/modules/guests/errors";
 import { createGuestModule } from "@/modules/guests/factory";
-import { asUser } from "@/tests/helpers/fake-session";
-import { seedAdmin } from "@/tests/helpers/seeds/seed-user";
-import { seedGuest } from "@/tests/helpers/seeds/seed-guest";
-import { useTestDatabase } from "@/tests/helpers/use-test-database";
+import { asUser } from "@/tests/helpers/fakes/fake-session";
+import { seedAdmin } from "@/tests/helpers/database/seeds/seed-user";
+import { seedGuest } from "@/tests/helpers/database/seeds/seed-guest";
+import { useTestDatabase } from "@/tests/helpers/database/use-test-database";
 
 function sequenceGenerator(codes: string[]) {
   let index = 0;

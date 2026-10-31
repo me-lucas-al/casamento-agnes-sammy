@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { ForbiddenError, UnauthenticatedError } from "@/modules/auth/errors";
-import { asUser } from "@/tests/helpers/fake-session";
+import { asUser } from "@/tests/helpers/fakes/fake-session";
 import { requireGuestId } from "../require-guest-id";
 
 describe("requireGuestId", () => {

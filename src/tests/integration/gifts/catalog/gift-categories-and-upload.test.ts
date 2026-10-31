@@ -2,10 +2,10 @@ import { describe, expect, it } from "vitest";
 import { ForbiddenError, UnauthenticatedError } from "@/modules/auth/errors";
 import { GiftCategoryInUseError, GiftCategoryNotFoundError, InvalidImageUploadError } from "@/modules/gifts/errors";
 import { MAX_IMAGE_SIZE_BYTES } from "@/modules/gifts/lib/images/image-upload-validator";
-import { asUser } from "@/tests/helpers/fake-session";
-import { seedGift, seedGiftCategory } from "@/tests/helpers/seeds/seed-gift";
-import { useTestDatabase } from "@/tests/helpers/use-test-database";
-import { createTestGiftModule } from "./gift-test-module";
+import { asUser } from "@/tests/helpers/fakes/fake-session";
+import { seedGift, seedGiftCategory } from "@/tests/helpers/database/seeds/seed-gift";
+import { useTestDatabase } from "@/tests/helpers/database/use-test-database";
+import { createTestGiftModule } from "../gift-test-module";
 
 describe("gift categories", () => {
   const testDatabase = useTestDatabase();

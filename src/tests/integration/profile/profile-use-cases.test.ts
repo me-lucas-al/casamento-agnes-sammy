@@ -3,10 +3,10 @@ import { ForbiddenError, UnauthenticatedError } from "@/modules/auth/errors";
 import { ProfileNotFoundError } from "@/modules/profile/errors";
 import { createProfileModule } from "@/modules/profile/factory";
 import { rsvps } from "@/shared/db/schema";
-import { asUser } from "@/tests/helpers/fake-session";
-import { seedGuest } from "@/tests/helpers/seeds/seed-guest";
-import { seedAdmin, seedCouple } from "@/tests/helpers/seeds/seed-user";
-import { useTestDatabase } from "@/tests/helpers/use-test-database";
+import { asUser } from "@/tests/helpers/fakes/fake-session";
+import { seedGuest } from "@/tests/helpers/database/seeds/seed-guest";
+import { seedAdmin, seedCouple } from "@/tests/helpers/database/seeds/seed-user";
+import { useTestDatabase } from "@/tests/helpers/database/use-test-database";
 
 describe("profile use-cases", () => {
   const testDatabase = useTestDatabase();

@@ -1,9 +1,9 @@
 import { createContributionModule } from "@/modules/contributions/factory";
 import type { Database } from "@/shared/db/types";
 import { addHours } from "@/shared/lib/dates/dates";
-import { asUser } from "@/tests/helpers/fake-session";
-import { seedGuest } from "@/tests/helpers/seeds/seed-guest";
-import { seedUser } from "@/tests/helpers/seeds/seed-user";
+import { asUser } from "@/tests/helpers/fakes/fake-session";
+import { seedGuest } from "@/tests/helpers/database/seeds/seed-guest";
+import { seedUser } from "@/tests/helpers/database/seeds/seed-user";
 
 export const START_TIME = new Date("2026-11-01T12:00:00.000Z");
 

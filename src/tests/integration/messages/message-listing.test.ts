@@ -4,10 +4,10 @@ import { createMessageModule } from "@/modules/messages/factory";
 import { invalidateApprovedMessagesCache } from "@/modules/messages/lib/invalidate-messages-cache";
 import { approvedMessagesTag, dashboardTag } from "@/shared/lib/cache/cache-tags";
 import type { CachedReadOptions, CachedReader } from "@/shared/lib/cache/cached-read";
-import { asUser } from "@/tests/helpers/fake-session";
-import { FakeCacheInvalidator } from "@/tests/helpers/fake-cache-invalidator";
-import { seedGuest } from "@/tests/helpers/seeds/seed-guest";
-import { useTestDatabase } from "@/tests/helpers/use-test-database";
+import { asUser } from "@/tests/helpers/fakes/fake-session";
+import { FakeCacheInvalidator } from "@/tests/helpers/fakes/fake-cache-invalidator";
+import { seedGuest } from "@/tests/helpers/database/seeds/seed-guest";
+import { useTestDatabase } from "@/tests/helpers/database/use-test-database";
 
 class RecordingCachedReader implements CachedReader {
   readOptions: CachedReadOptions[] = [];

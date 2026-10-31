@@ -2,11 +2,11 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import type { SessionUser } from "@/modules/auth/types";
 import { createContributionController } from "@/modules/contributions/controllers/handlers/contribution-controller";
 import type { ContributionModule } from "@/modules/contributions/factory";
-import { FakeCacheInvalidator } from "@/tests/helpers/fake-cache-invalidator";
-import { asUser } from "@/tests/helpers/fake-session";
-import { createRedirectError } from "@/tests/helpers/next-control-flow-errors";
-import { seedGift } from "@/tests/helpers/seeds/seed-gift";
-import { useTestDatabase } from "@/tests/helpers/use-test-database";
+import { FakeCacheInvalidator } from "@/tests/helpers/fakes/fake-cache-invalidator";
+import { asUser } from "@/tests/helpers/fakes/fake-session";
+import { createRedirectError } from "@/tests/helpers/fakes/next-control-flow-errors";
+import { seedGift } from "@/tests/helpers/database/seeds/seed-gift";
+import { useTestDatabase } from "@/tests/helpers/database/use-test-database";
 import { createContributionContext, seedGuestActor } from "../contributions/contribution-context";
 
 describe("server action error handling", () => {

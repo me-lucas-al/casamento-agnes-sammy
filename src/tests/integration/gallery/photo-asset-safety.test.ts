@@ -2,11 +2,11 @@ import { describe, expect, it } from "vitest";
 import { InvalidPublicIdError, PendingPhotoLimitError } from "@/modules/gallery/errors";
 import { MAX_PENDING_PHOTOS_PER_GUEST } from "@/modules/gallery/lib/upload-rules";
 import { isManagedPublicId } from "@/shared/lib/cloudinary/cloudinary-url";
-import { FAKE_CLOUD_NAME } from "@/tests/helpers/fake-cloudinary";
-import { asUser } from "@/tests/helpers/fake-session";
-import { seedAdmin } from "@/tests/helpers/seeds/seed-user";
-import { seedGuest } from "@/tests/helpers/seeds/seed-guest";
-import { useTestDatabase } from "@/tests/helpers/use-test-database";
+import { FAKE_CLOUD_NAME } from "@/tests/helpers/fakes/fake-cloudinary";
+import { asUser } from "@/tests/helpers/fakes/fake-session";
+import { seedAdmin } from "@/tests/helpers/database/seeds/seed-user";
+import { seedGuest } from "@/tests/helpers/database/seeds/seed-guest";
+import { useTestDatabase } from "@/tests/helpers/database/use-test-database";
 import { buildGalleryContext, uploadInput } from "./gallery-test-context";
 
 describe("photo asset safety", () => {

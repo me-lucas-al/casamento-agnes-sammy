@@ -2,8 +2,8 @@ import { describe, expect, it } from "vitest";
 import { DEFAULT_CATEGORIES } from "@/modules/gifts/lib/catalog/default-categories";
 import { createDrizzleCategoryRepository } from "@/modules/gifts/repositories/drizzle/drizzle-category-repository";
 import { makeEnsureDefaultCategories } from "@/modules/gifts/use-cases/categories/ensure-default-categories";
-import { seedGiftCategory } from "@/tests/helpers/seeds/seed-gift";
-import { useTestDatabase } from "@/tests/helpers/use-test-database";
+import { seedGiftCategory } from "@/tests/helpers/database/seeds/seed-gift";
+import { useTestDatabase } from "@/tests/helpers/database/use-test-database";
 
 describe("ensureDefaultCategories", () => {
   const testDatabase = useTestDatabase();

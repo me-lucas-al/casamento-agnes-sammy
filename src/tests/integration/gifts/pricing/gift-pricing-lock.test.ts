@@ -1,10 +1,10 @@
 import { describe, expect, it } from "vitest";
 import { GiftPricingLockedError } from "@/modules/gifts/errors";
-import { asUser } from "@/tests/helpers/fake-session";
-import { seedContribution } from "@/tests/helpers/seeds/seed-contribution";
-import { seedGift, seedGiftCategory } from "@/tests/helpers/seeds/seed-gift";
-import { useTestDatabase } from "@/tests/helpers/use-test-database";
-import { buildGiftInput, createTestGiftModule } from "./gift-test-module";
+import { asUser } from "@/tests/helpers/fakes/fake-session";
+import { seedContribution } from "@/tests/helpers/database/seeds/seed-contribution";
+import { seedGift, seedGiftCategory } from "@/tests/helpers/database/seeds/seed-gift";
+import { useTestDatabase } from "@/tests/helpers/database/use-test-database";
+import { buildGiftInput, createTestGiftModule } from "../gift-test-module";
 
 describe("gift pricing lock", () => {
   const testDatabase = useTestDatabase();

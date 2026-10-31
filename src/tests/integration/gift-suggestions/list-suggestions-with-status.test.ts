@@ -1,8 +1,8 @@
 import { describe, expect, it } from "vitest";
 import { GIFT_SUGGESTION_CATALOG } from "@/modules/gift-suggestions/data/gift-suggestion-catalog";
-import { asUser } from "@/tests/helpers/fake-session";
-import { seedGift } from "@/tests/helpers/seeds/seed-gift";
-import { useTestDatabase } from "@/tests/helpers/use-test-database";
+import { asUser } from "@/tests/helpers/fakes/fake-session";
+import { seedGift } from "@/tests/helpers/database/seeds/seed-gift";
+import { useTestDatabase } from "@/tests/helpers/database/use-test-database";
 import { createTestSuggestionModule, idOf, queryOf } from "./gift-suggestion-test-module";
 
 describe("listSuggestionsWithStatus", () => {

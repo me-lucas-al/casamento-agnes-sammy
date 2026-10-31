@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { messages } from "@/shared/db/schema";
-import { seedGift } from "@/tests/helpers/seeds/seed-gift";
-import { useTestDatabase } from "@/tests/helpers/use-test-database";
+import { seedGift } from "@/tests/helpers/database/seeds/seed-gift";
+import { useTestDatabase } from "@/tests/helpers/database/use-test-database";
 import { createContributionContext, seedGuestActor, seedStaffActor } from "./contribution-context";
 
 describe("anonymous contributions", () => {

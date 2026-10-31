@@ -1,10 +1,10 @@
 import { describe, expect, it } from "vitest";
 import { ForbiddenError } from "@/modules/auth/errors";
 import { GiftNotFoundError } from "@/modules/contributions/errors";
-import { asUser } from "@/tests/helpers/fake-session";
-import { seedGift } from "@/tests/helpers/seeds/seed-gift";
-import { seedGuest } from "@/tests/helpers/seeds/seed-guest";
-import { useTestDatabase } from "@/tests/helpers/use-test-database";
+import { asUser } from "@/tests/helpers/fakes/fake-session";
+import { seedGift } from "@/tests/helpers/database/seeds/seed-gift";
+import { seedGuest } from "@/tests/helpers/database/seeds/seed-guest";
+import { useTestDatabase } from "@/tests/helpers/database/use-test-database";
 import { createContributionContext, seedGuestActor, seedStaffActor } from "./contribution-context";
 
 const defaultQuery = { page: 1, perPage: 12, offset: 0, status: "all", search: "", sort: "newest" } as const;

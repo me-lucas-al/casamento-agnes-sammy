@@ -1,7 +1,7 @@
 import { createGalleryModule } from "@/modules/gallery/factory";
 import { passThroughCachedReader } from "@/shared/lib/cache/cached-read";
 import { buildManagedPublicId } from "@/shared/lib/cloudinary/cloudinary-url";
-import { FAKE_CLOUD_NAME, FakeCloudinaryClient } from "@/tests/helpers/fake-cloudinary";
+import { FAKE_CLOUD_NAME, FakeCloudinaryClient } from "@/tests/helpers/fakes/fake-cloudinary";
 import type { Database } from "@/shared/db/types";
 
 export function buildGalleryContext(database: Database) {

@@ -4,9 +4,9 @@ import { GiftHasActiveReservationsError, GiftHasConfirmedContributionError } fro
 import { GuestHasConfirmedContributionsError } from "@/modules/guests/errors";
 import { createGuestModule } from "@/modules/guests/factory";
 import { giftContributions, gifts, guests } from "@/shared/db/schema";
-import { asUser } from "@/tests/helpers/fake-session";
-import { seedGift } from "@/tests/helpers/seeds/seed-gift";
-import { useTestDatabase } from "@/tests/helpers/use-test-database";
+import { asUser } from "@/tests/helpers/fakes/fake-session";
+import { seedGift } from "@/tests/helpers/database/seeds/seed-gift";
+import { useTestDatabase } from "@/tests/helpers/database/use-test-database";
 import { createTestGiftModule } from "../gifts/gift-test-module";
 import { createContributionContext, seedGuestActor, seedStaffActor } from "./contribution-context";
 

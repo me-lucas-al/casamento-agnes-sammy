@@ -1,10 +1,10 @@
 import { describe, expect, it } from "vitest";
 import { GIFT_SUGGESTION_CATALOG } from "@/modules/gift-suggestions/data/gift-suggestion-catalog";
 import { invalidateSuggestionCaches } from "@/modules/gift-suggestions/lib/caches/invalidate-suggestion-caches";
-import { FakeCacheInvalidator } from "@/tests/helpers/fake-cache-invalidator";
-import { asUser } from "@/tests/helpers/fake-session";
-import { seedGift, seedGiftCategory } from "@/tests/helpers/seeds/seed-gift";
-import { useTestDatabase } from "@/tests/helpers/use-test-database";
+import { FakeCacheInvalidator } from "@/tests/helpers/fakes/fake-cache-invalidator";
+import { asUser } from "@/tests/helpers/fakes/fake-session";
+import { seedGift, seedGiftCategory } from "@/tests/helpers/database/seeds/seed-gift";
+import { useTestDatabase } from "@/tests/helpers/database/use-test-database";
 import { PAGE_ONE } from "../gifts/gift-test-module";
 import { createTestSuggestionModule, idOf } from "./gift-suggestion-test-module";
 

@@ -3,11 +3,11 @@ import { ForbiddenError } from "@/modules/auth/errors";
 import { createDashboardModule } from "@/modules/dashboard/factory";
 import { eventSettings, photos } from "@/shared/db/schema";
 import { passThroughCachedReader } from "@/shared/lib/cache/cached-read";
-import { asUser } from "@/tests/helpers/fake-session";
-import { seedGift } from "@/tests/helpers/seeds/seed-gift";
-import { seedGuest } from "@/tests/helpers/seeds/seed-guest";
-import { seedCouple } from "@/tests/helpers/seeds/seed-user";
-import { useTestDatabase } from "@/tests/helpers/use-test-database";
+import { asUser } from "@/tests/helpers/fakes/fake-session";
+import { seedGift } from "@/tests/helpers/database/seeds/seed-gift";
+import { seedGuest } from "@/tests/helpers/database/seeds/seed-guest";
+import { seedCouple } from "@/tests/helpers/database/seeds/seed-user";
+import { useTestDatabase } from "@/tests/helpers/database/use-test-database";
 
 const baseEvent = {
   coupleNames: "Agnes & Sammy",

@@ -1,5 +1,5 @@
 ﻿import { describe, expect, it } from "vitest";
-import { FakeLogger } from "@/tests/helpers/fake-logger";
+import { FakeLogger } from "@/tests/helpers/fakes/fake-logger";
 import { resolveSiteUrl } from "../site-url";
 
 describe("resolveSiteUrl logging", () => {

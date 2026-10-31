@@ -3,11 +3,11 @@ import { ForbiddenError } from "@/modules/auth/errors";
 import { findPriceBand } from "@/modules/gifts/lib/pricing/price-band";
 import type { GiftListInput } from "@/modules/gifts/lib/listing/gift-list-input";
 import { addHours } from "@/shared/lib/dates/dates";
-import { asUser } from "@/tests/helpers/fake-session";
-import { seedContribution } from "@/tests/helpers/seeds/seed-contribution";
-import { seedGift, seedGiftCategory } from "@/tests/helpers/seeds/seed-gift";
-import { useTestDatabase } from "@/tests/helpers/use-test-database";
-import { createTestGiftModule, PAGE_ONE } from "./gift-test-module";
+import { asUser } from "@/tests/helpers/fakes/fake-session";
+import { seedContribution } from "@/tests/helpers/database/seeds/seed-contribution";
+import { seedGift, seedGiftCategory } from "@/tests/helpers/database/seeds/seed-gift";
+import { useTestDatabase } from "@/tests/helpers/database/use-test-database";
+import { createTestGiftModule, PAGE_ONE } from "../gift-test-module";
 
 const baseInput: GiftListInput = { ...PAGE_ONE, search: "", sort: "order" };
 

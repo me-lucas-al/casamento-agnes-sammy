@@ -1,10 +1,10 @@
 import { describe, expect, it } from "vitest";
 import { createContributionController } from "@/modules/contributions/controllers/handlers/contribution-controller";
 import type { SessionUser } from "@/modules/auth/types";
-import { asUser } from "@/tests/helpers/fake-session";
-import { FakeCacheInvalidator } from "@/tests/helpers/fake-cache-invalidator";
-import { seedGift } from "@/tests/helpers/seeds/seed-gift";
-import { useTestDatabase } from "@/tests/helpers/use-test-database";
+import { asUser } from "@/tests/helpers/fakes/fake-session";
+import { FakeCacheInvalidator } from "@/tests/helpers/fakes/fake-cache-invalidator";
+import { seedGift } from "@/tests/helpers/database/seeds/seed-gift";
+import { useTestDatabase } from "@/tests/helpers/database/use-test-database";
 import { createContributionContext, seedGuestActor, seedStaffActor } from "./contribution-context";
 
 describe("contribution controller", () => {

@@ -6,9 +6,9 @@ import {
   TooManyPendingMessagesError,
 } from "@/modules/messages/errors";
 import { createMessageModule } from "@/modules/messages/factory";
-import { asUser } from "@/tests/helpers/fake-session";
-import { seedGuest } from "@/tests/helpers/seeds/seed-guest";
-import { useTestDatabase } from "@/tests/helpers/use-test-database";
+import { asUser } from "@/tests/helpers/fakes/fake-session";
+import { seedGuest } from "@/tests/helpers/database/seeds/seed-guest";
+import { useTestDatabase } from "@/tests/helpers/database/use-test-database";
 
 const pageInput = { page: 1, perPage: 12, offset: 0 };
 const MISSING_ID = "00000000-0000-4000-8000-000000000000";

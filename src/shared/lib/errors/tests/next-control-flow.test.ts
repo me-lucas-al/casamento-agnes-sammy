@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { createNotFoundError, createRedirectError } from "@/tests/helpers/next-control-flow-errors";
+import { createNotFoundError, createRedirectError } from "@/tests/helpers/fakes/next-control-flow-errors";
 import { isNextControlFlowError } from "../next-control-flow";
 
 describe("isNextControlFlowError", () => {

@@ -3,9 +3,9 @@ import { createContributionController } from "@/modules/contributions/controller
 import { createDashboardModule } from "@/modules/dashboard/factory";
 import { invalidateApprovedMessagesCache } from "@/modules/messages/lib/invalidate-messages-cache";
 import { invalidateRsvpCache } from "@/modules/rsvp/lib/invalidate-rsvp-cache";
-import { asUser } from "@/tests/helpers/fake-session";
-import { seedGift } from "@/tests/helpers/seeds/seed-gift";
-import { useTestDatabase } from "@/tests/helpers/use-test-database";
+import { asUser } from "@/tests/helpers/fakes/fake-session";
+import { seedGift } from "@/tests/helpers/database/seeds/seed-gift";
+import { useTestDatabase } from "@/tests/helpers/database/use-test-database";
 import { createContributionContext, seedGuestActor, seedStaffActor } from "../contributions/contribution-context";
 import { InMemoryTaggedCache } from "../gifts/in-memory-tagged-cache";
 

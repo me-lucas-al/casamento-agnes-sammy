@@ -2,10 +2,10 @@ import { describe, expect, it } from "vitest";
 import { ForbiddenError, UnauthenticatedError } from "@/modules/auth/errors";
 import { InvalidPublicIdError, InvalidUploadError } from "@/modules/gallery/errors";
 import { approvedPhotosTag } from "@/shared/lib/cache/cache-tags";
-import { asUser } from "@/tests/helpers/fake-session";
-import { seedAdmin } from "@/tests/helpers/seeds/seed-user";
-import { seedGuest } from "@/tests/helpers/seeds/seed-guest";
-import { useTestDatabase } from "@/tests/helpers/use-test-database";
+import { asUser } from "@/tests/helpers/fakes/fake-session";
+import { seedAdmin } from "@/tests/helpers/database/seeds/seed-user";
+import { seedGuest } from "@/tests/helpers/database/seeds/seed-guest";
+import { useTestDatabase } from "@/tests/helpers/database/use-test-database";
 import { buildGalleryContext, uploadInput } from "./gallery-test-context";
 
 describe("photo upload", () => {

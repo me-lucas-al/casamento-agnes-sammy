@@ -1,6 +1,6 @@
 ﻿import { describe, expect, it } from "vitest";
-import { FakeCloudinaryClient } from "@/tests/helpers/fake-cloudinary";
-import { FakeLogger } from "@/tests/helpers/fake-logger";
+import { FakeCloudinaryClient } from "@/tests/helpers/fakes/fake-cloudinary";
+import { FakeLogger } from "@/tests/helpers/fakes/fake-logger";
 import { destroyImageBestEffort } from "../cloudinary-destroy";
 
 describe("destroyImageBestEffort", () => {

@@ -4,9 +4,9 @@ import type { GuestSort } from "@/modules/guests/types";
 import { rsvps } from "@/shared/db/schema";
 import { parsePageParams } from "@/shared/lib/pagination/pagination";
 import { textParam } from "@/shared/lib/url/url-params";
-import { asUser } from "@/tests/helpers/fake-session";
-import { seedGuest } from "@/tests/helpers/seeds/seed-guest";
-import { useTestDatabase } from "@/tests/helpers/use-test-database";
+import { asUser } from "@/tests/helpers/fakes/fake-session";
+import { seedGuest } from "@/tests/helpers/database/seeds/seed-guest";
+import { useTestDatabase } from "@/tests/helpers/database/use-test-database";
 
 describe("guest listing", () => {
   const testDatabase = useTestDatabase();

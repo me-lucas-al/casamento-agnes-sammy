@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { z } from "zod";
-import { FakeLogger } from "@/tests/helpers/fake-logger";
-import { createRedirectError } from "@/tests/helpers/next-control-flow-errors";
+import { FakeLogger } from "@/tests/helpers/fakes/fake-logger";
+import { createRedirectError } from "@/tests/helpers/fakes/next-control-flow-errors";
 import { ApiError } from "../api-errors";
 import { createApiErrorHandling } from "../with-api-error-handling";
 

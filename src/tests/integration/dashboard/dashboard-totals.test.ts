@@ -4,11 +4,11 @@ import { createDashboardModule } from "@/modules/dashboard/factory";
 import { messages, photos } from "@/shared/db/schema";
 import { passThroughCachedReader, type CachedReader } from "@/shared/lib/cache/cached-read";
 import { addHours } from "@/shared/lib/dates/dates";
-import { asUser } from "@/tests/helpers/fake-session";
-import { seedContribution } from "@/tests/helpers/seeds/seed-contribution";
-import { seedGift } from "@/tests/helpers/seeds/seed-gift";
-import { seedGuest } from "@/tests/helpers/seeds/seed-guest";
-import { useTestDatabase } from "@/tests/helpers/use-test-database";
+import { asUser } from "@/tests/helpers/fakes/fake-session";
+import { seedContribution } from "@/tests/helpers/database/seeds/seed-contribution";
+import { seedGift } from "@/tests/helpers/database/seeds/seed-gift";
+import { seedGuest } from "@/tests/helpers/database/seeds/seed-guest";
+import { useTestDatabase } from "@/tests/helpers/database/use-test-database";
 import { InMemoryTaggedCache } from "../gifts/in-memory-tagged-cache";
 
 describe("dashboard totals", () => {

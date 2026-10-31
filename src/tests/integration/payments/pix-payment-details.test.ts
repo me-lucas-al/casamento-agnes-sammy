@@ -4,8 +4,8 @@ import { createPaymentModule } from "@/modules/payments/factory";
 import { PixNotConfiguredError } from "@/modules/payments/errors";
 import { crc16Ccitt } from "@/modules/payments/lib/crc16";
 import { eventSettings } from "@/shared/db/schema";
-import { asUser } from "@/tests/helpers/fake-session";
-import { useTestDatabase } from "@/tests/helpers/use-test-database";
+import { asUser } from "@/tests/helpers/fakes/fake-session";
+import { useTestDatabase } from "@/tests/helpers/database/use-test-database";
 
 describe("pix payment details", () => {
   const testDatabase = useTestDatabase();

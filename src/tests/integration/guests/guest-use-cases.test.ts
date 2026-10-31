@@ -4,11 +4,11 @@ import { ForbiddenError, UnauthenticatedError } from "@/modules/auth/errors";
 import { GuestHasConfirmedContributionsError, GuestNotFoundError } from "@/modules/guests/errors";
 import { createGuestModule } from "@/modules/guests/factory";
 import { guests } from "@/shared/db/schema";
-import { asUser } from "@/tests/helpers/fake-session";
-import { seedContribution } from "@/tests/helpers/seeds/seed-contribution";
-import { seedGuest } from "@/tests/helpers/seeds/seed-guest";
-import { seedAdmin } from "@/tests/helpers/seeds/seed-user";
-import { useTestDatabase } from "@/tests/helpers/use-test-database";
+import { asUser } from "@/tests/helpers/fakes/fake-session";
+import { seedContribution } from "@/tests/helpers/database/seeds/seed-contribution";
+import { seedGuest } from "@/tests/helpers/database/seeds/seed-guest";
+import { seedAdmin } from "@/tests/helpers/database/seeds/seed-user";
+import { useTestDatabase } from "@/tests/helpers/database/use-test-database";
 
 describe("guest use-cases", () => {
   const testDatabase = useTestDatabase();

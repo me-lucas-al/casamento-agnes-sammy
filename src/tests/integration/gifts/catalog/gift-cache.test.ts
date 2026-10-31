@@ -1,13 +1,13 @@
 import { describe, expect, it } from "vitest";
 import { invalidateGiftCaches } from "@/modules/gifts/lib/caches/invalidate-gift-caches";
 import type { GiftListInput } from "@/modules/gifts/lib/listing/gift-list-input";
-import { FakeCacheInvalidator } from "@/tests/helpers/fake-cache-invalidator";
-import { asUser } from "@/tests/helpers/fake-session";
-import { seedContribution } from "@/tests/helpers/seeds/seed-contribution";
-import { seedGift } from "@/tests/helpers/seeds/seed-gift";
-import { useTestDatabase } from "@/tests/helpers/use-test-database";
-import { InMemoryTaggedCache } from "./in-memory-tagged-cache";
-import { buildGiftInput, createTestGiftModule, PAGE_ONE } from "./gift-test-module";
+import { FakeCacheInvalidator } from "@/tests/helpers/fakes/fake-cache-invalidator";
+import { asUser } from "@/tests/helpers/fakes/fake-session";
+import { seedContribution } from "@/tests/helpers/database/seeds/seed-contribution";
+import { seedGift } from "@/tests/helpers/database/seeds/seed-gift";
+import { useTestDatabase } from "@/tests/helpers/database/use-test-database";
+import { InMemoryTaggedCache } from "../in-memory-tagged-cache";
+import { buildGiftInput, createTestGiftModule, PAGE_ONE } from "../gift-test-module";
 
 const baseInput: GiftListInput = { ...PAGE_ONE, search: "", sort: "order" };
 

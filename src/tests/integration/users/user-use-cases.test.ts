@@ -2,9 +2,9 @@ import { describe, expect, it } from "vitest";
 import { ForbiddenError, UnauthenticatedError } from "@/modules/auth/errors";
 import { EmailAlreadyRegisteredError } from "@/modules/users/errors";
 import { createUserModule } from "@/modules/users/factory";
-import { asUser } from "@/tests/helpers/fake-session";
-import { seedUser } from "@/tests/helpers/seeds/seed-user";
-import { useTestDatabase } from "@/tests/helpers/use-test-database";
+import { asUser } from "@/tests/helpers/fakes/fake-session";
+import { seedUser } from "@/tests/helpers/database/seeds/seed-user";
+import { useTestDatabase } from "@/tests/helpers/database/use-test-database";
 
 describe("user use-cases", () => {
   const testDatabase = useTestDatabase();

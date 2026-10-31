@@ -3,11 +3,11 @@ import { InvalidGiftImageError } from "@/modules/gifts/errors";
 import { gifts } from "@/shared/db/schema";
 import { buildManagedPublicId } from "@/shared/lib/cloudinary/cloudinary-url";
 import { isUniqueViolation } from "@/shared/lib/errors/unique-violation";
-import { FAKE_CLOUD_NAME } from "@/tests/helpers/fake-cloudinary";
-import { asUser } from "@/tests/helpers/fake-session";
-import { seedGift, seedGiftCategory } from "@/tests/helpers/seeds/seed-gift";
-import { useTestDatabase } from "@/tests/helpers/use-test-database";
-import { buildGiftInput, createTestGiftModule } from "./gift-test-module";
+import { FAKE_CLOUD_NAME } from "@/tests/helpers/fakes/fake-cloudinary";
+import { asUser } from "@/tests/helpers/fakes/fake-session";
+import { seedGift, seedGiftCategory } from "@/tests/helpers/database/seeds/seed-gift";
+import { useTestDatabase } from "@/tests/helpers/database/use-test-database";
+import { buildGiftInput, createTestGiftModule } from "../gift-test-module";
 
 function buildImage() {
   const publicId = buildManagedPublicId("gifts");

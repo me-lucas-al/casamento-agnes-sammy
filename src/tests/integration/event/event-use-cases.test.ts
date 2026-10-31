@@ -4,9 +4,9 @@ import { runUpdateEventSettings } from "@/modules/event/controllers/handlers/run
 import { InvalidPixKeyError } from "@/modules/event/errors";
 import { createEventModule } from "@/modules/event/factory";
 import { DEFAULT_EVENT_SETTINGS } from "@/modules/event/lib/default-event-settings";
-import { asUser } from "@/tests/helpers/fake-session";
-import { FakeCacheInvalidator } from "@/tests/helpers/fake-cache-invalidator";
-import { useTestDatabase } from "@/tests/helpers/use-test-database";
+import { asUser } from "@/tests/helpers/fakes/fake-session";
+import { FakeCacheInvalidator } from "@/tests/helpers/fakes/fake-cache-invalidator";
+import { useTestDatabase } from "@/tests/helpers/database/use-test-database";
 
 describe("event use-cases", () => {
   const testDatabase = useTestDatabase();

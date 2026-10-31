@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { asUser } from "@/tests/helpers/fake-session";
+import { asUser } from "@/tests/helpers/fakes/fake-session";
 import { hasRole, requireRole } from "../authorization";
 import { ForbiddenError, UnauthenticatedError } from "../errors";
 

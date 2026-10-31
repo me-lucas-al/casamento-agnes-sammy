@@ -4,10 +4,10 @@ import { ForbiddenError, UnauthenticatedError } from "@/modules/auth/errors";
 import { createProfileModule } from "@/modules/profile/factory";
 import { CompanionLimitExceededError, RsvpDeadlinePassedError } from "@/modules/rsvp/errors";
 import { eventSettings, guests, rsvpCompanions, rsvps } from "@/shared/db/schema";
-import { asUser } from "@/tests/helpers/fake-session";
-import { seedGuest } from "@/tests/helpers/seeds/seed-guest";
-import { seedCouple } from "@/tests/helpers/seeds/seed-user";
-import { useTestDatabase } from "@/tests/helpers/use-test-database";
+import { asUser } from "@/tests/helpers/fakes/fake-session";
+import { seedGuest } from "@/tests/helpers/database/seeds/seed-guest";
+import { seedCouple } from "@/tests/helpers/database/seeds/seed-user";
+import { useTestDatabase } from "@/tests/helpers/database/use-test-database";
 
 const NOW = new Date("2026-11-02T10:00:00.000Z");
 

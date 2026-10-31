@@ -1,8 +1,8 @@
 import { describe, expect, it } from "vitest";
 import { updateCaptionSchema } from "@/modules/gallery/schemas/gallery.schemas";
-import { asUser } from "@/tests/helpers/fake-session";
-import { seedGuest } from "@/tests/helpers/seeds/seed-guest";
-import { useTestDatabase } from "@/tests/helpers/use-test-database";
+import { asUser } from "@/tests/helpers/fakes/fake-session";
+import { seedGuest } from "@/tests/helpers/database/seeds/seed-guest";
+import { useTestDatabase } from "@/tests/helpers/database/use-test-database";
 import { buildGalleryContext, uploadInput } from "./gallery-test-context";
 
 describe("photo caption editing", () => {

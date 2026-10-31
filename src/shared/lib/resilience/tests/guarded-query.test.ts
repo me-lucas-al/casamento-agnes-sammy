@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { FakeLogger } from "@/tests/helpers/fake-logger";
-import { createRedirectError } from "@/tests/helpers/next-control-flow-errors";
+import { FakeLogger } from "@/tests/helpers/fakes/fake-logger";
+import { createRedirectError } from "@/tests/helpers/fakes/next-control-flow-errors";
 import { createGuardedQuery } from "../guarded-query";
 
 describe("guardedQuery", () => {

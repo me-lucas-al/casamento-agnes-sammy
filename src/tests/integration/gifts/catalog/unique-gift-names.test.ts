@@ -1,9 +1,9 @@
 ﻿import { describe, expect, it } from "vitest";
 import { GiftCategoryNameTakenError, GiftNameTakenError } from "@/modules/gifts/errors";
-import { asUser } from "@/tests/helpers/fake-session";
-import { seedGift, seedGiftCategory } from "@/tests/helpers/seeds/seed-gift";
-import { useTestDatabase } from "@/tests/helpers/use-test-database";
-import { buildGiftInput, createTestGiftModule } from "./gift-test-module";
+import { asUser } from "@/tests/helpers/fakes/fake-session";
+import { seedGift, seedGiftCategory } from "@/tests/helpers/database/seeds/seed-gift";
+import { useTestDatabase } from "@/tests/helpers/database/use-test-database";
+import { buildGiftInput, createTestGiftModule } from "../gift-test-module";
 
 describe("unique gift and category names", () => {
   const testDatabase = useTestDatabase();

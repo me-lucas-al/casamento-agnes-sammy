@@ -3,7 +3,7 @@ import type { GiftInput } from "@/modules/gifts/types";
 import type { CachedReader } from "@/shared/lib/cache/cached-read";
 import { passThroughCachedReader } from "@/shared/lib/cache/cached-read";
 import type { Database } from "@/shared/db/types";
-import { FakeCloudinaryClient } from "@/tests/helpers/fake-cloudinary";
+import { FakeCloudinaryClient } from "@/tests/helpers/fakes/fake-cloudinary";
 
 type TestModuleOptions = {
   cachedReader?: CachedReader;

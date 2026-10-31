@@ -1,9 +1,9 @@
 import { describe, expect, it } from "vitest";
 import { createExpireReservationsHandler } from "@/modules/contributions/controllers/handlers/expire-reservations-handler";
 import { createApiErrorHandling } from "@/shared/lib/api/with-api-error-handling";
-import { FakeLogger } from "@/tests/helpers/fake-logger";
-import { seedGift } from "@/tests/helpers/seeds/seed-gift";
-import { useTestDatabase } from "@/tests/helpers/use-test-database";
+import { FakeLogger } from "@/tests/helpers/fakes/fake-logger";
+import { seedGift } from "@/tests/helpers/database/seeds/seed-gift";
+import { useTestDatabase } from "@/tests/helpers/database/use-test-database";
 import { createContributionContext, seedGuestActor } from "../contributions/contribution-context";
 
 const CRON_SECRET = "cron-secret-for-tests";

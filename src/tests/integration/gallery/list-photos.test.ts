@@ -4,10 +4,10 @@ import { createGalleryModule } from "@/modules/gallery/factory";
 import { approvedPhotosTag } from "@/shared/lib/cache/cache-tags";
 import type { CachedReadOptions, CachedReader } from "@/shared/lib/cache/cached-read";
 import { photos } from "@/shared/db/schema";
-import { FakeCloudinaryClient } from "@/tests/helpers/fake-cloudinary";
-import { asUser } from "@/tests/helpers/fake-session";
-import { seedGuest } from "@/tests/helpers/seeds/seed-guest";
-import { useTestDatabase } from "@/tests/helpers/use-test-database";
+import { FakeCloudinaryClient } from "@/tests/helpers/fakes/fake-cloudinary";
+import { asUser } from "@/tests/helpers/fakes/fake-session";
+import { seedGuest } from "@/tests/helpers/database/seeds/seed-guest";
+import { useTestDatabase } from "@/tests/helpers/database/use-test-database";
 import { buildGalleryContext } from "./gallery-test-context";
 
 describe("photo listings", () => {

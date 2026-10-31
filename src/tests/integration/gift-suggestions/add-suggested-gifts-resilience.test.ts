@@ -2,8 +2,8 @@ import { describe, expect, it } from "vitest";
 import { makeAddSuggestedGifts } from "@/modules/gift-suggestions/use-cases/add-suggested-gifts";
 import { GIFT_SUGGESTION_CATALOG } from "@/modules/gift-suggestions/data/gift-suggestion-catalog";
 import type { SuggestionGiftGateway } from "@/modules/gift-suggestions/ports";
-import { asUser } from "@/tests/helpers/fake-session";
-import { useTestDatabase } from "@/tests/helpers/use-test-database";
+import { asUser } from "@/tests/helpers/fakes/fake-session";
+import { useTestDatabase } from "@/tests/helpers/database/use-test-database";
 import { PAGE_ONE } from "../gifts/gift-test-module";
 import { createTestSuggestionModule, idOf } from "./gift-suggestion-test-module";
 

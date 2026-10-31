@@ -2,9 +2,9 @@ import { describe, expect, it } from "vitest";
 import { ForbiddenError } from "@/modules/auth/errors";
 import { CannotDeactivateSelfError, LastAdminError, UserNotFoundError } from "@/modules/users/errors";
 import { createUserModule } from "@/modules/users/factory";
-import { asUser } from "@/tests/helpers/fake-session";
-import { seedAdmin, seedCouple, seedUser } from "@/tests/helpers/seeds/seed-user";
-import { useTestDatabase } from "@/tests/helpers/use-test-database";
+import { asUser } from "@/tests/helpers/fakes/fake-session";
+import { seedAdmin, seedCouple, seedUser } from "@/tests/helpers/database/seeds/seed-user";
+import { useTestDatabase } from "@/tests/helpers/database/use-test-database";
 
 describe("user activation and listing filters", () => {
   const testDatabase = useTestDatabase();

@@ -5,7 +5,7 @@ import { getDashboardTotalsQuery, getOnboardingStatusQuery } from "@/modules/das
 import { OnboardingCard } from "@/modules/dashboard/components/onboarding-card";
 import { DashboardTotalsGrid } from "@/modules/dashboard/components/dashboard-totals-grid";
 import { SuggestionsHomeCard } from "@/modules/gift-suggestions/components/suggestions-home-card";
-import { ReviewTourButton } from "@/modules/tour/components/review-tour-button";
+import { ReviewTourButton } from "@/modules/tour/components/launch/review-tour-button";
 import { panelNavItemsFor } from "@/shared/ui/components/nav-items";
 import { PageHeading } from "@/shared/ui/components/page-heading";
 

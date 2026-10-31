@@ -1,7 +1,7 @@
 import { requireRole } from "@/modules/auth/authorization";
 import type { SessionUser } from "@/modules/auth/types";
 import { TourUserNotFoundError } from "../errors";
-import type { TourRepository } from "../repositories/tour-repository";
+import type { TourRepository } from "../repositories/contracts/tour-repository";
 
 type Dependencies = { tourRepository: TourRepository };
 

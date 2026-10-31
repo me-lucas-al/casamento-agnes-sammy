@@ -1,8 +1,8 @@
 import type { ReactNode } from "react";
 import { requireRouteAccess } from "@/modules/auth/controllers/require-route-access";
-import { ReviewTourButton } from "@/modules/tour/components/review-tour-button";
-import { TourProvider } from "@/modules/tour/components/tour-provider";
-import { shouldAutoOpenTourQuery } from "@/modules/tour/controllers/tour.queries";
+import { ReviewTourButton } from "@/modules/tour/components/launch/review-tour-button";
+import { TourProvider } from "@/modules/tour/components/launch/tour-provider";
+import { shouldAutoOpenTourQuery } from "@/modules/tour/controllers/queries/tour.queries";
 import { AppShell } from "@/shared/ui/components/app-shell";
 import { panelNavItemsFor } from "@/shared/ui/components/nav-items";
 

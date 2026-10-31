@@ -4,7 +4,7 @@ import { PhoneFrame } from "../parts/phone-frame";
 
 const FEATURES = [
   { icon: Gift, title: "Lista de presentes", detail: "Pix direto, sem taxa" },
-  { icon: PartyPopper, title: "Confirmar presença", detail: "RSVP com acompanhantes" },
+  { icon: PartyPopper, title: "Confirmar presença", detail: "Confirmação com acompanhantes" },
   { icon: MessageCircleHeart, title: "Recados", detail: "Mural de carinho" },
   { icon: Camera, title: "Galeria", detail: "Fotos de vocês" },
 ] as const;

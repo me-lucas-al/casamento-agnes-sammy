@@ -11,7 +11,7 @@ export function EventStep() {
         "Chave Pix: tipo, nome do recebedor e cidade. Sem isso, ninguém consegue presentear.",
         "Endereço e link do mapa para os convidados chegarem sem se perder.",
         "Nossa história: conte como tudo começou. Aparece na página do casamento.",
-        "Prazo do RSVP: vocês podem estender quando quiserem.",
+        "Prazo para confirmar presença: vocês podem estender quando quiserem.",
       ]}
       mockup={<EventFormMockup />}
     >

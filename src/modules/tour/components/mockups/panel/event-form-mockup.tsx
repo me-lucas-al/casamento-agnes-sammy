@@ -12,7 +12,7 @@ export function EventFormMockup() {
         <MockField label="Local" value="Restaurante Fazenda" className="col-span-2" />
         <MockField label="Endereço" value="Av. Mal. Castelo Branco, 760" className="col-span-2" />
         <MockField label="Link do mapa" value="maps.app.goo.gl/..." />
-        <MockField label="Prazo do RSVP" value="31/10/2026" />
+        <MockField label="Prazo para confirmar presença" value="31/10/2026" />
       </div>
       <div className="flex flex-col gap-0.5">
         <span className="text-sm font-semibold">Nossa história</span>

@@ -9,7 +9,7 @@ export function WelcomeStep() {
       title="Bem-vindos ao site de vocês"
       tips={[
         "Lista de presentes com Pix direto na conta de vocês, sem taxa.",
-        "Confirmação de presença (RSVP) com acompanhantes.",
+        "Confirmação de presença com acompanhantes.",
         "Recados carinhosos e galeria de fotos, tudo moderado por vocês.",
       ]}
       mockup={<WelcomeMockup />}

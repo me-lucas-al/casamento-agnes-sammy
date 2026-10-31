@@ -71,6 +71,7 @@
 
 ## Em andamento
 - [x] Revisão final de design (responsividade, fidelidade ao convite, acabamento) — notas 9, 8, 8 e 8,5
+- [x] Segunda revisão de design (login, tour, painel, perfil, reserva, erros): rodapé do tour em linha única, fonte `font-serif` indefinida trocada pelas fontes do tema, textos de 12px elevados a 14px, fundo sem emenda, hover do botão com contraste AA — notas 9, 8,5, 8,5 e 9
 
 ## Faltam
 - [x] Painel inicial com totais (reservas, pagamentos pendentes, presenças, moderação)

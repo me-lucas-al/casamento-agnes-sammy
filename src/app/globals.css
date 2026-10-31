@@ -4,6 +4,7 @@
 
 @import "../shared/theme/tokens.css";
 @import "../shared/theme/base.css";
+@import "../shared/theme/login-motion.css";
 
 @custom-variant dark (&:is(.dark *));
 

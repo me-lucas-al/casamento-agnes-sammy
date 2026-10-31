@@ -2,83 +2,6 @@ import type { VerifiedProductRecord } from "../../../types";
 
 export const QUARTO_BANHO_CAMA_BANHO_2: readonly VerifiedProductRecord[] = [
   {
-    "id": "quarto-banho-edredom-natureza-casal-queen",
-    "name": "Edredom casal/queen Natureza",
-    "description": "Um edredom leve para as noites frias do casal.",
-    "type": "cama-banho",
-    "productUrl": "https://www.tokstok.com.br/edredom-casal-queen-2-40-m-x-2-50-m-cream-preto-natureza/p",
-    "imageUrl": "https://imagensra.tokstok.com.br/catalog-images/421468-629e688e8819ef0001b0f88d.jpg",
-    "priceCents": 39990,
-    "mode": "single",
-    "checkedAt": "2026-11-01"
-  },
-  {
-    "id": "quarto-banho-edredom-maxy-ultra-casal-queen",
-    "name": "Edredom casal/queen Maxy Ultra",
-    "description": "Bem fofinho, para os dias de frio ficarem ainda mais gostosos.",
-    "type": "cama-banho",
-    "productUrl": "https://www.tokstok.com.br/ultra-edredom-c-q-2-40-m-x-2-50-m-preto-maxy/p",
-    "imageUrl": "https://imagensra.tokstok.com.br/catalog-images/540e80ec03ddc6967b090d3d3214eb97-434231_OK_V02.png",
-    "priceCents": 49990,
-    "mode": "single",
-    "checkedAt": "2026-11-01"
-  },
-  {
-    "id": "quarto-banho-cobertor-moonset-camelo",
-    "name": "Cobertor Moonset camelo 1,80 m x 2,20 m",
-    "description": "Cobertor macio para os domingos de preguiça a dois.",
-    "type": "cama-banho",
-    "productUrl": "https://www.tokstok.com.br/1-80-m-x-2-20-m-moonset-camelo-camelo-cobertor/p",
-    "imageUrl": "https://imagensra.tokstok.com.br/catalog-images/9f24face6fe15585a1444c28103cac53-435258_OK_V02.png",
-    "priceCents": 16990,
-    "mode": "single",
-    "checkedAt": "2026-11-01"
-  },
-  {
-    "id": "quarto-banho-travesseiro-support-lev-molas",
-    "name": "Travesseiro de molas Support Lev 50 x 70 cm",
-    "description": "Apoio firme para dormir bem e acordar descansado.",
-    "type": "cama-banho",
-    "productUrl": "https://www.tokstok.com.br/mo-50-cm-x-70-cm-support-lev-branco-travesseiro/p",
-    "imageUrl": "https://imagensra.tokstok.com.br/catalog-images/51f2189ec1c48ef3470f6f6831528009-431111_OK_V01.png",
-    "priceCents": 17990,
-    "mode": "single",
-    "checkedAt": "2026-11-01"
-  },
-  {
-    "id": "quarto-banho-toalha-banho-gigante-luxor-branca",
-    "name": "Toalha de banho gigante Luxor branca",
-    "description": "Uma toalha enorme e felpuda para banhos de hotel em casa.",
-    "type": "cama-banho",
-    "productUrl": "https://www.tokstok.com.br/toalha-de-banho-gigante-1-60-m-x-90-cm-branco-luxor/p",
-    "imageUrl": "https://imagensra.tokstok.com.br/catalog-images/0a86364c2c9ac42271dff1e555df3cf1-427846.png",
-    "priceCents": 22990,
-    "mode": "single",
-    "checkedAt": "2026-11-01"
-  },
-  {
-    "id": "quarto-banho-toalha-banho-luxor-konkret",
-    "name": "Toalha de banho Luxor 1,40 m x 77 cm",
-    "description": "Toalha macia e absorvente para o dia a dia do casal.",
-    "type": "cama-banho",
-    "productUrl": "https://www.tokstok.com.br/toalha-banho-1-40-m-x-77-cm-konkret-luxor/p",
-    "imageUrl": "https://imagensra.tokstok.com.br/catalog-images/d6b3671a34db2d5989b5e13aba4f7f5e-427849.png",
-    "priceCents": 18990,
-    "mode": "single",
-    "checkedAt": "2026-11-01"
-  },
-  {
-    "id": "quarto-banho-toalha-banho-cushy-musgo",
-    "name": "Toalha de banho Cushy musgo",
-    "description": "Toalha com cor linda para deixar o banheiro mais charmoso.",
-    "type": "cama-banho",
-    "productUrl": "https://www.tokstok.com.br/toalha-banho-1-40-m-x-70-cm-musgo-cushy/p",
-    "imageUrl": "https://imagensra.tokstok.com.br/catalog-images/393888-62d724da07d0da0001ca6df8.jpg",
-    "priceCents": 10990,
-    "mode": "single",
-    "checkedAt": "2026-11-01"
-  },
-  {
     "id": "quarto-banho-toalha-gigante-wishlist-preta",
     "name": "Toalha gigante Wishlist preta",
     "description": "Toalhão generoso para envolver depois do banho.",
@@ -86,6 +9,83 @@ export const QUARTO_BANHO_CAMA_BANHO_2: readonly VerifiedProductRecord[] = [
     "productUrl": "https://www.tokstok.com.br/toalha-gigante-1-50-m-x-90-cm-preto-wishlist/p",
     "imageUrl": "https://imagensra.tokstok.com.br/catalog-images/6ff98ac3bd91f537ed40b8b9b768bb04-435621.png",
     "priceCents": 9990,
+    "mode": "single",
+    "checkedAt": "2026-11-01"
+  },
+  {
+    "id": "quarto-banho-toalha-gigante-undulant-verde",
+    "name": "Toalha gigante Undulant verde escaravelho",
+    "description": "Toalha gigante em verde profundo para um banheiro com estilo.",
+    "type": "cama-banho",
+    "productUrl": "https://www.tokstok.com.br/toalha-gigante-1-50-m-x-90-cm-verde-escaravelho-undulant/p",
+    "imageUrl": "https://imagensra.tokstok.com.br/catalog-images/4a418ce37ebe088812aec1e205e11051-435655.png",
+    "priceCents": 13990,
+    "mode": "single",
+    "checkedAt": "2026-11-01"
+  },
+  {
+    "id": "quarto-banho-jogo-colcha-brutalist-casal-queen",
+    "name": "Jogo de colcha 3 peças Brutalist casal/queen",
+    "description": "Colcha com duas fronhas para fechar a cama do casal com capricho.",
+    "type": "cama-banho",
+    "productUrl": "https://www.tokstok.com.br/40-ruby-mocha-brutalist/p",
+    "imageUrl": "https://imagensra.tokstok.com.br/catalog-images/e7787f1bf0af06b0c2caf6d7ed56187f-CORF-9570-13557-%282X-TRAVESSEIROS%29--%281%29.png",
+    "priceCents": 37970,
+    "mode": "single",
+    "checkedAt": "2026-11-01"
+  },
+  {
+    "id": "quarto-banho-manta-adige-camelo-casal-queen",
+    "name": "Manta casal/queen Ádige camelo",
+    "description": "Manta para aquecer os dois no sofá ou na cama.",
+    "type": "cama-banho",
+    "productUrl": "https://www.tokstok.com.br/casal-queen-2-20-m-x-2-40-m-adige-camelo-manta/p",
+    "imageUrl": "https://imagensra.tokstok.com.br/catalog-images/0a622ab7c486608fe78cbb8b1a8903d1-437941_OK_V01.png",
+    "priceCents": 21990,
+    "mode": "single",
+    "checkedAt": "2026-11-01"
+  },
+  {
+    "id": "quarto-banho-manta-tignes-areia-casal-queen",
+    "name": "Manta casal/queen Tignes areia",
+    "description": "Manta de toque macio para as noites de filme a dois.",
+    "type": "cama-banho",
+    "productUrl": "https://www.tokstok.com.br/casal-queen-2-20-m-x-2-40-m-tignes-areia-manta/p",
+    "imageUrl": "https://imagensra.tokstok.com.br/catalog-images/107ad732ae21e3fcf8fdd5a86bb1060e-437938_OK_V01.png",
+    "priceCents": 34990,
+    "mode": "single",
+    "checkedAt": "2026-11-01"
+  },
+  {
+    "id": "quarto-banho-travesseiro-pluma-cumulus",
+    "name": "Travesseiro de plumas Cumulus 50 x 70 cm",
+    "description": "Travesseiro fofinho com toque de hotel.",
+    "type": "cama-banho",
+    "productUrl": "https://www.tokstok.com.br/de-plu-50-cm-x-70-cm-pluma-cumulus-branco-travesseiro/p",
+    "imageUrl": "https://imagensra.tokstok.com.br/catalog-images/9da9a67e76e0bc027ade534e24ac3f2e-436503_OK_V01.png",
+    "priceCents": 39990,
+    "mode": "single",
+    "checkedAt": "2026-11-01"
+  },
+  {
+    "id": "quarto-banho-travesseiro-comfy-offline",
+    "name": "Travesseiro Comfy Offline 50 x 70 cm",
+    "description": "Para desligar do mundo e descansar bem.",
+    "type": "cama-banho",
+    "productUrl": "https://www.tokstok.com.br/fb-50-cm-x-70-cm-comfy-offline-branco-travesseiro/p",
+    "imageUrl": "https://imagensra.tokstok.com.br/catalog-images/f85e84107ec79e730a08655f463786eb-436504_OK_V01.png",
+    "priceCents": 15990,
+    "mode": "single",
+    "checkedAt": "2026-11-01"
+  },
+  {
+    "id": "quarto-banho-kit-bancada-wani",
+    "name": "Kit de bancada 3 peças Wani",
+    "description": "Kit elegante para a pia do banheiro do casal.",
+    "type": "cama-banho",
+    "productUrl": "https://www.tokstok.com.br/bancada-c-3-pecas-wani-bege-preto-kit/p",
+    "imageUrl": "https://imagensra.tokstok.com.br/catalog-images/07c8740b8700943862a804433413b371-9570-13285_OK_V03.png",
+    "priceCents": 31970,
     "mode": "single",
     "checkedAt": "2026-11-01"
   },

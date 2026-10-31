@@ -1,7 +1,7 @@
 import { requireRole } from "@/modules/auth/authorization";
 import type { SessionUser } from "@/modules/auth/types";
 import { MessageNotFoundError } from "../errors";
-import type { MessageRepository } from "../repositories/message-repository";
+import type { MessageRepository } from "../repositories/contracts/message-repository";
 import type { Message, ModerationDecision } from "../types";
 
 type Dependencies = { messageRepository: MessageRepository };

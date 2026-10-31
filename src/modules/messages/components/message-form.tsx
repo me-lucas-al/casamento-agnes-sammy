@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useTransition, type FormEvent } from "react";
-import { sendMessageAction } from "../controllers/message.actions";
+import { sendMessageAction } from "../controllers/actions/message.actions";
 import { MAX_BODY_LENGTH } from "../lib/sanitize-message";
 
 type MessageFormProps = { defaultAuthorName: string };

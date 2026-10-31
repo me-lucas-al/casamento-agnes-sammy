@@ -1,7 +1,7 @@
 import { and, count, desc, eq } from "drizzle-orm";
 import { messages } from "@/shared/db/schema";
 import type { Database } from "@/shared/db/types";
-import type { MessageRepository } from "./message-repository";
+import type { MessageRepository } from "../contracts/message-repository";
 
 export function createDrizzleMessageRepository(database: Database): MessageRepository {
   return {

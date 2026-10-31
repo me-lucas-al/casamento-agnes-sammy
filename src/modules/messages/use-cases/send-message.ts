@@ -3,7 +3,7 @@ import { ForbiddenError } from "@/modules/auth/errors";
 import type { SessionUser } from "@/modules/auth/types";
 import { MAX_PENDING_MESSAGES_PER_GUEST, TooManyPendingMessagesError } from "../errors";
 import { sanitizeMessage } from "../lib/sanitize-message";
-import type { MessageRepository } from "../repositories/message-repository";
+import type { MessageRepository } from "../repositories/contracts/message-repository";
 import type { Message, MessageEdit } from "../types";
 
 type Dependencies = { messageRepository: MessageRepository };

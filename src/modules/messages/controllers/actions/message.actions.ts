@@ -7,11 +7,11 @@ import { nextCacheInvalidator } from "@/shared/lib/cache/invalidate";
 import { safeAction } from "@/shared/lib/safe-action";
 import { invalidInput } from "@/shared/lib/validation-failure";
 import { failure, success, type ActionResult } from "@/shared/lib/result";
-import { describeMessageError } from "../errors";
-import { getMessageModule } from "../factory";
-import { invalidateApprovedMessagesCache } from "../lib/invalidate-messages-cache";
-import { moderateMessageSchema } from "../schemas/moderate-message.schema";
-import { sendMessageSchema } from "../schemas/send-message.schema";
+import { describeMessageError } from "@/modules/messages/errors";
+import { getMessageModule } from "@/modules/messages/factory";
+import { invalidateApprovedMessagesCache } from "@/modules/messages/lib/invalidate-messages-cache";
+import { moderateMessageSchema } from "@/modules/messages/schemas/moderate-message.schema";
+import { sendMessageSchema } from "@/modules/messages/schemas/send-message.schema";
 
 const updateMessageSchema = sendMessageSchema.extend({ messageId: z.uuid() });
 

@@ -5,7 +5,7 @@ import type {
   MessageListQuery,
   ModerationStatus,
   NewMessage,
-} from "../types";
+} from "@/modules/messages/types";
 
 export interface MessageRepository {
   create(newMessage: NewMessage): Promise<Message>;

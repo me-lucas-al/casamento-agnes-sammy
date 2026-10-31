@@ -1,7 +1,7 @@
 import { getDatabase } from "@/shared/db/client";
 import type { Database } from "@/shared/db/types";
 import { nextCachedReader, passThroughCachedReader, type CachedReader } from "@/shared/lib/cache/cached-read";
-import { createDrizzleMessageRepository } from "./repositories/drizzle-message-repository";
+import { createDrizzleMessageRepository } from "./repositories/drizzle/drizzle-message-repository";
 import { makeDeleteMessage } from "./use-cases/delete-message";
 import { makeListApprovedMessagesPage } from "./use-cases/list-approved-messages-page";
 import { makeListMessagesPage } from "./use-cases/list-messages-page";

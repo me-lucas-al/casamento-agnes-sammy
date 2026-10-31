@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useTransition } from "react";
-import { deleteMessageAction, moderateMessageAction, updateMessageAction } from "../controllers/message.actions";
+import { deleteMessageAction, moderateMessageAction, updateMessageAction } from "../controllers/actions/message.actions";
 import { useRouter } from "next/navigation";
 import { ConfirmDialog } from "@/shared/ui/confirm-dialog";
 import { useConfirmDialog } from "@/shared/ui/use-confirm-dialog";

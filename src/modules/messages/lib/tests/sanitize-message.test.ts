@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { InvalidMessageError } from "../errors";
-import { MAX_BODY_LENGTH, sanitizeMessage } from "./sanitize-message";
+import { InvalidMessageError } from "@/modules/messages/errors";
+import { MAX_BODY_LENGTH, sanitizeMessage } from "../sanitize-message";
 
 describe("sanitizeMessage", () => {
   it("trims body and collapses author name whitespace", () => {

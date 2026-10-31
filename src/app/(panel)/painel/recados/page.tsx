@@ -1,5 +1,5 @@
 import { ModerationList } from "@/modules/messages/components/moderation-list";
-import { listMessagesForModerationQuery } from "@/modules/messages/controllers/messages.queries";
+import { listMessagesForModerationQuery } from "@/modules/messages/controllers/queries/messages.queries";
 import { MODERATION_STATUSES } from "@/modules/messages/types";
 import { enumParam, type SearchParams } from "@/shared/lib/url-params";
 import { EmptyState } from "@/shared/ui/empty-state";

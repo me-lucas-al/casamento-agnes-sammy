@@ -1,5 +1,6 @@
 import { getSessionUser } from "@/modules/auth/controllers/get-session-user";
 import { guardedQuery } from "@/shared/lib/guarded-query";
+import { withLoggedFallback } from "@/shared/lib/logged-fallback";
 import { getTourModule } from "../factory";
 
 export async function getTourStatusQuery() {
@@ -10,11 +11,9 @@ export async function getTourStatusQuery() {
 }
 
 export async function shouldAutoOpenTourQuery(): Promise<boolean> {
-  try {
+  return withLoggedFallback("query.tour_auto_open_fallback", false, async () => {
     const actor = await getSessionUser();
     const status = await getTourModule().getTourStatus(actor);
     return !status.isCompleted;
-  } catch {
-    return false;
-  }
+  });
 }

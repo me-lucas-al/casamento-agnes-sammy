@@ -2,6 +2,7 @@ import { getSessionUser } from "@/modules/auth/controllers/get-session-user";
 import { getProfileModule } from "../factory";
 import type { GuestProfile } from "../types";
 import { guardedQuery } from "@/shared/lib/guarded-query";
+import { withLoggedFallback } from "@/shared/lib/logged-fallback";
 
 export async function getMyGuestProfileQuery() {
   return guardedQuery("getMyGuestProfileQuery", async () => {
@@ -11,14 +12,12 @@ export async function getMyGuestProfileQuery() {
 }
 
 export async function getFirstAccessProfileQuery(): Promise<GuestProfile | null> {
-  try {
+  return withLoggedFallback("query.first_access_profile_fallback", null, async () => {
     const actor = await getSessionUser();
     if (actor?.role !== "guest" || !actor.guestId) return null;
     const profile = await getProfileModule().getGuestProfile(actor, actor.guestId);
     return profile.profileCompleted ? null : profile;
-  } catch {
-    return null;
-  }
+  });
 }
 
 export async function getMyStaffProfileQuery() {

@@ -8,3 +8,13 @@ export async function getTourStatusQuery() {
     return getTourModule().getTourStatus(actor);
   });
 }
+
+export async function shouldAutoOpenTourQuery(): Promise<boolean> {
+  try {
+    const actor = await getSessionUser();
+    const status = await getTourModule().getTourStatus(actor);
+    return !status.isCompleted;
+  } catch {
+    return false;
+  }
+}

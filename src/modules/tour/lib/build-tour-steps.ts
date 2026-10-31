@@ -43,3 +43,9 @@ export function buildTourSteps(role: Role): TourStepDefinition[] {
     ({ id, navLabel, href, hrefLabel }) => ({ id, navLabel, href, hrefLabel }),
   );
 }
+
+export function getTourStepDefinition(stepId: TourStepId): TourStepDefinition {
+  const step = ALL_STEPS.find((candidate) => candidate.id === stepId);
+  if (!step) throw new Error(`Unknown tour step: ${stepId}`);
+  return { id: step.id, navLabel: step.navLabel, href: step.href, hrefLabel: step.hrefLabel };
+}

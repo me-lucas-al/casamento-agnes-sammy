@@ -37,7 +37,7 @@
 - [x] Lista paginada com filtros e disponibilidade em tempo real
 - [x] Painel de presentes e categorias
 - [x] Pesquisa de sugestões de presentes (fontes, lojas permitidas e premissas de preço) em `docs/gift-suggestions-research.md`
-- [x] Módulo `gift-suggestions`: catálogo estático com 262 sugestões (6 categorias, lojas confiáveis, busca por loja), helpers puros e testes
+- [x] Módulo `gift-suggestions`: catálogo estático (6 categorias, lojas confiáveis, busca por loja), helpers puros e testes
 - [x] Sugestões para o casal: listagem com busca, filtros por URL e paginação no backend, seleção múltipla e adição à lista sem duplicar
 - [x] Atalhos para as sugestões: card na home do painel, botão em Presentes e passo final do tour
 - [x] Revisão: getters de env por módulo (auth não depende de Cloudinary/cron/app)
@@ -45,6 +45,11 @@
 - [x] Revisão: bloqueio de preço verificado e aplicado na mesma transação com lock FOR UPDATE
 - [x] Revisão: código de acesso removido da URL após leitura, Referrer-Policy no-referrer em `/`, normalização no servidor
 - [x] Revisão: aviso de falha no login Google na aba dos noivos, redirects dos layouts unificados, catch vazios com log, telefone normalizado (10 a 13 dígitos)
+- [x] Fotos nos presentes e sugestões: componente `ProductImage`, colunas `product_url`, `external_image_url`, `store_name`, `price_checked_at` (migration `0006`, rodar em produção pelo workflow)
+- [x] Sugestões com produtos reais verificados (link exato, preço exato, foto da loja) via `pnpm suggestions:import` a partir de `.scratch/research/*.json`; hosts de imagem permitidos gerados em `src/shared/lib/images/allowed-image-hosts.ts` (remotePatterns e CSP)
+- [x] `pnpm suggestions:check-prices`: relatório somente leitura de preços divergentes ou páginas inacessíveis
+- [x] Lista do convidado sem rótulos de categoria, tipo ou faixa: busca, preço mínimo/máximo, ordenação e paginação (`q`, `precoMin`, `precoMax`, `sort`)
+- [ ] Rodar o importador de novo depois da correção dos JSONs de pesquisa e conferir preços com `pnpm suggestions:check-prices`
 
 ## Fase 5 — Contribuições + Pix
 - [x] Reservar em transação com `FOR UPDATE`

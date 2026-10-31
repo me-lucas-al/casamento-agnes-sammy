@@ -1,6 +1,6 @@
 import { requireRole } from "@/modules/auth/authorization";
 import type { SessionUser } from "@/modules/auth/types";
-import type { EventSettingsRepository } from "../repositories/event-settings-repository";
+import type { EventSettingsRepository } from "../repositories/contracts/event-settings-repository";
 
 type Dependencies = { eventSettingsRepository: EventSettingsRepository };
 

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useTransition, type FormEvent } from "react";
-import { updateEventSettingsAction } from "../controllers/update-event-settings.actions";
+import { updateEventSettingsAction } from "../controllers/actions/update-event-settings.actions";
 import type { EventSettingsSnapshot } from "../types";
 import { EventSettingsFields } from "./event-settings-fields";
 import { PixSettingsFields } from "./pix-settings-fields";

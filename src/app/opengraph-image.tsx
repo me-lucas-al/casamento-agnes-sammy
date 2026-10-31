@@ -1,5 +1,5 @@
 import { ImageResponse } from "next/og";
-import { getEventSettingsQuery } from "@/modules/event/controllers/event.queries";
+import { getEventSettingsQuery } from "@/modules/event/controllers/queries/event.queries";
 import { readMonogramDataUri, readSocialCardFonts } from "@/shared/seo/read-brand-asset";
 import { SocialCard } from "@/shared/seo/social-card";
 import { buildSocialCardCopy } from "@/shared/seo/social-card-copy";

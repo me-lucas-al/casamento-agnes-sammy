@@ -1,4 +1,4 @@
-import { getEventSettingsQuery } from "@/modules/event/controllers/event.queries";
+import { getEventSettingsQuery } from "@/modules/event/controllers/queries/event.queries";
 import { EventDetails } from "@/modules/profile/components/event-details";
 import { StorySection } from "@/modules/profile/components/story-section";
 import { PageHeading } from "@/shared/ui/components/page-heading";

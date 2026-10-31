@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { ForbiddenError, UnauthenticatedError } from "@/modules/auth/errors";
-import { runUpdateEventSettings } from "@/modules/event/controllers/run-update-event-settings";
+import { runUpdateEventSettings } from "@/modules/event/controllers/handlers/run-update-event-settings";
 import { InvalidPixKeyError } from "@/modules/event/errors";
 import { createEventModule } from "@/modules/event/factory";
 import { DEFAULT_EVENT_SETTINGS } from "@/modules/event/lib/default-event-settings";

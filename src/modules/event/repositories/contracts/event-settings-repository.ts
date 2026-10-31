@@ -1,4 +1,4 @@
-import type { EventSettings, EventSettingsInput } from "../types";
+import type { EventSettings, EventSettingsInput } from "@/modules/event/types";
 
 export interface EventSettingsRepository {
   find(): Promise<EventSettings | null>;

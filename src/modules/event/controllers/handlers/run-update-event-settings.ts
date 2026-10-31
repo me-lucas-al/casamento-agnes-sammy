@@ -5,9 +5,9 @@ import type { CacheInvalidator } from "@/shared/lib/cache/invalidate";
 import { safeAction } from "@/shared/lib/safe-action";
 import { invalidInput } from "@/shared/lib/validation-failure";
 import { failure, success, type ActionResult } from "@/shared/lib/result";
-import { describeEventError } from "../errors";
-import type { EventModule } from "../factory";
-import { updateEventSettingsSchema } from "../schemas/update-event-settings.schema";
+import { describeEventError } from "@/modules/event/errors";
+import type { EventModule } from "@/modules/event/factory";
+import { updateEventSettingsSchema } from "@/modules/event/schemas/update-event-settings.schema";
 
 type Dependencies = { eventModule: EventModule; cacheInvalidator: CacheInvalidator };
 

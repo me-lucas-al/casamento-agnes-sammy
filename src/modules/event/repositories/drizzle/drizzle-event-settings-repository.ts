@@ -1,7 +1,7 @@
 import { eq } from "drizzle-orm";
 import { eventSettings } from "@/shared/db/schema";
 import type { Database } from "@/shared/db/types";
-import type { EventSettingsRepository } from "./event-settings-repository";
+import type { EventSettingsRepository } from "../contracts/event-settings-repository";
 
 const SETTINGS_ROW_ID = 1;
 

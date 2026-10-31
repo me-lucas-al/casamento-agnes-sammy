@@ -1,5 +1,5 @@
 import { listMyContributionsQuery } from "@/modules/contributions/controllers/contributions.queries";
-import { getEventSettingsQuery } from "@/modules/event/controllers/event.queries";
+import { getEventSettingsQuery } from "@/modules/event/controllers/queries/event.queries";
 import { GuestGreeting } from "@/modules/profile/components/guest-greeting";
 import { HomeSummary } from "@/modules/profile/components/home-summary";
 import { ShortcutLinks } from "@/modules/profile/components/shortcut-links";

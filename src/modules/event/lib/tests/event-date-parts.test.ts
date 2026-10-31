@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { getEventDateParts } from "./event-date-parts";
+import { getEventDateParts } from "../event-date-parts";
 
 describe("getEventDateParts", () => {
   it("formats the wedding date in Sao Paulo time", () => {

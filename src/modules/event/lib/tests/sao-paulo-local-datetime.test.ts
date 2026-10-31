@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { formatSaoPauloLocalDateTime, parseSaoPauloLocalDateTime } from "./sao-paulo-local-datetime";
+import { formatSaoPauloLocalDateTime, parseSaoPauloLocalDateTime } from "../sao-paulo-local-datetime";
 
 describe("sao paulo local datetime", () => {
   it("parses local input as UTC-3", () => {

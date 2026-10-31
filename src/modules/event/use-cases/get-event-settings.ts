@@ -1,6 +1,6 @@
 import { DEFAULT_EVENT_SETTINGS } from "../lib/default-event-settings";
 import { toEventSettingsInput } from "../lib/event-snapshot";
-import type { EventSettingsRepository } from "../repositories/event-settings-repository";
+import type { EventSettingsRepository } from "../repositories/contracts/event-settings-repository";
 import type { EventSettingsInput } from "../types";
 
 type Dependencies = { eventSettingsRepository: EventSettingsRepository };

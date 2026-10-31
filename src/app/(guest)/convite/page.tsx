@@ -1,4 +1,4 @@
-import { getEventSettingsQuery } from "@/modules/event/controllers/event.queries";
+import { getEventSettingsQuery } from "@/modules/event/controllers/queries/event.queries";
 import { AccessCodeCard } from "@/modules/profile/components/access-code-card";
 import { PersonalInvitation } from "@/modules/profile/components/personal-invitation";
 import { requireGuestPageAccess } from "@/modules/profile/controllers/guest-page-access";

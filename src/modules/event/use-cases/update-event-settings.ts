@@ -3,7 +3,7 @@ import type { SessionUser } from "@/modules/auth/types";
 import { InvalidPixKeyError } from "../errors";
 import { toEventSettingsInput } from "../lib/event-snapshot";
 import { isValidPixKey, normalizePixKey } from "../lib/pix-key-validation";
-import type { EventSettingsRepository } from "../repositories/event-settings-repository";
+import type { EventSettingsRepository } from "../repositories/contracts/event-settings-repository";
 import type { EventSettingsInput } from "../types";
 
 type Dependencies = { eventSettingsRepository: EventSettingsRepository };

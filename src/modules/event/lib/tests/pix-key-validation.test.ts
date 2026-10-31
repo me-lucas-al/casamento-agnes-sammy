@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { isValidPixKey, normalizePixKey } from "./pix-key-validation";
+import { isValidPixKey, normalizePixKey } from "../pix-key-validation";
 
 describe("isValidPixKey", () => {
   it("accepts a formatted valid cpf and rejects a wrong check digit", () => {

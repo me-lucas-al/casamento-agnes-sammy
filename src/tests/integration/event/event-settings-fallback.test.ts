@@ -27,7 +27,7 @@ describe("event settings fallback", () => {
   it("returns defaults within seconds and logs when the database is unreachable", async () => {
     for (const [name, value] of Object.entries(ENVIRONMENT)) vi.stubEnv(name, value);
     const errorLog = vi.spyOn(console, "error").mockImplementation(() => undefined);
-    const { getEventSettingsQuery } = await import("@/modules/event/controllers/event.queries");
+    const { getEventSettingsQuery } = await import("@/modules/event/controllers/queries/event.queries");
     const startedAt = Date.now();
 
     const snapshot = await getEventSettingsQuery();

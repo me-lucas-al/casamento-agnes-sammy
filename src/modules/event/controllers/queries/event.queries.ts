@@ -3,10 +3,10 @@ import { nextCachedReader } from "@/shared/lib/cache/cached-read";
 import { logger } from "@/shared/lib/logger";
 import { serializeError } from "@/shared/lib/logging/serialize-error";
 import { withTimeout } from "@/shared/lib/with-timeout";
-import { getEventModule } from "../factory";
-import { DEFAULT_EVENT_SETTINGS } from "../lib/default-event-settings";
-import { toEventSnapshot } from "../lib/event-snapshot";
-import type { EventSettingsSnapshot } from "../types";
+import { getEventModule } from "@/modules/event/factory";
+import { DEFAULT_EVENT_SETTINGS } from "@/modules/event/lib/default-event-settings";
+import { toEventSnapshot } from "@/modules/event/lib/event-snapshot";
+import type { EventSettingsSnapshot } from "@/modules/event/types";
 
 const EVENT_SETTINGS_TIMEOUT_MILLISECONDS = 4000;
 

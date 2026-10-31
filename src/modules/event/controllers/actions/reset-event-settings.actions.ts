@@ -6,8 +6,8 @@ import { eventTag } from "@/shared/lib/cache/cache-tags";
 import { nextCacheInvalidator } from "@/shared/lib/cache/invalidate";
 import { safeAction } from "@/shared/lib/safe-action";
 import { failure, success, type ActionResult } from "@/shared/lib/result";
-import { describeEventError } from "../errors";
-import { getEventModule } from "../factory";
+import { describeEventError } from "@/modules/event/errors";
+import { getEventModule } from "@/modules/event/factory";
 
 export async function resetEventSettingsAction(): Promise<ActionResult> {
   return safeAction(describeEventError, async () => {

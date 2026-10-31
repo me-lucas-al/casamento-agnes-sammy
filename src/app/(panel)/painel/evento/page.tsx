@@ -1,5 +1,5 @@
 import { EventSettingsForm } from "@/modules/event/components/event-settings-form";
-import { getEventSettingsQuery } from "@/modules/event/controllers/event.queries";
+import { getEventSettingsQuery } from "@/modules/event/controllers/queries/event.queries";
 import { PageHeading } from "@/shared/ui/components/page-heading";
 
 export default async function EventSettingsPage() {

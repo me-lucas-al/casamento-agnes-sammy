@@ -4,7 +4,7 @@ import Icon from "@/app/icon";
 import OpenGraphImage, { size as openGraphSize } from "@/app/opengraph-image";
 import robots from "@/app/robots";
 
-vi.mock("@/modules/event/controllers/event.queries", async () => {
+vi.mock("@/modules/event/controllers/queries/event.queries", async () => {
   const { DEFAULT_EVENT_SETTINGS } = await import("@/modules/event/lib/default-event-settings");
   const { toEventSnapshot } = await import("@/modules/event/lib/event-snapshot");
   return { getEventSettingsQuery: async () => toEventSnapshot(DEFAULT_EVENT_SETTINGS) };

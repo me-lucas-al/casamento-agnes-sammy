@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { normalizePixKey } from "./pix-key";
+import { normalizePixKey } from "../pix-key";
 
 describe("normalizePixKey", () => {
   it("keeps only digits for cpf and cnpj", () => {

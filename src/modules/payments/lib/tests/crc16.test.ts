@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { crc16Ccitt } from "./crc16";
+import { crc16Ccitt } from "../crc16";
 
 describe("crc16Ccitt", () => {
   it("matches the CRC-16/CCITT-FALSE check value", () => {

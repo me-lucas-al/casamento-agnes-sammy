@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { renderPixQrSvgDataUrl } from "./pix-qr";
+import { renderPixQrSvgDataUrl } from "../pix-qr";
 
 describe("renderPixQrSvgDataUrl", () => {
   it("returns an svg data url", async () => {

@@ -1,7 +1,7 @@
 import { eq } from "drizzle-orm";
 import { eventSettings } from "@/shared/db/schema";
 import type { Database } from "@/shared/db/types";
-import type { PixSettingsRepository } from "./pix-settings-repository";
+import type { PixSettingsRepository } from "../contracts/pix-settings-repository";
 
 const SETTINGS_ROW_ID = 1;
 

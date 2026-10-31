@@ -3,7 +3,7 @@ import type { SessionUser } from "@/modules/auth/types";
 import { PixNotConfiguredError } from "../errors";
 import { buildPixBrCode } from "../lib/pix-brcode";
 import { normalizePixKey } from "../lib/pix-key";
-import type { PixSettingsRepository } from "../repositories/pix-settings-repository";
+import type { PixSettingsRepository } from "../repositories/contracts/pix-settings-repository";
 import type { PixPaymentDetails } from "../types";
 
 type Dependencies = {

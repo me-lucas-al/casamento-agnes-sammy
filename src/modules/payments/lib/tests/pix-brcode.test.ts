@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
-import { InvalidPixAmountError, InvalidPixFieldError } from "../errors";
-import { crc16Ccitt } from "./crc16";
-import { buildPixBrCode } from "./pix-brcode";
+import { InvalidPixAmountError, InvalidPixFieldError } from "@/modules/payments/errors";
+import { crc16Ccitt } from "../crc16";
+import { buildPixBrCode } from "../pix-brcode";
 
 const baseInput = {
   pixKey: "123e4567-e12b-12d1-a456-426655440000",

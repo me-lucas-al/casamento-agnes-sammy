@@ -5,6 +5,7 @@ import type { GiftRepository } from "./gift-repository";
 import { deleteGiftUnlessCommitted } from "./drizzle-gift-deletion";
 import { hasConfirmedContribution, sumActiveContributions } from "./drizzle-contribution-totals";
 import { existsGiftWithImagePublicId } from "./drizzle-gift-image-query";
+import { updateGiftUnlessPricingLocked } from "./drizzle-gift-update";
 import { buildGiftFilters, buildGiftOrder } from "./drizzle-gift-list-query";
 
 export function createDrizzleGiftRepository(database: Database): GiftRepository {
@@ -20,10 +21,7 @@ export function createDrizzleGiftRepository(database: Database): GiftRepository 
       const [gift] = await database.insert(gifts).values(draft).returning();
       return gift;
     },
-    async update(giftId, draft) {
-      const [gift] = await database.update(gifts).set(draft).where(eq(gifts.id, giftId)).returning();
-      return gift;
-    },
+    updateUnlessPricingLocked: (giftId, draft, now) => updateGiftUnlessPricingLocked(database, giftId, draft, now),
     async listPage(query) {
       const filters = buildGiftFilters(query);
       const [rows, [totalRow]] = await Promise.all([

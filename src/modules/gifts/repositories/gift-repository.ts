@@ -24,11 +24,16 @@ export type GiftDeletionOutcome =
   | { status: "has_confirmed" }
   | { status: "has_active_reservations" };
 
+export type GiftUpdateOutcome =
+  | { status: "updated"; gift: Gift }
+  | { status: "not_found" }
+  | { status: "pricing_locked" };
+
 export interface GiftRepository {
   existsWithImagePublicId(publicId: string, excludedGiftId?: string): Promise<boolean>;
   findById(giftId: string): Promise<Gift | null>;
   create(draft: GiftDraft): Promise<Gift>;
-  update(giftId: string, draft: GiftDraft): Promise<Gift>;
+  updateUnlessPricingLocked(giftId: string, draft: GiftDraft, now: Date): Promise<GiftUpdateOutcome>;
   deleteUnlessCommitted(giftId: string, now: Date): Promise<GiftDeletionOutcome>;
   listPage(query: GiftListQuery): Promise<GiftListPage>;
   hasConfirmedContribution(giftId: string): Promise<boolean>;

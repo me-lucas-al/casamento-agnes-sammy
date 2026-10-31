@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useId, useRef, type MouseEvent, type SyntheticEvent } from "react";
+import { useEffect, useId, useRef, type KeyboardEvent, type MouseEvent, type SyntheticEvent } from "react";
 import { Button } from "@/shared/ui/button";
 import { cn } from "@/shared/lib/utils";
 import type { ConfirmDialogState } from "./lib/confirm-dialog-state";
@@ -45,6 +45,16 @@ export function ConfirmDialog({ state, onConfirm, onCancel }: ConfirmDialogProps
     if (!isPending) onCancel();
   }
 
+  function trapTab(event: KeyboardEvent<HTMLDialogElement>) {
+    if (event.key !== "Tab") return;
+    const buttons = [...event.currentTarget.querySelectorAll<HTMLButtonElement>("button:not([disabled])")];
+    if (buttons.length === 0) return event.preventDefault();
+    const edge = buttons[event.shiftKey ? 0 : buttons.length - 1];
+    if (document.activeElement !== edge) return;
+    event.preventDefault();
+    buttons[event.shiftKey ? buttons.length - 1 : 0].focus();
+  }
+
   function handleBackdropClick(event: MouseEvent<HTMLDialogElement>) {
     if (event.target === event.currentTarget && !isPending) onCancel();
   }
@@ -56,12 +66,13 @@ export function ConfirmDialog({ state, onConfirm, onCancel }: ConfirmDialogProps
       aria-labelledby={titleId}
       aria-describedby={descriptionId}
       onCancel={handleNativeCancel}
+      onKeyDown={trapTab}
       onClick={handleBackdropClick}
       className="fixed inset-x-0 bottom-0 top-auto m-0 w-full max-w-none overflow-visible bg-transparent p-0 text-wine backdrop:bg-wine/60 sm:inset-0 sm:m-auto sm:h-fit sm:max-w-md"
     >
       <div
         className={cn(
-          "rounded-t-3xl border border-gold/60 bg-paper px-5 pb-[max(1.25rem,env(safe-area-inset-bottom))] pt-6 shadow-2xl sm:rounded-3xl sm:p-7",
+          "rounded-t-[1.75rem] border border-gold/60 bg-paper px-5 pb-[max(1.25rem,env(safe-area-inset-bottom))] pt-6 shadow-2xl sm:rounded-[1.75rem] sm:p-7",
           "motion-safe:animate-in motion-safe:fade-in motion-safe:slide-in-from-bottom-6 motion-safe:duration-200 sm:motion-safe:slide-in-from-bottom-2",
         )}
       >

@@ -85,7 +85,7 @@
 - [x] Cadastro/edição pelo convidado ao entrar com código: nome, telefone, e-mail e familiares
 - [x] Travar limite de 8 MB de upload também no Cloudinary (upload preset)
 - [x] Travar modo, valor e cotas de presente que já tem contribuição ativa
-- [ ] Primeiro disparo real do workflow de migration em produção — o workflow já rodou no GitHub e falhou como esperado ("Secret DATABASE_URL is missing"); falta criar o secret no ambiente `production` (environment já existe) e disparar de novo
+- [x] Primeiro disparo real do workflow de migration em produção — secret `DATABASE_URL` criado no ambiente `production` e workflow executado com sucesso
 - [ ] Deploy em produção (Vercel + Neon) e domínio — manual, ver checklist em `docs/ci-cd.md`
 - [x] Build rodando em `localhost:3000` — build ok e servidor validado (porta 3100, pois a 3000 estava ocupada)
 
@@ -93,7 +93,7 @@
 - [x] Chave Pix, tipo, nome do recebedor e cidade — *preenchido pelos noivos no painel (via passo a passo)*
 - [x] Texto "nossa história" e fotos do casal — *preenchido pelos noivos no painel (via passo a passo)*
 - [ ] E-mails Google do admin e dos noivos, e domínio do site — falta cadastrar no banco (`ADMIN_EMAIL` + seed) e configurar o domínio
-- [ ] Credenciais: Neon, Cloudinary, Google OAuth, projeto Vercel, secret `DATABASE_URL` no GitHub — ainda não configuradas (ver `docs/ci-cd.md`)
+- [ ] Credenciais: Neon (feito: banco de produção migrado, admin e categorias criados, secret no GitHub), faltam Cloudinary, Google OAuth e variáveis na Vercel (ver `.env.production`)
 - [x] Categorias iniciais de presentes — *definidas (6 categorias padrão)*
 
 ## Dúvidas para responder (Respondidas)

@@ -1,6 +1,6 @@
 import { formatCentsAsBrl } from "@/shared/lib/money";
 
-const inputClassName = "w-full rounded-lg border bg-white px-3 py-2 text-base";
+const inputClassName = "w-full rounded-lg border bg-card px-3 py-2 text-base";
 
 type QuotaFieldProps = {
   quotas: number;
@@ -11,7 +11,7 @@ type QuotaFieldProps = {
 
 export function QuotaField({ quotas, maximumQuotas, quotaPriceCents, onChange }: QuotaFieldProps) {
   return (
-    <label className="flex flex-col gap-1 text-sm">
+    <label className="flex flex-col gap-1 text-base">
       Quantidade de cotas ({formatCentsAsBrl(quotaPriceCents)} cada)
       <input
         type="number"
@@ -35,7 +35,7 @@ type AmountFieldProps = {
 
 export function AmountField({ amountText, minimumCents, maximumCents, onChange }: AmountFieldProps) {
   return (
-    <label className="flex flex-col gap-1 text-sm">
+    <label className="flex flex-col gap-1 text-base">
       Valor (de {formatCentsAsBrl(minimumCents)} a {formatCentsAsBrl(maximumCents)})
       <input
         type="text"
@@ -56,16 +56,16 @@ type AnonymousFieldProps = {
 
 export function AnonymousField({ checked, onChange }: AnonymousFieldProps) {
   return (
-    <label className="flex items-start gap-2 text-sm">
+    <label className="flex min-h-11 items-start gap-3 py-1 text-base">
       <input
         type="checkbox"
         checked={checked}
         onChange={(event) => onChange(event.target.checked)}
-        className="mt-1 size-4 accent-rose"
+        className="mt-1 size-5 shrink-0 accent-rose"
       />
       <span>
         Contribuir de forma anônima
-        <span className="block text-xs">Seu nome não aparece no mural de recados.</span>
+        <span className="block text-sm">Seu nome não aparece no mural de recados.</span>
       </span>
     </label>
   );

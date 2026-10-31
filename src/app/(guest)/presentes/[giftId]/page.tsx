@@ -1,4 +1,6 @@
+import { ArrowLeft } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import {
   getGiftAvailabilityQuery,
@@ -47,6 +49,10 @@ export default async function GiftDetailPage({ params, searchParams }: PageProps
 
   return (
     <div className="mx-auto flex max-w-xl flex-col gap-6 text-wine">
+      <Link href="/presentes" className="inline-flex min-h-11 w-fit items-center gap-1.5 text-base underline-offset-4 hover:underline">
+        <ArrowLeft aria-hidden className="size-4" />
+        Voltar aos presentes
+      </Link>
       {gift.imageUrl ? (
         <Image
           src={gift.imageUrl}
@@ -59,9 +65,9 @@ export default async function GiftDetailPage({ params, searchParams }: PageProps
       ) : null}
       <header className="flex flex-col gap-2">
         <h1 className="font-heading text-3xl italic">{gift.name}</h1>
-        <p className="text-sm">{gift.description}</p>
+        <p className="text-base">{gift.description}</p>
         <p className="font-display text-xl">{formatCentsAsBrl(gift.priceCents)}</p>
-        <p className="w-fit rounded-full bg-blush px-3 py-1 text-sm">{describeAvailability(view)}</p>
+        <p className="w-fit rounded-full bg-blush px-3 py-1 text-base">{describeAvailability(view)}</p>
       </header>
       {paymentResult?.errorMessage ? (
         <p role="alert" className="text-sm text-crimson">{paymentResult.errorMessage}</p>

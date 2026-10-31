@@ -14,10 +14,17 @@ describe("ownProfileSchema", () => {
     ["short name", { name: "M" }],
     ["missing phone", { phone: "" }],
     ["invalid phone", { phone: "abc" }],
+    ["phone with too few digits", { phone: "(11) 9999-00" }],
+    ["phone with too many digits", { phone: "+55 11 99999-0000 12" }],
     ["invalid email", { email: "maria" }],
     ["blank relative", { relatives: [{ name: "  " }] }],
   ])("rejects %s", (_label, override) => {
     expect(ownProfileSchema.safeParse({ ...validInput, ...override }).success).toBe(false);
+  });
+
+  it("stores the phone as digits only", () => {
+    expect(ownProfileSchema.parse(validInput).phone).toBe("11999990000");
+    expect(ownProfileSchema.parse({ ...validInput, phone: "+55 (11) 99999-0000" }).phone).toBe("5511999990000");
   });
 
   it("trims the email before validating it", () => {

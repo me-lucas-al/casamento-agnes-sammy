@@ -24,6 +24,7 @@
 - [x] Arte recortada do convite em `public/brand/`
 - [x] Home pública no estilo do convite
 - [x] Páginas de login (convidado e Google)
+- [x] Home `/` vira tela de login (código do convite ou Google) com redirecionamento de sessões ativas
 - [x] Layouts de painel e convidado (nav colapsável no mobile)
 - [x] Evento editável no painel (Pix, endereço, prazo, história)
 

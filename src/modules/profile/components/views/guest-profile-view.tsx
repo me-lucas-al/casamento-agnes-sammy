@@ -1,8 +1,8 @@
 import { formatDateTimeInSaoPaulo } from "@/shared/lib/dates";
-import { describeRsvpStatus } from "../lib/rsvp-status-label";
-import type { GuestProfile } from "../types";
-import { OwnProfileEditor } from "./own-profile-editor";
-import { ProfileFields } from "./profile-fields";
+import { describeRsvpStatus } from "@/modules/profile/lib/rsvp-status-label";
+import type { GuestProfile } from "@/modules/profile/types";
+import { OwnProfileEditor } from "../forms/own-profile-editor";
+import { ProfileFields } from "../forms/profile-fields";
 
 type GuestProfileViewProps = { profile: GuestProfile };
 

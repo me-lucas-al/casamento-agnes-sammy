@@ -1,5 +1,5 @@
-import { StaffProfileView } from "@/modules/profile/components/staff-profile-view";
-import { getMyStaffProfileQuery } from "@/modules/profile/controllers/profile.queries";
+import { StaffProfileView } from "@/modules/profile/components/views/staff-profile-view";
+import { getMyStaffProfileQuery } from "@/modules/profile/controllers/queries/profile.queries";
 import { PageHeading } from "@/shared/ui/components/page-heading";
 
 export const dynamic = "force-dynamic";

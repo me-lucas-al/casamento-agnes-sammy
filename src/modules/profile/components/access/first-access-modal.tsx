@@ -2,8 +2,8 @@
 
 import { useRouter } from "next/navigation";
 import { useEffect, useRef } from "react";
-import type { GuestProfile } from "../types";
-import { GuestProfileForm } from "./guest-profile-form";
+import type { GuestProfile } from "@/modules/profile/types";
+import { GuestProfileForm } from "../forms/guest-profile-form";
 
 type FirstAccessModalProps = { profile: GuestProfile };
 

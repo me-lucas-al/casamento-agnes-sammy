@@ -1,6 +1,6 @@
 import { getEventSettingsQuery } from "@/modules/event/controllers/queries/event.queries";
-import { EventDetails } from "@/modules/profile/components/event-details";
-import { StorySection } from "@/modules/profile/components/story-section";
+import { EventDetails } from "@/modules/profile/components/home/event-details";
+import { StorySection } from "@/modules/profile/components/home/story-section";
 import { PageHeading } from "@/shared/ui/components/page-heading";
 
 export default async function WeddingPage() {

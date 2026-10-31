@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { buildInvitationLink } from "./invitation-link";
+import { buildInvitationLink } from "../invitation-link";
 
 describe("buildInvitationLink", () => {
   it("builds the login link carrying the code", () => {

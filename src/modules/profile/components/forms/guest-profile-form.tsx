@@ -5,8 +5,8 @@ import { CompanionFields } from "@/modules/rsvp/components/companion-fields";
 import type { Companion } from "@/modules/rsvp/types";
 import { Button } from "@/shared/ui/button";
 import { FormField, textInputClassName } from "@/shared/ui/components/form-field";
-import { updateMyProfileAction } from "../controllers/profile.actions";
-import type { GuestProfile } from "../types";
+import { updateMyProfileAction } from "@/modules/profile/controllers/actions/profile.actions";
+import type { GuestProfile } from "@/modules/profile/types";
 
 type GuestProfileFormProps = {
   profile: GuestProfile;

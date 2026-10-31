@@ -1,7 +1,7 @@
 "use client";
 
 import { useSyncExternalStore } from "react";
-import { computeCountdown } from "../lib/countdown";
+import { computeCountdown } from "@/modules/profile/lib/countdown";
 
 type CountdownTimerProps = { targetIso: string };
 

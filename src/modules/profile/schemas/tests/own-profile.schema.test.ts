@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { ownProfileSchema } from "./own-profile.schema";
+import { ownProfileSchema } from "../own-profile.schema";
 
 const validInput = { name: "Maria Silva", phone: "(11) 99999-0000", email: "maria@example.com" };
 

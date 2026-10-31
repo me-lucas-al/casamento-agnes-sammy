@@ -1,8 +1,8 @@
 import { getEventSettingsQuery } from "@/modules/event/controllers/queries/event.queries";
-import { AccessCodeCard } from "@/modules/profile/components/access-code-card";
-import { PersonalInvitation } from "@/modules/profile/components/personal-invitation";
-import { requireGuestPageAccess } from "@/modules/profile/controllers/guest-page-access";
-import { getMyGuestProfileQuery } from "@/modules/profile/controllers/profile.queries";
+import { AccessCodeCard } from "@/modules/profile/components/access/access-code-card";
+import { PersonalInvitation } from "@/modules/profile/components/home/personal-invitation";
+import { requireGuestPageAccess } from "@/modules/profile/controllers/guards/guest-page-access";
+import { getMyGuestProfileQuery } from "@/modules/profile/controllers/queries/profile.queries";
 import { buildInvitationLink } from "@/modules/profile/lib/invitation-link";
 import { getAppEnv } from "@/shared/config/env";
 

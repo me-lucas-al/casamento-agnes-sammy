@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import type { GuestProfile } from "../types";
+import type { GuestProfile } from "@/modules/profile/types";
 import { GuestProfileForm } from "./guest-profile-form";
 
 type OwnProfileEditorProps = { profile: GuestProfile };

@@ -2,7 +2,7 @@ import { requireRole } from "@/modules/auth/authorization";
 import { ForbiddenError } from "@/modules/auth/errors";
 import type { SessionUser } from "@/modules/auth/types";
 import { ProfileNotFoundError } from "../errors";
-import type { ProfileRepository } from "../repositories/profile-repository";
+import type { ProfileRepository } from "../repositories/contracts/profile-repository";
 import type { GuestProfile } from "../types";
 
 type Dependencies = { profileRepository: ProfileRepository };

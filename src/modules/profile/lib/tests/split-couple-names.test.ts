@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { splitCoupleNames } from "./split-couple-names";
+import { splitCoupleNames } from "../split-couple-names";
 
 describe("splitCoupleNames", () => {
   it("splits on the ampersand", () => {

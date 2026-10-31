@@ -1,7 +1,7 @@
 import { eq } from "drizzle-orm";
 import { guests, rsvpCompanions } from "@/shared/db/schema";
 import type { Database } from "@/shared/db/types";
-import type { OwnProfileSave } from "../types";
+import type { OwnProfileSave } from "@/modules/profile/types";
 
 export async function saveOwnProfile(
   database: Database,

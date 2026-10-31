@@ -1,6 +1,6 @@
 import { getDatabase } from "@/shared/db/client";
 import type { Database } from "@/shared/db/types";
-import { createDrizzleProfileRepository } from "./repositories/drizzle-profile-repository";
+import { createDrizzleProfileRepository } from "./repositories/drizzle/drizzle-profile-repository";
 import { makeGetGuestProfile } from "./use-cases/get-guest-profile";
 import { makeGetStaffProfile } from "./use-cases/get-staff-profile";
 import { makeUpdateOwnProfile } from "./use-cases/update-own-profile";

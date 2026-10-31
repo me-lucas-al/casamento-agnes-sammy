@@ -1,4 +1,4 @@
-import type { GuestProfile, OwnProfileSave, StaffProfile } from "../types";
+import type { GuestProfile, OwnProfileSave, StaffProfile } from "@/modules/profile/types";
 
 export interface ProfileRepository {
   findGuestProfile(guestId: string): Promise<GuestProfile | null>;

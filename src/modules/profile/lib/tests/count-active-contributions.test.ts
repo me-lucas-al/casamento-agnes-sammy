@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { countActiveContributions } from "./count-active-contributions";
+import { countActiveContributions } from "../count-active-contributions";
 
 describe("countActiveContributions", () => {
   it("counts only reserved and confirmed contributions", () => {

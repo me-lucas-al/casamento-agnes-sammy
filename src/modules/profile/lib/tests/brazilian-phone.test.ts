@@ -1,5 +1,5 @@
 ﻿import { describe, expect, it } from "vitest";
-import { normalizeBrazilianPhone } from "./brazilian-phone";
+import { normalizeBrazilianPhone } from "../brazilian-phone";
 
 describe("normalizeBrazilianPhone", () => {
   it.each([

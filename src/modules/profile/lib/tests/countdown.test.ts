@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { computeCountdown } from "./countdown";
+import { computeCountdown } from "../countdown";
 
 const target = new Date("2026-11-07T22:00:00.000Z");
 

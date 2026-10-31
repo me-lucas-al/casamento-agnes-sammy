@@ -7,9 +7,9 @@ import { nextCacheInvalidator } from "@/shared/lib/cache/invalidate";
 import { success, type ActionResult } from "@/shared/lib/result";
 import { safeAction } from "@/shared/lib/safe-action";
 import { invalidInput } from "@/shared/lib/validation-failure";
-import { describeProfileError } from "../errors";
-import { getProfileModule } from "../factory";
-import { ownProfileSchema } from "../schemas/own-profile.schema";
+import { describeProfileError } from "@/modules/profile/errors";
+import { getProfileModule } from "@/modules/profile/factory";
+import { ownProfileSchema } from "@/modules/profile/schemas/own-profile.schema";
 
 export async function updateMyProfileAction(input: unknown): Promise<ActionResult> {
   const parsed = ownProfileSchema.safeParse(input);

@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { describeRsvpStatus } from "../lib/rsvp-status-label";
-import type { RsvpStatus } from "../types";
+import { describeRsvpStatus } from "@/modules/profile/lib/rsvp-status-label";
+import type { RsvpStatus } from "@/modules/profile/types";
 
 type HomeSummaryProps = { rsvpStatus: RsvpStatus; contributionsCount: number };
 

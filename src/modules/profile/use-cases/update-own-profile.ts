@@ -5,7 +5,7 @@ import { RsvpDeadlinePassedError } from "@/modules/rsvp/errors";
 import { assertCompanionsFitSeats, normalizeCompanions } from "@/modules/rsvp/lib/validate-companions";
 import type { Companion } from "@/modules/rsvp/types";
 import { ProfileNotFoundError } from "../errors";
-import type { ProfileRepository } from "../repositories/profile-repository";
+import type { ProfileRepository } from "../repositories/contracts/profile-repository";
 import type { GuestProfile, OwnProfileChanges } from "../types";
 
 type Dependencies = { profileRepository: ProfileRepository; now: () => Date };

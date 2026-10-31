@@ -1,6 +1,6 @@
 import { signOutAction } from "@/modules/auth/controllers/sign-in.actions";
-import type { StaffProfile } from "../types";
-import { ProfileFields } from "./profile-fields";
+import type { StaffProfile } from "@/modules/profile/types";
+import { ProfileFields } from "../forms/profile-fields";
 
 type StaffProfileViewProps = { profile: StaffProfile };
 

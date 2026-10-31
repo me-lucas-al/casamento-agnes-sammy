@@ -2,7 +2,7 @@ import { eq } from "drizzle-orm";
 import { eventSettings, guests, rsvpCompanions, rsvps, users } from "@/shared/db/schema";
 import type { Database } from "@/shared/db/types";
 import { saveOwnProfile } from "./drizzle-own-profile-save";
-import type { ProfileRepository } from "./profile-repository";
+import type { ProfileRepository } from "../contracts/profile-repository";
 
 export function createDrizzleProfileRepository(database: Database): ProfileRepository {
   return {

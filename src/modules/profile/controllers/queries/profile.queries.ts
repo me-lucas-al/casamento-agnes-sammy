@@ -1,6 +1,6 @@
 import { getSessionUser } from "@/modules/auth/controllers/get-session-user";
-import { getProfileModule } from "../factory";
-import type { GuestProfile } from "../types";
+import { getProfileModule } from "@/modules/profile/factory";
+import type { GuestProfile } from "@/modules/profile/types";
 import { guardedQuery } from "@/shared/lib/guarded-query";
 import { withLoggedFallback } from "@/shared/lib/logged-fallback";
 

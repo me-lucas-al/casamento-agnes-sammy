@@ -3,8 +3,8 @@ import Link from "next/link";
 import { InvitationDateBlock } from "@/modules/event/components/invitation-date-block";
 import { getEventDateParts } from "@/modules/event/lib/event-date-parts";
 import type { EventSettingsSnapshot } from "@/modules/event/types";
-import { splitCoupleNames } from "../lib/split-couple-names";
-import type { GuestProfile } from "../types";
+import { splitCoupleNames } from "@/modules/profile/lib/split-couple-names";
+import type { GuestProfile } from "@/modules/profile/types";
 
 type PersonalInvitationProps = { settings: EventSettingsSnapshot; profile: GuestProfile };
 

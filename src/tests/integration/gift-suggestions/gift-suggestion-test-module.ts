@@ -5,6 +5,12 @@ import type { SearchParams } from "@/shared/lib/url/url-params";
 import type { Database } from "@/shared/db/types";
 import { createTestGiftModule } from "../gifts/gift-test-module";
 
+const verifiedKitchenNames = GIFT_SUGGESTION_CATALOG.filter(
+  (suggestion) => suggestion.categoryKey === "cozinha" && suggestion.productUrl !== null,
+).map((suggestion) => suggestion.name);
+
+export const [FIRST_PRODUCT_NAME, SECOND_PRODUCT_NAME, THIRD_PRODUCT_NAME] = verifiedKitchenNames;
+
 export function createTestSuggestionModule(db: Database) {
   const { giftModule } = createTestGiftModule(db);
   return { giftModule, suggestionModule: createGiftSuggestionModule(giftModule) };

@@ -6,7 +6,7 @@ import { asUser } from "@/tests/helpers/fakes/fake-session";
 import { seedGift, seedGiftCategory } from "@/tests/helpers/database/seeds/seed-gift";
 import { useTestDatabase } from "@/tests/helpers/database/use-test-database";
 import { PAGE_ONE } from "../gifts/gift-test-module";
-import { createTestSuggestionModule, idOf } from "./gift-suggestion-test-module";
+import { createTestSuggestionModule, idOf, FIRST_PRODUCT_NAME, SECOND_PRODUCT_NAME, THIRD_PRODUCT_NAME } from "./gift-suggestion-test-module";
 
 const KITCHEN = "Cozinha & Eletrodomésticos";
 
@@ -22,19 +22,35 @@ describe("addSuggestedGifts", () => {
     const { suggestionModule, giftModule } = createTestSuggestionModule(testDatabase.db);
     const category = await seedGiftCategory(testDatabase.db, { name: KITCHEN });
 
-    const result = await suggestionModule.addSuggestedGifts(couple, [idOf("Air fryer")]);
+    const result = await suggestionModule.addSuggestedGifts(couple, [idOf(FIRST_PRODUCT_NAME)]);
 
     const categories = await giftModule.categoryRepository.list();
     const { items } = await listAllGifts(giftModule);
     expect(result).toEqual({ createdCount: 1, skippedIds: [], failedIds: [] });
     expect(categories).toHaveLength(1);
-    expect(items[0]).toMatchObject({ name: "Air fryer", categoryId: category.id, isVisible: true });
+    expect(items[0]).toMatchObject({ name: FIRST_PRODUCT_NAME, categoryId: category.id, isVisible: true });
+  });
+
+  it("copies product link, photo, store, price date and exact price into the gift", async () => {
+    const { suggestionModule, giftModule } = createTestSuggestionModule(testDatabase.db);
+    const suggestion = GIFT_SUGGESTION_CATALOG.find((candidate) => candidate.name === FIRST_PRODUCT_NAME);
+
+    await suggestionModule.addSuggestedGifts(couple, [idOf(FIRST_PRODUCT_NAME)]);
+
+    const [gift] = (await listAllGifts(giftModule)).items;
+    expect(gift).toMatchObject({
+      priceCents: suggestion?.priceCents,
+      productUrl: suggestion?.productUrl,
+      externalImageUrl: suggestion?.imageUrl,
+      storeName: suggestion?.storeName,
+      priceCheckedAt: suggestion?.priceCheckedAt,
+    });
   });
 
   it("creates missing categories by name with their default order", async () => {
     const { suggestionModule, giftModule } = createTestSuggestionModule(testDatabase.db);
 
-    await suggestionModule.addSuggestedGifts(couple, [idOf("Pizza da primeira DR resolvida"), idOf("Air fryer")]);
+    await suggestionModule.addSuggestedGifts(couple, [idOf("Pizza da primeira DR resolvida"), idOf(FIRST_PRODUCT_NAME)]);
 
     const categories = await giftModule.categoryRepository.list();
     expect(categories.map((category) => [category.name, category.sortOrder])).toEqual([
@@ -45,9 +61,9 @@ describe("addSuggestedGifts", () => {
 
   it("skips gifts already in the list, ignoring case and accents", async () => {
     const { suggestionModule, giftModule } = createTestSuggestionModule(testDatabase.db);
-    await seedGift(testDatabase.db, { name: "AIR FRYER" });
-    await seedGift(testDatabase.db, { name: "Cafeteira eletrica" });
-    const ids = [idOf("Air fryer"), idOf("Cafeteira elétrica"), idOf("Liquidificador potente")];
+    await seedGift(testDatabase.db, { name: FIRST_PRODUCT_NAME.toUpperCase() });
+    await seedGift(testDatabase.db, { name: SECOND_PRODUCT_NAME.toLowerCase() });
+    const ids = [idOf(FIRST_PRODUCT_NAME), idOf(SECOND_PRODUCT_NAME), idOf(THIRD_PRODUCT_NAME)];
 
     const result = await suggestionModule.addSuggestedGifts(couple, ids);
 
@@ -57,7 +73,7 @@ describe("addSuggestedGifts", () => {
 
   it("is idempotent across calls and ignores repeated or unknown ids", async () => {
     const { suggestionModule, giftModule } = createTestSuggestionModule(testDatabase.db);
-    const airFryerId = idOf("Air fryer");
+    const airFryerId = idOf(FIRST_PRODUCT_NAME);
 
     const first = await suggestionModule.addSuggestedGifts(couple, [airFryerId, airFryerId, "nao-existe"]);
     const second = await suggestionModule.addSuggestedGifts(couple, [airFryerId]);

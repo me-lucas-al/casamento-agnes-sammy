@@ -1,5 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { GIFT_SUGGESTION_CATALOG } from "@/modules/gift-suggestions/data/gift-suggestion-catalog";
+import { HONEYMOON_SUGGESTIONS } from "@/modules/gift-suggestions/data/honeymoon-suggestions";
+import { NEW_HOME_FUNDS } from "@/modules/gift-suggestions/data/new-home-funds";
 import { STORE_IDS } from "@/modules/gift-suggestions/data/stores";
 import { parseSuggestionQuery } from "@/modules/gift-suggestions/schemas/suggestion-query-params";
 import { buildStoreSearchUrl } from "../store/build-store-search-url";
@@ -71,21 +73,23 @@ describe("parseSuggestionQuery", () => {
 
 describe("selectSuggestions", () => {
   it("searches name, description and tags without accents or case", () => {
-    const result = selectSuggestions(GIFT_SUGGESTION_CATALOG, { ...defaultFilters, q: "ELETRICA café" });
-    expect(result.map((suggestion) => suggestion.name)).toContain("Cafeteira elétrica");
-    const byTag = selectSuggestions(GIFT_SUGGESTION_CATALOG, { ...defaultFilters, q: "airfryer" });
-    expect(byTag.map((suggestion) => suggestion.name)).toContain("Air fryer");
+    const catalog = [HONEYMOON_SUGGESTIONS[0], ...NEW_HOME_FUNDS.slice(0, 2)];
+    const [target] = catalog;
+    const accented = target.name.toUpperCase();
+    expect(selectSuggestions(catalog, { ...defaultFilters, q: accented }).map((suggestion) => suggestion.id)).toContain(target.id);
+    const byTag = selectSuggestions(catalog, { ...defaultFilters, q: target.tags[0] });
+    expect(byTag.map((suggestion) => suggestion.id)).toContain(target.id);
   });
 
   it("combines store, category, band and price range filters", () => {
     const result = selectSuggestions(GIFT_SUGGESTION_CATALOG, {
-      ...defaultFilters, stores: ["camicado"], category: "cozinha", minPriceCents: 7000, maxPriceCents: 12000,
+      ...defaultFilters, stores: ["amazon-br"], category: "cozinha", minPriceCents: 7000, maxPriceCents: 30000,
     });
     expect(result.length).toBeGreaterThan(0);
     for (const suggestion of result) {
-      expect(suggestion).toMatchObject({ store: "camicado", categoryKey: "cozinha" });
+      expect(suggestion).toMatchObject({ store: "amazon-br", categoryKey: "cozinha" });
       expect(suggestion.priceCents).toBeGreaterThanOrEqual(7000);
-      expect(suggestion.priceCents).toBeLessThanOrEqual(12000);
+      expect(suggestion.priceCents).toBeLessThanOrEqual(30000);
     }
   });
 

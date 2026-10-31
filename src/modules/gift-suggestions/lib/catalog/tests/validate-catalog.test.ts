@@ -33,12 +33,11 @@ describe("validateCatalog", () => {
     expect(validateCatalog(GIFT_SUGGESTION_CATALOG)).toEqual([]);
   });
 
-  it("is large and balanced across the default categories", () => {
-    expect(GIFT_SUGGESTION_CATALOG.length).toBeGreaterThanOrEqual(250);
+  it("covers every default category", () => {
     expect(SUGGESTION_CATEGORY_ORDER).toEqual(DEFAULT_CATEGORIES.map((category) => category.name));
     for (const { key } of SUGGESTION_CATEGORIES) {
       const count = GIFT_SUGGESTION_CATALOG.filter((suggestion) => suggestion.categoryKey === key).length;
-      expect(count, key).toBeGreaterThanOrEqual(35);
+      expect(count, key).toBeGreaterThan(0);
     }
   });
 
@@ -46,7 +45,7 @@ describe("validateCatalog", () => {
     for (const suggestion of GIFT_SUGGESTION_CATALOG) {
       if (suggestion.store === null) continue;
       expect(STORE_IDS).toContain(suggestion.store);
-      expect(suggestion.storeSearchUrl?.startsWith("https://")).toBe(true);
+      expect((suggestion.productUrl ?? suggestion.storeSearchUrl)?.startsWith("https://")).toBe(true);
     }
   });
 

@@ -5,14 +5,14 @@ import type { SuggestionGiftGateway } from "@/modules/gift-suggestions/ports";
 import { asUser } from "@/tests/helpers/fakes/fake-session";
 import { useTestDatabase } from "@/tests/helpers/database/use-test-database";
 import { PAGE_ONE } from "../gifts/gift-test-module";
-import { createTestSuggestionModule, idOf } from "./gift-suggestion-test-module";
+import { createTestSuggestionModule, idOf, FIRST_PRODUCT_NAME, SECOND_PRODUCT_NAME, THIRD_PRODUCT_NAME } from "./gift-suggestion-test-module";
 
 const silentLogger = { info: () => undefined, warn: () => undefined, error: () => undefined };
 
 describe("addSuggestedGifts resilience", () => {
   const testDatabase = useTestDatabase();
   const couple = asUser("couple");
-  const ids = [idOf("Air fryer"), idOf("Pizza da primeira DR resolvida"), idOf("Liquidificador potente")];
+  const ids = [idOf(FIRST_PRODUCT_NAME), idOf("Pizza da primeira DR resolvida"), idOf(THIRD_PRODUCT_NAME)];
 
   it("never duplicates gifts or categories when the same suggestions run concurrently", async () => {
     const { suggestionModule, giftModule } = createTestSuggestionModule(testDatabase.db);
@@ -51,8 +51,8 @@ describe("addSuggestedGifts resilience", () => {
 
   it("falls back to the existing category when its creation races", async () => {
     const { suggestionModule, giftModule } = createTestSuggestionModule(testDatabase.db);
-    const first = suggestionModule.addSuggestedGifts(couple, [idOf("Air fryer")]);
-    const second = suggestionModule.addSuggestedGifts(couple, [idOf("Cafeteira elétrica")]);
+    const first = suggestionModule.addSuggestedGifts(couple, [idOf(FIRST_PRODUCT_NAME)]);
+    const second = suggestionModule.addSuggestedGifts(couple, [idOf(SECOND_PRODUCT_NAME)]);
 
     const [firstResult, secondResult] = await Promise.all([first, second]);
 

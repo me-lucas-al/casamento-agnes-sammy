@@ -3,7 +3,7 @@ import { GIFT_SUGGESTION_CATALOG } from "@/modules/gift-suggestions/data/gift-su
 import { asUser } from "@/tests/helpers/fakes/fake-session";
 import { seedGift } from "@/tests/helpers/database/seeds/seed-gift";
 import { useTestDatabase } from "@/tests/helpers/database/use-test-database";
-import { createTestSuggestionModule, idOf, queryOf } from "./gift-suggestion-test-module";
+import { createTestSuggestionModule, idOf, queryOf, FIRST_PRODUCT_NAME } from "./gift-suggestion-test-module";
 
 describe("listSuggestionsWithStatus", () => {
   const testDatabase = useTestDatabase();
@@ -11,11 +11,11 @@ describe("listSuggestionsWithStatus", () => {
   const setup = () => createTestSuggestionModule(testDatabase.db).suggestionModule;
 
   it("marks suggestions already in the list by normalized name, including hidden gifts", async () => {
-    await seedGift(testDatabase.db, { name: "  air fryer ", isVisible: false });
+    await seedGift(testDatabase.db, { name: `  ${FIRST_PRODUCT_NAME.toLowerCase()} `, isVisible: false });
 
-    const page = await setup().listSuggestionsWithStatus(couple, queryOf({ perPage: "48", q: "fryer" }));
+    const page = await setup().listSuggestionsWithStatus(couple, queryOf({ perPage: "48", q: FIRST_PRODUCT_NAME }));
 
-    expect(page.items.filter((item) => item.alreadyInList).map((item) => item.id)).toEqual([idOf("Air fryer")]);
+    expect(page.items.filter((item) => item.alreadyInList).map((item) => item.id)).toEqual([idOf(FIRST_PRODUCT_NAME)]);
   });
 
   it("returns only the requested page with consistent totals", async () => {
@@ -42,14 +42,17 @@ describe("listSuggestionsWithStatus", () => {
   });
 
   it("combines filters and reports the filtered total", async () => {
+    const target = GIFT_SUGGESTION_CATALOG.find((item) => item.name === FIRST_PRODUCT_NAME);
+    const minCents = Math.floor((target?.priceCents ?? 0) / 100) * 100;
+    const maxCents = minCents + 100;
     const page = await setup().listSuggestionsWithStatus(
       couple,
-      queryOf({ categoria: "cozinha", loja: "camicado", precoMin: "70", precoMax: "150" }),
+      queryOf({ categoria: "cozinha", loja: target?.store ?? "", precoMin: String(minCents / 100), precoMax: String(maxCents / 100) }),
     );
 
-    expect(page.total).toBeGreaterThan(0);
-    expect(page.items.every((item) => item.store === "camicado" && item.categoryKey === "cozinha")).toBe(true);
-    expect(page.items.every((item) => item.priceCents >= 7000 && item.priceCents <= 15000)).toBe(true);
+    expect(page.items.map((item) => item.id)).toContain(target?.id);
+    expect(page.items.every((item) => item.store === target?.store && item.categoryKey === "cozinha")).toBe(true);
+    expect(page.items.every((item) => item.priceCents >= minCents && item.priceCents <= maxCents)).toBe(true);
   });
 
   it("sorts by price in both directions", async () => {
@@ -63,9 +66,9 @@ describe("listSuggestionsWithStatus", () => {
   });
 
   it("finds accented names with unaccented, mixed case search", async () => {
-    const page = await setup().listSuggestionsWithStatus(couple, queryOf({ q: "MAQUINA DE LAVAR LOUCAS" }));
+    const page = await setup().listSuggestionsWithStatus(couple, queryOf({ q: "COTAS DAS PASSAGENS AEREAS" }));
 
-    expect(page.items.map((item) => item.name)).toContain("Cota da máquina de lavar louças");
+    expect(page.items.map((item) => item.name)).toContain("Cotas das passagens aéreas");
   });
 
   it("falls back to defaults on invalid params and ignores stores outside the list", async () => {

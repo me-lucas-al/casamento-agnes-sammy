@@ -28,7 +28,11 @@ const nextConfig: NextConfig = {
     remotePatterns: [{ protocol: "https", hostname: "res.cloudinary.com" }],
   },
   async headers() {
-    return [{ source: "/:path*", headers: securityHeaders }];
+    return [
+      { source: "/:path*", headers: securityHeaders },
+      { source: "/", headers: [{ key: "Referrer-Policy", value: "no-referrer" }] },
+      { source: "/entrar", headers: [{ key: "Referrer-Policy", value: "no-referrer" }] },
+    ];
   },
   turbopack: {
     rules: {

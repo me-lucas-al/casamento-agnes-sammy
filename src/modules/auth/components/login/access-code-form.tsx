@@ -1,8 +1,9 @@
 "use client";
 
-import { useActionState, useState, type ChangeEvent } from "react";
+import { useActionState, useEffect, useState, type ChangeEvent } from "react";
 import { KeyRound } from "lucide-react";
 import { ACCESS_CODE_LENGTH, normalizeAccessCode } from "../../lib/access-code";
+import { removeAccessCodeFromUrl } from "../../lib/remove-access-code-from-url";
 import { signInWithGuestCodeAction, type SignInFormState } from "../../controllers/sign-in.actions";
 import { SubmitButton } from "./submit-button";
 
@@ -13,6 +14,10 @@ const INITIAL_STATE: SignInFormState = { error: null };
 export function AccessCodeForm({ initialCode }: AccessCodeFormProps) {
   const [state, formAction, isPending] = useActionState(signInWithGuestCodeAction, INITIAL_STATE);
   const [code, setCode] = useState(() => normalizeAccessCode(initialCode));
+  useEffect(() => {
+    const cleanUrl = removeAccessCodeFromUrl(window.location.href);
+    if (cleanUrl) window.history.replaceState(window.history.state, "", cleanUrl);
+  }, []);
   const describedBy = state.error ? "access-code-error" : "access-code-help";
 
   function handleChange(event: ChangeEvent<HTMLInputElement>) {

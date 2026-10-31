@@ -16,25 +16,32 @@ type TourFooterProps = {
 export function TourFooter({ steps, currentIndex, onSelect, onPrevious, onNext, onFinish }: TourFooterProps) {
   const isFinal = isLastStep(currentIndex, steps.length);
   return (
-    <footer className="flex flex-col gap-2 border-t border-gold/40 bg-paper-dark/70 px-4 py-3 sm:px-6">
-      <TourProgressDots steps={steps} currentIndex={currentIndex} onSelect={onSelect} />
-      <div className="grid grid-cols-2 gap-3 sm:flex sm:justify-between">
-        <Button type="button" variant="outline" size="lg" onClick={onPrevious} disabled={currentIndex === 0}>
-          <ArrowLeft aria-hidden />
-          Voltar
-        </Button>
-        {isFinal ? (
-          <Button type="button" size="lg" onClick={onFinish}>
-            Começar
-            <Heart aria-hidden className="fill-current" />
-          </Button>
-        ) : (
-          <Button type="button" size="lg" onClick={onNext}>
-            Próximo
-            <ArrowRight aria-hidden />
-          </Button>
-        )}
+    <footer className="grid grid-cols-2 gap-x-3 gap-y-2 border-t border-gold/40 bg-paper-dark/70 px-4 py-3 sm:grid-cols-[auto_1fr_auto] sm:items-center sm:px-6 sm:py-2">
+      <div className="col-span-2 sm:col-span-1 sm:col-start-2 sm:row-start-1">
+        <TourProgressDots steps={steps} currentIndex={currentIndex} onSelect={onSelect} />
       </div>
+      <Button
+        type="button"
+        variant="outline"
+        size="lg"
+        className="sm:col-start-1 sm:row-start-1"
+        onClick={onPrevious}
+        disabled={currentIndex === 0}
+      >
+        <ArrowLeft aria-hidden />
+        Voltar
+      </Button>
+      {isFinal ? (
+        <Button type="button" size="lg" className="sm:col-start-3 sm:row-start-1" onClick={onFinish}>
+          Começar
+          <Heart aria-hidden className="fill-current" />
+        </Button>
+      ) : (
+        <Button type="button" size="lg" className="sm:col-start-3 sm:row-start-1" onClick={onNext}>
+          Próximo
+          <ArrowRight aria-hidden />
+        </Button>
+      )}
     </footer>
   );
 }

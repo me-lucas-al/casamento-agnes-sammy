@@ -10,7 +10,7 @@ type TourHeaderProps = {
 
 export function TourHeader({ currentIndex, stepCount, isFinal, onSkip }: TourHeaderProps) {
   return (
-    <header className="relative z-10 flex items-center justify-between gap-3 px-4 pb-2 pt-3 sm:px-6 sm:pl-28">
+    <header className="relative z-10 flex items-center justify-between gap-3 px-4 pb-2 pt-3 sm:px-6 sm:pl-28 sm:pr-28">
       <div className="flex flex-col pl-10 sm:pl-0">
         <span className="font-script text-3xl leading-none text-wine">Tour do site</span>
         <span id="tour-position" aria-live="polite" className="text-base font-semibold text-rose">

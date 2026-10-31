@@ -69,7 +69,7 @@
 - [x] Repositório no GitHub com push da `main`
 
 ## Em andamento
-- [ ] Revisão final de design (responsividade, fidelidade ao convite, acabamento)
+- [x] Revisão final de design (responsividade, fidelidade ao convite, acabamento) — notas 9, 8, 8 e 8,5
 
 ## Faltam
 - [x] Painel inicial com totais (reservas, pagamentos pendentes, presenças, moderação)
@@ -85,7 +85,7 @@
 - [x] Cadastro/edição pelo convidado ao entrar com código: nome, telefone, e-mail e familiares
 - [x] Travar limite de 8 MB de upload também no Cloudinary (upload preset)
 - [x] Travar modo, valor e cotas de presente que já tem contribuição ativa
-- [ ] Primeiro disparo real do workflow de migration em produção — manual, ver checklist em `docs/ci-cd.md`
+- [ ] Primeiro disparo real do workflow de migration em produção — o workflow já rodou no GitHub e falhou como esperado ("Secret DATABASE_URL is missing"); falta criar o secret no ambiente `production` (environment já existe) e disparar de novo
 - [ ] Deploy em produção (Vercel + Neon) e domínio — manual, ver checklist em `docs/ci-cd.md`
 - [x] Build rodando em `localhost:3000` — build ok e servidor validado (porta 3100, pois a 3000 estava ocupada)
 

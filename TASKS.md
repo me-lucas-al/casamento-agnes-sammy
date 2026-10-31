@@ -78,6 +78,7 @@
 - [x] Headers de segurança e CSP
 - [x] Segredos só no `.env`, regras de responsividade e commits no `SPECS.md`
 - [x] Repositório no GitHub com push da `main`
+- [x] Árvore `src` reorganizada em pastas por tópico (actions/queries, contracts/drizzle, use-cases por subdomínio, lib e ui por tema) com testes unitários em `tests/` — sem mudança de comportamento
 
 ## Em andamento
 - [x] Revisão final de design (responsividade, fidelidade ao convite, acabamento) — notas 9, 8, 8 e 8,5

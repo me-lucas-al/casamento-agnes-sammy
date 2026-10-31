@@ -83,24 +83,39 @@ src/
     guests/      (código de acesso, vagas, link WhatsApp)
     gifts/       (catálogo, categorias, modos single|fixed_quotas|free_amount)
     contributions/ (reservar, cancelar, expirar, confirmar Pix)
-    payments/    lib/pix-brcode.ts (Pix copia-e-cola + QR estático)
+    payments/    lib/pix/pix-brcode.ts (Pix copia-e-cola + QR estático)
     rsvp/ event/ messages/ gallery/
-    # cada módulo:
-    #   controllers/   *.actions.ts ('use server') e *.queries.ts (leitura p/ páginas)
-    #   use-cases/     reserve-gift.ts, confirm-pix-payment.ts ...
-    #   repositories/  gift-repository.ts (interface) + drizzle-gift-repository.ts
-    #   schemas/       zod (entrada)    schema.ts = tabelas Drizzle
-    #   components/    UI do domínio     lib/ helpers puros do domínio
+    # cada módulo (pasta com mais de ~8 arquivos soltos vira subpastas por tópico):
+    #   controllers/
+    #     actions/    *.actions.ts ('use server')
+    #     queries/    *.queries.ts (leitura p/ páginas)
+    #     handlers/   helpers de controller (ou guards/, session/ conforme o módulo)
+    #   use-cases/    um por arquivo; agrupado por subdomínio quando grande
+    #                 (gifts: catalog/ categories/ availability/ images/;
+    #                  contributions: reservation/ payment/ expiry/ listing/)
+    #   repositories/
+    #     contracts/  interfaces (gift-repository.ts)
+    #     drizzle/    implementações e queries (drizzle-gift-repository.ts)
+    #   schemas/      zod (entrada)    schema.ts = tabelas Drizzle
+    #   components/   UI por finalidade (forms/ cards/ filters/ views/ mockups/ ...)
+    #   lib/          helpers puros por tema (pricing/ images/ availability/ caches/ ...)
+    #   tests/        em cada pasta (lib/tests/, schemas/tests/ ...): testes unitários
     #   errors.ts  types.ts  factory.ts (composition root)
   shared/
     db/          client.ts (neon-serverless)  schema.ts (reexporta tabelas)  migrations/
-    lib/         pagination.ts  url-params.ts  money.ts  dates.ts  result.ts  cloudinary.ts
     config/      env.ts (Zod valida process.env)
-    ui/          shadcn/ui    components/  layout, pagination-controls, empty-state
-    lib/cache/   cache-tags.ts  cached-read.ts  invalidate.ts (interface + impl Next)
+    lib/         por tema: cache/ api/ actions/ errors/ resilience/ cloudinary/ logging/
+                 money/ dates/ pagination/ url/ sql/ styling/ (cn)
+    seo/         images/ (ícone e cartão social)  metadata/ (site, manifest, robots)
+    ui/          primitives/ (shadcn: button)  dialogs/  layout/  forms/  feedback/  navigation/
     theme/       tokens e fontes
   tests/
-    integration/ por módulo (banco real)   helpers/ (reset db, seeds, fake session)
+    integration/ por módulo (banco real); pastas grandes em subpastas temáticas
+    helpers/     fakes/ (cache, cloudinary, logger, sessão)  database/ (reset, seeds)
+
+Regra de testes: arquivos de produção nunca ficam junto de testes. Teste unitário vai
+em `tests/` dentro da pasta que ele cobre (ex.: `lib/pricing/tests/price-band.test.ts`);
+integração em `src/tests/integration/<módulo>/`; helpers em `src/tests/helpers/`.
 ```
 
 ## Cache e invalidação
@@ -152,7 +167,7 @@ Princípio: **leitura cacheada por tag, escrita invalida a tag**. Tudo isolado e
 
 **Mural/Galeria**: convidado envia recado/foto → `pending` → noivos aprovam → público (convidados logados) vê só `approved`. Upload Cloudinary **assinado** (assinatura gerada por server action; tipo/tamanho validados, máx. ~8 MB, resize no delivery).
 
-**Listagens (todas)**: URL `?page=1&perPage=12&search=&category=&status=&sort=`; `perPage` ∈ {12,24,48} (default 12); params inválidos caem no default (Zod `.catch`). `shared/lib/pagination.ts` expõe `parsePageParams`, `buildPageResult({items,total,page,perPage})`; componente `PaginationControls` monta links preservando filtros.
+**Listagens (todas)**: URL `?page=1&perPage=12&search=&category=&status=&sort=`; `perPage` ∈ {12,24,48} (default 12); params inválidos caem no default (Zod `.catch`). `shared/lib/pagination/pagination.ts` expõe `parsePageParams`, `buildPageResult({items,total,page,perPage})`; componente `PaginationControls` monta links preservando filtros.
 
 **Segurança/LGPD**: dados mínimos (nome, telefone opcional); sem indexação (`robots noindex`) por ser site privado; CSRF nativo de Server Actions; headers de segurança; `env.ts` falha no boot se faltar variável.
 

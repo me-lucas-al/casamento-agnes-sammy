@@ -1,6 +1,7 @@
 import { sql } from "drizzle-orm";
 import {
   boolean,
+  date,
   index,
   integer,
   pgEnum,
@@ -36,6 +37,10 @@ export const gifts = pgTable(
     description: text("description").notNull().default(""),
     imageUrl: text("image_url"),
     imagePublicId: text("image_public_id"),
+    productUrl: text("product_url"),
+    externalImageUrl: text("external_image_url"),
+    storeName: text("store_name"),
+    priceCheckedAt: date("price_checked_at", { mode: "string" }),
     priceCents: integer("price_cents").notNull(),
     mode: giftModeEnum("mode").notNull().default("single"),
     totalQuotas: integer("total_quotas"),

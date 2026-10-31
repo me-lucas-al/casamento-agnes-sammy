@@ -43,6 +43,13 @@
       "when": 1793419750333,
       "tag": "0005_unique_names",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1793453561778,
+      "tag": "0006_chief_nekra",
+      "breakpoints": true
     }
   ]
 }

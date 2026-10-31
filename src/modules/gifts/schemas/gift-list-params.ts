@@ -1,9 +1,9 @@
 import { z } from "zod";
 import { parsePageParams } from "@/shared/lib/pagination";
 import { enumParam, firstValue, textParam, type SearchParams } from "@/shared/lib/url-params";
-import { DEFAULT_GIFT_SORT, GIFT_SORT_OPTIONS } from "../lib/gift-sort";
-import type { GiftListInput } from "../lib/gift-list-input";
-import { findPriceBand, PRICE_BAND_IDS } from "../lib/price-band";
+import { DEFAULT_GIFT_SORT, GIFT_SORT_OPTIONS } from "../lib/listing/gift-sort";
+import type { GiftListInput } from "../lib/listing/gift-list-input";
+import { findPriceBand, PRICE_BAND_IDS } from "../lib/pricing/price-band";
 
 const categoryIdSchema = z.uuid();
 

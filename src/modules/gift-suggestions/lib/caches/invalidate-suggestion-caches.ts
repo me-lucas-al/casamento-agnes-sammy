@@ -1,4 +1,4 @@
-import { invalidateGiftCaches } from "@/modules/gifts/lib/invalidate-gift-caches";
+import { invalidateGiftCaches } from "@/modules/gifts/lib/caches/invalidate-gift-caches";
 import { dashboardTag } from "@/shared/lib/cache/cache-tags";
 import type { CacheInvalidator } from "@/shared/lib/cache/invalidate";
 

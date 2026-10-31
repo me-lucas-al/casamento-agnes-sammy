@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { isManagedPublicId } from "@/shared/lib/cloudinary-url";
-import { GIFT_IMAGE_FOLDER } from "../lib/gift-image-rules";
+import { GIFT_IMAGE_FOLDER } from "../lib/images/gift-image-rules";
 import { GIFT_KINDS, GIFT_MODES } from "../types";
 
 const optionalCents = z.number().int().nonnegative().nullish();

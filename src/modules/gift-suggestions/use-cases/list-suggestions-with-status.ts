@@ -1,6 +1,6 @@
 import { requireRole } from "@/modules/auth/authorization";
 import type { SessionUser } from "@/modules/auth/types";
-import { GIFT_MANAGER_ROLES } from "@/modules/gifts/lib/gift-roles";
+import { GIFT_MANAGER_ROLES } from "@/modules/gifts/lib/roles/gift-roles";
 import { buildPageResult, type PageResult } from "@/shared/lib/pagination";
 import { normalizeGiftName } from "../lib/catalog/normalize-gift-name";
 import { selectSuggestions } from "../lib/filters/query-suggestions";

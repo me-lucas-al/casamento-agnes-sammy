@@ -1,5 +1,5 @@
-import { GiftCategoryManager } from "@/modules/gifts/components/gift-category-manager";
-import { listGiftCategoriesQuery } from "@/modules/gifts/controllers/gifts.queries";
+import { GiftCategoryManager } from "@/modules/gifts/components/management/gift-category-manager";
+import { listGiftCategoriesQuery } from "@/modules/gifts/controllers/queries/gifts.queries";
 import { PageHeading } from "@/shared/ui/components/page-heading";
 
 export default async function GiftCategoriesPage() {

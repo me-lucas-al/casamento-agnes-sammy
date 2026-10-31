@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { invalidateGiftCaches } from "@/modules/gifts/lib/invalidate-gift-caches";
-import type { GiftListInput } from "@/modules/gifts/lib/gift-list-input";
+import { invalidateGiftCaches } from "@/modules/gifts/lib/caches/invalidate-gift-caches";
+import type { GiftListInput } from "@/modules/gifts/lib/listing/gift-list-input";
 import { FakeCacheInvalidator } from "@/tests/helpers/fake-cache-invalidator";
 import { asUser } from "@/tests/helpers/fake-session";
 import { seedContribution } from "@/tests/helpers/seeds/seed-contribution";

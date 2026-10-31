@@ -1,5 +1,5 @@
 import type { GiftMode } from "@/modules/gifts/types";
-import { PRICE_BANDS, type PriceBandId } from "@/modules/gifts/lib/price-band";
+import { PRICE_BANDS, type PriceBandId } from "@/modules/gifts/lib/pricing/price-band";
 import type { SuggestionSort } from "../filters/suggestion-query";
 
 export const MODE_BADGE_LABELS: Record<GiftMode, string> = {

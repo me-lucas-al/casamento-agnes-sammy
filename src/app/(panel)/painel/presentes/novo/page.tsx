@@ -1,5 +1,5 @@
-import { GiftForm } from "@/modules/gifts/components/gift-form";
-import { listGiftCategoriesQuery } from "@/modules/gifts/controllers/gifts.queries";
+import { GiftForm } from "@/modules/gifts/components/form/gift-form";
+import { listGiftCategoriesQuery } from "@/modules/gifts/controllers/queries/gifts.queries";
 import { EmptyState } from "@/shared/ui/empty-state";
 import { PageHeading } from "@/shared/ui/components/page-heading";
 

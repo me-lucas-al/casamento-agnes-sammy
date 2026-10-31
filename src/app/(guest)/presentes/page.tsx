@@ -1,6 +1,6 @@
-import { GiftCard } from "@/modules/gifts/components/gift-card";
-import { GiftFilters } from "@/modules/gifts/components/gift-filters";
-import { listGiftCategoriesQuery, listVisibleGiftsPageQuery } from "@/modules/gifts/controllers/gifts.queries";
+import { GiftCard } from "@/modules/gifts/components/cards/gift-card";
+import { GiftFilters } from "@/modules/gifts/components/management/gift-filters";
+import { listGiftCategoriesQuery, listVisibleGiftsPageQuery } from "@/modules/gifts/controllers/queries/gifts.queries";
 import { parseGiftListParams } from "@/modules/gifts/schemas/gift-list-params";
 import { EmptyState } from "@/shared/ui/empty-state";
 import { PaginationControls } from "@/shared/ui/pagination-controls";

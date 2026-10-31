@@ -1,4 +1,4 @@
-import { isPriceInBand, PRICE_BANDS } from "@/modules/gifts/lib/price-band";
+import { isPriceInBand, PRICE_BANDS } from "@/modules/gifts/lib/pricing/price-band";
 import { categoryNameOf } from "@/modules/gift-suggestions/data/category-names";
 import { PRODUCT_TYPE_LABELS, STORELESS_TYPES } from "@/modules/gift-suggestions/data/product-types";
 import { isStoreId } from "@/modules/gift-suggestions/data/stores";

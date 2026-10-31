@@ -1,4 +1,4 @@
-import type { PriceBandId } from "@/modules/gifts/lib/price-band";
+import type { PriceBandId } from "@/modules/gifts/lib/pricing/price-band";
 import type { GiftKind, GiftMode } from "@/modules/gifts/types";
 import type { SuggestionCategoryKey } from "./data/category-names";
 import type { ProductTypeId } from "./data/product-types";

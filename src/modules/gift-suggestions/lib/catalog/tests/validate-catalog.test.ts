@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { DEFAULT_CATEGORIES } from "@/modules/gifts/lib/default-categories";
-import { normalizeGiftConfiguration } from "@/modules/gifts/lib/gift-configuration";
+import { DEFAULT_CATEGORIES } from "@/modules/gifts/lib/catalog/default-categories";
+import { normalizeGiftConfiguration } from "@/modules/gifts/lib/pricing/gift-configuration";
 import { SUGGESTION_CATEGORIES, SUGGESTION_CATEGORY_ORDER } from "@/modules/gift-suggestions/data/category-names";
 import { GIFT_SUGGESTION_CATALOG } from "@/modules/gift-suggestions/data/gift-suggestion-catalog";
 import { STORE_IDS } from "@/modules/gift-suggestions/data/stores";

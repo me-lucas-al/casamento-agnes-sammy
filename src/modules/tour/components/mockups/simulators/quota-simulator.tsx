@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { GiftStatusBadge } from "@/modules/gifts/components/gift-status-badge";
+import { GiftStatusBadge } from "@/modules/gifts/components/cards/gift-status-badge";
 import { formatCentsAsBrl, splitCentsIntoQuotas } from "@/shared/lib/money";
 import { cn } from "@/shared/lib/utils";
 import { buildQuotaAvailability } from "../parts/mock-availability";

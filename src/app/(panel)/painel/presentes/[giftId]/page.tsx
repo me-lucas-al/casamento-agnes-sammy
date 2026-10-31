@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
-import { GiftForm } from "@/modules/gifts/components/gift-form";
-import { getGiftForEditQuery, listGiftCategoriesQuery } from "@/modules/gifts/controllers/gifts.queries";
+import { GiftForm } from "@/modules/gifts/components/form/gift-form";
+import { getGiftForEditQuery, listGiftCategoriesQuery } from "@/modules/gifts/controllers/queries/gifts.queries";
 import { GiftNotFoundError } from "@/modules/gifts/errors";
 import { giftIdSchema } from "@/modules/gifts/schemas/gift.schema";
 import { PageHeading } from "@/shared/ui/components/page-heading";

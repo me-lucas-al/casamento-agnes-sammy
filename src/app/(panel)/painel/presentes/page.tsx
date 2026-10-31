@@ -1,7 +1,7 @@
 import Link from "next/link";
-import { GiftFilters } from "@/modules/gifts/components/gift-filters";
-import { PanelGiftCard } from "@/modules/gifts/components/panel-gift-card";
-import { listGiftCategoriesQuery, listPanelGiftsPageQuery } from "@/modules/gifts/controllers/gifts.queries";
+import { GiftFilters } from "@/modules/gifts/components/management/gift-filters";
+import { PanelGiftCard } from "@/modules/gifts/components/cards/panel-gift-card";
+import { listGiftCategoriesQuery, listPanelGiftsPageQuery } from "@/modules/gifts/controllers/queries/gifts.queries";
 import { parseGiftListParams } from "@/modules/gifts/schemas/gift-list-params";
 import type { SearchParams } from "@/shared/lib/url-params";
 import { buttonVariants } from "@/shared/ui/button";

@@ -1,4 +1,4 @@
-import type { GiftAvailability } from "@/modules/gifts/lib/gift-availability";
+import type { GiftAvailability } from "@/modules/gifts/lib/availability/gift-availability";
 
 export function buildQuotaAvailability(totalQuotas: number, takenQuotas: number): GiftAvailability {
   const state = takenQuotas === 0 ? "available" : takenQuotas >= totalQuotas ? "complete" : "partial";

@@ -1,6 +1,6 @@
 ﻿import { requireRole } from "@/modules/auth/authorization";
 import type { SessionUser } from "@/modules/auth/types";
-import { GIFT_MANAGER_ROLES } from "@/modules/gifts/lib/gift-roles";
+import { GIFT_MANAGER_ROLES } from "@/modules/gifts/lib/roles/gift-roles";
 import type { Logger } from "@/shared/lib/logger";
 import { serializeError } from "@/shared/lib/logging/serialize-error";
 import { buildGiftInputFromSuggestion } from "../lib/catalog/build-gift-input-from-suggestion";

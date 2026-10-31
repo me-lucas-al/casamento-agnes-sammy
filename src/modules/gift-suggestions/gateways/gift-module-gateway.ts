@@ -1,7 +1,7 @@
-import { DEFAULT_CATEGORIES } from "@/modules/gifts/lib/default-categories";
+import { DEFAULT_CATEGORIES } from "@/modules/gifts/lib/catalog/default-categories";
 import { GiftNameTakenError } from "@/modules/gifts/errors";
 import type { GiftModule } from "@/modules/gifts/factory";
-import { CATEGORY_NAME_UNIQUE_INDEX } from "@/modules/gifts/lib/reject-duplicate-name";
+import { CATEGORY_NAME_UNIQUE_INDEX } from "@/modules/gifts/lib/catalog/reject-duplicate-name";
 import { isUniqueViolation } from "@/shared/lib/unique-violation";
 import type { SuggestionCategory, SuggestionGiftGateway } from "../ports";
 

@@ -1,5 +1,5 @@
-import { PRICE_BANDS } from "@/modules/gifts/lib/price-band";
-import { fieldControlClassName, FormField } from "@/modules/gifts/components/form-field";
+import { PRICE_BANDS } from "@/modules/gifts/lib/pricing/price-band";
+import { fieldControlClassName, FormField } from "@/modules/gifts/components/form/form-field";
 import { PER_PAGE_OPTIONS } from "@/shared/lib/pagination";
 import { SUGGESTION_CATEGORIES } from "@/modules/gift-suggestions/data/category-names";
 import { PRODUCT_TYPE_LABELS, type ProductTypeId } from "@/modules/gift-suggestions/data/product-types";

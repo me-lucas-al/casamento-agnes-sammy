@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { PRICE_BAND_IDS } from "@/modules/gifts/lib/price-band";
+import { PRICE_BAND_IDS } from "@/modules/gifts/lib/pricing/price-band";
 import { parsePageParams } from "@/shared/lib/pagination";
 import { parseBrlToCents } from "@/shared/lib/money";
 import { firstValue, textParam, type SearchParams } from "@/shared/lib/url-params";

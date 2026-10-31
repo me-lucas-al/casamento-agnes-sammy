@@ -1,6 +1,6 @@
 import { requireRole } from "@/modules/auth/authorization";
 import type { SessionUser } from "@/modules/auth/types";
-import { GIFT_MANAGER_ROLES } from "@/modules/gifts/lib/gift-roles";
+import { GIFT_MANAGER_ROLES } from "@/modules/gifts/lib/roles/gift-roles";
 import type { SuggestionGiftGateway } from "../ports";
 
 export const FEW_GIFTS_THRESHOLD = 5;

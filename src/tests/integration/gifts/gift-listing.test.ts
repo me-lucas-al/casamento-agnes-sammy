@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { ForbiddenError } from "@/modules/auth/errors";
-import { findPriceBand } from "@/modules/gifts/lib/price-band";
-import type { GiftListInput } from "@/modules/gifts/lib/gift-list-input";
+import { findPriceBand } from "@/modules/gifts/lib/pricing/price-band";
+import type { GiftListInput } from "@/modules/gifts/lib/listing/gift-list-input";
 import { addHours } from "@/shared/lib/dates";
 import { asUser } from "@/tests/helpers/fake-session";
 import { seedContribution } from "@/tests/helpers/seeds/seed-contribution";

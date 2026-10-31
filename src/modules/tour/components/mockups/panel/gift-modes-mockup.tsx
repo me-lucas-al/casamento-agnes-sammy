@@ -2,7 +2,7 @@
 
 import { Gift } from "lucide-react";
 import { useState } from "react";
-import { GiftStatusBadge } from "@/modules/gifts/components/gift-status-badge";
+import { GiftStatusBadge } from "@/modules/gifts/components/cards/gift-status-badge";
 import { formatCentsAsBrl } from "@/shared/lib/money";
 import { cn } from "@/shared/lib/utils";
 import { FreeAmountSimulator } from "../simulators/free-amount-simulator";

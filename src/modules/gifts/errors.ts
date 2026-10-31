@@ -1,5 +1,5 @@
 import { describeAuthError } from "@/modules/auth/errors";
-import type { ImageRejectionReason } from "./lib/image-upload-validator";
+import type { ImageRejectionReason } from "./lib/images/image-upload-validator";
 
 export class GiftNotFoundError extends Error {
   constructor() {

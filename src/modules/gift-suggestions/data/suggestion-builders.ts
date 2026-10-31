@@ -1,4 +1,4 @@
-import { isPriceInBand, PRICE_BANDS, type PriceBandId } from "@/modules/gifts/lib/price-band";
+import { isPriceInBand, PRICE_BANDS, type PriceBandId } from "@/modules/gifts/lib/pricing/price-band";
 import type { GiftKind } from "@/modules/gifts/types";
 import { buildStoreSearchUrl } from "../lib/store/build-store-search-url";
 import { normalizeGiftName } from "../lib/catalog/normalize-gift-name";

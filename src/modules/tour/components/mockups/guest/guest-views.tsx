@@ -1,7 +1,7 @@
 import { Gift } from "lucide-react";
 import type { ReactNode } from "react";
 import { CountdownTimer } from "@/modules/profile/components/home/countdown-timer";
-import { GiftStatusBadge } from "@/modules/gifts/components/gift-status-badge";
+import { GiftStatusBadge } from "@/modules/gifts/components/cards/gift-status-badge";
 import { MockBadge } from "../parts/mock-badge";
 import { buildAmountAvailability, buildQuotaAvailability } from "../parts/mock-availability";
 

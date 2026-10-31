@@ -23,7 +23,7 @@ export function RsvpList({ items }: { items: RsvpListItem[] }) {
               {statusLabels[item.status]}
             </span>
           </div>
-          <RsvpRowActions guestId={item.guestId} />
+          <RsvpRowActions guestId={item.guestId} guestName={item.guestName} />
         </li>
       ))}
     </ul>

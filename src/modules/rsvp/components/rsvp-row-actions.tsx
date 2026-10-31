@@ -2,16 +2,21 @@
 
 import { useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
+import { ConfirmDialog } from "@/shared/ui/confirm-dialog";
+import { useConfirmDialog } from "@/shared/ui/use-confirm-dialog";
 import { getPanelGuestRsvpAction } from "../controllers/get-panel-guest-rsvp.action";
 import { deleteRsvpAction, submitRsvpForGuestAction } from "../controllers/submit-rsvp.actions";
 import type { GuestRsvp } from "../types";
 import { RsvpForm } from "./rsvp-form";
 
-type Mode = "idle" | "editing" | "confirmingDelete";
+type Mode = "idle" | "editing";
+
+type RsvpRowActionsProps = { guestId: string; guestName: string };
 
 const actionButtonClassName = "rounded-full border border-wine/30 px-3 py-1 text-sm text-wine disabled:opacity-60";
 
-export function RsvpRowActions({ guestId }: { guestId: string }) {
+export function RsvpRowActions({ guestId, guestName }: RsvpRowActionsProps) {
+  const { ask, dialogProps } = useConfirmDialog();
   const router = useRouter();
   const [mode, setMode] = useState<Mode>("idle");
   const [guestRsvp, setGuestRsvp] = useState<GuestRsvp | null>(null);
@@ -32,11 +37,17 @@ export function RsvpRowActions({ guestId }: { guestId: string }) {
       setMode("editing");
     });
 
-  const confirmDelete = () =>
-    startTransition(async () => {
-      const result = await deleteRsvpAction(guestId);
-      if (!result.ok) return setErrorMessage(result.error);
-      finish();
+  const requestDeletion = () =>
+    ask({
+      title: `Excluir a resposta de ${guestName}?`,
+      description: "A confirmação de presença será apagada. Essa ação não pode ser desfeita.",
+      confirmLabel: "Excluir resposta",
+      tone: "destructive",
+      onConfirm: async () => {
+        const result = await deleteRsvpAction(guestId);
+        if (result.ok) router.refresh();
+        return result;
+      },
     });
 
   return (
@@ -46,19 +57,8 @@ export function RsvpRowActions({ guestId }: { guestId: string }) {
           <button type="button" className={actionButtonClassName} disabled={isPending} onClick={startEditing}>
             Editar
           </button>
-          <button type="button" className={actionButtonClassName} onClick={() => setMode("confirmingDelete")}>
+          <button type="button" className={actionButtonClassName} onClick={requestDeletion}>
             Excluir
-          </button>
-        </div>
-      ) : null}
-      {mode === "confirmingDelete" ? (
-        <div role="alert" className="flex flex-wrap items-center gap-2 text-sm text-wine">
-          <span>Excluir esta resposta?</span>
-          <button type="button" className={`${actionButtonClassName} text-crimson`} disabled={isPending} onClick={confirmDelete}>
-            Confirmar
-          </button>
-          <button type="button" className={actionButtonClassName} onClick={() => setMode("idle")}>
-            Cancelar
           </button>
         </div>
       ) : null}
@@ -75,6 +75,7 @@ export function RsvpRowActions({ guestId }: { guestId: string }) {
         </div>
       ) : null}
       {errorMessage ? <p role="status" className="text-sm text-crimson">{errorMessage}</p> : null}
+      <ConfirmDialog {...dialogProps} />
     </div>
   );
 }

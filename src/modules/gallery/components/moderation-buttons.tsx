@@ -3,6 +3,8 @@
 import { useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
 import type { ActionResult } from "@/shared/lib/result";
+import { ConfirmDialog } from "@/shared/ui/confirm-dialog";
+import { useConfirmDialog } from "@/shared/ui/use-confirm-dialog";
 import {
   approvePhotoAction,
   deletePhotoAction,
@@ -18,6 +20,21 @@ export function ModerationButtons({ photoId, status }: ModerationButtonsProps) {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const [error, setError] = useState<string | null>(null);
+  const { ask, dialogProps } = useConfirmDialog();
+
+  function requestDeletion() {
+    ask({
+      title: "Excluir esta foto?",
+      description: "A foto será removida da galeria. Essa ação não pode ser desfeita.",
+      confirmLabel: "Excluir foto",
+      tone: "destructive",
+      onConfirm: async () => {
+        const result = await deletePhotoAction(photoId);
+        if (result.ok) router.refresh();
+        return result;
+      },
+    });
+  }
 
   function run(action: (photoId: string) => Promise<ActionResult>) {
     startTransition(async () => {
@@ -39,10 +56,11 @@ export function ModerationButtons({ photoId, status }: ModerationButtonsProps) {
           Rejeitar
         </button>
       ) : null}
-      <button type="button" disabled={isPending} className={buttonClassName} onClick={() => run(deletePhotoAction)}>
+      <button type="button" disabled={isPending} className={buttonClassName} onClick={requestDeletion}>
         Excluir
       </button>
       {error ? <p role="alert" className="w-full text-sm text-crimson">{error}</p> : null}
+      <ConfirmDialog {...dialogProps} />
     </div>
   );
 }

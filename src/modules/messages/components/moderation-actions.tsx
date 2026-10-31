@@ -2,6 +2,9 @@
 
 import { useState, useTransition } from "react";
 import { deleteMessageAction, moderateMessageAction, updateMessageAction } from "../controllers/message.actions";
+import { useRouter } from "next/navigation";
+import { ConfirmDialog } from "@/shared/ui/confirm-dialog";
+import { useConfirmDialog } from "@/shared/ui/use-confirm-dialog";
 import type { Message } from "../types";
 
 const buttonClassName = "rounded-full border border-wine/30 px-3 py-1 text-sm text-wine disabled:opacity-50";
@@ -11,6 +14,21 @@ export function ModerationActions({ message }: { message: Message }) {
   const [body, setBody] = useState(message.body);
   const [error, setError] = useState<string | null>(null);
   const [isPending, startTransition] = useTransition();
+  const router = useRouter();
+  const { ask, dialogProps } = useConfirmDialog();
+
+  const requestDeletion = () =>
+    ask({
+      title: `Excluir o recado de ${message.authorName}?`,
+      description: "O recado será removido do mural. Essa ação não pode ser desfeita.",
+      confirmLabel: "Excluir recado",
+      tone: "destructive",
+      onConfirm: async () => {
+        const result = await deleteMessageAction(message.id);
+        if (result.ok) router.refresh();
+        return result;
+      },
+    });
 
   const run = (action: () => Promise<{ ok: boolean; error?: string }>) =>
     startTransition(async () => {
@@ -56,12 +74,13 @@ export function ModerationActions({ message }: { message: Message }) {
           type="button"
           disabled={isPending}
           className={buttonClassName}
-          onClick={() => run(() => deleteMessageAction(message.id))}
+          onClick={requestDeletion}
         >
           Excluir
         </button>
       </div>
       {error ? <p role="alert" className="text-sm text-crimson">{error}</p> : null}
+      <ConfirmDialog {...dialogProps} />
     </div>
   );
 }

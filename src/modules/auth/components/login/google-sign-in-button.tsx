@@ -19,9 +19,14 @@ function GoogleButtonFace() {
   );
 }
 
-export function GoogleSignInButton() {
+export function GoogleSignInButton({ errorMessage }: { errorMessage: string | null }) {
   return (
     <form action={signInWithGoogleAction} className="flex flex-col gap-3">
+      {errorMessage ? (
+        <p role="alert" className="text-base font-semibold text-crimson">
+          {errorMessage}
+        </p>
+      ) : null}
       <GoogleButtonFace />
       <p className="text-base text-muted-foreground">Só entram os e-mails cadastrados pelos noivos.</p>
     </form>

@@ -9,9 +9,10 @@ type LoginCardProps = {
   settings: EventSettingsSnapshot;
   initialCode: string;
   initialTab: LoginTab;
+  errorMessage: string | null;
 };
 
-export function LoginCard({ settings, initialCode, initialTab }: LoginCardProps) {
+export function LoginCard({ settings, initialCode, initialTab, errorMessage }: LoginCardProps) {
   return (
     <section
       aria-labelledby="login-title"
@@ -21,7 +22,7 @@ export function LoginCard({ settings, initialCode, initialTab }: LoginCardProps)
       <LoginTabs
         initialTab={initialTab}
         guestPanel={<AccessCodeForm initialCode={initialCode} />}
-        couplePanel={<GoogleSignInButton />}
+        couplePanel={<GoogleSignInButton errorMessage={errorMessage} />}
       />
       <HowItWorksStrip />
     </section>

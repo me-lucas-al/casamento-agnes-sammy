@@ -4,13 +4,13 @@ import type { GiftListInput } from "@/modules/gifts/lib/listing/gift-list-input"
 import type { GiftCategory } from "@/modules/gifts/types";
 import { fieldControlClassName } from "../form/form-field";
 
-type GiftFiltersProps = {
+type PanelGiftFiltersProps = {
   basePath: string;
   categories: GiftCategory[];
   current: GiftListInput;
 };
 
-export function GiftFilters({ basePath, categories, current }: GiftFiltersProps) {
+export function PanelGiftFilters({ basePath, categories, current }: PanelGiftFiltersProps) {
   return (
     <form action={basePath} method="get" className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-5">
       <input type="hidden" name="perPage" value={current.perPage} />

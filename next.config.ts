@@ -1,12 +1,15 @@
 import type { NextConfig } from "next";
+import { ALLOWED_IMAGE_HOSTS } from "./src/shared/lib/images/allowed-image-hosts";
 
 const isDevelopment = process.env.NODE_ENV === "development";
+
+const imageSources = ALLOWED_IMAGE_HOSTS.map((host) => `https://${host}`).join(" ");
 
 const contentSecurityPolicy = [
   "default-src 'self'",
   `script-src 'self' 'unsafe-inline'${isDevelopment ? " 'unsafe-eval'" : ""}`,
   "style-src 'self' 'unsafe-inline'",
-  "img-src 'self' data: blob: https://res.cloudinary.com",
+  `img-src 'self' data: blob: ${imageSources}`,
   "font-src 'self' data:",
   "connect-src 'self' https://api.cloudinary.com",
   "object-src 'none'",
@@ -25,7 +28,7 @@ const securityHeaders = [
 
 const nextConfig: NextConfig = {
   images: {
-    remotePatterns: [{ protocol: "https", hostname: "res.cloudinary.com" }],
+    remotePatterns: ALLOWED_IMAGE_HOSTS.map((hostname) => ({ protocol: "https" as const, hostname })),
   },
   async headers() {
     return [

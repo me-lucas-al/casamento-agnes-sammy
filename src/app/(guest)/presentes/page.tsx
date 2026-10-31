@@ -1,7 +1,7 @@
 import { GiftCard } from "@/modules/gifts/components/cards/gift-card";
-import { GiftFilters } from "@/modules/gifts/components/management/gift-filters";
-import { listGiftCategoriesQuery, listVisibleGiftsPageQuery } from "@/modules/gifts/controllers/queries/gifts.queries";
-import { parseGiftListParams } from "@/modules/gifts/schemas/gift-list-params";
+import { GuestGiftFilters } from "@/modules/gifts/components/filters/guest-gift-filters";
+import { listVisibleGiftsPageQuery } from "@/modules/gifts/controllers/queries/gifts.queries";
+import { parseGuestGiftListParams } from "@/modules/gifts/schemas/guest-gift-list-params";
 import { EmptyState } from "@/shared/ui/feedback/empty-state";
 import { PaginationControls } from "@/shared/ui/navigation/pagination-controls";
 import type { SearchParams } from "@/shared/lib/url/url-params";
@@ -11,15 +11,12 @@ type GiftsPageProps = { searchParams: Promise<SearchParams> };
 
 export default async function GiftsPage({ searchParams }: GiftsPageProps) {
   const resolvedSearchParams = await searchParams;
-  const [pageResult, categories] = await Promise.all([
-    listVisibleGiftsPageQuery(resolvedSearchParams),
-    listGiftCategoriesQuery(),
-  ]);
+  const pageResult = await listVisibleGiftsPageQuery(resolvedSearchParams);
 
   return (
     <div className="mx-auto flex w-full max-w-6xl flex-col gap-6">
       <PageHeading title="Lista de presentes" description="Cada presente é um carinho. Escolha com o coração, no seu tempo." />
-      <GiftFilters basePath="/presentes" categories={categories} current={parseGiftListParams(resolvedSearchParams)} />
+      <GuestGiftFilters basePath="/presentes" current={parseGuestGiftListParams(resolvedSearchParams)} />
       {pageResult.items.length === 0 ? (
         <EmptyState title="Nenhum presente encontrado" description="Tente mudar os filtros da busca." />
       ) : (

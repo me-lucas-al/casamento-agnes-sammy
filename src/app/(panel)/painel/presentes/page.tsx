@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { GiftFilters } from "@/modules/gifts/components/management/gift-filters";
+import { PanelGiftFilters } from "@/modules/gifts/components/filters/panel-gift-filters";
 import { PanelGiftCard } from "@/modules/gifts/components/cards/panel-gift-card";
 import { listGiftCategoriesQuery, listPanelGiftsPageQuery } from "@/modules/gifts/controllers/queries/gifts.queries";
 import { parseGiftListParams } from "@/modules/gifts/schemas/gift-list-params";
@@ -34,7 +34,7 @@ export default async function PanelGiftsPage({ searchParams }: PanelGiftsPagePro
           </Link>
         </div>
       </div>
-      <GiftFilters basePath="/painel/presentes" categories={categories} current={parseGiftListParams(resolvedSearchParams)} />
+      <PanelGiftFilters basePath="/painel/presentes" categories={categories} current={parseGiftListParams(resolvedSearchParams)} />
       {pageResult.items.length === 0 ? (
         <EmptyState title="Nenhum presente cadastrado" description="Crie categorias e adicione o primeiro presente." />
       ) : (

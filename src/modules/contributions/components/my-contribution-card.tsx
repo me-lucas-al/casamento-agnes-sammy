@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ProductImage } from "@/shared/ui/media/product-image";
 import { formatDateTimeInSaoPaulo, isExpired } from "@/shared/lib/dates/dates";
 import { formatCentsAsBrl } from "@/shared/lib/money/money";
 import { CONTRIBUTION_STATUS_LABELS } from "../lib/availability/describe-availability";
@@ -15,7 +16,9 @@ export function MyContributionCard({ contribution, now }: MyContributionCardProp
   const status = lapsed ? "expired" : contribution.status;
   const isOpen = status === "reserved";
   return (
-    <li className="flex flex-col gap-2 rounded-2xl border bg-paper p-4 text-wine">
+    <li className="flex flex-col gap-2 overflow-hidden rounded-2xl border bg-paper text-wine">
+      <ProductImage src={contribution.giftImageUrl} alt={contribution.giftName} sizes="(min-width: 576px) 576px, 100vw" className="aspect-video" />
+      <div className="flex flex-col gap-2 p-4">
       <div className="flex items-start justify-between gap-3">
         <h2 className="font-heading text-lg">{contribution.giftName}</h2>
         <span className="rounded-full bg-blush px-3 py-1 text-sm">
@@ -41,6 +44,7 @@ export function MyContributionCard({ contribution, now }: MyContributionCardProp
           <CancelReservationButton contributionId={contribution.id} />
         </div>
       ) : null}
+      </div>
     </li>
   );
 }

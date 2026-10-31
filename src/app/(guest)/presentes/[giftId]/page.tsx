@@ -1,5 +1,4 @@
 import { ArrowLeft } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import {
@@ -10,11 +9,14 @@ import { ReserveGiftForm } from "@/modules/contributions/components/reserve-gift
 import { CancelReservationButton } from "@/modules/contributions/components/cancel-reservation-button";
 import { GiftNotFoundError } from "@/modules/contributions/errors";
 import { describeAvailability } from "@/modules/contributions/lib/availability/describe-availability";
+import { StoreBadge } from "@/modules/gifts/components/cards/store-badge";
+import { StoreLink } from "@/modules/gifts/components/cards/store-link";
 import { PixPaymentPanel } from "@/modules/payments/components/pix-payment-panel";
 import { describePaymentError } from "@/modules/payments/errors";
 import { formatDateTimeInSaoPaulo } from "@/shared/lib/dates/dates";
 import { formatCentsAsBrl } from "@/shared/lib/money/money";
 import { firstValue, type SearchParams } from "@/shared/lib/url/url-params";
+import { ProductImage } from "@/shared/ui/media/product-image";
 
 type PageProps = {
   params: Promise<{ giftId: string }>;
@@ -53,21 +55,18 @@ export default async function GiftDetailPage({ params, searchParams }: PageProps
         <ArrowLeft aria-hidden className="size-4" />
         Voltar aos presentes
       </Link>
-      {gift.imageUrl ? (
-        <Image
-          src={gift.imageUrl}
-          alt={gift.name}
-          width={640}
-          height={480}
-          unoptimized
-          className="aspect-4/3 w-full rounded-2xl object-cover"
-        />
-      ) : null}
+      <ProductImage src={gift.imageUrl} alt={gift.name} sizes="(min-width: 576px) 576px, 100vw" priority className="rounded-2xl" />
       <header className="flex flex-col gap-2">
         <h1 className="font-heading text-3xl italic">{gift.name}</h1>
         <p className="text-base">{gift.description}</p>
         <p className="font-display text-xl">{formatCentsAsBrl(gift.priceCents)}</p>
         <p className="w-fit rounded-full bg-blush px-3 py-1 text-base">{describeAvailability(view)}</p>
+        {gift.productUrl ? (
+          <div className="flex flex-wrap items-center gap-3">
+            <StoreBadge storeName={gift.storeName} />
+            <StoreLink productUrl={gift.productUrl} />
+          </div>
+        ) : null}
       </header>
       {paymentResult?.errorMessage ? (
         <p role="alert" className="text-sm text-crimson">{paymentResult.errorMessage}</p>

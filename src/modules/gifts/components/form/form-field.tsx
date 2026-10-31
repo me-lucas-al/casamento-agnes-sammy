@@ -7,7 +7,7 @@ type FormFieldProps = {
 };
 
 export const fieldControlClassName =
-  "w-full rounded-lg border border-gold/50 bg-white px-3 py-2 text-base text-wine outline-none focus:border-rose";
+  "min-h-11 w-full rounded-lg border border-gold/50 bg-white px-3 py-2 text-base text-wine outline-none focus:border-rose";
 
 export function FormField({ label, hint, children }: FormFieldProps) {
   return (

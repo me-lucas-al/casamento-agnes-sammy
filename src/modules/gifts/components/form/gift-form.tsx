@@ -11,9 +11,11 @@ import {
   type GiftFormValues,
 } from "@/modules/gifts/lib/drafts/gift-form-values";
 import type { Gift, GiftCategory, GiftImage } from "@/modules/gifts/types";
+import { resolveGiftImageUrl } from "@/modules/gifts/lib/images/resolve-gift-image-url";
 import { FormField, fieldControlClassName } from "./form-field";
 import { GiftImageField } from "./gift-image-field";
 import { GiftModeFields } from "./gift-mode-fields";
+import { GiftProductFields } from "./gift-product-fields";
 
 type GiftFormProps = {
   categories: GiftCategory[];
@@ -29,6 +31,11 @@ export function GiftForm({ categories, gift }: GiftFormProps) {
   const [errorMessage, setErrorMessage] = useState("");
   const [isSaving, setIsSaving] = useState(false);
   const change = (changes: Partial<GiftFormValues>) => setValues((current) => ({ ...current, ...changes }));
+
+  function handleImageChange(nextImage: GiftImage | null) {
+    setImage(nextImage);
+    if (nextImage === null) change({ externalImageUrl: "" });
+  }
 
   async function handleSubmit(event: FormEvent) {
     event.preventDefault();
@@ -82,7 +89,8 @@ export function GiftForm({ categories, gift }: GiftFormProps) {
       <FormField label="Ordem na lista">
         <input type="number" min={0} inputMode="numeric" value={values.sortOrder} onChange={(event) => change({ sortOrder: event.target.value })} className={fieldControlClassName} />
       </FormField>
-      <GiftImageField currentUrl={gift?.imageUrl ?? null} onImageChange={setImage} />
+      <GiftImageField currentUrl={gift ? resolveGiftImageUrl(gift) : null} onImageChange={handleImageChange} />
+      <GiftProductFields values={values} onChange={change} hasUploadedImage={Boolean(image)} />
       <label className="flex min-h-11 cursor-pointer items-center gap-3 text-base text-wine">
         <input type="checkbox" checked={values.isVisible} onChange={(event) => change({ isVisible: event.target.checked })} />
         Visível para os convidados

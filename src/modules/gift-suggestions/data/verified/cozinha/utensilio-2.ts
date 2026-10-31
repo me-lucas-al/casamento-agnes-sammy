@@ -74,7 +74,7 @@ export const COZINHA_UTENSILIO_2: readonly VerifiedProductRecord[] = [
     "type": "utensilio",
     "productUrl": "https://www.amazon.com.br/dp/B088P49FZF",
     "imageUrl": "https://m.media-amazon.com/images/I/41uX+BMH8FL._AC_SL1000_.jpg",
-    "priceCents": 5423,
+    "priceCents": 4999,
     "mode": "single",
     "checkedAt": "2026-11-01"
   },

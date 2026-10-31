@@ -8,7 +8,7 @@ export const COZINHA_ELETROPORTATIL_3: readonly VerifiedProductRecord[] = [
     "type": "eletroportatil",
     "productUrl": "https://www.amazon.com.br/dp/B076HS3NZD",
     "imageUrl": "https://m.media-amazon.com/images/I/61u282Tj2UL._AC_SL1000_.jpg",
-    "priceCents": 20803,
+    "priceCents": 17565,
     "mode": "single",
     "checkedAt": "2026-11-01"
   },
@@ -30,7 +30,7 @@ export const COZINHA_ELETROPORTATIL_3: readonly VerifiedProductRecord[] = [
     "type": "eletroportatil",
     "productUrl": "https://www.amazon.com.br/dp/B076MCNZX6",
     "imageUrl": "https://m.media-amazon.com/images/I/81ruUmdi1VL._AC_SL1500_.jpg",
-    "priceCents": 8990,
+    "priceCents": 8455,
     "mode": "single",
     "checkedAt": "2026-11-01"
   },

@@ -19,7 +19,7 @@ export const COZINHA_UTENSILIO_5: readonly VerifiedProductRecord[] = [
     "type": "utensilio",
     "productUrl": "https://www.amazon.com.br/dp/B076X4SDD9",
     "imageUrl": "https://m.media-amazon.com/images/I/519m1emdmCL._AC_SL1500_.jpg",
-    "priceCents": 4263,
+    "priceCents": 3990,
     "mode": "single",
     "checkedAt": "2026-11-01"
   },

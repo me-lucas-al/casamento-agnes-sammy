@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import { GiftStatusBadge } from "@/modules/gifts/components/cards/gift-status-badge";
-import { formatCentsAsBrl, splitCentsIntoQuotas } from "@/shared/lib/money";
-import { cn } from "@/shared/lib/utils";
+import { formatCentsAsBrl, splitCentsIntoQuotas } from "@/shared/lib/money/money";
+import { cn } from "@/shared/lib/styling/utils";
 import { buildQuotaAvailability } from "../parts/mock-availability";
 
 const TOTAL_CENTS = 60000;

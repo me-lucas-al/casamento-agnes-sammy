@@ -1,4 +1,4 @@
-import { isUniqueViolation } from "@/shared/lib/unique-violation";
+import { isUniqueViolation } from "@/shared/lib/errors/unique-violation";
 import { InvalidGiftImageError } from "@/modules/gifts/errors";
 
 export const GIFT_IMAGE_UNIQUE_INDEX = "gifts_image_public_id_unique_idx";

@@ -1,6 +1,6 @@
 import type { EventSettingsSnapshot } from "@/modules/event/types";
-import { BrandFooter } from "@/shared/ui/components/brand-footer";
-import { FloralCorners } from "@/shared/ui/components/floral-corners";
+import { BrandFooter } from "@/shared/ui/layout/brand-footer";
+import { FloralCorners } from "@/shared/ui/layout/floral-corners";
 import { LoginCard } from "./login-card";
 import { LoginPetals } from "./login-petals";
 import type { LoginTab } from "../form/login-tabs";

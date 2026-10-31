@@ -2,7 +2,7 @@ import { requireRole } from "@/modules/auth/authorization";
 import { ForbiddenError } from "@/modules/auth/errors";
 import type { SessionUser } from "@/modules/auth/types";
 import { approvedPhotosTag } from "@/shared/lib/cache/cache-tags";
-import type { CloudinaryClient } from "@/shared/lib/cloudinary";
+import type { CloudinaryClient } from "@/shared/lib/cloudinary/cloudinary";
 import { InvalidPublicIdError, PendingPhotoLimitError } from "@/modules/gallery/errors";
 import { rejectDuplicatePhotoAsset } from "@/modules/gallery/lib/reject-duplicate-photo-asset";
 import { isGalleryPublicId, urlReferencesPublicId } from "@/modules/gallery/lib/public-id";

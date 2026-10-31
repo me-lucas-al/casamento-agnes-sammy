@@ -1,7 +1,7 @@
 import { requireRole } from "@/modules/auth/authorization";
 import type { SessionUser } from "@/modules/auth/types";
 import { approvedPhotosTag } from "@/shared/lib/cache/cache-tags";
-import type { CloudinaryClient } from "@/shared/lib/cloudinary";
+import type { CloudinaryClient } from "@/shared/lib/cloudinary/cloudinary";
 import { PhotoNotFoundError } from "@/modules/gallery/errors";
 import { destroyUnsharedPhotoAsset } from "@/modules/gallery/lib/destroy-unshared-photo-asset";
 import type { PhotoRepository } from "@/modules/gallery/repositories/contracts/photo-repository";

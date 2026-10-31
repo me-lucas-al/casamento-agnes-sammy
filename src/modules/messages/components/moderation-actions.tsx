@@ -3,8 +3,8 @@
 import { useState, useTransition } from "react";
 import { deleteMessageAction, moderateMessageAction, updateMessageAction } from "../controllers/actions/message.actions";
 import { useRouter } from "next/navigation";
-import { ConfirmDialog } from "@/shared/ui/confirm-dialog";
-import { useConfirmDialog } from "@/shared/ui/use-confirm-dialog";
+import { ConfirmDialog } from "@/shared/ui/dialogs/confirm-dialog";
+import { useConfirmDialog } from "@/shared/ui/dialogs/use-confirm-dialog";
 import type { Message } from "../types";
 
 const buttonClassName = "rounded-full border border-wine/30 px-3 py-1 text-sm text-wine disabled:opacity-50";

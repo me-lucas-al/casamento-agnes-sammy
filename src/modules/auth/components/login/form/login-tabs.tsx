@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState, type KeyboardEvent, type ReactNode } from "react";
-import { cn } from "@/shared/lib/utils";
+import { cn } from "@/shared/lib/styling/utils";
 
 export type LoginTab = "convidado" | "noivos";
 

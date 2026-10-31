@@ -1,4 +1,4 @@
-import { cn } from "@/shared/lib/utils";
+import { cn } from "@/shared/lib/styling/utils";
 
 type MockFieldProps = { label: string; value: string; isHighlighted?: boolean; className?: string };
 

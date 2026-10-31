@@ -1,6 +1,6 @@
 import { giftContributions } from "@/shared/db/schema";
 import type { Database } from "@/shared/db/types";
-import { addHours } from "@/shared/lib/dates";
+import { addHours } from "@/shared/lib/dates/dates";
 import { seedGift } from "./seed-gift";
 import { seedGuest } from "./seed-guest";
 

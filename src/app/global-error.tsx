@@ -1,8 +1,8 @@
 "use client";
 
-import { FloralCorners } from "@/shared/ui/components/floral-corners";
+import { FloralCorners } from "@/shared/ui/layout/floral-corners";
 import { fontVariableClassNames } from "@/shared/theme/fonts";
-import { RetryButton } from "@/shared/ui/components/retry-button";
+import { RetryButton } from "@/shared/ui/feedback/retry-button";
 import "./globals.css";
 
 type GlobalErrorProps = { error: Error & { digest?: string }; reset: () => void };

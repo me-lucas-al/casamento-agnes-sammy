@@ -1,4 +1,4 @@
-﻿import { isUniqueViolation } from "@/shared/lib/unique-violation";
+﻿import { isUniqueViolation } from "@/shared/lib/errors/unique-violation";
 import { GiftCategoryNameTakenError, GiftNameTakenError } from "@/modules/gifts/errors";
 
 export const GIFT_NAME_UNIQUE_INDEX = "gifts_name_lower_unique_idx";

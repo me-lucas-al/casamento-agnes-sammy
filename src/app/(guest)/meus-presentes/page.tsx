@@ -1,7 +1,7 @@
 import { MyContributionCard } from "@/modules/contributions/components/my-contribution-card";
 import { listMyContributionsQuery } from "@/modules/contributions/controllers/queries/contributions.queries";
-import { EmptyState } from "@/shared/ui/empty-state";
-import { PageHeading } from "@/shared/ui/components/page-heading";
+import { EmptyState } from "@/shared/ui/feedback/empty-state";
+import { PageHeading } from "@/shared/ui/layout/page-heading";
 
 export const dynamic = "force-dynamic";
 

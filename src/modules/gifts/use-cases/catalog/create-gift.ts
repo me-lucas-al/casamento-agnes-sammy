@@ -1,6 +1,6 @@
 import { requireRole } from "@/modules/auth/authorization";
 import type { SessionUser } from "@/modules/auth/types";
-import type { CloudinaryClient } from "@/shared/lib/cloudinary";
+import type { CloudinaryClient } from "@/shared/lib/cloudinary/cloudinary";
 import { GiftCategoryNotFoundError } from "@/modules/gifts/errors";
 import { assertGiftImageOwnership } from "@/modules/gifts/lib/images/assert-gift-image-ownership";
 import { rejectDuplicateGiftName } from "@/modules/gifts/lib/catalog/reject-duplicate-name";

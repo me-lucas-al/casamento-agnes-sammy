@@ -2,7 +2,7 @@
 
 import { SlidersHorizontal } from "lucide-react";
 import { useId, useState, type ReactNode } from "react";
-import { cn } from "@/shared/lib/utils";
+import { cn } from "@/shared/lib/styling/utils";
 
 type MobileFilterPanelProps = {
   activeCount: number;

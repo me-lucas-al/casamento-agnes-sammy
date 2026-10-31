@@ -1,4 +1,4 @@
-import { DISPLAY_TIME_ZONE } from "@/shared/lib/dates";
+import { DISPLAY_TIME_ZONE } from "@/shared/lib/dates/dates";
 
 export type EventDateParts = {
   day: string;

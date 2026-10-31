@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { CenteredStage } from "@/shared/ui/components/centered-stage";
+import { CenteredStage } from "@/shared/ui/layout/centered-stage";
 
 export default function NotFound() {
   return (

@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { InvalidGiftImageError } from "@/modules/gifts/errors";
-import { buildManagedPublicId } from "@/shared/lib/cloudinary-url";
+import { buildManagedPublicId } from "@/shared/lib/cloudinary/cloudinary-url";
 import { FAKE_CLOUD_NAME } from "@/tests/helpers/fake-cloudinary";
 import { asUser } from "@/tests/helpers/fake-session";
 import { seedGiftCategory } from "@/tests/helpers/seeds/seed-gift";

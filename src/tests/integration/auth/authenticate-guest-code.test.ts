@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { InvalidGuestCodeError, TooManyLoginAttemptsError } from "@/modules/auth/errors";
 import { createAuthModule } from "@/modules/auth/factory";
 import { MAX_FAILED_ATTEMPTS } from "@/modules/auth/use-cases/authenticate-guest-code";
-import { addMinutes } from "@/shared/lib/dates";
+import { addMinutes } from "@/shared/lib/dates/dates";
 import { seedGuest } from "@/tests/helpers/seeds/seed-guest";
 import { useTestDatabase } from "@/tests/helpers/use-test-database";
 

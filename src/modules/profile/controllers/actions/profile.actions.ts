@@ -4,9 +4,9 @@ import { getSessionUser } from "@/modules/auth/controllers/session/get-session-u
 import { invalidateRsvpCache } from "@/modules/rsvp/lib/invalidate-rsvp-cache";
 import { contributionsTag, pendingPaymentsTag } from "@/shared/lib/cache/cache-tags";
 import { nextCacheInvalidator } from "@/shared/lib/cache/invalidate";
-import { success, type ActionResult } from "@/shared/lib/result";
-import { safeAction } from "@/shared/lib/safe-action";
-import { invalidInput } from "@/shared/lib/validation-failure";
+import { success, type ActionResult } from "@/shared/lib/actions/result";
+import { safeAction } from "@/shared/lib/actions/safe-action";
+import { invalidInput } from "@/shared/lib/actions/validation-failure";
 import { describeProfileError } from "@/modules/profile/errors";
 import { getProfileModule } from "@/modules/profile/factory";
 import { ownProfileSchema } from "@/modules/profile/schemas/own-profile.schema";

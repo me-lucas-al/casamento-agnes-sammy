@@ -1,4 +1,4 @@
-import { cn } from "@/shared/lib/utils";
+import { cn } from "@/shared/lib/styling/utils";
 import type { TourStepDefinition } from "@/modules/tour/lib/build-tour-steps";
 
 type TourProgressDotsProps = {

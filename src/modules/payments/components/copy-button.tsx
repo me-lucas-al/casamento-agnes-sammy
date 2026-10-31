@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Button } from "@/shared/ui/button";
+import { Button } from "@/shared/ui/primitives/button";
 
 type CopyButtonProps = {
   text: string;

@@ -1,4 +1,4 @@
-import { ALLOWED_UPLOAD_FORMATS, type CloudinaryClient, type SignedUploadParams } from "@/shared/lib/cloudinary";
+import { ALLOWED_UPLOAD_FORMATS, type CloudinaryClient, type SignedUploadParams } from "@/shared/lib/cloudinary/cloudinary";
 
 export const FAKE_CLOUD_NAME = "fake-cloud";
 

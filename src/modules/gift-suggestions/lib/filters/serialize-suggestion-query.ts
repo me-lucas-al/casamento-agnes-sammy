@@ -1,4 +1,4 @@
-import type { SearchParams } from "@/shared/lib/url-params";
+import type { SearchParams } from "@/shared/lib/url/url-params";
 import { SUGGESTION_MODE_PARAMS, type SuggestionQuery } from "./suggestion-query";
 
 function formatReais(cents: number | undefined): string | undefined {

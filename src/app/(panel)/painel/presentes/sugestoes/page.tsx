@@ -8,9 +8,9 @@ import { listSuggestionsWithStatusQuery } from "@/modules/gift-suggestions/contr
 import { buildActiveFilterChips } from "@/modules/gift-suggestions/lib/filters/active-filter-chips";
 import { serializeSuggestionQuery } from "@/modules/gift-suggestions/lib/filters/serialize-suggestion-query";
 import { parseSuggestionQuery } from "@/modules/gift-suggestions/schemas/suggestion-query-params";
-import type { SearchParams } from "@/shared/lib/url-params";
-import { buttonVariants } from "@/shared/ui/button";
-import { PageHeading } from "@/shared/ui/components/page-heading";
+import type { SearchParams } from "@/shared/lib/url/url-params";
+import { buttonVariants } from "@/shared/ui/primitives/button";
+import { PageHeading } from "@/shared/ui/layout/page-heading";
 
 export const dynamic = "force-dynamic";
 

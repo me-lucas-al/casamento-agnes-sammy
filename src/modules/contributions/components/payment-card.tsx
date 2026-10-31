@@ -1,5 +1,5 @@
-import { formatDateTimeInSaoPaulo } from "@/shared/lib/dates";
-import { formatCentsAsBrl } from "@/shared/lib/money";
+import { formatDateTimeInSaoPaulo } from "@/shared/lib/dates/dates";
+import { formatCentsAsBrl } from "@/shared/lib/money/money";
 import { CONTRIBUTION_STATUS_LABELS } from "../lib/availability/describe-availability";
 import type { PendingPaymentRow } from "../types";
 import { PaymentRowActions } from "./payment-row-actions";

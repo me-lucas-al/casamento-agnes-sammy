@@ -2,8 +2,8 @@
 
 import { getSessionUser } from "@/modules/auth/controllers/session/get-session-user";
 import { nextCacheInvalidator } from "@/shared/lib/cache/invalidate";
-import type { ActionResult } from "@/shared/lib/result";
-import { safeAction } from "@/shared/lib/safe-action";
+import type { ActionResult } from "@/shared/lib/actions/result";
+import { safeAction } from "@/shared/lib/actions/safe-action";
 import { describeEventError } from "@/modules/event/errors";
 import { getEventModule } from "@/modules/event/factory";
 import { runUpdateEventSettings } from "../handlers/run-update-event-settings";

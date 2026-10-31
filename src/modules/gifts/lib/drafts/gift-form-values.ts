@@ -1,4 +1,4 @@
-import { parseBrlToCents } from "@/shared/lib/money";
+import { parseBrlToCents } from "@/shared/lib/money/money";
 import type { Gift, GiftImage, GiftKind, GiftMode } from "@/modules/gifts/types";
 
 export type GiftFormValues = {

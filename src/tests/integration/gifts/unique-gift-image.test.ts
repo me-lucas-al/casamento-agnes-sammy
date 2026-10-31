@@ -1,8 +1,8 @@
 import { describe, expect, it } from "vitest";
 import { InvalidGiftImageError } from "@/modules/gifts/errors";
 import { gifts } from "@/shared/db/schema";
-import { buildManagedPublicId } from "@/shared/lib/cloudinary-url";
-import { isUniqueViolation } from "@/shared/lib/unique-violation";
+import { buildManagedPublicId } from "@/shared/lib/cloudinary/cloudinary-url";
+import { isUniqueViolation } from "@/shared/lib/errors/unique-violation";
 import { FAKE_CLOUD_NAME } from "@/tests/helpers/fake-cloudinary";
 import { asUser } from "@/tests/helpers/fake-session";
 import { seedGift, seedGiftCategory } from "@/tests/helpers/seeds/seed-gift";

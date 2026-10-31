@@ -1,4 +1,4 @@
-import { isUniqueViolation } from "@/shared/lib/unique-violation";
+import { isUniqueViolation } from "@/shared/lib/errors/unique-violation";
 import { InvalidPublicIdError } from "../errors";
 
 export const PHOTO_PUBLIC_ID_UNIQUE_INDEX = "photos_cloudinary_public_id_unique_idx";

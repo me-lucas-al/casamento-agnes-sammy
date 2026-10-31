@@ -1,5 +1,5 @@
 import { Search } from "lucide-react";
-import { firstValue, type SearchParams } from "@/shared/lib/url-params";
+import { firstValue, type SearchParams } from "@/shared/lib/url/url-params";
 
 type SuggestionSearchBarProps = {
   basePath: string;

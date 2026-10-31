@@ -2,7 +2,7 @@ import { DEFAULT_CATEGORIES } from "@/modules/gifts/lib/catalog/default-categori
 import { GiftNameTakenError } from "@/modules/gifts/errors";
 import type { GiftModule } from "@/modules/gifts/factory";
 import { CATEGORY_NAME_UNIQUE_INDEX } from "@/modules/gifts/lib/catalog/reject-duplicate-name";
-import { isUniqueViolation } from "@/shared/lib/unique-violation";
+import { isUniqueViolation } from "@/shared/lib/errors/unique-violation";
 import type { SuggestionCategory, SuggestionGiftGateway } from "../ports";
 
 const MAX_LISTED_GIFTS = 5000;

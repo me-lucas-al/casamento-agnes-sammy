@@ -4,9 +4,9 @@ import { getSessionUser } from "@/modules/auth/controllers/session/get-session-u
 import type { SessionUser } from "@/modules/auth/types";
 import { dashboardTag } from "@/shared/lib/cache/cache-tags";
 import { nextCacheInvalidator } from "@/shared/lib/cache/invalidate";
-import { safeAction } from "@/shared/lib/safe-action";
-import { invalidInput } from "@/shared/lib/validation-failure";
-import { success, type ActionResult } from "@/shared/lib/result";
+import { safeAction } from "@/shared/lib/actions/safe-action";
+import { invalidInput } from "@/shared/lib/actions/validation-failure";
+import { success, type ActionResult } from "@/shared/lib/actions/result";
 import { describePhotoError } from "@/modules/gallery/errors";
 import { getGalleryModule, type GalleryModule } from "@/modules/gallery/factory";
 import { photoIdSchema } from "@/modules/gallery/schemas/gallery.schemas";

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { formatCentsAsBrl } from "@/shared/lib/money";
+import { formatCentsAsBrl } from "@/shared/lib/money/money";
 import type { PixPaymentDetails } from "../types";
 import { CopyButton } from "./copy-button";
 

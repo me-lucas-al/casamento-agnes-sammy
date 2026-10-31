@@ -2,7 +2,7 @@ import { getDatabase } from "@/shared/db/client";
 import type { Database } from "@/shared/db/types";
 import { getCloudinaryEnv } from "@/shared/config/env";
 import { nextCachedReader, type CachedReader } from "@/shared/lib/cache/cached-read";
-import { createCloudinaryClient, type CloudinaryClient } from "@/shared/lib/cloudinary";
+import { createCloudinaryClient, type CloudinaryClient } from "@/shared/lib/cloudinary/cloudinary";
 import { createDrizzlePhotoRepository } from "./repositories/drizzle/drizzle-photo-repository";
 import { makeApprovePhoto } from "./use-cases/moderation/approve-photo";
 import { makeCountOwnPendingPhotos } from "./use-cases/listing/count-own-pending-photos";

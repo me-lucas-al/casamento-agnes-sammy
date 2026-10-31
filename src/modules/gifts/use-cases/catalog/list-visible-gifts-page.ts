@@ -2,7 +2,7 @@ import { requireRole } from "@/modules/auth/authorization";
 import type { SessionUser } from "@/modules/auth/types";
 import { categoriesTag, giftsTag } from "@/shared/lib/cache/cache-tags";
 import type { CachedReader } from "@/shared/lib/cache/cached-read";
-import { buildPageResult, type PageResult } from "@/shared/lib/pagination";
+import { buildPageResult, type PageResult } from "@/shared/lib/pagination/pagination";
 import type { GiftAvailability } from "@/modules/gifts/lib/availability/gift-availability";
 import { buildGiftCacheKeyParts, type GiftListInput } from "@/modules/gifts/lib/listing/gift-list-input";
 import { GIFT_VIEWER_ROLES } from "@/modules/gifts/lib/roles/gift-roles";

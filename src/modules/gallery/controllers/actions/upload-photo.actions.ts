@@ -3,10 +3,10 @@
 import { getSessionUser } from "@/modules/auth/controllers/session/get-session-user";
 import { dashboardTag } from "@/shared/lib/cache/cache-tags";
 import { nextCacheInvalidator } from "@/shared/lib/cache/invalidate";
-import type { SignedUploadParams } from "@/shared/lib/cloudinary";
-import { safeAction } from "@/shared/lib/safe-action";
-import { invalidInput } from "@/shared/lib/validation-failure";
-import { success, type ActionResult } from "@/shared/lib/result";
+import type { SignedUploadParams } from "@/shared/lib/cloudinary/cloudinary";
+import { safeAction } from "@/shared/lib/actions/safe-action";
+import { invalidInput } from "@/shared/lib/actions/validation-failure";
+import { success, type ActionResult } from "@/shared/lib/actions/result";
 import { describePhotoError } from "@/modules/gallery/errors";
 import { getGalleryModule } from "@/modules/gallery/factory";
 import { registerPhotoSchema, signUploadSchema } from "@/modules/gallery/schemas/gallery.schemas";

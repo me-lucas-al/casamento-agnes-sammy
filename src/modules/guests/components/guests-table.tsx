@@ -1,4 +1,4 @@
-import { formatDateTimeInSaoPaulo } from "@/shared/lib/dates";
+import { formatDateTimeInSaoPaulo } from "@/shared/lib/dates/dates";
 import { buildGuestInviteUrl, buildWhatsappShareLink } from "../lib/whatsapp-link";
 import type { GuestListItem, RsvpStatus } from "../types";
 import { GuestRowActions } from "./guest-row-actions";

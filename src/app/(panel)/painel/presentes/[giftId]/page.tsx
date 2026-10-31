@@ -3,7 +3,7 @@ import { GiftForm } from "@/modules/gifts/components/form/gift-form";
 import { getGiftForEditQuery, listGiftCategoriesQuery } from "@/modules/gifts/controllers/queries/gifts.queries";
 import { GiftNotFoundError } from "@/modules/gifts/errors";
 import { giftIdSchema } from "@/modules/gifts/schemas/gift.schema";
-import { PageHeading } from "@/shared/ui/components/page-heading";
+import { PageHeading } from "@/shared/ui/layout/page-heading";
 
 type EditGiftPageProps = { params: Promise<{ giftId: string }> };
 

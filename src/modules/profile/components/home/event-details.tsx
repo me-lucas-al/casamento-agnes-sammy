@@ -1,6 +1,6 @@
 import { getEventDateParts } from "@/modules/event/lib/event-date-parts";
 import type { EventSettingsSnapshot } from "@/modules/event/types";
-import { formatDateTimeInSaoPaulo } from "@/shared/lib/dates";
+import { formatDateTimeInSaoPaulo } from "@/shared/lib/dates/dates";
 
 type EventDetailsProps = { settings: EventSettingsSnapshot };
 

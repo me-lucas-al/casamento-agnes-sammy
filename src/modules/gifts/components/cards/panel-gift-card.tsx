@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { buttonVariants } from "@/shared/ui/button";
+import { buttonVariants } from "@/shared/ui/primitives/button";
 import type { PanelGiftListItem } from "@/modules/gifts/use-cases/catalog/list-panel-gifts-page";
 import { DeleteGiftButton } from "../management/delete-gift-button";
 import { GiftPriceLabel } from "./gift-price-label";

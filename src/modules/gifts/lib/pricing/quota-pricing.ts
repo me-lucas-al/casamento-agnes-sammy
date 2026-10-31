@@ -1,4 +1,4 @@
-import { splitCentsIntoQuotas } from "@/shared/lib/money";
+import { splitCentsIntoQuotas } from "@/shared/lib/money/money";
 
 export type QuotaPriceRange = {
   minCents: number;

@@ -1,5 +1,5 @@
-import type { CloudinaryClient } from "@/shared/lib/cloudinary";
-import { destroyImageBestEffort } from "@/shared/lib/cloudinary-destroy";
+import type { CloudinaryClient } from "@/shared/lib/cloudinary/cloudinary";
+import { destroyImageBestEffort } from "@/shared/lib/cloudinary/cloudinary-destroy";
 import type { PhotoRepository } from "../repositories/contracts/photo-repository";
 import type { Photo } from "../types";
 

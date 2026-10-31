@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
-import { readMonogramDataUri } from "@/shared/seo/read-brand-asset";
-import { AppIcon } from "@/shared/seo/app-icon";
+import { readMonogramDataUri } from "@/shared/seo/images/read-brand-asset";
+import { AppIcon } from "@/shared/seo/images/app-icon";
 
 export const size = { width: 512, height: 512 };
 export const contentType = "image/png";

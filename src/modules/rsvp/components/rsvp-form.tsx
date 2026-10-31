@@ -2,7 +2,7 @@
 
 import { useState, useTransition, type FormEvent } from "react";
 import { submitRsvpAction } from "../controllers/actions/submit-rsvp.actions";
-import type { ActionResult } from "@/shared/lib/result";
+import type { ActionResult } from "@/shared/lib/actions/result";
 import type { Companion, GuestRsvp, RsvpAnswer } from "../types";
 import { CompanionFields } from "./companion-fields";
 

@@ -1,8 +1,8 @@
 import { z } from "zod";
 import { PRICE_BAND_IDS } from "@/modules/gifts/lib/pricing/price-band";
-import { parsePageParams } from "@/shared/lib/pagination";
-import { parseBrlToCents } from "@/shared/lib/money";
-import { firstValue, textParam, type SearchParams } from "@/shared/lib/url-params";
+import { parsePageParams } from "@/shared/lib/pagination/pagination";
+import { parseBrlToCents } from "@/shared/lib/money/money";
+import { firstValue, textParam, type SearchParams } from "@/shared/lib/url/url-params";
 import { SUGGESTION_CATEGORY_KEYS } from "../data/category-names";
 import { PRODUCT_TYPE_IDS } from "../data/product-types";
 import { isStoreId, type StoreId } from "../data/stores";

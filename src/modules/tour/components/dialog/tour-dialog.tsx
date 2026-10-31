@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState, type KeyboardEvent } from "react";
-import { FloralCorners } from "@/shared/ui/components/floral-corners";
+import { FloralCorners } from "@/shared/ui/layout/floral-corners";
 import type { TourStepDefinition } from "@/modules/tour/lib/build-tour-steps";
 import { findWrapTarget } from "@/modules/tour/lib/focus-trap";
 import { isLastStep, nextStepIndex, previousStepIndex, slideDirection } from "@/modules/tour/lib/tour-navigation";
@@ -9,7 +9,7 @@ import { TourFooter } from "./tour-footer";
 import { TourHeader } from "./tour-header";
 import { TourControlsProvider } from "./tour-controls";
 import { renderTourStep } from "../steps/render-tour-step";
-import { cn } from "@/shared/lib/utils";
+import { cn } from "@/shared/lib/styling/utils";
 
 type TourDialogProps = { steps: readonly TourStepDefinition[]; onClosed: () => void };
 

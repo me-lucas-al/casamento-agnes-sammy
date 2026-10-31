@@ -2,7 +2,7 @@ import { requireRole } from "@/modules/auth/authorization";
 import type { SessionUser } from "@/modules/auth/types";
 import { approvedPhotosTag } from "@/shared/lib/cache/cache-tags";
 import type { CachedReader } from "@/shared/lib/cache/cached-read";
-import { buildPageResult, type PageParams, type PageResult } from "@/shared/lib/pagination";
+import { buildPageResult, type PageParams, type PageResult } from "@/shared/lib/pagination/pagination";
 import type { PhotoRepository } from "@/modules/gallery/repositories/contracts/photo-repository";
 import type { PhotoSort, PublicPhoto } from "@/modules/gallery/types";
 

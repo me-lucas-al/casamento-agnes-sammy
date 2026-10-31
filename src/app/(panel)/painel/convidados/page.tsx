@@ -7,10 +7,10 @@ import { GuestsToolbar } from "@/modules/guests/components/guests-toolbar";
 import { listGuestsPageQuery } from "@/modules/guests/controllers/queries/guests.queries";
 import { GUEST_SORTS } from "@/modules/guests/types";
 import { getAppEnv } from "@/shared/config/env";
-import { enumParam, textParam, type SearchParams } from "@/shared/lib/url-params";
-import { EmptyState } from "@/shared/ui/empty-state";
-import { PaginationControls } from "@/shared/ui/pagination-controls";
-import { PageHeading } from "@/shared/ui/components/page-heading";
+import { enumParam, textParam, type SearchParams } from "@/shared/lib/url/url-params";
+import { EmptyState } from "@/shared/ui/feedback/empty-state";
+import { PaginationControls } from "@/shared/ui/navigation/pagination-controls";
+import { PageHeading } from "@/shared/ui/layout/page-heading";
 
 type ConvidadosPageProps = {
   searchParams: Promise<SearchParams>;

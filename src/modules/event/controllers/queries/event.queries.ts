@@ -1,8 +1,8 @@
 import { eventTag } from "@/shared/lib/cache/cache-tags";
 import { nextCachedReader } from "@/shared/lib/cache/cached-read";
-import { logger } from "@/shared/lib/logger";
+import { logger } from "@/shared/lib/logging/logger";
 import { serializeError } from "@/shared/lib/logging/serialize-error";
-import { withTimeout } from "@/shared/lib/with-timeout";
+import { withTimeout } from "@/shared/lib/resilience/with-timeout";
 import { getEventModule } from "@/modules/event/factory";
 import { DEFAULT_EVENT_SETTINGS } from "@/modules/event/lib/default-event-settings";
 import { toEventSnapshot } from "@/modules/event/lib/event-snapshot";

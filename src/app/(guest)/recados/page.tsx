@@ -2,10 +2,10 @@ import { getSessionUser } from "@/modules/auth/controllers/session/get-session-u
 import { ApprovedMessagesList } from "@/modules/messages/components/approved-messages-list";
 import { MessageForm } from "@/modules/messages/components/message-form";
 import { listApprovedMessagesQuery } from "@/modules/messages/controllers/queries/messages.queries";
-import type { SearchParams } from "@/shared/lib/url-params";
-import { EmptyState } from "@/shared/ui/empty-state";
-import { PaginationControls } from "@/shared/ui/pagination-controls";
-import { PageHeading } from "@/shared/ui/components/page-heading";
+import type { SearchParams } from "@/shared/lib/url/url-params";
+import { EmptyState } from "@/shared/ui/feedback/empty-state";
+import { PaginationControls } from "@/shared/ui/navigation/pagination-controls";
+import { PageHeading } from "@/shared/ui/layout/page-heading";
 
 export default async function MessagesPage({ searchParams }: { searchParams: Promise<SearchParams> }) {
   const resolvedSearchParams = await searchParams;

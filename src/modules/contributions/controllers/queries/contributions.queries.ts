@@ -1,10 +1,10 @@
 import { getSessionUser } from "@/modules/auth/controllers/session/get-session-user";
 import { getPaymentModule } from "@/modules/payments/factory";
-import { parsePageParams } from "@/shared/lib/pagination";
-import type { SearchParams } from "@/shared/lib/url-params";
+import { parsePageParams } from "@/shared/lib/pagination/pagination";
+import type { SearchParams } from "@/shared/lib/url/url-params";
 import { getContributionModule } from "@/modules/contributions/factory";
 import { parsePaymentsFilters } from "@/modules/contributions/schemas/payments-filters.schema";
-import { guardedQuery } from "@/shared/lib/guarded-query";
+import { guardedQuery } from "@/shared/lib/resilience/guarded-query";
 
 export async function getGiftAvailabilityQuery(giftId: string) {
   return guardedQuery("getGiftAvailabilityQuery", async () => {

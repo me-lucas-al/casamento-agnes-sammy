@@ -3,8 +3,8 @@
 import { Gift } from "lucide-react";
 import { useState } from "react";
 import { GiftStatusBadge } from "@/modules/gifts/components/cards/gift-status-badge";
-import { formatCentsAsBrl } from "@/shared/lib/money";
-import { cn } from "@/shared/lib/utils";
+import { formatCentsAsBrl } from "@/shared/lib/money/money";
+import { cn } from "@/shared/lib/styling/utils";
 import { FreeAmountSimulator } from "../simulators/free-amount-simulator";
 import { buildQuotaAvailability } from "../parts/mock-availability";
 import { PanelWindow } from "../parts/panel-window";

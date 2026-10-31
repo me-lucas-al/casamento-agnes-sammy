@@ -1,4 +1,4 @@
-import { formatDateTimeInSaoPaulo } from "@/shared/lib/dates";
+import { formatDateTimeInSaoPaulo } from "@/shared/lib/dates/dates";
 import { describeRsvpStatus } from "@/modules/profile/lib/rsvp-status-label";
 import type { GuestProfile } from "@/modules/profile/types";
 import { OwnProfileEditor } from "../forms/own-profile-editor";

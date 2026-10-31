@@ -1,6 +1,6 @@
 import { and, asc, desc, eq, gt, ilike, lte, or, type SQL } from "drizzle-orm";
 import { gifts } from "@/shared/db/schema";
-import { containsPattern } from "@/shared/lib/sql-like";
+import { containsPattern } from "@/shared/lib/sql/sql-like";
 import type { GiftSortOption } from "@/modules/gifts/lib/listing/gift-sort";
 import type { PriceBand } from "@/modules/gifts/lib/pricing/price-band";
 import type { GiftListQuery } from "../contracts/gift-repository";

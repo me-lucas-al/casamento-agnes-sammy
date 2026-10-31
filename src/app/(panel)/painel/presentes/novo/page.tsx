@@ -1,7 +1,7 @@
 import { GiftForm } from "@/modules/gifts/components/form/gift-form";
 import { listGiftCategoriesQuery } from "@/modules/gifts/controllers/queries/gifts.queries";
-import { EmptyState } from "@/shared/ui/empty-state";
-import { PageHeading } from "@/shared/ui/components/page-heading";
+import { EmptyState } from "@/shared/ui/feedback/empty-state";
+import { PageHeading } from "@/shared/ui/layout/page-heading";
 
 export default async function NewGiftPage() {
   const categories = await listGiftCategoriesQuery();

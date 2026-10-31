@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
-import { firstValue, type SearchParams } from "@/shared/lib/url-params";
+import { firstValue, type SearchParams } from "@/shared/lib/url/url-params";
 
 type GuestSignInPageProps = { searchParams: Promise<SearchParams> };
 

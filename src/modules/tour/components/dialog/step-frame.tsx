@@ -3,7 +3,7 @@
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { cn } from "@/shared/lib/utils";
+import { cn } from "@/shared/lib/styling/utils";
 import { getTourStepDefinition, type TourStepId } from "@/modules/tour/lib/build-tour-steps";
 import { TornPaperStage } from "./torn-paper-stage";
 import { useTourControls } from "./tour-controls";

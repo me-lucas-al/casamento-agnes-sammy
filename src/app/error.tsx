@@ -1,7 +1,7 @@
 "use client";
 
-import { CenteredStage } from "@/shared/ui/components/centered-stage";
-import { RetryButton } from "@/shared/ui/components/retry-button";
+import { CenteredStage } from "@/shared/ui/layout/centered-stage";
+import { RetryButton } from "@/shared/ui/feedback/retry-button";
 
 type ErrorPageProps = { error: Error & { digest?: string }; reset: () => void };
 

@@ -4,7 +4,7 @@ import { Check } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import type { OnboardingStatus } from "@/modules/dashboard/types";
-import { cn } from "@/shared/lib/utils";
+import { cn } from "@/shared/lib/styling/utils";
 import { loadTourChecklistAction } from "@/modules/tour/controllers/actions/tour.actions";
 import { useTourControls } from "../dialog/tour-controls";
 

@@ -1,9 +1,9 @@
 import { getSessionUser } from "@/modules/auth/controllers/session/get-session-user";
-import { parsePageParams } from "@/shared/lib/pagination";
-import { enumParam, type SearchParams } from "@/shared/lib/url-params";
+import { parsePageParams } from "@/shared/lib/pagination/pagination";
+import { enumParam, type SearchParams } from "@/shared/lib/url/url-params";
 import { getMessageModule } from "@/modules/messages/factory";
 import { MODERATION_STATUSES } from "@/modules/messages/types";
-import { guardedQuery } from "@/shared/lib/guarded-query";
+import { guardedQuery } from "@/shared/lib/resilience/guarded-query";
 
 export async function listApprovedMessagesQuery(searchParams: SearchParams) {
   return guardedQuery("listApprovedMessagesQuery", async () => {

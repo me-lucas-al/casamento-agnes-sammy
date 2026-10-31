@@ -1,6 +1,6 @@
 import { createContributionModule } from "@/modules/contributions/factory";
 import type { Database } from "@/shared/db/types";
-import { addHours } from "@/shared/lib/dates";
+import { addHours } from "@/shared/lib/dates/dates";
 import { asUser } from "@/tests/helpers/fake-session";
 import { seedGuest } from "@/tests/helpers/seeds/seed-guest";
 import { seedUser } from "@/tests/helpers/seeds/seed-user";

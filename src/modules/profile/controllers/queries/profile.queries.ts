@@ -1,8 +1,8 @@
 import { getSessionUser } from "@/modules/auth/controllers/session/get-session-user";
 import { getProfileModule } from "@/modules/profile/factory";
 import type { GuestProfile } from "@/modules/profile/types";
-import { guardedQuery } from "@/shared/lib/guarded-query";
-import { withLoggedFallback } from "@/shared/lib/logged-fallback";
+import { guardedQuery } from "@/shared/lib/resilience/guarded-query";
+import { withLoggedFallback } from "@/shared/lib/resilience/logged-fallback";
 
 export async function getMyGuestProfileQuery() {
   return guardedQuery("getMyGuestProfileQuery", async () => {

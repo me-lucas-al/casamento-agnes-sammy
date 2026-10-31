@@ -1,7 +1,7 @@
 import { GIFT_SUGGESTION_CATALOG } from "@/modules/gift-suggestions/data/gift-suggestion-catalog";
 import { createGiftSuggestionModule } from "@/modules/gift-suggestions/factory";
 import { parseSuggestionQuery } from "@/modules/gift-suggestions/schemas/suggestion-query-params";
-import type { SearchParams } from "@/shared/lib/url-params";
+import type { SearchParams } from "@/shared/lib/url/url-params";
 import type { Database } from "@/shared/db/types";
 import { createTestGiftModule } from "../gifts/gift-test-module";
 

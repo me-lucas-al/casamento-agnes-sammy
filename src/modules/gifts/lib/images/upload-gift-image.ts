@@ -1,4 +1,4 @@
-import { uploadSignedImage } from "@/shared/lib/cloudinary-upload";
+import { uploadSignedImage } from "@/shared/lib/cloudinary/cloudinary-upload";
 import { signGiftImageUploadAction } from "@/modules/gifts/controllers/actions/gift-image.actions";
 import type { GiftImage } from "@/modules/gifts/types";
 

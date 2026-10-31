@@ -1,4 +1,4 @@
-import { formatCentsAsBrl } from "@/shared/lib/money";
+import { formatCentsAsBrl } from "@/shared/lib/money/money";
 import type { ContributionStatus, GiftReservationView } from "@/modules/contributions/types";
 
 export const CONTRIBUTION_STATUS_LABELS: Record<ContributionStatus, string> = {

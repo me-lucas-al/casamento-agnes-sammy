@@ -12,9 +12,9 @@ import { GiftNotFoundError } from "@/modules/contributions/errors";
 import { describeAvailability } from "@/modules/contributions/lib/availability/describe-availability";
 import { PixPaymentPanel } from "@/modules/payments/components/pix-payment-panel";
 import { describePaymentError } from "@/modules/payments/errors";
-import { formatDateTimeInSaoPaulo } from "@/shared/lib/dates";
-import { formatCentsAsBrl } from "@/shared/lib/money";
-import { firstValue, type SearchParams } from "@/shared/lib/url-params";
+import { formatDateTimeInSaoPaulo } from "@/shared/lib/dates/dates";
+import { formatCentsAsBrl } from "@/shared/lib/money/money";
+import { firstValue, type SearchParams } from "@/shared/lib/url/url-params";
 
 type PageProps = {
   params: Promise<{ giftId: string }>;

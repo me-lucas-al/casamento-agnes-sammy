@@ -1,4 +1,4 @@
-import { FormField, textInputClassName } from "@/shared/ui/components/form-field";
+import { FormField, textInputClassName } from "@/shared/ui/forms/form-field";
 import { formatSaoPauloLocalDateTime } from "../lib/sao-paulo-local-datetime";
 import type { EventSettingsSnapshot } from "../types";
 

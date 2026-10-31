@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { InvalidPublicIdError, PendingPhotoLimitError } from "@/modules/gallery/errors";
 import { MAX_PENDING_PHOTOS_PER_GUEST } from "@/modules/gallery/lib/upload-rules";
-import { isManagedPublicId } from "@/shared/lib/cloudinary-url";
+import { isManagedPublicId } from "@/shared/lib/cloudinary/cloudinary-url";
 import { FAKE_CLOUD_NAME } from "@/tests/helpers/fake-cloudinary";
 import { asUser } from "@/tests/helpers/fake-session";
 import { seedAdmin } from "@/tests/helpers/seeds/seed-user";

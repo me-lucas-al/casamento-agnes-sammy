@@ -1,4 +1,4 @@
-import { Button } from "@/shared/ui/button";
+import { Button } from "@/shared/ui/primitives/button";
 import type { GuestSort } from "../types";
 
 type GuestsToolbarProps = {

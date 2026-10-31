@@ -1,7 +1,7 @@
 import { requireRole } from "@/modules/auth/authorization";
 import type { SessionUser } from "@/modules/auth/types";
-import type { CloudinaryClient } from "@/shared/lib/cloudinary";
-import { destroyImageBestEffort } from "@/shared/lib/cloudinary-destroy";
+import type { CloudinaryClient } from "@/shared/lib/cloudinary/cloudinary";
+import { destroyImageBestEffort } from "@/shared/lib/cloudinary/cloudinary-destroy";
 import {
   GiftHasActiveReservationsError,
   GiftHasConfirmedContributionError,

@@ -3,8 +3,8 @@
 import { getSessionUser } from "@/modules/auth/controllers/session/get-session-user";
 import { getDashboardModule } from "@/modules/dashboard/factory";
 import type { OnboardingStatus } from "@/modules/dashboard/types";
-import { safeAction } from "@/shared/lib/safe-action";
-import { success, type ActionResult } from "@/shared/lib/result";
+import { safeAction } from "@/shared/lib/actions/safe-action";
+import { success, type ActionResult } from "@/shared/lib/actions/result";
 import { describeTourError } from "@/modules/tour/errors";
 import { getTourModule } from "@/modules/tour/factory";
 

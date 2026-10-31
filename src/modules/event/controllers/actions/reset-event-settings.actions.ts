@@ -4,8 +4,8 @@ import { hasRole } from "@/modules/auth/authorization";
 import { getSessionUser } from "@/modules/auth/controllers/session/get-session-user";
 import { eventTag } from "@/shared/lib/cache/cache-tags";
 import { nextCacheInvalidator } from "@/shared/lib/cache/invalidate";
-import { safeAction } from "@/shared/lib/safe-action";
-import { failure, success, type ActionResult } from "@/shared/lib/result";
+import { safeAction } from "@/shared/lib/actions/safe-action";
+import { failure, success, type ActionResult } from "@/shared/lib/actions/result";
 import { describeEventError } from "@/modules/event/errors";
 import { getEventModule } from "@/modules/event/factory";
 

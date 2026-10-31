@@ -2,8 +2,8 @@
 
 import { useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
-import { ConfirmDialog } from "@/shared/ui/confirm-dialog";
-import { useConfirmDialog } from "@/shared/ui/use-confirm-dialog";
+import { ConfirmDialog } from "@/shared/ui/dialogs/confirm-dialog";
+import { useConfirmDialog } from "@/shared/ui/dialogs/use-confirm-dialog";
 import { getPanelGuestRsvpAction } from "../controllers/actions/get-panel-guest-rsvp.action";
 import { deleteRsvpAction, submitRsvpForGuestAction } from "../controllers/actions/submit-rsvp.actions";
 import type { GuestRsvp } from "../types";

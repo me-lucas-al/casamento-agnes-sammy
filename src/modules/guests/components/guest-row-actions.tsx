@@ -2,9 +2,9 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { ConfirmDialog } from "@/shared/ui/confirm-dialog";
-import { useConfirmDialog } from "@/shared/ui/use-confirm-dialog";
-import { Button, buttonVariants } from "@/shared/ui/button";
+import { ConfirmDialog } from "@/shared/ui/dialogs/confirm-dialog";
+import { useConfirmDialog } from "@/shared/ui/dialogs/use-confirm-dialog";
+import { Button, buttonVariants } from "@/shared/ui/primitives/button";
 import {
   deleteGuestAction,
   regenerateGuestCodeAction,

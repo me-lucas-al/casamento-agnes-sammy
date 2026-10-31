@@ -1,8 +1,8 @@
 import { getSessionUser } from "@/modules/auth/controllers/session/get-session-user";
-import type { SearchParams } from "@/shared/lib/url-params";
+import type { SearchParams } from "@/shared/lib/url/url-params";
 import { getGiftModule } from "@/modules/gifts/factory";
 import { parseGiftListParams } from "@/modules/gifts/schemas/gift-list-params";
-import { guardedQuery } from "@/shared/lib/guarded-query";
+import { guardedQuery } from "@/shared/lib/resilience/guarded-query";
 
 export async function listVisibleGiftsPageQuery(searchParams: SearchParams) {
   return guardedQuery("listVisibleGiftsPageQuery", async () => {

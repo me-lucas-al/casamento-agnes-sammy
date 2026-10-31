@@ -1,6 +1,6 @@
 import { getSessionUser } from "@/modules/auth/controllers/session/get-session-user";
-import { guardedQuery } from "@/shared/lib/guarded-query";
-import { withLoggedFallback } from "@/shared/lib/logged-fallback";
+import { guardedQuery } from "@/shared/lib/resilience/guarded-query";
+import { withLoggedFallback } from "@/shared/lib/resilience/logged-fallback";
 import { getTourModule } from "@/modules/tour/factory";
 
 export async function getTourStatusQuery() {

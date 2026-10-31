@@ -1,4 +1,4 @@
-import { splitCentsIntoQuotas } from "@/shared/lib/money";
+import { splitCentsIntoQuotas } from "@/shared/lib/money/money";
 import { GiftUnavailableError, InvalidAmountError, InvalidQuotasError } from "@/modules/contributions/errors";
 import type {
   GiftCommitment,

@@ -1,6 +1,6 @@
 import { requireRole } from "@/modules/auth/authorization";
 import type { SessionUser } from "@/modules/auth/types";
-import { buildPageResult, type PageParams, type PageResult } from "@/shared/lib/pagination";
+import { buildPageResult, type PageParams, type PageResult } from "@/shared/lib/pagination/pagination";
 import type { RsvpRepository } from "../repositories/contracts/rsvp-repository";
 import type { RsvpListItem, RsvpStatus } from "../types";
 

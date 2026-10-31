@@ -1,11 +1,11 @@
 import { ModerationList } from "@/modules/messages/components/moderation-list";
 import { listMessagesForModerationQuery } from "@/modules/messages/controllers/queries/messages.queries";
 import { MODERATION_STATUSES } from "@/modules/messages/types";
-import { enumParam, type SearchParams } from "@/shared/lib/url-params";
-import { EmptyState } from "@/shared/ui/empty-state";
-import { PaginationControls } from "@/shared/ui/pagination-controls";
-import { StatusFilterLinks } from "@/shared/ui/status-filter-links";
-import { PageHeading } from "@/shared/ui/components/page-heading";
+import { enumParam, type SearchParams } from "@/shared/lib/url/url-params";
+import { EmptyState } from "@/shared/ui/feedback/empty-state";
+import { PaginationControls } from "@/shared/ui/navigation/pagination-controls";
+import { StatusFilterLinks } from "@/shared/ui/navigation/status-filter-links";
+import { PageHeading } from "@/shared/ui/layout/page-heading";
 
 const BASE_PATH = "/painel/recados";
 

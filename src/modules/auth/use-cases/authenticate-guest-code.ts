@@ -1,4 +1,4 @@
-import { addMinutes } from "@/shared/lib/dates";
+import { addMinutes } from "@/shared/lib/dates/dates";
 import { InvalidGuestCodeError, TooManyLoginAttemptsError } from "../errors";
 import { normalizeAccessCode } from "../lib/access-code";
 import type { GuestCodeGateway } from "../repositories/contracts/guest-code-gateway";

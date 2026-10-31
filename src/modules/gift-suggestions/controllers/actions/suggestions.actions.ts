@@ -3,9 +3,9 @@
 import { getSessionUser } from "@/modules/auth/controllers/session/get-session-user";
 import { describeGiftError } from "@/modules/gifts/errors";
 import { nextCacheInvalidator } from "@/shared/lib/cache/invalidate";
-import { safeAction } from "@/shared/lib/safe-action";
-import { invalidInput } from "@/shared/lib/validation-failure";
-import { success, type ActionResult } from "@/shared/lib/result";
+import { safeAction } from "@/shared/lib/actions/safe-action";
+import { invalidInput } from "@/shared/lib/actions/validation-failure";
+import { success, type ActionResult } from "@/shared/lib/actions/result";
 import { getGiftSuggestionModule } from "@/modules/gift-suggestions/factory";
 import { invalidateSuggestionCaches } from "@/modules/gift-suggestions/lib/caches/invalidate-suggestion-caches";
 import { addSuggestionsSchema } from "@/modules/gift-suggestions/schemas/add-suggestions.schema";

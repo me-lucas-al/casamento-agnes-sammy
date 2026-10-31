@@ -1,7 +1,7 @@
 import { getEventSettingsQuery } from "@/modules/event/controllers/queries/event.queries";
 import { EventDetails } from "@/modules/profile/components/home/event-details";
 import { StorySection } from "@/modules/profile/components/home/story-section";
-import { PageHeading } from "@/shared/ui/components/page-heading";
+import { PageHeading } from "@/shared/ui/layout/page-heading";
 
 export default async function WeddingPage() {
   const settings = await getEventSettingsQuery();

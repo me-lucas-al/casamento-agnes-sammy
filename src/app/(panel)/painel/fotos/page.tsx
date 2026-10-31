@@ -5,10 +5,10 @@ import { ModerationQueue } from "@/modules/gallery/components/moderation-queue";
 import { StatusFilter } from "@/modules/gallery/components/status-filter";
 import { listPhotosPanelQuery } from "@/modules/gallery/controllers/queries/gallery.queries";
 import { PHOTO_STATUSES } from "@/modules/gallery/types";
-import { enumParam, type SearchParams } from "@/shared/lib/url-params";
-import { EmptyState } from "@/shared/ui/empty-state";
-import { PaginationControls } from "@/shared/ui/pagination-controls";
-import { PageHeading } from "@/shared/ui/components/page-heading";
+import { enumParam, type SearchParams } from "@/shared/lib/url/url-params";
+import { EmptyState } from "@/shared/ui/feedback/empty-state";
+import { PaginationControls } from "@/shared/ui/navigation/pagination-controls";
+import { PageHeading } from "@/shared/ui/layout/page-heading";
 
 type FotosPageProps = {
   searchParams: Promise<SearchParams>;

@@ -1,5 +1,5 @@
-import type { CloudinaryClient } from "@/shared/lib/cloudinary";
-import { isManagedPublicId, urlReferencesCloudinaryAsset } from "@/shared/lib/cloudinary-url";
+import type { CloudinaryClient } from "@/shared/lib/cloudinary/cloudinary";
+import { isManagedPublicId, urlReferencesCloudinaryAsset } from "@/shared/lib/cloudinary/cloudinary-url";
 import { InvalidGiftImageError } from "@/modules/gifts/errors";
 import type { GiftRepository } from "@/modules/gifts/repositories/contracts/gift-repository";
 import type { GiftImage } from "@/modules/gifts/types";

@@ -1,5 +1,5 @@
 import type { SessionUser } from "@/modules/auth/types";
-import { addHours } from "@/shared/lib/dates";
+import { addHours } from "@/shared/lib/dates/dates";
 import { GiftUnavailableError, TooManyActiveReservationsError } from "@/modules/contributions/errors";
 import { requireGuestId } from "@/modules/contributions/lib/reservation/require-guest-id";
 import { MAX_ACTIVE_RESERVATIONS_PER_GUEST, RESERVATION_HOURS } from "@/modules/contributions/lib/reservation/reservation-window";

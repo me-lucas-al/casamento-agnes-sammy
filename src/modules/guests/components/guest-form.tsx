@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, useTransition, type FormEvent } from "react";
-import { Button } from "@/shared/ui/button";
-import type { ActionResult } from "@/shared/lib/result";
+import { Button } from "@/shared/ui/primitives/button";
+import type { ActionResult } from "@/shared/lib/actions/result";
 
 type GuestFormValues = { name: string; phone: string; seats: number };
 

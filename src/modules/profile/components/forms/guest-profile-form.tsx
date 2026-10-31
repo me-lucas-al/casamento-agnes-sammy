@@ -3,8 +3,8 @@
 import { useId, useState, useTransition } from "react";
 import { CompanionFields } from "@/modules/rsvp/components/companion-fields";
 import type { Companion } from "@/modules/rsvp/types";
-import { Button } from "@/shared/ui/button";
-import { FormField, textInputClassName } from "@/shared/ui/components/form-field";
+import { Button } from "@/shared/ui/primitives/button";
+import { FormField, textInputClassName } from "@/shared/ui/forms/form-field";
 import { updateMyProfileAction } from "@/modules/profile/controllers/actions/profile.actions";
 import type { GuestProfile } from "@/modules/profile/types";
 

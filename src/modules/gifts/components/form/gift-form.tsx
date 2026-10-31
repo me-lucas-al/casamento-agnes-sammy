@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useState, type FormEvent } from "react";
-import { Button } from "@/shared/ui/button";
+import { Button } from "@/shared/ui/primitives/button";
 import { createGiftAction, updateGiftAction } from "@/modules/gifts/controllers/actions/gift.actions";
 import {
   buildGiftPayload,

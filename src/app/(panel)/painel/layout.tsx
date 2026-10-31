@@ -3,8 +3,8 @@ import { requireRouteAccess } from "@/modules/auth/controllers/session/require-r
 import { ReviewTourButton } from "@/modules/tour/components/launch/review-tour-button";
 import { TourProvider } from "@/modules/tour/components/launch/tour-provider";
 import { shouldAutoOpenTourQuery } from "@/modules/tour/controllers/queries/tour.queries";
-import { AppShell } from "@/shared/ui/components/app-shell";
-import { panelNavItemsFor } from "@/shared/ui/components/nav-items";
+import { AppShell } from "@/shared/ui/layout/app-shell";
+import { panelNavItemsFor } from "@/shared/ui/navigation/nav-items";
 
 type PanelLayoutProps = { children: ReactNode };
 

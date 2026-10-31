@@ -1,5 +1,5 @@
 import { describeAuthError } from "@/modules/auth/errors";
-import { formatCentsAsBrl } from "@/shared/lib/money";
+import { formatCentsAsBrl } from "@/shared/lib/money/money";
 
 export class GiftUnavailableError extends Error {
   constructor() {

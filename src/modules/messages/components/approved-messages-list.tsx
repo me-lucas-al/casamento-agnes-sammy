@@ -1,4 +1,4 @@
-import { formatDateInSaoPaulo } from "@/shared/lib/dates";
+import { formatDateInSaoPaulo } from "@/shared/lib/dates/dates";
 import type { PublicMessage } from "../types";
 
 export function ApprovedMessagesList({ messages }: { messages: PublicMessage[] }) {

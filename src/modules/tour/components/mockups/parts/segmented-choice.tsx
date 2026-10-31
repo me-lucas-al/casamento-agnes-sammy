@@ -1,6 +1,6 @@
 "use client";
 
-import { cn } from "@/shared/lib/utils";
+import { cn } from "@/shared/lib/styling/utils";
 
 type ChoiceOption<Value extends string> = { value: Value; label: string };
 

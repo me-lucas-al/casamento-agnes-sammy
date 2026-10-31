@@ -3,9 +3,9 @@
 import { getSessionUser } from "@/modules/auth/controllers/session/get-session-user";
 import { invalidateRsvpCache } from "@/modules/rsvp/lib/invalidate-rsvp-cache";
 import { nextCacheInvalidator } from "@/shared/lib/cache/invalidate";
-import { safeAction } from "@/shared/lib/safe-action";
-import { invalidInput } from "@/shared/lib/validation-failure";
-import { success, type ActionResult } from "@/shared/lib/result";
+import { safeAction } from "@/shared/lib/actions/safe-action";
+import { invalidInput } from "@/shared/lib/actions/validation-failure";
+import { success, type ActionResult } from "@/shared/lib/actions/result";
 import { describeRsvpError } from "@/modules/rsvp/errors";
 import { getRsvpModule } from "@/modules/rsvp/factory";
 import { requireGuestId } from "@/modules/rsvp/lib/require-guest-id";

@@ -1,4 +1,4 @@
-import { apiErrorResponse } from "@/shared/lib/api-errors";
+import { apiErrorResponse } from "@/shared/lib/api/api-errors";
 import { isValidCronAuthorization } from "@/modules/contributions/lib/cron/cron-authorization";
 
 type Dependencies = {

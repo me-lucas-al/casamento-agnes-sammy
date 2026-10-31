@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { buildManagedPublicId } from "@/shared/lib/cloudinary-url";
+import { buildManagedPublicId } from "@/shared/lib/cloudinary/cloudinary-url";
 import { giftSchema } from "../gift.schema";
 
 const baseGift = {

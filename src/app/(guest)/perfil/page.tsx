@@ -1,7 +1,7 @@
 import { GuestProfileView } from "@/modules/profile/components/views/guest-profile-view";
 import { requireGuestPageAccess } from "@/modules/profile/controllers/guards/guest-page-access";
 import { getMyGuestProfileQuery } from "@/modules/profile/controllers/queries/profile.queries";
-import { PageHeading } from "@/shared/ui/components/page-heading";
+import { PageHeading } from "@/shared/ui/layout/page-heading";
 
 export const dynamic = "force-dynamic";
 

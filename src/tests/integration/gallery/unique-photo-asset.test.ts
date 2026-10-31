@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { InvalidPublicIdError } from "@/modules/gallery/errors";
 import { photos } from "@/shared/db/schema";
-import { isUniqueViolation } from "@/shared/lib/unique-violation";
+import { isUniqueViolation } from "@/shared/lib/errors/unique-violation";
 import { asUser } from "@/tests/helpers/fake-session";
 import { seedAdmin, seedCouple } from "@/tests/helpers/seeds/seed-user";
 import { useTestDatabase } from "@/tests/helpers/use-test-database";

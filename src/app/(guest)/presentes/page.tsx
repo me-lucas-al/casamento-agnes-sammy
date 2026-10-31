@@ -2,10 +2,10 @@ import { GiftCard } from "@/modules/gifts/components/cards/gift-card";
 import { GiftFilters } from "@/modules/gifts/components/management/gift-filters";
 import { listGiftCategoriesQuery, listVisibleGiftsPageQuery } from "@/modules/gifts/controllers/queries/gifts.queries";
 import { parseGiftListParams } from "@/modules/gifts/schemas/gift-list-params";
-import { EmptyState } from "@/shared/ui/empty-state";
-import { PaginationControls } from "@/shared/ui/pagination-controls";
-import type { SearchParams } from "@/shared/lib/url-params";
-import { PageHeading } from "@/shared/ui/components/page-heading";
+import { EmptyState } from "@/shared/ui/feedback/empty-state";
+import { PaginationControls } from "@/shared/ui/navigation/pagination-controls";
+import type { SearchParams } from "@/shared/lib/url/url-params";
+import { PageHeading } from "@/shared/ui/layout/page-heading";
 
 type GiftsPageProps = { searchParams: Promise<SearchParams> };
 

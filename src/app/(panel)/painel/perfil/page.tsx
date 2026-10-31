@@ -1,6 +1,6 @@
 import { StaffProfileView } from "@/modules/profile/components/views/staff-profile-view";
 import { getMyStaffProfileQuery } from "@/modules/profile/controllers/queries/profile.queries";
-import { PageHeading } from "@/shared/ui/components/page-heading";
+import { PageHeading } from "@/shared/ui/layout/page-heading";
 
 export const dynamic = "force-dynamic";
 

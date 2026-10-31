@@ -1,9 +1,9 @@
 import { getSessionUser } from "@/modules/auth/controllers/session/get-session-user";
-import { parsePageParams } from "@/shared/lib/pagination";
-import { enumParam, textParam, type SearchParams } from "@/shared/lib/url-params";
+import { parsePageParams } from "@/shared/lib/pagination/pagination";
+import { enumParam, textParam, type SearchParams } from "@/shared/lib/url/url-params";
 import { getUserModule } from "@/modules/users/factory";
 import { USER_STATUSES } from "@/modules/users/types";
-import { guardedQuery } from "@/shared/lib/guarded-query";
+import { guardedQuery } from "@/shared/lib/resilience/guarded-query";
 
 export async function listUsersPageQuery(searchParams: SearchParams) {
   return guardedQuery("listUsersPageQuery", async () => {

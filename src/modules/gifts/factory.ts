@@ -2,7 +2,7 @@ import { getDatabase } from "@/shared/db/client";
 import type { Database } from "@/shared/db/types";
 import { getCloudinaryEnv } from "@/shared/config/env";
 import { nextCachedReader, type CachedReader } from "@/shared/lib/cache/cached-read";
-import { createCloudinaryClient, type CloudinaryClient } from "@/shared/lib/cloudinary";
+import { createCloudinaryClient, type CloudinaryClient } from "@/shared/lib/cloudinary/cloudinary";
 import { createDrizzleCategoryRepository } from "./repositories/drizzle/drizzle-category-repository";
 import { createDrizzleGiftRepository } from "./repositories/drizzle/drizzle-gift-repository";
 import { makeCreateGift } from "./use-cases/catalog/create-gift";

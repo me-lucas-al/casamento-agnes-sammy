@@ -1,4 +1,4 @@
-import type { LogContext, Logger } from "@/shared/lib/logger";
+import type { LogContext, Logger } from "@/shared/lib/logging/logger";
 
 export type LoggedEntry = { level: "info" | "warn" | "error"; event: string; context: LogContext };
 

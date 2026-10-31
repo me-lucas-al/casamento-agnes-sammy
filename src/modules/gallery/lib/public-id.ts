@@ -1,4 +1,4 @@
-import { isManagedPublicId, urlReferencesCloudinaryAsset } from "@/shared/lib/cloudinary-url";
+import { isManagedPublicId, urlReferencesCloudinaryAsset } from "@/shared/lib/cloudinary/cloudinary-url";
 import { GALLERY_FOLDER } from "./upload-rules";
 
 export function isGalleryPublicId(publicId: string): boolean {

@@ -1,9 +1,9 @@
 import type { SessionUser } from "@/modules/auth/types";
 import { dashboardTag, giftsTag, pendingPaymentsTag } from "@/shared/lib/cache/cache-tags";
 import type { CacheInvalidator } from "@/shared/lib/cache/invalidate";
-import { safeAction } from "@/shared/lib/safe-action";
-import { invalidInput } from "@/shared/lib/validation-failure";
-import { success, type ActionResult } from "@/shared/lib/result";
+import { safeAction } from "@/shared/lib/actions/safe-action";
+import { invalidInput } from "@/shared/lib/actions/validation-failure";
+import { success, type ActionResult } from "@/shared/lib/actions/result";
 import { describeContributionError } from "@/modules/contributions/errors";
 import type { ContributionModule } from "@/modules/contributions/factory";
 import { tagsForContribution } from "@/modules/contributions/lib/caches/contribution-tags";

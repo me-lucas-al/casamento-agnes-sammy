@@ -3,9 +3,9 @@
 import { z } from "zod";
 import { getSessionUser } from "@/modules/auth/controllers/session/get-session-user";
 import { nextCacheInvalidator } from "@/shared/lib/cache/invalidate";
-import { safeAction } from "@/shared/lib/safe-action";
-import { invalidInput } from "@/shared/lib/validation-failure";
-import { success, type ActionResult } from "@/shared/lib/result";
+import { safeAction } from "@/shared/lib/actions/safe-action";
+import { invalidInput } from "@/shared/lib/actions/validation-failure";
+import { success, type ActionResult } from "@/shared/lib/actions/result";
 import { describeUserError } from "@/modules/users/errors";
 import { getUserModule } from "@/modules/users/factory";
 

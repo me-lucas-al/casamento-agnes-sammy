@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { buildQueryString, type SearchParams } from "@/shared/lib/url-params";
-import { cn } from "@/shared/lib/utils";
+import { buildQueryString, type SearchParams } from "@/shared/lib/url/url-params";
+import { cn } from "@/shared/lib/styling/utils";
 import type { PhotoStatus } from "../types";
 
 type StatusFilterProps = {

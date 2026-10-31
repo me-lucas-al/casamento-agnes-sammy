@@ -1,4 +1,4 @@
-import { formatDateTimeInSaoPaulo } from "@/shared/lib/dates";
+import { formatDateTimeInSaoPaulo } from "@/shared/lib/dates/dates";
 import type { Message, ModerationStatus } from "../types";
 import { ModerationActions } from "./moderation-actions";
 

@@ -3,11 +3,11 @@ import { GiftFilters } from "@/modules/gifts/components/management/gift-filters"
 import { PanelGiftCard } from "@/modules/gifts/components/cards/panel-gift-card";
 import { listGiftCategoriesQuery, listPanelGiftsPageQuery } from "@/modules/gifts/controllers/queries/gifts.queries";
 import { parseGiftListParams } from "@/modules/gifts/schemas/gift-list-params";
-import type { SearchParams } from "@/shared/lib/url-params";
-import { buttonVariants } from "@/shared/ui/button";
-import { EmptyState } from "@/shared/ui/empty-state";
-import { PaginationControls } from "@/shared/ui/pagination-controls";
-import { PageHeading } from "@/shared/ui/components/page-heading";
+import type { SearchParams } from "@/shared/lib/url/url-params";
+import { buttonVariants } from "@/shared/ui/primitives/button";
+import { EmptyState } from "@/shared/ui/feedback/empty-state";
+import { PaginationControls } from "@/shared/ui/navigation/pagination-controls";
+import { PageHeading } from "@/shared/ui/layout/page-heading";
 
 type PanelGiftsPageProps = { searchParams: Promise<SearchParams> };
 

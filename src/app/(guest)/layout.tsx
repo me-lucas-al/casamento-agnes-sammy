@@ -2,8 +2,8 @@ import type { ReactNode } from "react";
 import { requireRouteAccess } from "@/modules/auth/controllers/session/require-route-access";
 import { FirstAccessModal } from "@/modules/profile/components/access/first-access-modal";
 import { getFirstAccessProfileQuery } from "@/modules/profile/controllers/queries/profile.queries";
-import { AppShell } from "@/shared/ui/components/app-shell";
-import { GUEST_NAV_ITEMS } from "@/shared/ui/components/nav-items";
+import { AppShell } from "@/shared/ui/layout/app-shell";
+import { GUEST_NAV_ITEMS } from "@/shared/ui/navigation/nav-items";
 
 type GuestLayoutProps = { children: ReactNode };
 

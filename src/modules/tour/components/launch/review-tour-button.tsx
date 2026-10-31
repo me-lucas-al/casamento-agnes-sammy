@@ -1,7 +1,7 @@
 "use client";
 
 import { Sparkles } from "lucide-react";
-import { cn } from "@/shared/lib/utils";
+import { cn } from "@/shared/lib/styling/utils";
 import { useTour } from "./tour-provider";
 
 type ReviewTourButtonProps = { className?: string };

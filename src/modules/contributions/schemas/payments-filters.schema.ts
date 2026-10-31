@@ -1,4 +1,4 @@
-import { enumParam, textParam, type SearchParams } from "@/shared/lib/url-params";
+import { enumParam, textParam, type SearchParams } from "@/shared/lib/url/url-params";
 import {
   CONTRIBUTION_STATUSES,
   PAYMENT_SORTS,

@@ -1,4 +1,4 @@
-﻿import { enumParam, type SearchParams } from "@/shared/lib/url-params";
+﻿import { enumParam, type SearchParams } from "@/shared/lib/url/url-params";
 
 const LOGIN_ERRORS = [
   "AccessDenied",

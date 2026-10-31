@@ -5,7 +5,7 @@ import { asUser } from "@/tests/helpers/fake-session";
 import { seedContribution } from "@/tests/helpers/seeds/seed-contribution";
 import { seedGift } from "@/tests/helpers/seeds/seed-gift";
 import { useTestDatabase } from "@/tests/helpers/use-test-database";
-import { addHours } from "@/shared/lib/dates";
+import { addHours } from "@/shared/lib/dates/dates";
 import { createContributionContext, seedGuestActor } from "../contributions/contribution-context";
 import { buildGiftInput, createTestGiftModule } from "./gift-test-module";
 

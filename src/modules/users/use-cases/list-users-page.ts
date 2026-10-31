@@ -1,6 +1,6 @@
 import { requireRole } from "@/modules/auth/authorization";
 import type { SessionUser } from "@/modules/auth/types";
-import { buildPageResult, type PageParams, type PageResult } from "@/shared/lib/pagination";
+import { buildPageResult, type PageParams, type PageResult } from "@/shared/lib/pagination/pagination";
 import type { UserRepository } from "../repositories/contracts/user-repository";
 import type { User, UserStatus } from "../types";
 

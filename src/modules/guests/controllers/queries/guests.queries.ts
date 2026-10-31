@@ -1,9 +1,9 @@
 import { getSessionUser } from "@/modules/auth/controllers/session/get-session-user";
-import { parsePageParams } from "@/shared/lib/pagination";
-import { enumParam, textParam, type SearchParams } from "@/shared/lib/url-params";
+import { parsePageParams } from "@/shared/lib/pagination/pagination";
+import { enumParam, textParam, type SearchParams } from "@/shared/lib/url/url-params";
 import { getGuestModule } from "@/modules/guests/factory";
 import { GUEST_SORTS } from "@/modules/guests/types";
-import { guardedQuery } from "@/shared/lib/guarded-query";
+import { guardedQuery } from "@/shared/lib/resilience/guarded-query";
 
 export async function listGuestsPageQuery(searchParams: SearchParams) {
   return guardedQuery("listGuestsPageQuery", async () => {

@@ -1,6 +1,6 @@
 "use client";
 
-import { RouteErrorView } from "@/shared/ui/components/route-error-view";
+import { RouteErrorView } from "@/shared/ui/feedback/route-error-view";
 
 type PanelErrorProps = { error: Error & { digest?: string }; reset: () => void };
 

@@ -6,8 +6,8 @@ import { OnboardingCard } from "@/modules/dashboard/components/onboarding-card";
 import { DashboardTotalsGrid } from "@/modules/dashboard/components/dashboard-totals-grid";
 import { SuggestionsHomeCard } from "@/modules/gift-suggestions/components/cards/suggestions-home-card";
 import { ReviewTourButton } from "@/modules/tour/components/launch/review-tour-button";
-import { panelNavItemsFor } from "@/shared/ui/components/nav-items";
-import { PageHeading } from "@/shared/ui/components/page-heading";
+import { panelNavItemsFor } from "@/shared/ui/navigation/nav-items";
+import { PageHeading } from "@/shared/ui/layout/page-heading";
 
 export const dynamic = "force-dynamic";
 

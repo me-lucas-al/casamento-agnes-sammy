@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
-import { buildSiteMetadata } from "@/shared/seo/site-metadata";
+import { buildSiteMetadata } from "@/shared/seo/metadata/site-metadata";
 import { fontVariableClassNames } from "@/shared/theme/fonts";
 import "./globals.css";
 

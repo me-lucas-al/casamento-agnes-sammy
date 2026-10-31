@@ -1,4 +1,4 @@
-import type { PageParams } from "@/shared/lib/pagination";
+import type { PageParams } from "@/shared/lib/pagination/pagination";
 import type { GiftSortOption } from "./gift-sort";
 import type { PriceBand } from "../pricing/price-band";
 

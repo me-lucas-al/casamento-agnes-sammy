@@ -1,6 +1,6 @@
 import { GiftCategoryManager } from "@/modules/gifts/components/management/gift-category-manager";
 import { listGiftCategoriesQuery } from "@/modules/gifts/controllers/queries/gifts.queries";
-import { PageHeading } from "@/shared/ui/components/page-heading";
+import { PageHeading } from "@/shared/ui/layout/page-heading";
 
 export default async function GiftCategoriesPage() {
   const categories = await listGiftCategoriesQuery();

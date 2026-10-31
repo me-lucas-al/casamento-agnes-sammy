@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { GiftStatusBadge } from "@/modules/gifts/components/cards/gift-status-badge";
-import { formatCentsAsBrl } from "@/shared/lib/money";
+import { formatCentsAsBrl } from "@/shared/lib/money/money";
 import { buildAmountAvailability } from "../parts/mock-availability";
 
 const GOAL_CENTS = 100000;

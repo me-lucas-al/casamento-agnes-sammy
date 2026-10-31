@@ -2,9 +2,9 @@
 
 import { useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
-import type { ActionResult } from "@/shared/lib/result";
-import { ConfirmDialog } from "@/shared/ui/confirm-dialog";
-import { useConfirmDialog } from "@/shared/ui/use-confirm-dialog";
+import type { ActionResult } from "@/shared/lib/actions/result";
+import { ConfirmDialog } from "@/shared/ui/dialogs/confirm-dialog";
+import { useConfirmDialog } from "@/shared/ui/dialogs/use-confirm-dialog";
 import {
   approvePhotoAction,
   deletePhotoAction,

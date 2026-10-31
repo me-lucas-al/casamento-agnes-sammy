@@ -1,4 +1,4 @@
-import { cn } from "@/shared/lib/utils";
+import { cn } from "@/shared/lib/styling/utils";
 
 const TONES = {
   neutral: "bg-paper-dark text-wine",

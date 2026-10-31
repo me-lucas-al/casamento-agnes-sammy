@@ -1,7 +1,7 @@
 import { and, count, desc, eq, ilike, or } from "drizzle-orm";
 import { users } from "@/shared/db/schema";
 import type { Database } from "@/shared/db/types";
-import { containsPattern } from "@/shared/lib/sql-like";
+import { containsPattern } from "@/shared/lib/sql/sql-like";
 import type { UserStatus } from "@/modules/users/types";
 import type { UserRepository } from "../contracts/user-repository";
 

@@ -1,4 +1,4 @@
-import { cn } from "@/shared/lib/utils";
+import { cn } from "@/shared/lib/styling/utils";
 import { describeAvailability } from "@/modules/gifts/lib/availability/describe-availability";
 import type { AvailabilityState, GiftAvailability } from "@/modules/gifts/lib/availability/gift-availability";
 

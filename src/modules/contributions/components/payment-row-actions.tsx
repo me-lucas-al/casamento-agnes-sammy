@@ -2,9 +2,9 @@
 
 import { useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
-import { Button } from "@/shared/ui/button";
-import { ConfirmDialog } from "@/shared/ui/confirm-dialog";
-import { useConfirmDialog } from "@/shared/ui/use-confirm-dialog";
+import { Button } from "@/shared/ui/primitives/button";
+import { ConfirmDialog } from "@/shared/ui/dialogs/confirm-dialog";
+import { useConfirmDialog } from "@/shared/ui/dialogs/use-confirm-dialog";
 import {
   confirmPixPaymentAction,
   rejectOrCancelByCoupleAction,

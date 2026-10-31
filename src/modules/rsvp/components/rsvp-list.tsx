@@ -1,4 +1,4 @@
-import { formatDateTimeInSaoPaulo } from "@/shared/lib/dates";
+import { formatDateTimeInSaoPaulo } from "@/shared/lib/dates/dates";
 import type { RsvpListItem, RsvpStatus } from "../types";
 import { RsvpRowActions } from "./rsvp-row-actions";
 

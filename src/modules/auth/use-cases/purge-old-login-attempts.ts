@@ -1,4 +1,4 @@
-import { addMinutes } from "@/shared/lib/dates";
+import { addMinutes } from "@/shared/lib/dates/dates";
 import type { LoginAttemptRepository } from "../repositories/contracts/login-attempt-repository";
 
 export const LOGIN_ATTEMPT_RETENTION_MINUTES = 24 * 60;

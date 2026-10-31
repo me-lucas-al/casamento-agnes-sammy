@@ -2,8 +2,8 @@
 
 import { useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
-import { parseBrlToCents } from "@/shared/lib/money";
-import { Button } from "@/shared/ui/button";
+import { parseBrlToCents } from "@/shared/lib/money/money";
+import { Button } from "@/shared/ui/primitives/button";
 import {
   reserveGiftAction,
   updateReservationAction,

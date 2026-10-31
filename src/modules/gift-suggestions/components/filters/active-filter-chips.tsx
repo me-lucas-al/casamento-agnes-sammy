@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { X } from "lucide-react";
-import { buildQueryString, type QueryChanges, type SearchParams } from "@/shared/lib/url-params";
+import { buildQueryString, type QueryChanges, type SearchParams } from "@/shared/lib/url/url-params";
 import type { FilterChip } from "@/modules/gift-suggestions/lib/filters/active-filter-chips";
 
 type ActiveFilterChipsProps = {

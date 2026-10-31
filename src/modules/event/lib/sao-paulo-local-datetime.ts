@@ -1,4 +1,4 @@
-import { DISPLAY_TIME_ZONE } from "@/shared/lib/dates";
+import { DISPLAY_TIME_ZONE } from "@/shared/lib/dates/dates";
 
 const SAO_PAULO_UTC_OFFSET = "-03:00";
 const LOCAL_PATTERN = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/;

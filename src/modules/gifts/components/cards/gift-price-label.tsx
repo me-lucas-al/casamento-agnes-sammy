@@ -1,4 +1,4 @@
-import { formatCentsAsBrl } from "@/shared/lib/money";
+import { formatCentsAsBrl } from "@/shared/lib/money/money";
 import { quotaPriceRange } from "@/modules/gifts/lib/pricing/quota-pricing";
 import type { PublicGift } from "@/modules/gifts/types";
 

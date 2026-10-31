@@ -3,7 +3,7 @@ import { ForbiddenError, UnauthenticatedError } from "@/modules/auth/errors";
 import { createDashboardModule } from "@/modules/dashboard/factory";
 import { messages, photos } from "@/shared/db/schema";
 import { passThroughCachedReader, type CachedReader } from "@/shared/lib/cache/cached-read";
-import { addHours } from "@/shared/lib/dates";
+import { addHours } from "@/shared/lib/dates/dates";
 import { asUser } from "@/tests/helpers/fake-session";
 import { seedContribution } from "@/tests/helpers/seeds/seed-contribution";
 import { seedGift } from "@/tests/helpers/seeds/seed-gift";

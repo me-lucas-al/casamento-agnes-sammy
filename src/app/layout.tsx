@@ -12,8 +12,8 @@ type RootLayoutProps = { children: ReactNode };
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang="pt-BR" className={`${fontVariableClassNames} h-full antialiased`}>
-      <body className="flex min-h-full flex-col bg-paper text-wine">{children}</body>
+    <html lang="pt-BR" className={`${fontVariableClassNames} antialiased`}>
+      <body className="flex min-h-dvh flex-col bg-paper text-wine">{children}</body>
     </html>
   );
 }

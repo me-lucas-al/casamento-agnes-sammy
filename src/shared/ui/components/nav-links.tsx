@@ -52,7 +52,7 @@ export function NavLinks({ items, children }: NavLinksProps) {
             </Link>
           );
         })}
-        <div className="mt-1 border-t border-gold/30 pt-1 xl:ml-2 xl:mt-0 xl:border-0 xl:pt-0">{children}</div>
+        <div className="mt-1 flex flex-col border-t border-gold/30 pt-1 xl:ml-2 xl:flex-row xl:items-center xl:mt-0 xl:border-0 xl:pt-0">{children}</div>
       </nav>
     </>
   );

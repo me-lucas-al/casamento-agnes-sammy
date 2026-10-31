@@ -11,16 +11,18 @@ type AppShellProps = {
   homeHref: string;
   items: readonly NavItem[];
   isDecorated?: boolean;
+  navActions?: ReactNode;
   children: ReactNode;
 };
 
-export function AppShell({ title, homeHref, items, isDecorated = false, children }: AppShellProps) {
+export function AppShell({ title, homeHref, items, isDecorated = false, navActions, children }: AppShellProps) {
   return (
     <div className="relative flex min-h-screen flex-col">
       <header className="relative z-30 border-b border-gold/40 bg-paper-dark">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-2">
           <BrandMark title={title} href={homeHref} />
           <NavLinks items={items}>
+            {navActions}
             <form action={signOutAction}>
               <button
                 type="submit"

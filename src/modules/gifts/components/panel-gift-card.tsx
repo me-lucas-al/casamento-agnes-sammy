@@ -24,7 +24,7 @@ export function PanelGiftCard({ gift }: { gift: PanelGiftListItem }) {
           <Link href={`/painel/presentes/${gift.id}`} className={buttonVariants({ variant: "outline", size: "sm" })}>
             Editar
           </Link>
-          <DeleteGiftButton giftId={gift.id} />
+          <DeleteGiftButton giftId={gift.id} giftName={gift.name} />
         </div>
       </div>
     </li>

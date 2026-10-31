@@ -1,30 +1,37 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useState } from "react";
 import { Button } from "@/shared/ui/button";
+import { ConfirmDialog } from "@/shared/ui/confirm-dialog";
+import { useConfirmDialog } from "@/shared/ui/use-confirm-dialog";
 import { deleteGiftAction } from "../controllers/gift.actions";
 
-export function DeleteGiftButton({ giftId }: { giftId: string }) {
-  const router = useRouter();
-  const [errorMessage, setErrorMessage] = useState("");
-  const [isDeleting, setIsDeleting] = useState(false);
+type DeleteGiftButtonProps = { giftId: string; giftName: string };
 
-  async function handleDelete() {
-    if (!window.confirm("Excluir este presente?")) return;
-    setIsDeleting(true);
-    const result = await deleteGiftAction(giftId);
-    setIsDeleting(false);
-    if (!result.ok) return setErrorMessage(result.error);
-    router.refresh();
+export function DeleteGiftButton({ giftId, giftName }: DeleteGiftButtonProps) {
+  const router = useRouter();
+  const { ask, dialogProps } = useConfirmDialog();
+
+  function requestDeletion() {
+    ask({
+      title: `Excluir ${giftName}?`,
+      description: "O presente será removido da lista. Essa ação não pode ser desfeita.",
+      confirmLabel: "Excluir presente",
+      tone: "destructive",
+      onConfirm: async () => {
+        const result = await deleteGiftAction(giftId);
+        if (result.ok) router.refresh();
+        return result;
+      },
+    });
   }
 
   return (
-    <div className="flex flex-col gap-1">
-      <Button type="button" variant="destructive" size="sm" disabled={isDeleting} onClick={handleDelete}>
+    <>
+      <Button type="button" variant="destructive" size="sm" onClick={requestDeletion}>
         Excluir
       </Button>
-      {errorMessage ? <p role="alert" className="text-sm text-crimson">{errorMessage}</p> : null}
-    </div>
+      <ConfirmDialog {...dialogProps} />
+    </>
   );
 }

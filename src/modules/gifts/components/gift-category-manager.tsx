@@ -9,6 +9,8 @@ import {
   updateGiftCategoryAction,
 } from "../controllers/gift-category.actions";
 import type { GiftCategory } from "../types";
+import { ConfirmDialog } from "@/shared/ui/confirm-dialog";
+import { useConfirmDialog } from "@/shared/ui/use-confirm-dialog";
 import { fieldControlClassName } from "./form-field";
 
 type CategoryRowProps = { category: GiftCategory; onFailure: (message: string) => void };
@@ -17,6 +19,22 @@ function CategoryRow({ category, onFailure }: CategoryRowProps) {
   const router = useRouter();
   const [name, setName] = useState(category.name);
   const [sortOrder, setSortOrder] = useState(String(category.sortOrder));
+
+  const { ask, dialogProps } = useConfirmDialog();
+
+  function requestDeletion() {
+    ask({
+      title: `Excluir a categoria ${category.name}?`,
+      description: "A categoria será removida. Essa ação não pode ser desfeita.",
+      confirmLabel: "Excluir categoria",
+      tone: "destructive",
+      onConfirm: async () => {
+        const result = await deleteGiftCategoryAction(category.id);
+        if (result.ok) router.refresh();
+        return result;
+      },
+    });
+  }
 
   async function finish(result: { ok: boolean; error?: string }) {
     if (!result.ok) return onFailure(result.error ?? "Erro.");
@@ -32,10 +50,11 @@ function CategoryRow({ category, onFailure }: CategoryRowProps) {
         <Button type="button" size="sm" onClick={async () => finish(await updateGiftCategoryAction(category.id, { name, sortOrder: Number(sortOrder) || 0 }))}>
           Salvar
         </Button>
-        <Button type="button" size="sm" variant="destructive" onClick={async () => finish(await deleteGiftCategoryAction(category.id))}>
+        <Button type="button" size="sm" variant="destructive" onClick={requestDeletion}>
           Excluir
         </Button>
       </div>
+      <ConfirmDialog {...dialogProps} />
     </li>
   );
 }

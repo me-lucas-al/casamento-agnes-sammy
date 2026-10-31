@@ -22,6 +22,7 @@ export function FloralCorners({ area = "all", className }: FloralCornersProps) {
           key={corner.name}
           src={`/brand/${corner.name}.png`}
           alt=""
+          loading={corner.area === "top" ? "eager" : "lazy"}
           width={corner.width}
           height={corner.height}
           className={cn("absolute", corner.position, className ?? "w-[26%] max-w-[180px]")}

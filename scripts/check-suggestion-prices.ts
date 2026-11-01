@@ -1,5 +1,5 @@
 import { GIFT_SUGGESTION_CATALOG } from "../src/modules/gift-suggestions/data/gift-suggestion-catalog";
-import { extractPagePriceCents } from "../src/modules/gift-suggestions/lib/price-check/extract-page-price";
+import { extractPagePriceCents, isBotChallengePage } from "../src/modules/gift-suggestions/lib/price-check/extract-page-price";
 import {
   buildPriceCheckReport,
   classifyPrice,
@@ -28,7 +28,9 @@ async function checkProduct(productUrl: string, expectedCents: number): Promise<
       signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS),
     });
     if (response.status !== 200) return { status: "unreachable", reason: `HTTP ${response.status}` };
-    return classifyPrice(expectedCents, extractPagePriceCents(await response.text()));
+    const html = await response.text();
+    if (isBotChallengePage(html)) return { status: "unreachable", reason: "blocked by anti-bot challenge" };
+    return classifyPrice(expectedCents, extractPagePriceCents(html));
   } catch (error) {
     return { status: "unreachable", reason: error instanceof Error ? error.name : "request failed" };
   }

@@ -128,3 +128,10 @@
 - [x] Prazo de RSVP vazio deixa o RSVP aberto para sempre: é intencional? — **Resposta:** Sim, manter opcional (vazio = sempre aberto).
 - [x] Perfil do convidado é só leitura: ele pode editar o próprio telefone? — **Resposta:** Convidado pode editar suas informações; ao acessar com o código, preencherá nome, telefone, e-mail e seus familiares.
 - [x] Limite de 8 MB de upload só é checado no servidor: travar também no Cloudinary com upload preset? — **Resposta:** Sim, travar também no Cloudinary.
+
+## Correções do teste de aceitação
+- [x] Reserva recusada sem Pix configurado e botão oculto com aviso
+- [x] Ver Pix / alterar edita a reserva existente
+- [x] Textos: loja abre página do produto, checkbox de anonimato
+- [x] Lista de recados atualiza após aprovar
+- [x] Visualização dos noivos na área do convidado sem formulários

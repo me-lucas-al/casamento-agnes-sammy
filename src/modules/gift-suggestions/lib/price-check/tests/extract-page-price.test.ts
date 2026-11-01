@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { extractPagePriceCents } from "../extract-page-price";
+import { extractPagePriceCents, isBotChallengePage } from "../extract-page-price";
 import { buildPriceCheckReport, classifyPrice } from "../price-check-report";
 
 const jsonLd = (payload: unknown) =>
@@ -47,5 +47,21 @@ describe("price check report", () => {
     expect(report).toContain("MISMATCH b");
     expect(report).toContain("UNREACHABLE c: HTTP 403");
     expect(report).not.toContain("a:");
+  });
+});
+
+describe("store visible prices", () => {
+  it("prefers the visible Tok&Stok price over the Pix price in JSON-LD", () => {
+    const html = `<script>{"simulationPrice":{"price":99.9,"oldPrice":99.9,"pixPrice":89.91}}</script>${jsonLd({ offers: { price: "89.91", priceCurrency: "BRL" } })}`;
+    expect(extractPagePriceCents(html)).toBe(9990);
+  });
+
+  it("reads the Amazon displayed price in Brazilian format", () => {
+    expect(extractPagePriceCents('<span class="a-offscreen">R$&nbsp;1.349,90</span>')).toBe(134990);
+  });
+
+  it("flags anti-bot pages that carry no price", () => {
+    expect(isBotChallengePage("<html>Enter the characters you see below captcha</html>")).toBe(true);
+    expect(isBotChallengePage('<span class="a-offscreen">R$ 10,00</span> captcha')).toBe(false);
   });
 });

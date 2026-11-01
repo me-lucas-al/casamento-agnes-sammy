@@ -12,7 +12,7 @@ export function GiftCard({ gift }: { gift: PublicGiftListItem }) {
   return (
     <li className="flex flex-col overflow-hidden rounded-xl border border-gold/40 bg-white shadow-sm">
       <Link href={`/presentes/${gift.id}`} className="flex flex-1 flex-col">
-        <ProductImage src={gift.imageUrl} alt={gift.name} sizes={IMAGE_SIZES} />
+        <ProductImage src={gift.imageUrl} alt="" sizes={IMAGE_SIZES} />
         <div className="flex flex-1 flex-col gap-2 p-4">
           <h2 className="break-words text-lg font-semibold text-wine">{gift.name}</h2>
           <GiftPriceLabel gift={gift} />

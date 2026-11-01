@@ -1,19 +1,18 @@
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { getSessionUser } from "@/modules/auth/controllers/session/get-session-user";
 import {
   getGiftAvailabilityQuery,
   getPaymentScreenQuery,
+  isPixConfiguredQuery,
 } from "@/modules/contributions/controllers/queries/contributions.queries";
-import { ReserveGiftForm } from "@/modules/contributions/components/reserve-gift-form";
-import { CancelReservationButton } from "@/modules/contributions/components/cancel-reservation-button";
+import { GiftReservationSection } from "@/modules/contributions/components/views/gift-reservation-section";
 import { GiftNotFoundError } from "@/modules/contributions/errors";
 import { describeAvailability } from "@/modules/contributions/lib/availability/describe-availability";
 import { StoreBadge } from "@/modules/gifts/components/cards/store-badge";
 import { StoreLink } from "@/modules/gifts/components/cards/store-link";
-import { PixPaymentPanel } from "@/modules/payments/components/pix-payment-panel";
 import { describePaymentError } from "@/modules/payments/errors";
-import { formatDateTimeInSaoPaulo } from "@/shared/lib/dates/dates";
 import { formatCentsAsBrl } from "@/shared/lib/money/money";
 import { firstValue, type SearchParams } from "@/shared/lib/url/url-params";
 import { ProductImage } from "@/shared/ui/media/product-image";
@@ -44,10 +43,14 @@ async function loadPaymentScreen(contributionId: string | undefined) {
 export default async function GiftDetailPage({ params, searchParams }: PageProps) {
   const { giftId } = await params;
   const contributionId = firstValue((await searchParams).reserva);
-  const view = await loadGiftView(giftId);
-  const paymentResult = await loadPaymentScreen(contributionId);
-  const { gift, availability } = view;
-  const reservation = paymentResult?.screen?.contribution;
+  const actor = await getSessionUser();
+  const [view, isPixConfigured, paymentResult] = await Promise.all([
+    loadGiftView(giftId),
+    isPixConfiguredQuery(),
+    loadPaymentScreen(actor?.role === "guest" ? contributionId : undefined),
+  ]);
+  const { gift } = view;
+  const screen = paymentResult?.screen ?? null;
 
   return (
     <div className="mx-auto flex max-w-xl flex-col gap-6 text-wine">
@@ -71,30 +74,16 @@ export default async function GiftDetailPage({ params, searchParams }: PageProps
       {paymentResult?.errorMessage ? (
         <p role="alert" className="text-sm text-crimson">{paymentResult.errorMessage}</p>
       ) : null}
-      {reservation && paymentResult?.screen ? (
-        <>
-          <PixPaymentPanel payment={paymentResult.screen.payment} />
-          <p className="text-sm">
-            Após o pagamento, os noivos confirmam e o presente fica registrado. Reserva válida até{" "}
-            {formatDateTimeInSaoPaulo(reservation.expiresAt)}.
-          </p>
-          <ReserveGiftForm
-            gift={gift}
-            contributionId={reservation.id}
-            initialAnonymous={reservation.anonymous}
-            remainingQuotas={(availability.remainingQuotas ?? 0) + (reservation.quotas ?? 0)}
-            remainingAmountCents={availability.remainingAmountCents + reservation.amountCents}
-          />
-          <CancelReservationButton contributionId={reservation.id} />
-        </>
+      {screen?.paymentErrorMessage ? (
+        <p role="alert" className="text-sm text-crimson">{screen.paymentErrorMessage}</p>
       ) : null}
-      {!reservation && !availability.isComplete ? (
-        <ReserveGiftForm
-          gift={gift}
-          remainingQuotas={availability.remainingQuotas ?? 0}
-          remainingAmountCents={availability.remainingAmountCents}
-        />
-      ) : null}
+      <GiftReservationSection
+        view={view}
+        reservation={screen?.contribution ?? null}
+        payment={screen?.payment ?? null}
+        isStaff={actor?.role !== "guest"}
+        isPixConfigured={isPixConfigured}
+      />
     </div>
   );
 }

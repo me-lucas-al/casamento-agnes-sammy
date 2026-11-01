@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
-import { parseBrlToCents } from "@/shared/lib/money/money";
+import { formatCentsAsBrl, parseBrlToCents } from "@/shared/lib/money/money";
 import { Button } from "@/shared/ui/primitives/button";
 import {
   reserveGiftAction,
@@ -17,6 +17,8 @@ type ReserveGiftFormProps = {
   remainingAmountCents: number;
   contributionId?: string;
   initialAnonymous?: boolean;
+  initialQuotas?: number;
+  initialAmountCents?: number;
 };
 
 export function ReserveGiftForm({
@@ -25,11 +27,13 @@ export function ReserveGiftForm({
   remainingAmountCents,
   contributionId,
   initialAnonymous = false,
+  initialQuotas = 1,
+  initialAmountCents,
 }: ReserveGiftFormProps) {
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
-  const [quotas, setQuotas] = useState(1);
-  const [amountText, setAmountText] = useState("");
+  const [quotas, setQuotas] = useState(initialQuotas);
+  const [amountText, setAmountText] = useState(initialAmountCents === undefined ? "" : formatCentsAsBrl(initialAmountCents));
   const [anonymous, setAnonymous] = useState(initialAnonymous);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const minimumCents = Math.min(gift.minAmountCents ?? 1, remainingAmountCents);

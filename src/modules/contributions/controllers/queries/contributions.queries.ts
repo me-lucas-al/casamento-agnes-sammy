@@ -1,4 +1,6 @@
 import { getSessionUser } from "@/modules/auth/controllers/session/get-session-user";
+import type { SessionUser } from "@/modules/auth/types";
+import { describePaymentError } from "@/modules/payments/errors";
 import { getPaymentModule } from "@/modules/payments/factory";
 import { parsePageParams } from "@/shared/lib/pagination/pagination";
 import type { SearchParams } from "@/shared/lib/url/url-params";
@@ -29,6 +31,19 @@ export async function listPendingPaymentsQuery(searchParams: SearchParams) {
   });
 }
 
+export async function isPixConfiguredQuery(): Promise<boolean> {
+  return guardedQuery("isPixConfiguredQuery", () => getContributionModule().isPixConfigured());
+}
+
+async function loadPixPayment(actor: SessionUser | null, amountCents: number) {
+  try {
+    const payment = await getPaymentModule().getPixPaymentDetails(actor, amountCents);
+    return { payment, paymentErrorMessage: null };
+  } catch (error) {
+    return { payment: null, paymentErrorMessage: describePaymentError(error) };
+  }
+}
+
 export async function getPaymentScreenQuery(contributionId: string) {
   return guardedQuery("getPaymentScreenQuery", async () => {
     const actor = await getSessionUser();
@@ -36,7 +51,7 @@ export async function getPaymentScreenQuery(contributionId: string) {
       actor,
       contributionId,
     );
-    const payment = await getPaymentModule().getPixPaymentDetails(actor, contribution.amountCents);
-    return { contribution, payment };
+    const payment = await loadPixPayment(actor, contribution.amountCents);
+    return { contribution, ...payment };
   });
 }

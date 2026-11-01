@@ -43,6 +43,7 @@ export type SuggestionWithStatus = GiftSuggestion & { alreadyInList: boolean };
 
 export type AddSuggestionsResult = {
   createdCount: number;
+  enrichedCount: number;
   skippedIds: string[];
   failedIds: string[];
 };

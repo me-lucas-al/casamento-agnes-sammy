@@ -35,6 +35,8 @@ describe("addSuggestedGifts resilience", () => {
     const failingName = GIFT_SUGGESTION_CATALOG.find((suggestion) => suggestion.id === ids[1])?.name;
     const gateway: SuggestionGiftGateway = {
       listGiftNames: async () => [],
+      listEnrichableGifts: async () => [],
+      enrichGift: async () => undefined,
       listCategories: async () => [{ id: "category-1", name: GIFT_SUGGESTION_CATALOG[0].categoryName }],
       createCategory: async (name) => ({ id: `created-${name}`, name }),
       createGift: async (_actor, input) => {
@@ -46,7 +48,7 @@ describe("addSuggestedGifts resilience", () => {
 
     const result = await addSuggestedGifts(couple, [...ids, "nao-existe"]);
 
-    expect(result).toEqual({ createdCount: 1, skippedIds: [ids[2], "nao-existe"], failedIds: [ids[1]] });
+    expect(result).toEqual({ createdCount: 1, enrichedCount: 0, skippedIds: [ids[2], "nao-existe"], failedIds: [ids[1]] });
   });
 
   it("falls back to the existing category when its creation races", async () => {

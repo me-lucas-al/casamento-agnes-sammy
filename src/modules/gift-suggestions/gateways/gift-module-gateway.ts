@@ -1,8 +1,9 @@
 import { DEFAULT_CATEGORIES } from "@/modules/gifts/lib/catalog/default-categories";
-import { GiftNameTakenError } from "@/modules/gifts/errors";
+import { GiftNameTakenError, GiftNotFoundError, GiftPricingLockedError } from "@/modules/gifts/errors";
 import type { GiftModule } from "@/modules/gifts/factory";
 import { CATEGORY_NAME_UNIQUE_INDEX } from "@/modules/gifts/lib/catalog/reject-duplicate-name";
 import { isUniqueViolation } from "@/shared/lib/errors/unique-violation";
+import { buildEnrichmentInput, keepCurrentPricing } from "./build-enrichment-input";
 import type { SuggestionCategory, SuggestionGiftGateway } from "../ports";
 
 const MAX_LISTED_GIFTS = 5000;
@@ -33,6 +34,27 @@ export function createGiftModuleGateway(giftModule: GiftModule): SuggestionGiftG
         onlyVisible: false,
       });
       return page.items.map((gift) => gift.name);
+    },
+    async listEnrichableGifts() {
+      const page = await giftRepository.listPage({
+        limit: MAX_LISTED_GIFTS,
+        offset: 0,
+        search: "",
+        sort: "name",
+        onlyVisible: false,
+      });
+      return page.items.filter((gift) => !gift.productUrl && !gift.imageUrl).map(({ id, name }) => ({ id, name }));
+    },
+    async enrichGift(actor, giftId, input) {
+      const current = await giftRepository.findById(giftId);
+      if (!current) throw new GiftNotFoundError();
+      const enrichment = buildEnrichmentInput(current, input);
+      try {
+        await giftModule.updateGift(actor, giftId, enrichment);
+      } catch (error) {
+        if (!(error instanceof GiftPricingLockedError)) throw error;
+        await giftModule.updateGift(actor, giftId, keepCurrentPricing(current, enrichment));
+      }
     },
     async listCategories() {
       const categories = await categoryRepository.list();

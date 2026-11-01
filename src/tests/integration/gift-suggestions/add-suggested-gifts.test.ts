@@ -26,7 +26,7 @@ describe("addSuggestedGifts", () => {
 
     const categories = await giftModule.categoryRepository.list();
     const { items } = await listAllGifts(giftModule);
-    expect(result).toEqual({ createdCount: 1, skippedIds: [], failedIds: [] });
+    expect(result).toEqual({ createdCount: 1, enrichedCount: 0, skippedIds: [], failedIds: [] });
     expect(categories).toHaveLength(1);
     expect(items[0]).toMatchObject({ name: FIRST_PRODUCT_NAME, categoryId: category.id, isVisible: true });
   });
@@ -61,13 +61,13 @@ describe("addSuggestedGifts", () => {
 
   it("skips gifts already in the list, ignoring case and accents", async () => {
     const { suggestionModule, giftModule } = createTestSuggestionModule(testDatabase.db);
-    await seedGift(testDatabase.db, { name: FIRST_PRODUCT_NAME.toUpperCase() });
-    await seedGift(testDatabase.db, { name: SECOND_PRODUCT_NAME.toLowerCase() });
+    await seedGift(testDatabase.db, { name: FIRST_PRODUCT_NAME.toUpperCase(), productUrl: "https://www.amazon.com.br/dp/B0AAA" });
+    await seedGift(testDatabase.db, { name: SECOND_PRODUCT_NAME.toLowerCase(), productUrl: "https://www.amazon.com.br/dp/B0BBB" });
     const ids = [idOf(FIRST_PRODUCT_NAME), idOf(SECOND_PRODUCT_NAME), idOf(THIRD_PRODUCT_NAME)];
 
     const result = await suggestionModule.addSuggestedGifts(couple, ids);
 
-    expect(result).toEqual({ createdCount: 1, skippedIds: ids.slice(0, 2), failedIds: [] });
+    expect(result).toEqual({ createdCount: 1, enrichedCount: 0, skippedIds: ids.slice(0, 2), failedIds: [] });
     expect((await listAllGifts(giftModule)).total).toBe(3);
   });
 
@@ -78,8 +78,8 @@ describe("addSuggestedGifts", () => {
     const first = await suggestionModule.addSuggestedGifts(couple, [airFryerId, airFryerId, "nao-existe"]);
     const second = await suggestionModule.addSuggestedGifts(couple, [airFryerId]);
 
-    expect(first).toEqual({ createdCount: 1, skippedIds: ["nao-existe"], failedIds: [] });
-    expect(second).toEqual({ createdCount: 0, skippedIds: [airFryerId], failedIds: [] });
+    expect(first).toEqual({ createdCount: 1, enrichedCount: 0, skippedIds: ["nao-existe"], failedIds: [] });
+    expect(second).toEqual({ createdCount: 0, enrichedCount: 0, skippedIds: [airFryerId], failedIds: [] });
     expect((await listAllGifts(giftModule)).total).toBe(1);
   });
 

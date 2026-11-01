@@ -5,7 +5,7 @@ import { useState, useTransition } from "react";
 import { addSuggestedGiftsAction } from "../controllers/actions/suggestions.actions";
 
 export type AddFeedback =
-  | { kind: "success"; createdCount: number; skippedCount: number; failedCount: number }
+  | { kind: "success"; createdCount: number; enrichedCount: number; skippedCount: number; failedCount: number }
   | { kind: "error"; message: string };
 
 export function useSuggestionAdding() {
@@ -38,7 +38,7 @@ export function useSuggestionAdding() {
       if (!result.ok) return setFeedback({ kind: "error", message: result.error });
       setAddedIds((current) => new Set([...current, ...suggestionIds]));
       setSelectedIds(new Set());
-      setFeedback({ kind: "success", createdCount: result.data.createdCount, skippedCount: result.data.skippedIds.length, failedCount: result.data.failedIds.length });
+      setFeedback({ kind: "success", createdCount: result.data.createdCount, enrichedCount: result.data.enrichedCount, skippedCount: result.data.skippedIds.length, failedCount: result.data.failedIds.length });
       router.refresh();
     });
   }

@@ -11,11 +11,12 @@ export function AddFeedbackMessage({ feedback }: { feedback: AddFeedback | null 
     );
   }
   const created = feedback.createdCount === 1 ? "1 presente adicionado" : `${feedback.createdCount} presentes adicionados`;
+  const enriched = feedback.enrichedCount > 0 ? ` e ${feedback.enrichedCount} atualizado${feedback.enrichedCount === 1 ? "" : "s"} com link e foto` : "";
   const skipped = feedback.skippedCount > 0 ? ` (${feedback.skippedCount} já estavam na lista)` : "";
   const failed = feedback.failedCount > 0 ? ` Não foi possível adicionar ${feedback.failedCount}. Tente novamente.` : "";
   return (
     <div role="status" className="flex flex-col gap-1 rounded-2xl border border-gold bg-blush px-4 py-3 text-base text-wine">
-      <p className="font-semibold">{created}{skipped}.{failed}</p>
+      <p className="font-semibold">{created}{enriched}{skipped}.{failed}</p>
       <p>
         Vocês podem ajustar preço, foto e visibilidade de cada um em{" "}
         <Link href="/painel/presentes" className="font-semibold underline underline-offset-4">

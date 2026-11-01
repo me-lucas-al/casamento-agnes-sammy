@@ -21,8 +21,11 @@ export function makeAddSuggestedGifts({ gateway, catalog, logger }: Dependencies
   ): Promise<AddSuggestionsResult> {
     const manager = requireRole(actor, GIFT_MANAGER_ROLES);
     const usedNames = new Set((await gateway.listGiftNames()).map(normalizeGiftName));
+    const enrichableIdByName = new Map(
+      (await gateway.listEnrichableGifts()).map((gift) => [normalizeGiftName(gift.name), gift.id]),
+    );
     const categoryIdByName = new Map((await gateway.listCategories()).map((category) => [category.name, category.id]));
-    const result: AddSuggestionsResult = { createdCount: 0, skippedIds: [], failedIds: [] };
+    const result: AddSuggestionsResult = { createdCount: 0, enrichedCount: 0, skippedIds: [], failedIds: [] };
 
     async function resolveCategoryId(categoryName: string): Promise<string> {
       const knownId = categoryIdByName.get(categoryName);
@@ -40,15 +43,24 @@ export function makeAddSuggestedGifts({ gateway, catalog, logger }: Dependencies
       result.createdCount += 1;
     }
 
+    async function enrichOne(suggestion: GiftSuggestion, giftId: string, normalizedName: string) {
+      const categoryId = await resolveCategoryId(suggestion.categoryName);
+      await gateway.enrichGift(manager, giftId, buildGiftInputFromSuggestion(suggestion, categoryId));
+      enrichableIdByName.delete(normalizedName);
+      result.enrichedCount += 1;
+    }
+
     for (const suggestionId of new Set(suggestionIds)) {
       const suggestion = catalog.find((candidate) => candidate.id === suggestionId);
       const normalizedName = suggestion ? normalizeGiftName(suggestion.name) : "";
-      if (!suggestion || usedNames.has(normalizedName)) {
+      const enrichableGiftId = enrichableIdByName.get(normalizedName);
+      if (!suggestion || (usedNames.has(normalizedName) && !enrichableGiftId)) {
         result.skippedIds.push(suggestionId);
         continue;
       }
       try {
-        await addOne(suggestion, normalizedName);
+        if (enrichableGiftId) await enrichOne(suggestion, enrichableGiftId, normalizedName);
+        else await addOne(suggestion, normalizedName);
       } catch (error) {
         logger.error("gift_suggestions.add_failed", { suggestionId, error: serializeError(error) });
         result.failedIds.push(suggestionId);

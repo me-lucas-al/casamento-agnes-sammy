@@ -17,7 +17,7 @@ export async function addSuggestedGiftsAction(input: unknown): Promise<ActionRes
   return safeAction(describeGiftError, async () => {
     const actor = await getSessionUser();
     const result = await getGiftSuggestionModule().addSuggestedGifts(actor, parsed.data.suggestionIds);
-    if (result.createdCount > 0) invalidateSuggestionCaches(nextCacheInvalidator);
+    if (result.createdCount + result.enrichedCount > 0) invalidateSuggestionCaches(nextCacheInvalidator);
     return success(result);
   }, "addSuggestedGiftsAction");
 }

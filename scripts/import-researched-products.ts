@@ -8,7 +8,7 @@ const RESEARCH_DIRECTORY = join(process.cwd(), ".scratch", "research");
 
 function readSources(): ResearchSource[] {
   const sources: ResearchSource[] = [];
-  for (const fileName of readdirSync(RESEARCH_DIRECTORY).filter((name) => name.endsWith(".json"))) {
+  for (const fileName of readdirSync(RESEARCH_DIRECTORY).filter((name) => name.endsWith(".json")).sort()) {
     const categoryKey = categoryKeyOfResearchFile(fileName);
     if (!categoryKey) {
       console.warn(`skipped ${fileName}: unknown category`);
@@ -55,8 +55,9 @@ function main() {
     process.exitCode = 1;
     return;
   }
+  const files = renderVerifiedDataFiles(result.products);
   removeStaleCategoryFolders();
-  writeFiles(renderVerifiedDataFiles(result.products));
+  writeFiles(files);
 }
 
 main();

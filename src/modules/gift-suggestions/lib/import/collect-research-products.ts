@@ -50,26 +50,42 @@ function createDuplicateTracker() {
   };
 }
 
-export function collectResearchProducts(sources: readonly ResearchSource[]): CollectedProducts {
-  const products: ImportedProduct[] = [];
-  const dropped: DroppedProduct[] = [];
-  const findDuplicateReason = createDuplicateTracker();
+type Candidate = ImportedProduct & { fileName: string };
 
-  for (const { fileName, categoryKey, content } of sources) {
-    const file = researchFileSchema.safeParse(content);
-    if (!file.success) {
-      dropped.push({ fileName, id: "(file)", reason: "file does not match the research schema" });
+function compareCandidates(left: Candidate, right: Candidate): number {
+  return left.fileName.localeCompare(right.fileName) || left.record.id.localeCompare(right.record.id);
+}
+
+function validateSource({ fileName, categoryKey, content }: ResearchSource, dropped: DroppedProduct[]): Candidate[] {
+  const file = researchFileSchema.safeParse(content);
+  if (!file.success) {
+    dropped.push({ fileName, id: "(file)", reason: "file does not match the research schema" });
+    return [];
+  }
+  const candidates: Candidate[] = [];
+  for (const raw of file.data.products) {
+    const validation = validateResearchProduct(raw, categoryKey, file.data.checkedAt);
+    if (!validation.ok) {
+      dropped.push({ fileName, id: productIdOf(raw), reason: validation.reason });
       continue;
     }
-    for (const raw of file.data.products) {
-      const validation = validateResearchProduct(raw, categoryKey, file.data.checkedAt);
-      const reason = validation.ok ? findDuplicateReason(validation.record) : validation.reason;
-      if (reason || !validation.ok) {
-        dropped.push({ fileName, id: productIdOf(raw), reason: reason ?? "invalid" });
-        continue;
-      }
-      products.push({ categoryKey, record: validation.record });
+    candidates.push({ fileName, categoryKey, record: validation.record });
+  }
+  return candidates;
+}
+
+export function collectResearchProducts(sources: readonly ResearchSource[]): CollectedProducts {
+  const dropped: DroppedProduct[] = [];
+  const candidates = sources.flatMap((source) => validateSource(source, dropped)).sort(compareCandidates);
+  const findDuplicateReason = createDuplicateTracker();
+  const products: ImportedProduct[] = [];
+  for (const { fileName, categoryKey, record } of candidates) {
+    const reason = findDuplicateReason(record);
+    if (reason) {
+      dropped.push({ fileName, id: record.id, reason });
+      continue;
     }
+    products.push({ categoryKey, record });
   }
   return { products, dropped };
 }

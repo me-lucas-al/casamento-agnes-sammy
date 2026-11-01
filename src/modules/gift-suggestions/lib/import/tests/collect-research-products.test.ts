@@ -62,7 +62,19 @@ describe("collectResearchProducts", () => {
     ]);
 
     expect(products).toHaveLength(1);
-    expect(dropped.map((item) => item.reason)).toEqual(["duplicated id", "duplicated product url", "duplicated name"]);
+    expect(dropped.map((item) => item.reason).sort()).toEqual(["duplicated id", "duplicated name", "duplicated product url"]);
+  });
+
+  it("produces the same products whatever the order of files and products", () => {
+    const first = sourceOf([rawProduct(), rawProduct({ id: "b", name: "B", productUrl: "https://www.amazon.com.br/dp/B0B" })]);
+    const second = { ...sourceOf([rawProduct({ id: "c", name: "C", productUrl: "https://www.amazon.com.br/dp/B0C" })]), fileName: "cozinha-utensilios.json" };
+    const forward = collectResearchProducts([first, second]);
+    const reversed = collectResearchProducts([
+      { ...second, content: second.content },
+      { ...first, content: { checkedAt: "2026-11-01", products: [...(first.content as { products: unknown[] }).products].reverse() } },
+    ]);
+
+    expect(reversed.products).toEqual(forward.products);
   });
 
   it("reports files that do not match the research schema", () => {

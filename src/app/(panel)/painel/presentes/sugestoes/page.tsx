@@ -50,7 +50,7 @@ export default async function SuggestionsPage({ searchParams }: SuggestionsPageP
           <ActiveFilterChips basePath={SUGGESTIONS_PATH} params={params} chips={chips} />
           <SuggestionsResults basePath={SUGGESTIONS_PATH} params={params} pageResult={pageResult} />
           <p className="text-sm text-wine/70">
-            Valores são estimativas de 2026. O botão Ver na loja abre a busca oficial da loja, sem comprar nada por aqui.
+            Valores são estimativas de 2026. O botão Ver na loja abre a página do produto, sem comprar nada por aqui.
           </p>
         </section>
       </div>

@@ -5,10 +5,15 @@ import { currentImagesOf, resolveGiftImages } from "../images/resolve-gift-image
 import { normalizeGiftConfiguration } from "../pricing/gift-configuration";
 import { isAllowedProductUrl, storeNameForProductUrl } from "../product/product-link-rules";
 
+function resolvePriceCheckedAt(input: GiftInput, current: Gift | null, productUrl: string | null): string | null {
+  if (input.priceCheckedAt !== undefined) return input.priceCheckedAt;
+  const productUrlChanged = input.productUrl !== undefined && productUrl !== (current?.productUrl ?? null);
+  return productUrlChanged ? null : (current?.priceCheckedAt ?? null);
+}
+
 function resolveProductFields(input: GiftInput, current: Gift | null) {
   const productUrl = input.productUrl === undefined ? (current?.productUrl ?? null) : input.productUrl;
-  const priceCheckedAt =
-    input.priceCheckedAt === undefined ? (current?.priceCheckedAt ?? null) : input.priceCheckedAt;
+  const priceCheckedAt = resolvePriceCheckedAt(input, current, productUrl);
   if (!productUrl) return { productUrl: null, storeName: null, priceCheckedAt: null };
   const storeName = storeNameForProductUrl(productUrl) ?? input.storeName ?? current?.storeName ?? null;
   return { productUrl, storeName, priceCheckedAt };

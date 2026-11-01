@@ -1,3 +1,4 @@
+import { hasPlainHttpsOrigin } from "@/shared/lib/url/plain-https-origin";
 import { ALLOWED_STORE_HOSTS, STORE_NAME_BY_HOST } from "./allowed-store-hosts";
 
 const TRACKING_PARAM_PATTERN = /^(utm_|gclid$|fbclid$|msclkid$|gad_|tag$|ref$|ref_$|aff|affiliate|partner|cmpid$|sid$|pf_rd_|pd_rd_|psc$)/i;
@@ -5,7 +6,7 @@ const TRACKING_PARAM_PATTERN = /^(utm_|gclid$|fbclid$|msclkid$|gad_|tag$|ref$|re
 function parseHttpsUrl(url: string): URL | null {
   if (!URL.canParse(url)) return null;
   const parsed = new URL(url);
-  return parsed.protocol === "https:" ? parsed : null;
+  return hasPlainHttpsOrigin(parsed) ? parsed : null;
 }
 
 export function isAllowedProductUrl(url: string): boolean {

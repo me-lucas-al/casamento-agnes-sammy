@@ -1,5 +1,4 @@
 import { describe, expect, it } from "vitest";
-import { isAllowedImageUrl } from "@/shared/lib/images/image-host-rules";
 import {
   formatPriceCheckedDate,
   hasTrackingParams,
@@ -19,6 +18,24 @@ describe("isAllowedProductUrl", () => {
     expect(isAllowedProductUrl("https://www.magazineluiza.com.br.evil.com/x")).toBe(false);
     expect(isAllowedProductUrl("https://magazineluiza.com.br/x")).toBe(false);
     expect(isAllowedProductUrl("not a url")).toBe(false);
+  });
+});
+
+describe("isAllowedProductUrl hostile urls", () => {
+  it.each([
+    "https://user:x@www.amazon.com.br/x",
+    "https://www.amazon.com.br:8443/x",
+    "https://www.amazon.com.br@evil.com",
+    "https://www.amazon.com.br.evil.com/x",
+    "javascript:alert(1)",
+    "data:text/html,<script>1</script>",
+    "http://www.amazon.com.br/x",
+  ])("rejects %s", (url) => {
+    expect(isAllowedProductUrl(url)).toBe(false);
+  });
+
+  it("keeps accepting the default https port written explicitly", () => {
+    expect(isAllowedProductUrl("https://www.amazon.com.br:443/x")).toBe(true);
   });
 });
 
@@ -42,13 +59,5 @@ describe("formatPriceCheckedDate", () => {
   it("formats iso dates as dd/mm/yyyy", () => {
     expect(formatPriceCheckedDate("2026-11-01")).toBe("01/11/2026");
     expect(formatPriceCheckedDate(null)).toBeNull();
-  });
-});
-
-describe("isAllowedImageUrl", () => {
-  it("requires https and an allowed host", () => {
-    expect(isAllowedImageUrl("https://cdn.example/a.jpg", ["cdn.example"])).toBe(true);
-    expect(isAllowedImageUrl("http://cdn.example/a.jpg", ["cdn.example"])).toBe(false);
-    expect(isAllowedImageUrl("https://other.example/a.jpg", ["cdn.example"])).toBe(false);
   });
 });

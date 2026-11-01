@@ -45,6 +45,7 @@ describe("collectResearchProducts", () => {
     expect(reasonsOf(rawProduct({ imageUrl: "http://m.media-amazon.com/a.jpg" }))[0]).toContain("https");
     expect(reasonsOf(rawProduct({ imageUrl: "https://ae01.alicdn.com/a.jpg" }))[0]).toContain("allowed image hosts");
     expect(reasonsOf(rawProduct({ imageUrl: "https://cdn.unlisted.example/a.jpg" }))[0]).toContain("allowed image hosts");
+    expect(reasonsOf(rawProduct({ imageUrl: "https://user:x@m.media-amazon.com/a.jpg" }))[0]).toContain("allowed image hosts");
     expect(reasonsOf(rawProduct({ mode: "fixed_quotas" }))[0]).toContain("quota");
     expect(reasonsOf(rawProduct({ mode: "single", totalQuotas: 3 }))[0]).toContain("quotas");
     expect(reasonsOf({ id: "x" })[0]).toContain("invalid shape");

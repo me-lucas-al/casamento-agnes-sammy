@@ -59,12 +59,23 @@ describe("validateCatalog for products", () => {
   });
 });
 
+const MANUAL_ALLOWED_IMAGE_HOSTS = [
+  "imagensra.tokstok.com.br",
+  "images.kabum.com.br",
+  "m.media-amazon.com",
+  "res.cloudinary.com",
+];
+
 describe("shipped product catalog", () => {
   const products = GIFT_SUGGESTION_CATALOG.filter((suggestion) => suggestion.productUrl !== null);
 
+  it("keeps the image host allowlist hand-maintained", () => {
+    expect([...ALLOWED_IMAGE_HOSTS].sort()).toEqual(MANUAL_ALLOWED_IMAGE_HOSTS);
+  });
+
   it("keeps every product on an allowed image host with a real price date", () => {
     for (const { id, imageUrl, priceCheckedAt, priceCents } of products) {
-      expect(ALLOWED_IMAGE_HOSTS, id).toContain(new URL(imageUrl ?? "https://invalid.invalid").hostname);
+      expect(MANUAL_ALLOWED_IMAGE_HOSTS, id).toContain(new URL(imageUrl ?? "https://invalid.invalid").hostname);
       expect(priceCheckedAt, id).toMatch(/^\d{4}-\d{2}-\d{2}$/);
       expect(Number.isInteger(priceCents) && priceCents > 0, id).toBe(true);
     }

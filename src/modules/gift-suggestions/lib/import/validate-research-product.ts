@@ -2,6 +2,7 @@ import { z } from "zod";
 import { STORE_NAME_BY_HOST } from "@/modules/gifts/lib/product/allowed-store-hosts";
 import { hasTrackingParams, isAllowedProductUrl } from "@/modules/gifts/lib/product/product-link-rules";
 import { isValidIsoDate } from "@/shared/lib/dates/iso-date";
+import { isAllowedImageUrl } from "@/shared/lib/images/image-host-rules";
 import type { SuggestionCategoryKey } from "@/modules/gift-suggestions/data/category-names";
 import { slugify } from "@/modules/gift-suggestions/data/suggestion-builders";
 import type { VerifiedProductRecord } from "@/modules/gift-suggestions/types";
@@ -32,9 +33,8 @@ export type ProductValidation = { ok: true; record: VerifiedProductRecord } | { 
 
 function describeImageProblem(imageUrl: string): string | null {
   if (!URL.canParse(imageUrl)) return "image url is not a url";
-  const parsed = new URL(imageUrl);
-  if (parsed.protocol !== "https:") return "image url must be https";
-  return FORBIDDEN_IMAGE_HOST_PATTERN.test(parsed.hostname) ? "image host is forbidden" : null;
+  if (new URL(imageUrl).protocol !== "https:") return "image url must be https";
+  return isAllowedImageUrl(imageUrl) ? null : "image host is not in the allowed image hosts list";
 }
 
 function describeQuotaProblem({ mode, totalQuotas, priceCents }: ResearchProduct): string | null {

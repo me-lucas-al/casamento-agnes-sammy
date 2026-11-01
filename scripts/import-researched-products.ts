@@ -2,10 +2,7 @@ import { mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from "nod
 import { dirname, join } from "node:path";
 import { collectResearchProducts, type ResearchSource } from "../src/modules/gift-suggestions/lib/import/collect-research-products";
 import { categoryKeyOfResearchFile } from "../src/modules/gift-suggestions/lib/import/research-file-category";
-import {
-  renderAllowedImageHosts,
-  renderVerifiedDataFiles,
-} from "../src/modules/gift-suggestions/lib/import/render-verified-data-files";
+import { renderVerifiedDataFiles } from "../src/modules/gift-suggestions/lib/import/render-verified-data-files";
 
 const RESEARCH_DIRECTORY = join(process.cwd(), ".scratch", "research");
 
@@ -59,7 +56,7 @@ function main() {
     return;
   }
   removeStaleCategoryFolders();
-  writeFiles([...renderVerifiedDataFiles(result.products), renderAllowedImageHosts(result.products)]);
+  writeFiles(renderVerifiedDataFiles(result.products));
 }
 
 main();

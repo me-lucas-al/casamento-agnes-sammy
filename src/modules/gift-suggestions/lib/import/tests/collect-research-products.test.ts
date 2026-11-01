@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { collectResearchProducts, type ResearchSource } from "../collect-research-products";
-import { renderAllowedImageHosts, renderVerifiedDataFiles } from "../render-verified-data-files";
+import { renderVerifiedDataFiles } from "../render-verified-data-files";
 import { mapProductType } from "../map-product-type";
 import { categoryKeyOfResearchFile } from "../research-file-category";
 
@@ -43,8 +43,8 @@ describe("collectResearchProducts", () => {
     expect(reasonsOf(rawProduct({ priceCents: 349.9 }))[0]).toContain("price");
     expect(reasonsOf(rawProduct({ priceCents: 0 }))[0]).toContain("price");
     expect(reasonsOf(rawProduct({ imageUrl: "http://m.media-amazon.com/a.jpg" }))[0]).toContain("https");
-    expect(reasonsOf(rawProduct({ imageUrl: "https://ae01.alicdn.com/a.jpg" }))[0]).toContain("forbidden");
-    expect(reasonsOf(rawProduct({ imageUrl: "https://cf.shopee.com.br/a.jpg" }))[0]).toContain("forbidden");
+    expect(reasonsOf(rawProduct({ imageUrl: "https://ae01.alicdn.com/a.jpg" }))[0]).toContain("allowed image hosts");
+    expect(reasonsOf(rawProduct({ imageUrl: "https://cdn.unlisted.example/a.jpg" }))[0]).toContain("allowed image hosts");
     expect(reasonsOf(rawProduct({ mode: "fixed_quotas" }))[0]).toContain("quota");
     expect(reasonsOf(rawProduct({ mode: "single", totalQuotas: 3 }))[0]).toContain("quotas");
     expect(reasonsOf({ id: "x" })[0]).toContain("invalid shape");
@@ -78,7 +78,7 @@ describe("generated files", () => {
           id: `item-${index}`,
           name: `Produto ${index}`,
           productUrl: `https://www.amazon.com.br/dp/B0${index}`,
-          imageUrl: `https://${index % 2 ? "b.cdn.example" : "a.cdn.example"}/${index}.jpg`,
+          imageUrl: `https://${index % 2 ? "images.kabum.com.br" : "m.media-amazon.com"}/${index}.jpg`,
         }),
       ),
     ),
@@ -90,11 +90,6 @@ describe("generated files", () => {
     expect(files.length).toBeGreaterThan(3);
     for (const file of files) expect(file.content.split("\n").length, file.path).toBeLessThanOrEqual(150);
     expect(files.map((file) => file.path)).toContain("src/modules/gift-suggestions/data/verified/verified-suggestions.ts");
-  });
-
-  it("lists sorted unique image hosts plus cloudinary", () => {
-    const { content } = renderAllowedImageHosts(products);
-    expect(content).toContain('"a.cdn.example",\n  "b.cdn.example",\n  "res.cloudinary.com",');
   });
 });
 

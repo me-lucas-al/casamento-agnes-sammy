@@ -4,8 +4,6 @@ export type GeneratedFile = { path: string; content: string };
 
 const PRODUCTS_PER_FILE = 8;
 const VERIFIED_DIRECTORY = "src/modules/gift-suggestions/data/verified";
-const HOSTS_FILE = "src/shared/lib/images/allowed-image-hosts.ts";
-const ALWAYS_ALLOWED_IMAGE_HOSTS = ["res.cloudinary.com"];
 
 function toConstantName(...parts: (string | number)[]): string {
   return parts.join("_").toUpperCase().replace(/[^A-Z0-9]+/g, "_");
@@ -56,14 +54,6 @@ function renderRootIndex(categoryKeys: readonly string[]): string {
     "];",
     "",
   ].join("\n");
-}
-
-export function renderAllowedImageHosts(products: readonly ImportedProduct[]): GeneratedFile {
-  const hostnames = products.map(({ record }) => new URL(record.imageUrl).hostname);
-  const hosts = [...new Set([...ALWAYS_ALLOWED_IMAGE_HOSTS, ...hostnames])].sort();
-  const lines = hosts.map((host) => `  "${host}",`);
-  const content = ["export const ALLOWED_IMAGE_HOSTS: readonly string[] = [", ...lines, "];", ""].join("\n");
-  return { path: HOSTS_FILE, content };
 }
 
 export function renderVerifiedDataFiles(products: readonly ImportedProduct[]): GeneratedFile[] {

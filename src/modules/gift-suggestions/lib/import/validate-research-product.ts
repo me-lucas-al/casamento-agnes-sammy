@@ -8,7 +8,6 @@ import { slugify } from "@/modules/gift-suggestions/data/suggestion-builders";
 import type { VerifiedProductRecord } from "@/modules/gift-suggestions/types";
 import { mapProductType } from "./map-product-type";
 
-const FORBIDDEN_IMAGE_HOST_PATTERN = /shopee|aliexpress|shein|temu|wish\.com|alibaba|alicdn/i;
 const MAX_PRICE_CENTS = 100_000_000;
 const MIN_QUOTAS = 2;
 const MAX_QUOTAS = 10;

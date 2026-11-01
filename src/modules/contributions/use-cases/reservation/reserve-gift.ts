@@ -1,20 +1,29 @@
 import type { SessionUser } from "@/modules/auth/types";
 import { addHours } from "@/shared/lib/dates/dates";
-import { GiftUnavailableError, TooManyActiveReservationsError } from "@/modules/contributions/errors";
+import {
+  GiftUnavailableError,
+  PixNotConfiguredForReservationError,
+  TooManyActiveReservationsError,
+} from "@/modules/contributions/errors";
 import { requireGuestId } from "@/modules/contributions/lib/reservation/require-guest-id";
 import { MAX_ACTIVE_RESERVATIONS_PER_GUEST, RESERVATION_HOURS } from "@/modules/contributions/lib/reservation/reservation-window";
 import { resolveReservation } from "@/modules/contributions/lib/reservation/resolve-reservation";
 import type { ReservationUnitOfWork } from "@/modules/contributions/repositories/contracts/reservation-unit-of-work";
-import type { Clock, Contribution, ReservationRequest } from "@/modules/contributions/types";
+import type { Clock, Contribution, PixConfigurationChecker, ReservationRequest } from "@/modules/contributions/types";
 
-type Dependencies = { unitOfWork: ReservationUnitOfWork; clock: Clock };
+type Dependencies = {
+  unitOfWork: ReservationUnitOfWork;
+  clock: Clock;
+  isPixConfigured: PixConfigurationChecker;
+};
 
-export function makeReserveGift({ unitOfWork, clock }: Dependencies) {
+export function makeReserveGift({ unitOfWork, clock, isPixConfigured }: Dependencies) {
   return async function reserveGift(
     actor: SessionUser | null,
     request: ReservationRequest,
   ): Promise<Contribution> {
     const guestId = requireGuestId(actor);
+    if (!(await isPixConfigured())) throw new PixNotConfiguredForReservationError();
     const now = clock();
     return unitOfWork.run(async (store) => {
       const gift = await store.lockReservableGift(request.giftId);

@@ -46,9 +46,18 @@ export class TooManyActiveReservationsError extends Error {
   }
 }
 
+export class PixNotConfiguredForReservationError extends Error {
+  constructor() {
+    super("Pix is not configured");
+  }
+}
+
 export function describeContributionError(error: unknown): string {
   if (error instanceof TooManyActiveReservationsError) {
     return `Você já possui ${error.maximum} reservas pendentes. Conclua ou cancele uma antes de reservar outro presente.`;
+  }
+  if (error instanceof PixNotConfiguredForReservationError) {
+    return "Os noivos ainda estão configurando o Pix. Volte em breve.";
   }
   if (error instanceof GiftUnavailableError) return "Este presente não está mais disponível.";
   if (error instanceof GiftNotFoundError) return "Presente não encontrado.";

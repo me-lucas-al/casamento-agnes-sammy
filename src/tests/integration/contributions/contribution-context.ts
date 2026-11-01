@@ -17,11 +17,11 @@ export function createControlledClock() {
   };
 }
 
-export function createContributionContext(database: Database) {
+export function createContributionContext(database: Database, isPixConfigured = async () => true) {
   const controlledClock = createControlledClock();
   return {
     ...controlledClock,
-    contributions: createContributionModule(database, controlledClock.clock),
+    contributions: createContributionModule(database, controlledClock.clock, isPixConfigured),
   };
 }
 

@@ -8,6 +8,8 @@ export const CONTRIBUTION_STATUSES = ["reserved", "confirmed", "cancelled", "exp
 
 export type Clock = () => Date;
 
+export type PixConfigurationChecker = () => Promise<boolean>;
+
 export type GiftMode = "single" | "fixed_quotas" | "free_amount";
 
 export type ReservableGift = {

@@ -13,16 +13,27 @@ import { makeRejectOrCancelByCouple } from "./use-cases/payment/reject-or-cancel
 import { makeRemoveContribution } from "./use-cases/payment/remove-contribution";
 import { makeReserveGift } from "./use-cases/reservation/reserve-gift";
 import { makeUpdateReservation } from "./use-cases/reservation/update-reservation";
-import type { Clock } from "./types";
+import { createDrizzlePixSettingsRepository } from "@/modules/payments/repositories/drizzle/drizzle-pix-settings-repository";
+import type { Clock, PixConfigurationChecker } from "./types";
 
 const systemClock: Clock = () => new Date();
 
-export function createContributionModule(database: Database, clock: Clock = systemClock) {
+function createPixConfigurationChecker(database: Database): PixConfigurationChecker {
+  const pixSettingsRepository = createDrizzlePixSettingsRepository(database);
+  return async () => (await pixSettingsRepository.find()) !== null;
+}
+
+export function createContributionModule(
+  database: Database,
+  clock: Clock = systemClock,
+  isPixConfigured: PixConfigurationChecker = createPixConfigurationChecker(database),
+) {
   const contributionRepository = createDrizzleContributionRepository(database);
   const unitOfWork = createDrizzleReservationUnitOfWork(database);
   return {
     contributionRepository,
-    reserveGift: makeReserveGift({ unitOfWork, clock }),
+    isPixConfigured,
+    reserveGift: makeReserveGift({ unitOfWork, clock, isPixConfigured }),
     updateReservation: makeUpdateReservation({ unitOfWork, clock }),
     cancelOwnReservation: makeCancelOwnReservation({ contributionRepository }),
     confirmPixPayment: makeConfirmPixPayment({ unitOfWork, clock }),

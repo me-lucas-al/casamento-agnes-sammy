@@ -34,7 +34,9 @@ export function ModerationActions({ message }: { message: Message }) {
     startTransition(async () => {
       const result = await action();
       setError(result.ok ? null : (result.error ?? "Erro."));
-      if (result.ok) setIsEditing(false);
+      if (!result.ok) return;
+      setIsEditing(false);
+      router.refresh();
     });
 
   const moderate = (decision: "approved" | "rejected") =>

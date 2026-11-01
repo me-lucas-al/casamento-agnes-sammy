@@ -2,13 +2,13 @@ import type { VerifiedProductRecord } from "../../../types";
 
 export const DIVERTIDOS_DIVERTIDO_3: readonly VerifiedProductRecord[] = [
   {
-    "id": "divertidos-dobble-asmodee-5-em-1",
-    "name": "Dobble Asmodee 5 em 1",
-    "description": "Jogo de cartas rápido e divertido, ótimo para jantares com amigos.",
+    "id": "divertidos-xadrez-madeira-39x39-dobravel-estojo",
+    "name": "Jogo de Xadrez de Madeira 39x39 Dobrável com Estojo",
+    "description": "Tabuleiro premium que dobra e vira estojo, ótimo para levar em viagens e fins de semana.",
     "type": "divertido",
-    "productUrl": "https://www.amazon.com.br/dp/B0CFSTKD4J",
-    "imageUrl": "https://m.media-amazon.com/images/I/71K-sA-YqEL._AC_SL1500_.jpg",
-    "priceCents": 8999,
+    "productUrl": "https://www.amazon.com.br/dp/B0DQ5XCZZG",
+    "imageUrl": "https://m.media-amazon.com/images/I/717+zMLNInL._AC_SL1254_.jpg",
+    "priceCents": 30399,
     "mode": "single",
     "checkedAt": "2026-11-01"
   },

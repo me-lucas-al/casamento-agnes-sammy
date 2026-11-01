@@ -2,6 +2,28 @@ import type { VerifiedProductRecord } from "../../../types";
 
 export const SALA_DECORACAO_3: readonly VerifiedProductRecord[] = [
   {
+    "id": "sala-ts-i-porta-retrato-multiplo-p-4-encerado-castanho-rus",
+    "name": "Porta-retrato múltiplo 4 fotos Rústico",
+    "description": "Painel de fotos para contar a história do casal na parede.",
+    "type": "decoracao",
+    "productUrl": "https://www.tokstok.com.br/i-porta-retrato-multiplo-p-4-encerado-castanho-rustico/p",
+    "imageUrl": "https://imagensra.tokstok.com.br/catalog-images/fcd0123a51d690ec6ed9608738e3313f-428754_OK_V01.png",
+    "priceCents": 9990,
+    "mode": "single",
+    "checkedAt": "2026-11-01"
+  },
+  {
+    "id": "sala-ts-magnolia-flor-branco-verde-charming",
+    "name": "Flor Charming Magnólia",
+    "description": "Flor sempre viva que enfeita a mesa sem precisar de cuidados.",
+    "type": "decoracao",
+    "productUrl": "https://www.tokstok.com.br/magnolia-flor-branco-verde-charming/p",
+    "imageUrl": "https://imagensra.tokstok.com.br/catalog-images/2db65dec0630a4dd21b66548245a14a5-337786-silo-001.jpg",
+    "priceCents": 3990,
+    "mode": "single",
+    "checkedAt": "2026-11-01"
+  },
+  {
     "id": "sala-ts-vai-ter-louca-quadro-22-cm-x-22-cm-azul-claro-ver",
     "name": "Quadro Ida Vai ter louça 22 x 22 cm",
     "description": "Quadro bem-humorado para a cozinha e a sala de quem ama receber.",
@@ -9,28 +31,6 @@ export const SALA_DECORACAO_3: readonly VerifiedProductRecord[] = [
     "productUrl": "https://www.tokstok.com.br/-vai-ter-louca-quadro-22-cm-x-22-cm-azul-claro-vermelho-ida/p",
     "imageUrl": "https://imagensra.tokstok.com.br/catalog-images/339751-5d429955af4d0b56df4908bf.jpg",
     "priceCents": 9990,
-    "mode": "single",
-    "checkedAt": "2026-11-01"
-  },
-  {
-    "id": "sala-ts-de-memoria-porta-retrato-c-2-preto-dia",
-    "name": "Porta-retrato duplo Dia de Memória",
-    "description": "Porta-retrato para guardar duas fotos especiais do casal.",
-    "type": "decoracao",
-    "productUrl": "https://www.tokstok.com.br/de-memoria-porta-retrato-c-2-preto-dia/p",
-    "imageUrl": "https://imagensra.tokstok.com.br/catalog-images/334892-5d9ebc20af4d0b62c77b1906.jpg",
-    "priceCents": 6590,
-    "mode": "single",
-    "checkedAt": "2026-11-01"
-  },
-  {
-    "id": "sala-ts-i-porta-retrato-13-cm-x-18-cm-grafite-minimalist",
-    "name": "Porta-retrato 13 x 18 cm Minimalist",
-    "description": "Moldura discreta e elegante para a foto do grande dia.",
-    "type": "decoracao",
-    "productUrl": "https://www.tokstok.com.br/i-porta-retrato-13-cm-x-18-cm-grafite-minimalist/p",
-    "imageUrl": "https://imagensra.tokstok.com.br/catalog-images/424397-63aca40d35210300016d7d62.jpg",
-    "priceCents": 8990,
     "mode": "single",
     "checkedAt": "2026-11-01"
   },

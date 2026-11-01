@@ -2,17 +2,6 @@ import type { VerifiedProductRecord } from "../../../types";
 
 export const QUARTO_BANHO_ELETROPORTATIL_1: readonly VerifiedProductRecord[] = [
   {
-    "id": "quarto-banho-ferro-black-decker-fx3060",
-    "name": "Ferro a vapor Black+Decker FX3060 220V",
-    "description": "Para manter as roupas do casal sempre alinhadas.",
-    "type": "eletroportatil",
-    "productUrl": "https://www.amazon.com.br/dp/B07WF8WCWN",
-    "imageUrl": "https://m.media-amazon.com/images/I/71NxFQ-edkL._AC_SL1500_.jpg",
-    "priceCents": 15675,
-    "mode": "single",
-    "checkedAt": "2026-11-01"
-  },
-  {
     "id": "quarto-banho-ferro-black-decker-fx2200",
     "name": "Ferro a vapor Black+Decker FX2200 110V",
     "description": "Ferro com vapor e spray para tirar amassados com facilidade.",
@@ -20,6 +9,17 @@ export const QUARTO_BANHO_ELETROPORTATIL_1: readonly VerifiedProductRecord[] = [
     "productUrl": "https://www.amazon.com.br/dp/B07WD5662Z",
     "imageUrl": "https://m.media-amazon.com/images/I/61qkx4SdZCL._AC_SL1000_.jpg",
     "priceCents": 17430,
+    "mode": "single",
+    "checkedAt": "2026-11-01"
+  },
+  {
+    "id": "quarto-banho-ferro-black-decker-fx3060",
+    "name": "Ferro a vapor Black+Decker FX3060 220V",
+    "description": "Para manter as roupas do casal sempre alinhadas.",
+    "type": "eletroportatil",
+    "productUrl": "https://www.amazon.com.br/dp/B07WF8WCWN",
+    "imageUrl": "https://m.media-amazon.com/images/I/71NxFQ-edkL._AC_SL1500_.jpg",
+    "priceCents": 15675,
     "mode": "single",
     "checkedAt": "2026-11-01"
   },

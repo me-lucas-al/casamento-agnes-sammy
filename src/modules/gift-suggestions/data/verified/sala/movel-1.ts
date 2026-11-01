@@ -25,17 +25,6 @@ export const SALA_MOVEL_1: readonly VerifiedProductRecord[] = [
     "checkedAt": "2026-11-01"
   },
   {
-    "id": "sala-ts-bag-corsin-sorbet-de-manga-puff",
-    "name": "Puff Bag Corsin sorbet de manga",
-    "description": "Puff colorido e confortável para a sala de estar.",
-    "type": "movel",
-    "productUrl": "https://www.tokstok.com.br/bag-corsin-sorbet-de-manga-puff/p",
-    "imageUrl": "https://imagensra.tokstok.com.br/catalog-images/c385e80e5648a9ed4a341f96efba0314-431525_OK_V02.png",
-    "priceCents": 28990,
-    "mode": "single",
-    "checkedAt": "2026-11-01"
-  },
-  {
     "id": "sala-ts-1m-x-38-cm-shift-branco-rack",
     "name": "Rack Shift branco 1 m",
     "description": "Rack compacto e prático para organizar a TV da sala.",
@@ -59,6 +48,28 @@ export const SALA_MOVEL_1: readonly VerifiedProductRecord[] = [
     "checkedAt": "2026-11-01"
   },
   {
+    "id": "sala-ts-bag-corsin-sorbet-de-manga-puff",
+    "name": "Puff Bag Corsin sorbet de manga",
+    "description": "Puff colorido e confortável para a sala de estar.",
+    "type": "movel",
+    "productUrl": "https://www.tokstok.com.br/bag-corsin-sorbet-de-manga-puff/p",
+    "imageUrl": "https://imagensra.tokstok.com.br/catalog-images/c385e80e5648a9ed4a341f96efba0314-431525_OK_V02.png",
+    "priceCents": 28990,
+    "mode": "single",
+    "checkedAt": "2026-11-01"
+  },
+  {
+    "id": "sala-ts-cabide-de-piso-palha-natural-preto-trihang",
+    "name": "Cabideiro de chão Trihang",
+    "description": "Cabideiro para pendurar casacos e bolsas na entrada de casa.",
+    "type": "movel",
+    "productUrl": "https://www.tokstok.com.br/cabide-de-piso-palha-natural-preto-trihang/p",
+    "imageUrl": "https://imagensra.tokstok.com.br/catalog-images/341540-5daa644baf4d0b62c77e6f41.jpg",
+    "priceCents": 29990,
+    "mode": "single",
+    "checkedAt": "2026-11-01"
+  },
+  {
     "id": "sala-ts-cadeira-amendoa-texas",
     "name": "Cadeira de jantar Texas",
     "description": "Cadeira confortável para as refeições em família.",
@@ -77,17 +88,6 @@ export const SALA_MOVEL_1: readonly VerifiedProductRecord[] = [
     "productUrl": "https://www.tokstok.com.br/cadeira-cajueiro-japones-skand/p",
     "imageUrl": "https://imagensra.tokstok.com.br/catalog-images/271916f5107e53ddb6213fc2773bfd33-314948_OK_V01.png",
     "priceCents": 65990,
-    "mode": "single",
-    "checkedAt": "2026-11-01"
-  },
-  {
-    "id": "sala-ts-maxi-puff-corsin-preto-bag",
-    "name": "Puff Bag Maxi Corsin preto",
-    "description": "Puff macio para relaxar e receber visitas com conforto.",
-    "type": "movel",
-    "productUrl": "https://www.tokstok.com.br/maxi-puff-corsin-preto-bag/p",
-    "imageUrl": "https://imagensra.tokstok.com.br/catalog-images/61224-62bf5e068819ef0001b13b17.jpg",
-    "priceCents": 49990,
     "mode": "single",
     "checkedAt": "2026-11-01"
   },

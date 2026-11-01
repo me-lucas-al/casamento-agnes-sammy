@@ -2,24 +2,57 @@ import type { VerifiedProductRecord } from "../../../types";
 
 export const COZINHA_UTENSILIO_4: readonly VerifiedProductRecord[] = [
   {
-    "id": "cozinha-tramontina-brasil-assadeiras-2-rosa",
-    "name": "Jogo de Assadeiras Tramontina Brasil 2 Peças Rosa",
-    "description": "Par de formas rosa para bolos e tortas cheios de afeto.",
+    "id": "cozinha-tramontina-paris-panelas-9-pecas-chumbo",
+    "name": "Jogo de Panelas Tramontina Paris 9 Peças Chumbo Antiaderente",
+    "description": "Um conjunto completo para os primeiros almoços de domingo na casa nova.",
     "type": "utensilio",
-    "productUrl": "https://www.amazon.com.br/dp/B0CFYRRWVL",
-    "imageUrl": "https://m.media-amazon.com/images/I/910R9JeEghL._AC_SL1500_.jpg",
-    "priceCents": 9590,
+    "productUrl": "https://www.amazon.com.br/dp/B0DCHCW13D",
+    "imageUrl": "https://m.media-amazon.com/images/I/518Ulk0iNzL._AC_SL1080_.jpg",
+    "priceCents": 67545,
     "mode": "single",
     "checkedAt": "2026-11-01"
   },
   {
-    "id": "cozinha-tramontina-brasil-assadeiras-2-preto",
-    "name": "Jogo de Assadeiras Tramontina Brasil 2 Peças Preto",
-    "description": "Duas assadeiras antiaderentes para os assados da casa nova.",
+    "id": "cozinha-tramontina-plenus-facas-4-pecas-preto",
+    "name": "Jogo de Facas Tramontina Plenus 4 Peças Preto",
+    "description": "Um kit enxuto de facas para começar a cozinha nova com o pé direito.",
     "type": "utensilio",
-    "productUrl": "https://www.amazon.com.br/dp/B0CDVV676G",
-    "imageUrl": "https://m.media-amazon.com/images/I/51JmBWZ0d8L._AC_SL1200_.jpg",
-    "priceCents": 9840,
+    "productUrl": "https://www.amazon.com.br/dp/B09XFD2YMF",
+    "imageUrl": "https://m.media-amazon.com/images/I/71EvJYnDRYL._AC_SL1500_.jpg",
+    "priceCents": 3420,
+    "mode": "single",
+    "checkedAt": "2026-11-01"
+  },
+  {
+    "id": "cozinha-tramontina-plenus-facas-6-pecas-cepo",
+    "name": "Jogo de Facas Tramontina Plenus 6 Peças com Cepo",
+    "description": "Facas organizadas no cepo, prontas para enfeitar a bancada e facilitar o preparo.",
+    "type": "utensilio",
+    "productUrl": "https://www.amazon.com.br/dp/B07K32CH6K",
+    "imageUrl": "https://m.media-amazon.com/images/I/71R-4mBBQOL._AC_SL1500_.jpg",
+    "priceCents": 9405,
+    "mode": "single",
+    "checkedAt": "2026-11-01"
+  },
+  {
+    "id": "cozinha-tramontina-plenus-facas-6-pecas-coloridas",
+    "name": "Jogo de Facas Tramontina Plenus 6 Peças Multicolorido",
+    "description": "Facas coloridas que alegram a cozinha e ajudam a separar cada tipo de corte.",
+    "type": "utensilio",
+    "productUrl": "https://www.amazon.com.br/dp/B076M7RBRP",
+    "imageUrl": "https://m.media-amazon.com/images/I/51qRXreMRaL._AC_SL1500_.jpg",
+    "priceCents": 6208,
+    "mode": "single",
+    "checkedAt": "2026-11-01"
+  },
+  {
+    "id": "cozinha-tramontina-plenus-facas-9-pecas",
+    "name": "Jogo de Facas Tramontina Plenus 9 Peças Preto",
+    "description": "Facas afiadas para o dia a dia que vão acompanhar muitos jantares do casal.",
+    "type": "utensilio",
+    "productUrl": "https://www.amazon.com.br/dp/B07WR4TP9W",
+    "imageUrl": "https://m.media-amazon.com/images/I/61XYJxq-3PL._AC_SL1000_.jpg",
+    "priceCents": 6975,
     "mode": "single",
     "checkedAt": "2026-11-01"
   },
@@ -35,50 +68,6 @@ export const COZINHA_UTENSILIO_4: readonly VerifiedProductRecord[] = [
     "checkedAt": "2026-11-01"
   },
   {
-    "id": "cozinha-tramontina-cosmos-assadeiras-inox-3",
-    "name": "Jogo de Assadeiras Tramontina Cosmos Aço Inox 3 Peças",
-    "description": "Assadeiras de inox resistentes, feitas para durar anos de receitas em família.",
-    "type": "utensilio",
-    "productUrl": "https://www.amazon.com.br/dp/B076JKS31S",
-    "imageUrl": "https://m.media-amazon.com/images/I/61H99x9+MBL._AC_SL1200_.jpg",
-    "priceCents": 20329,
-    "mode": "single",
-    "checkedAt": "2026-11-01"
-  },
-  {
-    "id": "cozinha-tramontina-adatto-balanca-base-inox",
-    "name": "Balança Digital de Cozinha Tramontina Adatto com Base em Aço Inox",
-    "description": "Balança de precisão para acertar a receita do bolo de todo domingo.",
-    "type": "utensilio",
-    "productUrl": "https://www.amazon.com.br/dp/B09Y7L3XVR",
-    "imageUrl": "https://m.media-amazon.com/images/I/61zDUOS2u6L._AC_SL1500_.jpg",
-    "priceCents": 16054,
-    "mode": "single",
-    "checkedAt": "2026-11-01"
-  },
-  {
-    "id": "cozinha-tramontina-adatto-balanca-inox",
-    "name": "Balança Digital de Cozinha Tramontina Adatto em Aço Inox",
-    "description": "Balança digital elegante que ajuda a medir tudo com capricho.",
-    "type": "utensilio",
-    "productUrl": "https://www.amazon.com.br/dp/B09RQ2DN8Y",
-    "imageUrl": "https://m.media-amazon.com/images/I/51i0c288YaL._AC_SL1000_.jpg",
-    "priceCents": 15104,
-    "mode": "single",
-    "checkedAt": "2026-11-01"
-  },
-  {
-    "id": "cozinha-tramontina-arbo-pratos-12",
-    "name": "Jogo de Pratos Tramontina Arbo Porcelana Decorada 12 Peças",
-    "description": "Jogo de pratos de visual natural para as primeiras refeições a quatro.",
-    "type": "utensilio",
-    "productUrl": "https://www.amazon.com.br/dp/B0D9C4QKK2",
-    "imageUrl": "https://m.media-amazon.com/images/I/61bEvYUgMoL._AC_SL1500_.jpg",
-    "priceCents": 16864,
-    "mode": "single",
-    "checkedAt": "2026-11-01"
-  },
-  {
     "id": "cozinha-tramontina-rustico-marrom-pratos-12",
     "name": "Jogo de Pratos Tramontina Rústico Marrom Porcelana 12 Peças",
     "description": "Pratos de ar rústico que deixam a mesa acolhedora e cheia de personalidade.",
@@ -86,6 +75,17 @@ export const COZINHA_UTENSILIO_4: readonly VerifiedProductRecord[] = [
     "productUrl": "https://www.amazon.com.br/dp/B0BTCDYS2Y",
     "imageUrl": "https://m.media-amazon.com/images/I/51Kws43ZScL._AC_SL1500_.jpg",
     "priceCents": 26910,
+    "mode": "single",
+    "checkedAt": "2026-11-01"
+  },
+  {
+    "id": "cozinha-tramontina-sophia-pratos-12",
+    "name": "Jogo de Pratos Tramontina Sophia Porcelana 12 Peças",
+    "description": "Pratos brancos clássicos que combinam com qualquer ocasião.",
+    "type": "utensilio",
+    "productUrl": "https://www.amazon.com.br/dp/B0B7QRRNX9",
+    "imageUrl": "https://m.media-amazon.com/images/I/41DiwFAOM6L._AC_SL1500_.jpg",
+    "priceCents": 19890,
     "mode": "single",
     "checkedAt": "2026-11-01"
   },

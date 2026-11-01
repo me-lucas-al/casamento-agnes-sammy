@@ -3,13 +3,11 @@ import { ALLOWED_IMAGE_HOSTS } from "./src/shared/lib/images/allowed-image-hosts
 
 const isDevelopment = process.env.NODE_ENV === "development";
 
-const imageSources = ALLOWED_IMAGE_HOSTS.map((host) => `https://${host}`).join(" ");
-
 const contentSecurityPolicy = [
   "default-src 'self'",
   `script-src 'self' 'unsafe-inline'${isDevelopment ? " 'unsafe-eval'" : ""}`,
   "style-src 'self' 'unsafe-inline'",
-  `img-src 'self' data: blob: ${imageSources}`,
+  "img-src 'self' data: blob: https://res.cloudinary.com",
   "font-src 'self' data:",
   "connect-src 'self' https://api.cloudinary.com",
   "object-src 'none'",

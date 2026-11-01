@@ -2,6 +2,10 @@ const JSON_LD_PATTERN = /<script[^>]*type=["']application\/ld\+json["'][^>]*>([\
 const META_TAG_PATTERN = /<meta\b[^>]*>/gi;
 const ATTRIBUTE_PATTERN = /([a-zA-Z:-]+)\s*=\s*("([^"]*)"|'([^']*)')/g;
 
+const TOKSTOK_VISIBLE_PRICE_PATTERN = /"simulationPrice":\{"price":([\d.]+)/;
+const AMAZON_VISIBLE_PRICE_PATTERN = /class="a-offscreen">\s*R\$(?:&nbsp;|\s)*([0-9.]+,\d{2})</;
+const BOT_CHALLENGE_PATTERN = /captcha|robot check|api-services-support@amazon|are you a human|acesso negado/i;
+
 type JsonRecord = Record<string, unknown>;
 
 function isRecord(value: unknown): value is JsonRecord {
@@ -69,6 +73,18 @@ function extractFromMeta(html: string): number | null {
   return toCents(tags.get("product:price:amount"));
 }
 
+function extractVisiblePrice(html: string): number | null {
+  const tokstokMatch = TOKSTOK_VISIBLE_PRICE_PATTERN.exec(html);
+  if (tokstokMatch) return toCents(tokstokMatch[1]);
+  const amazonMatch = AMAZON_VISIBLE_PRICE_PATTERN.exec(html);
+  if (amazonMatch) return toCents(amazonMatch[1].replace(/\./g, ""));
+  return null;
+}
+
+export function isBotChallengePage(html: string): boolean {
+  return BOT_CHALLENGE_PATTERN.test(html) && extractFromJsonLd(html) === null && extractVisiblePrice(html) === null;
+}
+
 export function extractPagePriceCents(html: string): number | null {
-  return extractFromJsonLd(html) ?? extractFromMeta(html);
+  return extractVisiblePrice(html) ?? extractFromJsonLd(html) ?? extractFromMeta(html);
 }

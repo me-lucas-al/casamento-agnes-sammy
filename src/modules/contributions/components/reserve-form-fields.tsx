@@ -64,8 +64,8 @@ export function AnonymousField({ checked, onChange }: AnonymousFieldProps) {
         className="mt-1 size-5 shrink-0 accent-rose"
       />
       <span>
-        Contribuir de forma anônima
-        <span className="block text-sm">Seu nome não aparece no mural de recados.</span>
+        Não mostrar meu nome no mural de recados
+        <span className="block text-sm">Os noivos continuam sabendo quem presenteou.</span>
       </span>
     </label>
   );

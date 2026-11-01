@@ -1,3 +1,4 @@
+import { requireGuestPageAccess } from "@/modules/profile/controllers/guards/guest-page-access";
 import { MyContributionCard } from "@/modules/contributions/components/my-contribution-card";
 import { listMyContributionsQuery } from "@/modules/contributions/controllers/queries/contributions.queries";
 import { EmptyState } from "@/shared/ui/feedback/empty-state";
@@ -6,6 +7,7 @@ import { PageHeading } from "@/shared/ui/layout/page-heading";
 export const dynamic = "force-dynamic";
 
 export default async function MyGiftsPage() {
+  await requireGuestPageAccess();
   const contributions = await listMyContributionsQuery();
   const now = new Date();
 

@@ -1,3 +1,4 @@
+import { getSessionUser } from "@/modules/auth/controllers/session/get-session-user";
 import { PendingPhotosNotice } from "@/modules/gallery/components/pending-photos-notice";
 import { PhotoGrid } from "@/modules/gallery/components/photo-grid";
 import { PhotoUploadForm } from "@/modules/gallery/components/photo-upload-form";
@@ -7,6 +8,7 @@ import {
 } from "@/modules/gallery/controllers/queries/gallery.queries";
 import type { SearchParams } from "@/shared/lib/url/url-params";
 import { EmptyState } from "@/shared/ui/feedback/empty-state";
+import { StaffPreviewNotice } from "@/shared/ui/feedback/staff-preview-notice";
 import { PaginationControls } from "@/shared/ui/navigation/pagination-controls";
 import { PageHeading } from "@/shared/ui/layout/page-heading";
 
@@ -16,7 +18,8 @@ type GaleriaPageProps = {
 
 export default async function GaleriaPage({ searchParams }: GaleriaPageProps) {
   const params = await searchParams;
-  const [pageResult, ownPendingTotal] = await Promise.all([
+  const [actor, pageResult, ownPendingTotal] = await Promise.all([
+    getSessionUser(),
     listApprovedPhotosQuery(params),
     countOwnPendingPhotosQuery(),
   ]);
@@ -24,7 +27,7 @@ export default async function GaleriaPage({ searchParams }: GaleriaPageProps) {
   return (
     <div className="mx-auto grid max-w-5xl gap-6">
       <PageHeading title="Galeria" description="Momentos da nossa história e da nossa festa. Compartilhe os seus!" />
-      <PhotoUploadForm />
+      {actor?.role === "guest" ? <PhotoUploadForm /> : <StaffPreviewNotice />}
       <PendingPhotosNotice total={ownPendingTotal} />
       {pageResult.items.length === 0 ? (
         <EmptyState title="Ainda não há fotos" description="Seja o primeiro a compartilhar um momento." />

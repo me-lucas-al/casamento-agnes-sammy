@@ -3,6 +3,7 @@ import { ApprovedMessagesList } from "@/modules/messages/components/approved-mes
 import { MessageForm } from "@/modules/messages/components/message-form";
 import { listApprovedMessagesQuery } from "@/modules/messages/controllers/queries/messages.queries";
 import type { SearchParams } from "@/shared/lib/url/url-params";
+import { StaffPreviewNotice } from "@/shared/ui/feedback/staff-preview-notice";
 import { EmptyState } from "@/shared/ui/feedback/empty-state";
 import { PaginationControls } from "@/shared/ui/navigation/pagination-controls";
 import { PageHeading } from "@/shared/ui/layout/page-heading";
@@ -14,7 +15,7 @@ export default async function MessagesPage({ searchParams }: { searchParams: Pro
   return (
     <div className="mx-auto flex max-w-xl flex-col gap-8">
       <PageHeading title="Mural de recados" description="Deixe uma mensagem para a gente guardar para sempre." />
-      {actor?.role === "guest" ? <MessageForm defaultAuthorName="" /> : null}
+      {actor?.role === "guest" ? <MessageForm defaultAuthorName="" /> : <StaffPreviewNotice />}
       {pageResult.items.length === 0 ? (
         <EmptyState title="Ainda não há recados" description="Seja o primeiro a deixar um carinho." />
       ) : (

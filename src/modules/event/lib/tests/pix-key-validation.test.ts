@@ -22,9 +22,17 @@ describe("isValidPixKey", () => {
     expect(isValidPixKey("email", "casal@")).toBe(false);
   });
 
-  it("requires phone in +55 format", () => {
+  it("accepts phone with or without +55 and stores it in +55 format", () => {
     expect(isValidPixKey("phone", "+55 (11) 91234-5678")).toBe(true);
-    expect(isValidPixKey("phone", "11912345678")).toBe(false);
+    expect(isValidPixKey("phone", "11912345678")).toBe(true);
+    expect(isValidPixKey("phone", "(11) 91234-5678")).toBe(true);
+    expect(normalizePixKey("phone", "(11) 91234-5678")).toBe("+5511912345678");
+    expect(normalizePixKey("phone", "+55 11 91234-5678")).toBe("+5511912345678");
+  });
+
+  it("rejects phone numbers with the wrong length", () => {
+    expect(isValidPixKey("phone", "1191234")).toBe(false);
+    expect(isValidPixKey("phone", "119123456789012")).toBe(false);
   });
 
   it("requires random key as uuid", () => {

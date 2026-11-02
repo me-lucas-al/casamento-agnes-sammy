@@ -55,7 +55,9 @@ export function normalizePixKey(type: PixKeyType, key: string): string {
   const trimmed = key.trim();
   if (type === "cpf" || type === "cnpj") return onlyDigits(trimmed);
   if (type === "email" || type === "random") return trimmed.toLowerCase();
-  return trimmed.replace(/[\s()-]/g, "");
+  const compact = trimmed.replace(/[\s()-]/g, "");
+  if (compact.startsWith("+")) return compact;
+  return /^\d{10,11}$/.test(compact) ? `+55${compact}` : compact;
 }
 
 export function isValidPixKey(type: PixKeyType, key: string): boolean {

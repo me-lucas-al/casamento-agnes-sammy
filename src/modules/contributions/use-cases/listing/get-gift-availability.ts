@@ -1,4 +1,5 @@
 import { requireRole } from "@/modules/auth/authorization";
+import { GUEST_AREA_READER_ROLES } from "@/modules/auth/role-groups";
 import type { SessionUser } from "@/modules/auth/types";
 import { GiftNotFoundError } from "@/modules/contributions/errors";
 import { calculateAvailability } from "@/modules/contributions/lib/availability/gift-availability";
@@ -12,7 +13,7 @@ export function makeGetGiftAvailability({ contributionRepository, clock }: Depen
     actor: SessionUser | null,
     giftId: string,
   ): Promise<GiftReservationView> {
-    const user = requireRole(actor, ["guest", "couple", "admin"]);
+    const user = requireRole(actor, GUEST_AREA_READER_ROLES);
     const found = await contributionRepository.findGiftWithCommitment(giftId, clock());
     if (!found) throw new GiftNotFoundError();
     if (!found.gift.isVisible && user.role === "guest") throw new GiftNotFoundError();

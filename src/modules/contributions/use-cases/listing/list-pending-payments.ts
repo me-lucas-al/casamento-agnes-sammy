@@ -1,6 +1,9 @@
 import { requireRole } from "@/modules/auth/authorization";
+import { isViewer } from "@/modules/auth/lib/is-viewer";
+import { PANEL_READER_ROLES } from "@/modules/auth/role-groups";
 import type { SessionUser } from "@/modules/auth/types";
 import { buildPageResult, type PageParams, type PageResult } from "@/shared/lib/pagination/pagination";
+import { maskPaymentForViewer } from "@/modules/contributions/lib/privacy/mask-payment-for-viewer";
 import type { ContributionRepository } from "@/modules/contributions/repositories/contracts/contribution-repository";
 import type { PaymentSort, PaymentStatusFilter, PendingPaymentRow } from "@/modules/contributions/types";
 
@@ -13,7 +16,7 @@ export function makeListPendingPayments({ contributionRepository }: Dependencies
     actor: SessionUser | null,
     { page, perPage, offset, status, search, sort }: Input,
   ): Promise<PageResult<PendingPaymentRow>> {
-    requireRole(actor, ["admin", "couple"]);
+    const user = requireRole(actor, PANEL_READER_ROLES);
     const { items, total } = await contributionRepository.listPendingPage({
       limit: perPage,
       offset,
@@ -21,6 +24,7 @@ export function makeListPendingPayments({ contributionRepository }: Dependencies
       search,
       sort,
     });
-    return buildPageResult({ items, total, page, perPage });
+    const visibleItems = isViewer(user) ? items.map(maskPaymentForViewer) : items;
+    return buildPageResult({ items: visibleItems, total, page, perPage });
   };
 }

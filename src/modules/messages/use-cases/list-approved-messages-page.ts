@@ -1,4 +1,5 @@
 import { requireRole } from "@/modules/auth/authorization";
+import { GUEST_AREA_READER_ROLES } from "@/modules/auth/role-groups";
 import type { SessionUser } from "@/modules/auth/types";
 import { approvedMessagesTag } from "@/shared/lib/cache/cache-tags";
 import type { CachedReader } from "@/shared/lib/cache/cached-read";
@@ -13,7 +14,7 @@ export function makeListApprovedMessagesPage({ messageRepository, cachedReader }
     actor: SessionUser | null,
     { page, perPage, offset }: PageParams,
   ): Promise<PageResult<PublicMessage>> {
-    requireRole(actor, ["admin", "couple", "guest"]);
+    requireRole(actor, GUEST_AREA_READER_ROLES);
     const cacheOptions = {
       keyParts: ["messages", "approved", String(page), String(perPage)],
       tags: [approvedMessagesTag()],

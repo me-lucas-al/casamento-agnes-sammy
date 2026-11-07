@@ -17,7 +17,7 @@ type UsuariosPageProps = {
 
 export default async function UsuariosPage({ searchParams }: UsuariosPageProps) {
   const actor = await getSessionUser();
-  if (!hasRole(actor, ["admin"])) redirect("/painel");
+  if (!hasRole(actor, ["admin", "viewer"])) redirect("/painel");
   const params = await searchParams;
   const pageResult = await listUsersPageQuery(params);
 

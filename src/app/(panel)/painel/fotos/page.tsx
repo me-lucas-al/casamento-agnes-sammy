@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
 import { hasRole } from "@/modules/auth/authorization";
+import { PANEL_READER_ROLES } from "@/modules/auth/role-groups";
 import { getSessionUser } from "@/modules/auth/controllers/session/get-session-user";
 import { ModerationQueue } from "@/modules/gallery/components/moderation-queue";
 import { StatusFilter } from "@/modules/gallery/components/status-filter";
@@ -16,7 +17,7 @@ type FotosPageProps = {
 
 export default async function FotosPage({ searchParams }: FotosPageProps) {
   const actor = await getSessionUser();
-  if (!hasRole(actor, ["admin", "couple"])) redirect("/?aba=noivos");
+  if (!hasRole(actor, PANEL_READER_ROLES)) redirect("/?aba=noivos");
   const params = await searchParams;
   const pageResult = await listPhotosPanelQuery(params);
 

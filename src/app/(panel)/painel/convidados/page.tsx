@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation";
 import { getSessionUser } from "@/modules/auth/controllers/session/get-session-user";
 import { hasRole } from "@/modules/auth/authorization";
+import { PANEL_READER_ROLES } from "@/modules/auth/role-groups";
 import { CreateGuestPanel } from "@/modules/guests/components/create-guest-panel";
 import { GuestsTable } from "@/modules/guests/components/guests-table";
 import { GuestsToolbar } from "@/modules/guests/components/guests-toolbar";
@@ -18,7 +19,7 @@ type ConvidadosPageProps = {
 
 export default async function ConvidadosPage({ searchParams }: ConvidadosPageProps) {
   const actor = await getSessionUser();
-  if (!hasRole(actor, ["admin", "couple"])) redirect("/?aba=noivos");
+  if (!hasRole(actor, PANEL_READER_ROLES)) redirect("/?aba=noivos");
   const params = await searchParams;
   const pageResult = await listGuestsPageQuery(params);
 

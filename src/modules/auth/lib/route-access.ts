@@ -30,6 +30,7 @@ function redirectTo(to: string): RouteDecision {
 function resolvePanelAccess(pathname: string, role: Role | undefined): RouteDecision {
   if (!role) return redirectTo(COUPLE_LOGIN_ROUTE);
   if (role === "guest") return redirectTo(resolveHomeRoute(role));
+  if (role === "viewer") return ALLOW;
   if (isUnder(pathname, ADMIN_ONLY_PREFIX) && role !== "admin") return redirectTo(PANEL_PREFIX);
   return ALLOW;
 }
@@ -47,5 +48,5 @@ export function resolveRedirectDestination(pathname: string, role: Role | undefi
 }
 
 export function resolveHomeRoute(role: Role): string {
-  return role === "guest" ? "/inicio" : PANEL_PREFIX;
+  return role === "guest" || role === "viewer" ? "/inicio" : PANEL_PREFIX;
 }

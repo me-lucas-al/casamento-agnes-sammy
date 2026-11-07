@@ -4,7 +4,7 @@ import { ProfileFields } from "../forms/profile-fields";
 
 type StaffProfileViewProps = { profile: StaffProfile };
 
-const ROLE_LABELS = { admin: "Administrador", couple: "Noivos", guest: "Convidado" } as const;
+const ROLE_LABELS = { admin: "Administrador", couple: "Noivos", guest: "Convidado", viewer: "Visitante" } as const;
 
 export function StaffProfileView({ profile }: StaffProfileViewProps) {
   const fields = [

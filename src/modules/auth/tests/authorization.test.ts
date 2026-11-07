@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { asUser } from "@/tests/helpers/fakes/fake-session";
 import { hasRole, requireRole } from "../authorization";
-import { ForbiddenError, UnauthenticatedError } from "../errors";
+import { ForbiddenError, UnauthenticatedError, ViewerReadOnlyError } from "../errors";
 
 describe("requireRole", () => {
   it("returns the user when the role is allowed", () => {
@@ -25,5 +25,17 @@ describe("hasRole", () => {
     expect(hasRole(null, ["admin"])).toBe(false);
     expect(hasRole(asUser("guest"), ["admin"])).toBe(false);
     expect(hasRole(asUser("admin"), ["admin"])).toBe(true);
+  });
+});
+
+describe("requireRole for viewer", () => {
+  it("allows the viewer where the role is listed", () => {
+    const viewer = asUser("viewer");
+    expect(requireRole(viewer, ["admin", "couple", "viewer"])).toBe(viewer);
+  });
+
+  it("throws ViewerReadOnlyError, a ForbiddenError, when the viewer is not listed", () => {
+    expect(() => requireRole(asUser("viewer"), ["admin", "couple"])).toThrow(ViewerReadOnlyError);
+    expect(() => requireRole(asUser("viewer"), ["guest"])).toThrow(ForbiddenError);
   });
 });

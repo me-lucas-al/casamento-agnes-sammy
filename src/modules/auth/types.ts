@@ -1,6 +1,10 @@
-export const ROLES = ["admin", "couple", "guest"] as const;
+export const ROLES = ["admin", "couple", "guest", "viewer"] as const;
 
 export type Role = (typeof ROLES)[number];
+
+export type StaffRole = Extract<Role, "admin" | "couple">;
+
+export const VIEWER_USER_ID = "viewer";
 
 export type SessionUser = {
   id: string;

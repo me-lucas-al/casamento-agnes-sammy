@@ -63,3 +63,15 @@ describe("resolveRedirectDestination", () => {
     expect(resolveRedirectDestination("/inicio", "guest")).toBeNull();
   });
 });
+
+describe("viewer access", () => {
+  it("lets the viewer read the guest area and the whole panel", () => {
+    expect(resolveRouteAccess("/presentes", "viewer")).toEqual(allow);
+    expect(resolveRouteAccess("/painel/convidados", "viewer")).toEqual(allow);
+    expect(resolveRouteAccess("/painel/usuarios", "viewer")).toEqual(allow);
+  });
+
+  it("starts the viewer in the guest home", () => {
+    expect(resolveHomeRoute("viewer")).toBe("/inicio");
+  });
+});

@@ -1,4 +1,4 @@
-import { ForbiddenError, UnauthenticatedError } from "./errors";
+import { ForbiddenError, UnauthenticatedError, ViewerReadOnlyError } from "./errors";
 import type { Role, SessionUser } from "./types";
 
 export function hasRole(user: SessionUser | null, allowedRoles: readonly Role[]): boolean {
@@ -11,6 +11,7 @@ export function requireRole(
   allowedRoles: readonly Role[],
 ): SessionUser {
   if (!user) throw new UnauthenticatedError();
-  if (!allowedRoles.includes(user.role)) throw new ForbiddenError();
-  return user;
+  if (allowedRoles.includes(user.role)) return user;
+  if (user.role === "viewer") throw new ViewerReadOnlyError();
+  throw new ForbiddenError();
 }

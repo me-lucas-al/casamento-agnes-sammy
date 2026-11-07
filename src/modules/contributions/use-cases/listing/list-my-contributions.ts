@@ -1,3 +1,4 @@
+import { isViewer } from "@/modules/auth/lib/is-viewer";
 import type { SessionUser } from "@/modules/auth/types";
 import { requireGuestId } from "@/modules/contributions/lib/reservation/require-guest-id";
 import type { ContributionRepository } from "@/modules/contributions/repositories/contracts/contribution-repository";
@@ -9,6 +10,7 @@ export function makeListMyContributions({ contributionRepository }: Dependencies
   return async function listMyContributions(
     actor: SessionUser | null,
   ): Promise<ContributionWithGift[]> {
+    if (isViewer(actor)) return [];
     const guestId = requireGuestId(actor);
     return contributionRepository.listByGuest(guestId);
   };

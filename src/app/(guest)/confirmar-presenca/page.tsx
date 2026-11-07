@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
 import { getSessionUser } from "@/modules/auth/controllers/session/get-session-user";
+import { isViewer } from "@/modules/auth/lib/is-viewer";
 import { getMyRsvpQuery } from "@/modules/rsvp/controllers/queries/rsvp.queries";
 import { RsvpForm } from "@/modules/rsvp/components/rsvp-form";
 import { PageHeading } from "@/shared/ui/layout/page-heading";
@@ -8,7 +9,7 @@ export const dynamic = "force-dynamic";
 
 export default async function ConfirmPresencePage() {
   const actor = await getSessionUser();
-  if (actor && actor.role !== "guest") redirect("/painel/presencas");
+  if (actor && actor.role !== "guest" && !isViewer(actor)) redirect("/painel/presencas");
   const guestRsvp = await getMyRsvpQuery();
 
   return (

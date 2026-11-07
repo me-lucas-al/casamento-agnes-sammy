@@ -26,5 +26,6 @@ export const GUEST_NAV_ITEMS: readonly NavItem[] = [
 ];
 
 export function panelNavItemsFor(role: Role): readonly NavItem[] {
-  return PANEL_ITEMS.filter((item) => !item.adminOnly || role === "admin");
+  const canSeeAdminItems = role === "admin" || role === "viewer";
+  return PANEL_ITEMS.filter((item) => !item.adminOnly || canSeeAdminItems);
 }

@@ -1,7 +1,7 @@
 import { maskAlphanumerics } from "./mask-alphanumerics";
 
 export function maskAccessCode(code: string): string {
-  return maskAlphanumerics(code, { keepHead: 2, keepTail: 2 });
+  return maskAlphanumerics(code, { keepHead: 0, keepTail: 0 });
 }
 
 export function maskPhone(phone: string): string {

@@ -2,8 +2,8 @@ import { describe, expect, it } from "vitest";
 import { maskAccessCode, maskEmail, maskPhone, maskPixKey } from "../mask-contact";
 
 describe("maskAccessCode", () => {
-  it("keeps only the first and last two characters", () => {
-    expect(maskAccessCode("K7M2QX9P")).toBe("K7••••9P");
+  it("hides every character so no part of the code can be guessed", () => {
+    expect(maskAccessCode("K7M2QX9P")).toBe("••••••••");
   });
 
   it("hides short codes completely", () => {

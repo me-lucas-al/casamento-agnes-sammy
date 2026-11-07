@@ -21,7 +21,7 @@ describe("maskGuestForViewer", () => {
     expect(maskGuestForViewer(guest)).toEqual({
       ...guest,
       name: "Maria L.",
-      code: "K7••••9P",
+      code: "••••••••",
       phone: "•••••••••21",
       email: "m••••@example.com",
     });

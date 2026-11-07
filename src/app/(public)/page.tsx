@@ -4,6 +4,7 @@ import { LoginScreen } from "@/modules/auth/components/login/layout/login-screen
 import { getEventSettingsQuery } from "@/modules/event/controllers/queries/event.queries";
 import { enumParam, firstValue, type SearchParams } from "@/shared/lib/url/url-params";
 import { normalizeAccessCode } from "@/modules/auth/lib/access-code";
+import { isViewerModeEnabled } from "@/modules/auth/controllers/session/viewer-mode";
 import { describeLoginError, parseLoginError } from "@/modules/auth/lib/login-error";
 
 export const metadata: Metadata = {
@@ -26,6 +27,7 @@ export default async function HomePage({ searchParams }: HomePageProps) {
       initialCode={initialCode}
       initialTab={initialTab}
       errorMessage={describeLoginError(loginError)}
+      isViewerModeEnabled={isViewerModeEnabled()}
     />
   );
 }

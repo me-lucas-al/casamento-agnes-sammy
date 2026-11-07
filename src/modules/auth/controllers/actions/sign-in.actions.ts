@@ -1,5 +1,6 @@
 "use server";
 
+import { redirect } from "next/navigation";
 import { AuthError } from "next-auth";
 import { logger } from "@/shared/lib/logging/logger";
 import { serializeError } from "@/shared/lib/logging/serialize-error";
@@ -31,6 +32,15 @@ export async function signInWithGuestCodeAction(
 
 export async function signInWithGoogleAction(): Promise<void> {
   await signIn("google", { redirectTo: "/painel" });
+}
+
+export async function signInAsViewerAction(): Promise<void> {
+  try {
+    await signIn("viewer", { redirectTo: "/inicio" });
+  } catch (error) {
+    if (isNextControlFlowError(error)) throw error;
+    redirect("/");
+  }
 }
 
 export async function signOutAction(): Promise<void> {

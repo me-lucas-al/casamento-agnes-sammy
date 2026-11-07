@@ -4,15 +4,17 @@ import { GoogleSignInButton } from "../form/google-sign-in-button";
 import { HowItWorksStrip } from "./how-it-works-strip";
 import { LoginHeader } from "./login-header";
 import { LoginTabs, type LoginTab } from "../form/login-tabs";
+import { ViewerEntryButton } from "../form/viewer-entry-button";
 
 type LoginCardProps = {
   settings: EventSettingsSnapshot;
   initialCode: string;
   initialTab: LoginTab;
   errorMessage: string | null;
+  isViewerModeEnabled: boolean;
 };
 
-export function LoginCard({ settings, initialCode, initialTab, errorMessage }: LoginCardProps) {
+export function LoginCard({ settings, initialCode, initialTab, errorMessage, isViewerModeEnabled }: LoginCardProps) {
   return (
     <section
       aria-labelledby="login-title"
@@ -24,6 +26,7 @@ export function LoginCard({ settings, initialCode, initialTab, errorMessage }: L
         guestPanel={<AccessCodeForm initialCode={initialCode} />}
         couplePanel={<GoogleSignInButton errorMessage={errorMessage} />}
       />
+      {isViewerModeEnabled ? <ViewerEntryButton /> : null}
       <HowItWorksStrip />
     </section>
   );

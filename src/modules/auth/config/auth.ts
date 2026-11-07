@@ -5,6 +5,7 @@ import { z } from "zod";
 import { getAuthEnv } from "@/shared/config/env";
 import { InvalidGuestCodeError, TooManyLoginAttemptsError } from "../errors";
 import { getAuthModule } from "../factory";
+import { VIEWER_USER_ID } from "../types";
 import { authConfig } from "./auth.config";
 import { hashIpAddress, readClientIp } from "./client-ip";
 
@@ -17,6 +18,14 @@ export const { handlers, auth, signIn, signOut } = NextAuth(() => {
     secret: env.AUTH_SECRET,
     providers: [
       Google({ clientId: env.AUTH_GOOGLE_ID, clientSecret: env.AUTH_GOOGLE_SECRET }),
+      Credentials({
+        id: "viewer",
+        credentials: {},
+        authorize() {
+          if (!env.VIEWER_MODE_ENABLED) return null;
+          return { id: VIEWER_USER_ID, role: "viewer", name: "Visitante" };
+        },
+      }),
       Credentials({
         id: "guest-code",
         credentials: { code: {} },

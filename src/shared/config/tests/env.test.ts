@@ -38,6 +38,12 @@ describe("auth env", () => {
   it("rejects a short auth secret", () => {
     expect(() => parseAuthEnv({ ...authVars, AUTH_SECRET: "short" })).toThrow(/AUTH_SECRET/);
   });
+
+  it("enables viewer mode by default and lets it be turned off", () => {
+    expect(parseAuthEnv(authVars).VIEWER_MODE_ENABLED).toBe(true);
+    expect(parseAuthEnv({ ...authVars, VIEWER_MODE_ENABLED: "false" }).VIEWER_MODE_ENABLED).toBe(false);
+    expect(() => parseAuthEnv({ ...authVars, VIEWER_MODE_ENABLED: "maybe" })).toThrow(/VIEWER_MODE_ENABLED/);
+  });
 });
 
 describe("database env", () => {

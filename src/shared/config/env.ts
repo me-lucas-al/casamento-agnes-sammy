@@ -6,6 +6,10 @@ const authEnvSchema = z.object({
   AUTH_SECRET: z.string().min(16),
   AUTH_GOOGLE_ID: z.string().min(1),
   AUTH_GOOGLE_SECRET: z.string().min(1),
+  VIEWER_MODE_ENABLED: z
+    .enum(["true", "false"])
+    .default("true")
+    .transform((value) => value === "true"),
 });
 
 const databaseEnvSchema = z.object({ DATABASE_URL: z.string().min(1) });

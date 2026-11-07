@@ -42,7 +42,9 @@ describe("auth env", () => {
   it("enables viewer mode by default and lets it be turned off", () => {
     expect(parseAuthEnv(authVars).VIEWER_MODE_ENABLED).toBe(true);
     expect(parseAuthEnv({ ...authVars, VIEWER_MODE_ENABLED: "false" }).VIEWER_MODE_ENABLED).toBe(false);
-    expect(() => parseAuthEnv({ ...authVars, VIEWER_MODE_ENABLED: "maybe" })).toThrow(/VIEWER_MODE_ENABLED/);
+    expect(parseAuthEnv({ ...authVars, VIEWER_MODE_ENABLED: " TRUE " }).VIEWER_MODE_ENABLED).toBe(true);
+    expect(parseAuthEnv({ ...authVars, VIEWER_MODE_ENABLED: "maybe" }).VIEWER_MODE_ENABLED).toBe(false);
+    expect(parseAuthEnv({ ...authVars, VIEWER_MODE_ENABLED: "" }).VIEWER_MODE_ENABLED).toBe(false);
   });
 });
 

@@ -1,4 +1,5 @@
 import { requireRole } from "@/modules/auth/authorization";
+import { GUEST_AREA_READER_ROLES } from "@/modules/auth/role-groups";
 import type { SessionUser } from "@/modules/auth/types";
 import { approvedPhotosTag } from "@/shared/lib/cache/cache-tags";
 import type { CachedReader } from "@/shared/lib/cache/cached-read";
@@ -15,7 +16,7 @@ export function makeListApprovedPhotosPage({ photoRepository, cachedReader }: De
     actor: SessionUser | null,
     { page, perPage, offset, sort }: Input,
   ): Promise<PageResult<PublicPhoto>> {
-    requireRole(actor, ["admin", "couple", "guest"]);
+    requireRole(actor, GUEST_AREA_READER_ROLES);
     const { items, total } = await cachedReader.read(
       {
         keyParts: ["gallery", "approved", String(page), String(perPage), sort],

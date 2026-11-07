@@ -1,4 +1,5 @@
 import { requireRole } from "@/modules/auth/authorization";
+import { PANEL_READER_ROLES } from "@/modules/auth/role-groups";
 import type { SessionUser } from "@/modules/auth/types";
 import { buildPageResult, type PageParams, type PageResult } from "@/shared/lib/pagination/pagination";
 import type { PhotoRepository } from "@/modules/gallery/repositories/contracts/photo-repository";
@@ -13,7 +14,7 @@ export function makeListPhotosPanelPage({ photoRepository }: Dependencies) {
     actor: SessionUser | null,
     { page, perPage, offset, status }: Input,
   ): Promise<PageResult<Photo>> {
-    requireRole(actor, ["admin", "couple"]);
+    requireRole(actor, PANEL_READER_ROLES);
     const { items, total } = await photoRepository.listPanelPage({ limit: perPage, offset, status });
     return buildPageResult({ items, total, page, perPage });
   };

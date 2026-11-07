@@ -1,6 +1,6 @@
 import { requireRole } from "@/modules/auth/authorization";
 import type { SessionUser } from "@/modules/auth/types";
-import { GIFT_MANAGER_ROLES } from "@/modules/gifts/lib/roles/gift-roles";
+import { GIFT_PANEL_READER_ROLES } from "@/modules/gifts/lib/roles/gift-roles";
 import { buildPageResult, type PageResult } from "@/shared/lib/pagination/pagination";
 import { normalizeGiftName } from "../lib/catalog/normalize-gift-name";
 import { selectSuggestions } from "../lib/filters/query-suggestions";
@@ -18,7 +18,7 @@ export function makeListSuggestionsWithStatus({ gateway, catalog }: Dependencies
     actor: SessionUser | null,
     query: SuggestionQuery,
   ): Promise<PageResult<SuggestionWithStatus>> {
-    requireRole(actor, GIFT_MANAGER_ROLES);
+    requireRole(actor, GIFT_PANEL_READER_ROLES);
     const existingNames = new Set((await gateway.listGiftNames()).map(normalizeGiftName));
     const matching = selectSuggestions(catalog, query);
     const { page, perPage, offset } = query;

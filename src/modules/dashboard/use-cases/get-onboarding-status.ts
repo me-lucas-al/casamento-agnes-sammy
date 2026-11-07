@@ -1,4 +1,5 @@
 import { requireRole } from "@/modules/auth/authorization";
+import { PANEL_READER_ROLES } from "@/modules/auth/role-groups";
 import type { SessionUser } from "@/modules/auth/types";
 import { buildOnboardingStatus } from "../lib/build-onboarding-steps";
 import type { DashboardRepository } from "../repositories/contracts/dashboard-repository";
@@ -8,7 +9,7 @@ type Dependencies = { dashboardRepository: DashboardRepository };
 
 export function makeGetOnboardingStatus({ dashboardRepository }: Dependencies) {
   return async function getOnboardingStatus(actor: SessionUser | null): Promise<OnboardingStatus> {
-    requireRole(actor, ["admin", "couple"]);
+    requireRole(actor, PANEL_READER_ROLES);
     const facts = await dashboardRepository.readOnboardingFacts();
     return buildOnboardingStatus(facts);
   };

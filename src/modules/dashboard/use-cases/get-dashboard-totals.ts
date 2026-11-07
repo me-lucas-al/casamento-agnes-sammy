@@ -1,4 +1,5 @@
 import { requireRole } from "@/modules/auth/authorization";
+import { PANEL_READER_ROLES } from "@/modules/auth/role-groups";
 import type { SessionUser } from "@/modules/auth/types";
 import { dashboardTag } from "@/shared/lib/cache/cache-tags";
 import type { CachedReader } from "@/shared/lib/cache/cached-read";
@@ -15,7 +16,7 @@ const DASHBOARD_REVALIDATE_SECONDS = 60;
 
 export function makeGetDashboardTotals({ dashboardRepository, cachedReader, now }: Dependencies) {
   return async function getDashboardTotals(actor: SessionUser | null): Promise<DashboardTotals> {
-    requireRole(actor, ["admin", "couple"]);
+    requireRole(actor, PANEL_READER_ROLES);
     return cachedReader.read(
       {
         keyParts: ["dashboard", "totals"],

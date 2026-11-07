@@ -53,7 +53,7 @@ Quem não foi convidado nem é dos noivos (desenvolvedores, tech leads, quem che
 
 - **Vê tudo**: a área do convidado (início, convite, presentes, recados, galeria) e o painel dos noivos (convidados, presentes, pagamentos, presenças, recados, fotos, usuários, evento). Um banner no topo avisa o modo e leva de uma área à outra.
 - **Não altera nada**: criar, editar, apagar, reservar, aprovar e enviar são recusados no servidor com a mensagem "Modo visitante: dá para explorar tudo, mas nada pode ser alterado". Nenhum caso de uso de escrita aceita o papel `viewer`, então a proteção não depende de esconder botões.
-- **Dados pessoais mascarados**: nomes viram "Maria L.", códigos de acesso "K7••••9P", telefones e e-mails perdem os dígitos, e a chave Pix aparece mascarada. A busca é ignorada para o visitante, para que ninguém descubra códigos por tentativa.
+- **Dados pessoais mascarados**: nomes viram "Maria L.", códigos de acesso "••••••••" (inteiros, sem revelar nenhum caractere), telefones e e-mails perdem os dígitos, e a chave Pix aparece mascarada. A busca é ignorada para o visitante, para que ninguém descubra códigos por tentativa.
 - **Convidado de exemplo**: as telas pessoais (início, convite, confirmar presença, perfil) mostram um convidado fictício, sem tocar nos dados de ninguém.
 - **Sem estado**: a sessão do visitante não tem registro no banco e o tour do painel pode ser revisto sem gravar nada.
 
@@ -67,7 +67,7 @@ As duas opções ficam logo abaixo do formulário de entrada, na aba "Sou convid
 | --- | --- |
 | <img src="docs/screenshots/28-visitante-inicio.webp" width="420" alt="Início do convidado em modo visitante, com o banner no topo"> | <img src="docs/screenshots/29-visitante-painel-convidados.webp" width="420" alt="Painel de convidados em modo visitante, com nomes, códigos, telefones e e-mails mascarados"> |
 
-Para desligar depois do casamento, defina `VIEWER_MODE_ENABLED=false`: as opções somem e o login do visitante deixa de funcionar.
+Para desligar depois do casamento, defina `VIEWER_MODE_ENABLED=false` (qualquer valor diferente de `true` desliga): as opções somem, o login do visitante deixa de funcionar e as sessões de visitante já abertas perdem o acesso na hora.
 
 ## Tour pelas telas
 
@@ -306,7 +306,7 @@ Preencha o `.env` (todas as credenciais, inclusive as do Postgres do Docker, fic
 | `CRON_SECRET` | Protege a rota do cron de expiração |
 | `APP_URL` | URL pública do site |
 | `ADMIN_EMAIL`, `ADMIN_NAME` | Primeiro administrador |
-| `VIEWER_MODE_ENABLED` | `true` (padrão) liga o modo visitante; `false` desliga |
+| `VIEWER_MODE_ENABLED` | Modo visitante: ligado quando ausente ou `true`; qualquer outro valor desliga |
 
 Depois:
 

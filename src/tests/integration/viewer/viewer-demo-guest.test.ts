@@ -25,7 +25,7 @@ describe("viewer sees a demo guest and a demo staff profile", () => {
     await seedContribution(testDatabase.db);
     const { rsvpModule, contributionModule } = context();
 
-    await expect(rsvpModule.getGuestRsvp(viewer, "")).resolves.toMatchObject({
+    await expect(rsvpModule.getGuestRsvp(viewer, VIEWER_USER_ID)).resolves.toMatchObject({
       guestName: "Convidado(a) de exemplo",
       status: "pending",
     });

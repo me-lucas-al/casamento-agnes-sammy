@@ -30,7 +30,7 @@ describe("viewer reads with masked personal data", () => {
     expect(page.items).toHaveLength(1);
     expect(page.items[0]).toMatchObject({
       name: "Maria L.",
-      code: "K7••••9P",
+      code: "••••••••",
       phone: "•••••••••21",
       email: "m••••@example.com",
     });

@@ -13,6 +13,7 @@ O visual segue o convite: papel kraft, flores em aquarela, monograma A/S, tons d
 ## Sumário
 
 - [O que o site faz](#o-que-o-site-faz)
+- [Modo visitante](#modo-visitante)
 - [Tour pelas telas](#tour-pelas-telas)
 - [Tour guiado dos noivos](#tour-guiado-dos-noivos)
 - [Stack](#stack)
@@ -26,13 +27,14 @@ O visual segue o convite: papel kraft, flores em aquarela, monograma A/S, tons d
 
 ## O que o site faz
 
-Existem três papéis de acesso:
+Existem quatro papéis de acesso:
 
 | Papel | Como entra | O que pode fazer |
 | --- | --- | --- |
 | `guest` (convidado) | Código de acesso de 8 caracteres do convite | Ver o evento, escolher e pagar presentes, confirmar presença, deixar recados, enviar fotos, editar o próprio perfil |
 | `couple` (noivos) | Login com Google (lista de e-mails autorizados) | Tudo do painel: convidados, presentes, pagamentos, presenças, moderação, evento e Pix |
 | `admin` | Login com Google | Tudo dos noivos, mais o cadastro de usuários do painel |
+| `viewer` (visitante) | Botão "Só quero conhecer o site" na tela de entrada | Ver o site inteiro, inclusive o painel, sem poder alterar nada e com dados pessoais mascarados ([detalhes](#modo-visitante)) |
 
 Principais fluxos:
 
@@ -43,6 +45,19 @@ Principais fluxos:
 - **Mural de recados** e **galeria de fotos**, só aparecem depois de aprovados.
 - **Sugestões de presentes** para os noivos: catálogo com produtos reais verificados, que entram na lista com um clique.
 - **Tour guiado** no primeiro acesso dos noivos ao painel.
+
+
+## Modo visitante
+
+Quem não foi convidado nem é dos noivos (desenvolvedores, tech leads, quem chegou pelo repositório) pode **conhecer o site por dentro**: na tela de entrada, o botão **"Só quero conhecer o site"** abre uma sessão com o papel `viewer`, sem senha e sem código.
+
+- **Vê tudo**: a área do convidado (início, convite, presentes, recados, galeria) e o painel dos noivos (convidados, presentes, pagamentos, presenças, recados, fotos, usuários, evento). Um banner no topo avisa o modo e leva de uma área à outra.
+- **Não altera nada**: criar, editar, apagar, reservar, aprovar e enviar são recusados no servidor com a mensagem "Modo visitante: dá para explorar tudo, mas nada pode ser alterado". Nenhum caso de uso de escrita aceita o papel `viewer`, então a proteção não depende de esconder botões.
+- **Dados pessoais mascarados**: nomes viram "Maria L.", códigos de acesso "K7••••9P", telefones e e-mails perdem os dígitos, e a chave Pix aparece mascarada. A busca é ignorada para o visitante, para que ninguém descubra códigos por tentativa.
+- **Convidado de exemplo**: as telas pessoais (início, convite, confirmar presença, perfil) mostram um convidado fictício, sem tocar nos dados de ninguém.
+- **Sem estado**: a sessão do visitante não tem registro no banco e o tour do painel pode ser revisto sem gravar nada.
+
+Para desligar depois do casamento, defina `VIEWER_MODE_ENABLED=false`: o botão some e o login do visitante deixa de funcionar.
 
 ## Tour pelas telas
 
@@ -217,6 +232,7 @@ Toda listagem lê `?page`, `perPage`, `q`, filtros e `sort` dos `searchParams` n
 - Headers de segurança: CSP restrita ao próprio site e ao Cloudinary, `X-Frame-Options: DENY`, `nosniff`, `Permissions-Policy` e `X-Robots-Tag: noindex, nofollow` (o site é privado).
 - Uploads assinados pelo servidor, com limite de **8 MB** validado também no upload preset do Cloudinary, e URLs de imagem e de produto validadas (sem credenciais ou portas explícitas, só hosts permitidos).
 - As variáveis de ambiente são validadas com Zod, por módulo, e as falhas aparecem na subida. Segredos ficam só no `.env`, nunca no repositório.
+- O **modo visitante** é somente leitura por construção (nenhum caso de uso de escrita aceita o papel `viewer`) e mascara nomes, códigos, telefones, e-mails e a chave Pix.
 - O mural e a galeria só exibem o que os noivos aprovaram. O convidado vê apenas o estado de cada presente (disponível, "X de N cotas", completo), nunca o nome de outros doadores, e pode escolher aparecer como anônimo no recado.
 
 ### Catálogo de sugestões verificado
@@ -280,6 +296,7 @@ Preencha o `.env` (todas as credenciais, inclusive as do Postgres do Docker, fic
 | `CRON_SECRET` | Protege a rota do cron de expiração |
 | `APP_URL` | URL pública do site |
 | `ADMIN_EMAIL`, `ADMIN_NAME` | Primeiro administrador |
+| `VIEWER_MODE_ENABLED` | `true` (padrão) liga o modo visitante; `false` desliga |
 
 Depois:
 

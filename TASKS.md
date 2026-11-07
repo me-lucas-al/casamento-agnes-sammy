@@ -135,3 +135,12 @@
 - [x] Textos: loja abre página do produto, checkbox de anonimato
 - [x] Lista de recados atualiza após aprovar
 - [x] Visualização dos noivos na área do convidado sem formulários
+
+## Modo visitante (somente leitura)
+- [x] Papel `viewer` com erro próprio (`ViewerReadOnlyError`) e rotas liberadas em toda a área do convidado e no painel
+- [x] Entrada sem senha pelo botão "Só quero conhecer o site", desligável com `VIEWER_MODE_ENABLED=false`
+- [x] Máscara de nomes, códigos, telefones, e-mails e chave Pix; busca ignorada para o visitante
+- [x] Convidado e RSVP de exemplo, perfil de visitante e tour sem gravar estado
+- [x] Banner de modo visitante e navegação entre painel e área do convidado
+- [x] Testes de integração: escrita recusada em todos os casos de uso, leituras mascaradas, convidado de exemplo e sessão
+- [ ] Testar o fluxo no navegador (botão de entrada, banner, formulários recusando) em 360px, 768px e 1280px

@@ -39,7 +39,8 @@ const ALL_STEPS: readonly (TourStepDefinition & { adminOnly?: boolean })[] = [
 
 export function buildTourSteps(role: Role): TourStepDefinition[] {
   if (role === "guest") return [];
-  return ALL_STEPS.filter((step) => !step.adminOnly || role === "admin").map(
+  const canSeeAdminSteps = role === "admin" || role === "viewer";
+  return ALL_STEPS.filter((step) => !step.adminOnly || canSeeAdminSteps).map(
     ({ id, navLabel, href, hrefLabel }) => ({ id, navLabel, href, hrefLabel }),
   );
 }

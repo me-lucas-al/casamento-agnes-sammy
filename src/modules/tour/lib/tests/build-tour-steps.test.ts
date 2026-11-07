@@ -29,3 +29,9 @@ describe("buildTourSteps", () => {
     for (const step of steps) if (step.href) expect(step.href.startsWith("/painel")).toBe(true);
   });
 });
+
+describe("buildTourSteps for viewer", () => {
+  it("shows the same steps as the admin so the visitor can follow the whole panel", () => {
+    expect(buildTourSteps("viewer")).toEqual(buildTourSteps("admin"));
+  });
+});

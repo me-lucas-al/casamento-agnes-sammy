@@ -21,7 +21,7 @@ export function makeListPendingPayments({ contributionRepository }: Dependencies
       limit: perPage,
       offset,
       status,
-      search,
+      search: isViewer(user) ? "" : search,
       sort,
     });
     const visibleItems = isViewer(user) ? items.map(maskPaymentForViewer) : items;

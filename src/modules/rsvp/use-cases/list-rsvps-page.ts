@@ -17,7 +17,8 @@ export function makeListRsvpsPage({ rsvpRepository }: Dependencies) {
     { page, perPage, offset, status, search }: Input,
   ): Promise<PageResult<RsvpListItem>> {
     const user = requireRole(actor, PANEL_READER_ROLES);
-    const { items, total } = await rsvpRepository.listPage({ limit: perPage, offset, status, search });
+    const effectiveSearch = isViewer(user) ? "" : search;
+    const { items, total } = await rsvpRepository.listPage({ limit: perPage, offset, status, search: effectiveSearch });
     const visibleItems = isViewer(user) ? items.map(maskRsvpItemForViewer) : items;
     return buildPageResult({ items: visibleItems, total, page, perPage });
   };

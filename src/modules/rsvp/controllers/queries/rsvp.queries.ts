@@ -1,5 +1,6 @@
 import { getSessionUser } from "@/modules/auth/controllers/session/get-session-user";
 import { isViewer } from "@/modules/auth/lib/is-viewer";
+import { VIEWER_USER_ID } from "@/modules/auth/types";
 import { parsePageParams } from "@/shared/lib/pagination/pagination";
 import { enumParam, textParam, type SearchParams } from "@/shared/lib/url/url-params";
 import { getRsvpModule } from "@/modules/rsvp/factory";
@@ -10,7 +11,7 @@ import { guardedQuery } from "@/shared/lib/resilience/guarded-query";
 export async function getMyRsvpQuery() {
   return guardedQuery("getMyRsvpQuery", async () => {
     const actor = await getSessionUser();
-    return getRsvpModule().getGuestRsvp(actor, isViewer(actor) ? "" : requireGuestId(actor));
+    return getRsvpModule().getGuestRsvp(actor, isViewer(actor) ? VIEWER_USER_ID : requireGuestId(actor));
   });
 }
 

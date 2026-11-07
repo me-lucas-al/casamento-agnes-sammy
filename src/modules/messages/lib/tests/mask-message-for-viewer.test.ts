@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import type { Message } from "../../types";
-import { maskMessageForViewer } from "../privacy/mask-message-for-viewer";
+import { maskMessageForViewer, maskPublicMessageForViewer } from "../privacy/mask-message-for-viewer";
 
 describe("maskMessageForViewer", () => {
   it("masks only the author name", () => {
@@ -14,5 +14,12 @@ describe("maskMessageForViewer", () => {
       createdAt: new Date("2026-01-01T00:00:00Z"),
     };
     expect(maskMessageForViewer(message)).toEqual({ ...message, authorName: "Maria L." });
+  });
+});
+
+describe("maskPublicMessageForViewer", () => {
+  it("masks only the author name of an approved message", () => {
+    const message = { id: "message-1", authorName: "Maria Souza Lima", body: "Parabéns!", createdAt: "2026-01-01T00:00:00.000Z" };
+    expect(maskPublicMessageForViewer(message)).toEqual({ ...message, authorName: "Maria L." });
   });
 });

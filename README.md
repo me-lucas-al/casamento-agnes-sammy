@@ -34,7 +34,7 @@ Existem quatro papéis de acesso:
 | `guest` (convidado) | Código de acesso de 8 caracteres do convite | Ver o evento, escolher e pagar presentes, confirmar presença, deixar recados, enviar fotos, editar o próprio perfil |
 | `couple` (noivos) | Login com Google (lista de e-mails autorizados) | Tudo do painel: convidados, presentes, pagamentos, presenças, moderação, evento e Pix |
 | `admin` | Login com Google | Tudo dos noivos, mais o cadastro de usuários do painel |
-| `viewer` (visitante) | Botão "Só quero conhecer o site" na tela de entrada | Ver o site inteiro, inclusive o painel, sem poder alterar nada e com dados pessoais mascarados ([detalhes](#modo-visitante)) |
+| `viewer` (visitante) | "Só quero conhecer o site" na tela de entrada, escolhendo ver como convidado ou como noivos | Ver o site inteiro, inclusive o painel, sem poder alterar nada e com dados pessoais mascarados ([detalhes](#modo-visitante)) |
 
 Principais fluxos:
 
@@ -49,7 +49,7 @@ Principais fluxos:
 
 ## Modo visitante
 
-Quem não foi convidado nem é dos noivos (desenvolvedores, tech leads, quem chegou pelo repositório) pode **conhecer o site por dentro**: na tela de entrada, o botão **"Só quero conhecer o site"** abre uma sessão com o papel `viewer`, sem senha e sem código.
+Quem não foi convidado nem é dos noivos (desenvolvedores, tech leads, quem chegou pelo repositório) pode **conhecer o site por dentro**. Na tela de entrada, em **"Só quero conhecer o site"**, a pessoa escolhe entre **"Ver como convidado"** e **"Ver como noivos"**. Os dois abrem uma sessão com o papel `viewer`, sem senha e sem código, e um banner no topo leva de uma área à outra a qualquer momento.
 
 - **Vê tudo**: a área do convidado (início, convite, presentes, recados, galeria) e o painel dos noivos (convidados, presentes, pagamentos, presenças, recados, fotos, usuários, evento). Um banner no topo avisa o modo e leva de uma área à outra.
 - **Não altera nada**: criar, editar, apagar, reservar, aprovar e enviar são recusados no servidor com a mensagem "Modo visitante: dá para explorar tudo, mas nada pode ser alterado". Nenhum caso de uso de escrita aceita o papel `viewer`, então a proteção não depende de esconder botões.
@@ -57,7 +57,17 @@ Quem não foi convidado nem é dos noivos (desenvolvedores, tech leads, quem che
 - **Convidado de exemplo**: as telas pessoais (início, convite, confirmar presença, perfil) mostram um convidado fictício, sem tocar nos dados de ninguém.
 - **Sem estado**: a sessão do visitante não tem registro no banco e o tour do painel pode ser revisto sem gravar nada.
 
-Para desligar depois do casamento, defina `VIEWER_MODE_ENABLED=false`: o botão some e o login do visitante deixa de funcionar.
+As duas opções ficam logo abaixo do formulário de entrada, na aba "Sou convidado(a)":
+
+<p align="center">
+  <img src="docs/screenshots/27-login-modo-visitante.webp" alt="Tela de entrada com as opções Ver como convidado e Ver como noivos" width="640">
+</p>
+
+| Como convidado (convidado de exemplo) | Como noivos (painel com dados mascarados) |
+| --- | --- |
+| <img src="docs/screenshots/28-visitante-inicio.webp" width="420" alt="Início do convidado em modo visitante, com o banner no topo"> | <img src="docs/screenshots/29-visitante-painel-convidados.webp" width="420" alt="Painel de convidados em modo visitante, com nomes, códigos, telefones e e-mails mascarados"> |
+
+Para desligar depois do casamento, defina `VIEWER_MODE_ENABLED=false`: as opções somem e o login do visitante deixa de funcionar.
 
 ## Tour pelas telas
 

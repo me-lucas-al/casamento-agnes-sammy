@@ -7,6 +7,7 @@ import { serializeError } from "@/shared/lib/logging/serialize-error";
 import { isNextControlFlowError } from "@/shared/lib/errors/next-control-flow";
 import { signIn, signOut } from "@/modules/auth/config/auth";
 import { normalizeAccessCode } from "@/modules/auth/lib/access-code";
+import { resolveViewerLanding } from "@/modules/auth/lib/viewer-landing";
 
 export type SignInFormState = { error: string | null };
 
@@ -34,9 +35,9 @@ export async function signInWithGoogleAction(): Promise<void> {
   await signIn("google", { redirectTo: "/painel" });
 }
 
-export async function signInAsViewerAction(): Promise<void> {
+export async function signInAsViewerAction(formData: FormData): Promise<void> {
   try {
-    await signIn("viewer", { redirectTo: "/inicio" });
+    await signIn("viewer", { redirectTo: resolveViewerLanding(formData.get("area")) });
   } catch (error) {
     if (isNextControlFlowError(error)) throw error;
     redirect("/");
